@@ -3,14 +3,26 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:start:prod": "pm2 start ecosystem.config.js --env production",
+    "pm2:stop": "pm2 stop ecosystem.config.js",
+    "pm2:restart": "pm2 restart ecosystem.config.js",
+    "pm2:delete": "pm2 delete ecosystem.config.js",
+    "pm2:logs": "pm2 logs expressbra",
+    "pm2:monit": "pm2 monit"
   },
   "dependencies": {
+    "audit": "^0.0.6",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "dotenv": "^17.3.1",
+    "express": "^4.22.1",
+    "fix": "^0.0.3",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "morgan": "^1.10.1",
+    "oracledb": "^6.10.0",
+    "preline": "^4.0.1",
+    "pug": "^3.0.3"
   }
 }
