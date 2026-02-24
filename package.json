@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start:api": "node ./bin/www-api",
+    "dev:api": "nodemon ./bin/www-api",
     "pm2:start": "pm2 start ecosystem.config.js",
     "pm2:start:prod": "pm2 start ecosystem.config.js --env production",
     "pm2:stop": "pm2 stop ecosystem.config.js",
@@ -15,6 +17,7 @@
   "dependencies": {
     "audit": "^0.0.6",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.6",
     "debug": "~2.6.9",
     "dotenv": "^17.3.1",
     "express": "^4.22.1",

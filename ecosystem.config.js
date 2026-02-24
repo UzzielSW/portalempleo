@@ -8,27 +8,19 @@ module.exports = {
         watch: true,
         ignore_watch: ['[\/\\]\./', 'node_modules', 'sessions'],
         max_memory_restart: "1G", // Lo debe de asignar infraestructura
+
+        // Entorno de desarrollo (local)
         env_development: {
             "NODE_ENV": "development",
-            "PORT": 7011,
-            "PORTS": 3011,
-            "RUTA_SSL": "", // "/etc/nginx/ssl/",
-            "CRT": "", // Nombre del CRT
-            "KEY": "", // Nombre de archivo KEY
-            "HOST": "10.0.1.31",
-            "USER": "",
-            "PASSWORD": "",
-            "DATABASE": "ora2",
-            "CONNECTSTRING": "10.0.1.31/ora2",
-            "ALGORITHM": "RS256",
-            "ISSUER": "Universidad de Panamá",
-            "SECRET_JWT_SEED": "",
-            "EXPIRESIN": "2h"
+            // El resto viene de .env
         },
+
+        // Entorno de producción (servidor)
         env_production: {
             "NODE_ENV": "production",
             // Aquí infraestructura debe poner todas las configuraciones pertinentes.
         },
+
         combine_logs: false,
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm Z',

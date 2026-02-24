@@ -1,0 +1,19 @@
+# Implementation Tasks: Dual Architecture
+
+- [x] Backend API Setup
+    - [x] Install `cors` dependency
+    - [x] Create [app-api.js](file:///c:/PROYECTOS/portalempleo/app-api.js) (Express JSON server parallel to [app.js](file:///c:/PROYECTOS/portalempleo/app.js))
+    - [x] Create [bin/www-api](file:///c:/PROYECTOS/portalempleo/bin/www-api) (Launcher for the API server on port 3001)
+    - [x] Create [routes/api/index.js](file:///c:/PROYECTOS/portalempleo/routes/api/index.js) (Initial JSON route)
+    - [x] Update [package.json](file:///c:/PROYECTOS/portalempleo/package.json) scripts (`start:api`, `dev:api`)
+- [x] Frontend React Setup
+    - [x] Initialize Vite + React project in `/frontend`
+    - [x] Install Tailwind CSS, PostCSS, Autoprefixer
+    - [x] Initialize and configure Tailwind CSS
+    - [x] Install and configure Preline UI
+    - [x] Fix Tailwind v4 PostCSS compatibility
+    - [x] Fix Preline v4 + Tailwind v4 integration (@source & variants.css)
+    - [x] Set up basic API fetch in `App.jsx`
+- [x] Verification
+    - [x] Test API server responds to JSON requests
+    - [x] Test React frontend correctly renders Preline UI and fetches from API

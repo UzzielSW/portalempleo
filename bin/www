@@ -1,75 +1,70 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
-
+// Aplicación Express principal.
 var app = require('../app');
+
+// Logger de depuración (se habilita con la variable de entorno DEBUG).
 var debug = require('debug')('portalempleo:server');
+
+// Módulo HTTP nativo de Node.js (servidor).
 var http = require('http');
 
-/**
- * Get port from environment and store in Express.
- */
+// Obtiene el puerto desde el entorno y lo guarda en Express.
 
+// Prioriza PORT del entorno; si no existe, usa 3000.
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
+// * Crea el servidor HTTP.
+// Envuelve la app de Express en un servidor HTTP.
 var server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+// Escucha en el puerto indicado, en todas las interfaces de red.
 
+// Arranca el servidor y registra manejadores de eventos.
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-/**
- * Normalize a port into a number, string, or false.
- */
+// Mensaje informativo de arranque (salida por consola).
+console.log('Servidor ejecutándose en el puerto', process.env.PORT);
 
+// Normaliza un puerto a número, string o false.
 function normalizePort(val) {
+  // Intenta convertir a número (p. ej. "3000" -> 3000).
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
-    // named pipe
     return val;
   }
 
   if (port >= 0) {
-    // port number
     return port;
   }
 
   return false;
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
-
+// Listener del evento "error" del servidor HTTP.
 function onError(error) {
+  // Si no es un error relacionado con listen(), lo propagamos.
   if (error.syscall !== 'listen') {
     throw error;
   }
 
+  // Identificador legible del destino (tubería o puerto).
   var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+    ? 'Tubería ' + port
+    : 'Puerto ' + port;
 
-  // handle specific listen errors with friendly messages
+  // Maneja errores concretos de listen() con mensajes claros.
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(bind + ' requiere privilegios elevados');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      console.error(bind + ' ya está en uso');
       process.exit(1);
       break;
     default:
@@ -77,14 +72,12 @@ function onError(error) {
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
-
+// Listener del evento "listening" del servidor HTTP.
 function onListening() {
+  // Obtiene la dirección real donde está escuchando el servidor.
   var addr = server.address();
   var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+    ? 'tubería ' + addr
+    : 'puerto ' + addr.port;
+  debug('Escuchando en ' + bind);
 }
