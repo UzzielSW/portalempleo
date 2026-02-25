@@ -39,3 +39,11 @@ npm install -D tailwindcss postcss autoprefixer
 npm install preline
 npx tailwindcss init -p
 npm install @tailwindcss/postcss
+
+
+# ========================== RUN ==============================
+#backend
+npm run start:api
+
+#frontend
+npm run dev

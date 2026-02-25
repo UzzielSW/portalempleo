@@ -11,8 +11,8 @@ function App() {
       window.HSStaticMethods.autoInit();
     }
 
-    // Probar conexión con la API en el puerto 3001
-    fetch('http://localhost:3001/api')
+    // Probar conexión con la API en el puerto 4007
+    fetch('http://localhost:4007/api')
       .then(res => {
         if (!res.ok) throw new Error('Error en la respuesta del servidor');
         return res.json();
@@ -73,7 +73,7 @@ function App() {
                     <svg className="shrink-0 size-4 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
                   </div>
                   <div className="ms-3">
-                    <p className="font-bold">Error conectando con la API (Puerto 3001)</p>
+                    <p className="font-bold">Error conectando con la API (Puerto 4007)</p>
                     <p className="text-sm">Asegúrate de haber ejecutado `npm run start:api` en la carpeta raíz.</p>
                     <p className="mt-2 font-mono text-xs">{apiStatus.error}</p>
                   </div>
@@ -110,7 +110,7 @@ function App() {
               </button>
               <div id="hs-basic-collapse-one" className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-basic-heading-one">
                 <p className="text-gray-800 ps-7">
-                  El servidor Express original sigue sirviendo tus vistas Pug en su puerto habitual. Hemos creado un servidor paralelo (`app-api.js`) en el puerto 3001 que solo envía datos. Esta app de React en el puerto 5173 consume esos datos, permitiéndote probar React sin afectar nada de lo anterior.
+                  El servidor Express original sigue sirviendo tus vistas Pug en su puerto habitual. Hemos creado un servidor paralelo (`app-api.js`) en el puerto 4007 que solo envía datos. Esta app de React en el puerto 5173 consume esos datos, permitiéndote probar React sin afectar nada de lo anterior.
                 </p>
               </div>
             </div>

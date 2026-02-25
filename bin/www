@@ -11,8 +11,8 @@ var http = require('http');
 
 // Obtiene el puerto desde el entorno y lo guarda en Express.
 
-// Prioriza PORT del entorno; si no existe, usa 3000.
-var port = normalizePort(process.env.PORT || '3000');
+// Prioriza PORT del entorno;
+var port = normalizePort(process.env.PORT || 'NO SE ENCONTRO PUERTO');
 app.set('port', port);
 
 // * Crea el servidor HTTP.
