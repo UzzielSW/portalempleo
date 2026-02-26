@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import "preline/preline";
+import "preline";
 import "./index.css";
 
 function App() {

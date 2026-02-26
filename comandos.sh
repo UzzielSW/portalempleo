@@ -1,7 +1,16 @@
 
 # ========================== git ==============================
 git clone http://git.up.ac.pa/portalempleo/portalempleo.git
+https://github.com/UzzielSW/portalempleo.git
+
 git fetch origin # actualizar cambios
+git fetch github # actualizar cambios
+
+# ver ramas locales y remotas
+git branch -a
+
+# cambiar de rama
+git switch brayan.puyol
 
 # crear ramas en local
 git checkout -b Dev origin/Dev
