@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portal de Empleo UP | Universidad de Panamá</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#003876", // UP Blue
+                        secondary: "#B8860B", // UP Gold
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        .glass-effect {
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+        .dark .glass-effect {
+            background-color: rgba(15, 23, 42, 0.85);
+        }
+        .university-gradient {
+            background: linear-gradient(135deg, #003876 0%, #002147 100%);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<nav class="sticky top-0 z-50 glass-effect border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-secondary p-2 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<div>
+<span class="text-xl font-extrabold tracking-tight text-primary dark:text-blue-400">Portal de Empleo UP</span>
+<span class="block text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Universidad de Panamá</span>
+</div>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-sm font-semibold hover:text-secondary transition-colors" href="#">INICIO</a>
+<a class="text-sm font-semibold hover:text-secondary transition-colors" href="/requirements">REQUISITOS PARA REGISTRARSE</a>
+<a class="text-sm font-semibold hover:text-secondary transition-colors" href="#">CONTACTENOS</a>
+<div class="flex items-center gap-4 pl-4 border-l border-slate-200 dark:border-slate-700">
+<a class="text-sm font-bold text-primary dark:text-blue-400" href="/login">Iniciar Sesión</a>
+<a class="bg-primary hover:bg-blue-900 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md" href="/registro">Registrarse</a>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<section class="relative overflow-hidden pt-16 pb-24 lg:pt-24 lg:pb-32 bg-white dark:bg-slate-900">
+<div class="absolute top-0 right-0 w-1/3 h-full bg-slate-50 dark:bg-slate-800/50 -skew-x-12 translate-x-20 z-0"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-primary dark:text-blue-300 text-xs font-bold uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                        VINCULACIÓN UNIVERSITARIA &amp; TALENTO
+                    </div>
+<h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-slate-900 dark:text-white">
+                        Impulsa tu Futuro <br/><span class="text-primary dark:text-blue-400">Profesional</span>
+</h1>
+<p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
+                        Conectamos a estudiantes y egresados de la Universidad de Panamá con las empresas más importantes del país y el mundo.
+                    </p>
+<form action="/login" class="bg-white dark:bg-slate-800 p-3 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-700 flex flex-col md:flex-row gap-2 max-w-2xl">
+<div class="flex-1 flex items-center px-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl">
+<span class="material-symbols-outlined text-slate-400 mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-sm" placeholder="Cargo, profesión" type="text"/>
+</div>
+<div class="flex-1 flex items-center px-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl">
+<span class="material-symbols-outlined text-slate-400 mr-2">location_on</span>
+<select class="bg-transparent border-none focus:ring-0 w-full text-sm">
+<option>Sede Central</option>
+<option>Centros Regionales</option>
+<option>Remoto</option>
+</select>
+</div>
+<button class="bg-[#B8860B] hover:bg-yellow-700 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg" type="submit">
+<span>Buscar</span>
+<span class="material-symbols-outlined text-sm">logout</span>
+</button>
+</form>
+</div>
+<div class="relative">
+<div class="absolute -inset-4 bg-primary/10 rounded-full blur-3xl"></div>
+<img alt="Estudiante UP" class="relative z-10 rounded-3xl shadow-2xl border-8 border-white dark:border-slate-800 w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1iVrlw5nwDO980wQpB_o30VNg8niQUkl30NIs3mzgyzmAm38wx9MWsdfB1rGr-UrP7MIgRsht2q8TyDN8H9ghBM9AgKE94eoc0lies9-4-Upxpdy4OXO-1Hb_3ge5NckfQkZgOwslfqmHcyrzYsBv4yGu1m415PrvZm5TOIxEHEVzxDGYGzSq8hyjrfOvYP4swO0buvDnjJQf0x-SCFJBF5RX_NQG2KDWyEjlfMDKyUu4EsOzKduyhAaVW4pn3z_TKGMwAYvVsjc"/>
+<div class="absolute -bottom-8 -right-8 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 z-20 hidden md:block">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl font-bold">trending_up</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">EMPLEABILIDAD</p>
+<p class="text-lg font-black text-slate-800 dark:text-white">92% Éxito</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative">
+<div class="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col items-center">
+<div class="text-primary mb-4">
+<span class="material-symbols-outlined text-4xl">group</span>
+</div>
+<p class="text-5xl font-black text-slate-900 dark:text-white mb-2">+15,000</p>
+<p class="text-slate-500 font-semibold uppercase text-xs tracking-widest">Estudiantes Activos</p>
+</div>
+<div class="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col items-center">
+<div class="text-primary mb-4">
+<span class="material-symbols-outlined text-4xl">corporate_fare</span>
+</div>
+<p class="text-5xl font-black text-slate-900 dark:text-white mb-2">1,200</p>
+<p class="text-slate-500 font-semibold uppercase text-xs tracking-widest">Empresas Aliadas</p>
+</div>
+<div class="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col items-center">
+<div class="text-primary mb-4">
+<span class="material-symbols-outlined text-4xl">description</span>
+</div>
+<p class="text-5xl font-black text-slate-900 dark:text-white mb-2">+3,500</p>
+<p class="text-slate-500 font-semibold uppercase text-xs tracking-widest">Vacantes Mensuales</p>
+</div>
+<div class="absolute right-0 -top-4 bg-white rounded-full p-1 border shadow-sm">
+<span class="material-symbols-outlined text-slate-400 text-sm">expand_less</span>
+</div>
+</div>
+</div>
+</section>
+<section class="px-4 py-16">
+<div class="max-w-7xl mx-auto university-gradient rounded-[2rem] overflow-hidden relative shadow-2xl">
+<div class="relative z-10 p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-12">
+<div class="max-w-xl">
+<h2 class="text-4xl lg:text-5xl font-extrabold text-white mb-6">¿Quieres reclutar personal?</h2>
+<p class="text-blue-100 text-lg mb-8 opacity-90">Accede al talento formado en la universidad más prestigiosa del país. Publica tus ofertas de forma gratuita y encuentra el perfil ideal.</p>
+<a class="inline-flex items-center gap-3 bg-[#B8860B] hover:bg-yellow-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg" href="/requirements">
+                        Ver Requisitos de Empresa
+                        <span class="material-symbols-outlined text-lg">person_add</span>
+</a>
+</div>
+<div class="hidden lg:flex gap-4">
+<div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/20">
+<span class="material-symbols-outlined text-white text-3xl">person_search</span>
+</div>
+<div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/20">
+<span class="material-symbols-outlined text-white text-3xl">verified</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-white dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="text-4xl font-extrabold mb-4 text-[#1a1a1a] dark:text-white">Tu camino al éxito profesional</h2>
+<p class="text-slate-500">Sigue estos 3 simples pasos para encontrar tu próxima gran oportunidad laboral como parte de la comunidad UP.</p>
+</div>
+<div class="grid lg:grid-cols-3 gap-12">
+<div class="relative p-8 text-center group">
+<div class="mb-6 w-12 h-12 bg-[#003876] text-white rounded-full flex items-center justify-center font-black text-xl mx-auto">1</div>
+<h3 class="text-xl font-bold mb-4">Crea tu Perfil</h3>
+<p class="text-slate-500 text-sm">Regístrate con tu correo institucional o personal y completa tu trayectoria académica.</p>
+</div>
+<div class="relative p-8 text-center group">
+<div class="mb-6 w-12 h-12 bg-[#003876] text-white rounded-full flex items-center justify-center font-black text-xl mx-auto">2</div>
+<h3 class="text-xl font-bold mb-4">Postula a Ofertas</h3>
+<p class="text-slate-500 text-sm">Explora vacantes exclusivas para egresados y estudiantes UP según tu facultad.</p>
+</div>
+<div class="relative p-8 text-center group">
+<div class="mb-6 w-12 h-12 bg-[#003876] text-white rounded-full flex items-center justify-center font-black text-xl mx-auto">3</div>
+<h3 class="text-xl font-bold mb-4">Obtén el Empleo</h3>
+<p class="text-slate-500 text-sm">Participa en entrevistas y procesos de selección con empresas de alto nivel.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-12 px-4">
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+<div class="relative overflow-hidden bg-white dark:bg-slate-800 rounded-3xl p-10 flex flex-col md:flex-row items-center gap-8 border border-slate-100 dark:border-slate-700 shadow-xl">
+<div class="flex-1 text-center md:text-left z-10">
+<span class="text-secondary font-bold text-xs uppercase tracking-widest mb-2 block">SECCIÓN EMPRESAS</span>
+<h3 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-4">Empleador</h3>
+<p class="text-slate-500 dark:text-slate-400 mb-8 text-sm leading-relaxed">Publique sus vacantes y acceda al banco de talentos más calificado de la región.</p>
+<a class="bg-[#003876] text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-900 transition-all inline-block shadow-md" href="/requirements">Ver Requisitos</a>
+</div>
+<div class="w-48 h-48 bg-[#2d7a78] rounded-2xl flex items-center justify-center p-6 relative">
+<div class="bg-white/10 w-full h-full rounded-lg border border-white/20 flex flex-col items-center justify-center gap-4">
+<span class="material-symbols-outlined text-white text-3xl">work</span>
+<span class="material-symbols-outlined text-white text-3xl">handshake</span>
+</div>
+</div>
+</div>
+<div class="relative overflow-hidden bg-[#002147] rounded-3xl p-10 flex flex-col md:flex-row items-center gap-8 shadow-xl">
+<div class="flex-1 text-center md:text-left z-10">
+<span class="text-secondary font-bold text-xs uppercase tracking-widest mb-2 block">TALENTO UP</span>
+<h3 class="text-3xl font-extrabold text-white mb-4">Candidato</h3>
+<p class="text-blue-100 mb-8 text-sm leading-relaxed">Gestione su carrera profesional y encuentre pasantías o empleos permanentes.</p>
+<a class="bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-slate-100 transition-all inline-block shadow-md" href="/login">Iniciar Sesión</a>
+</div>
+<img alt="Candidate" class="w-48 h-48 rounded-2xl object-cover shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjS6j-PkeF7303KJupK1AlxliKyZ19DsteryuFDakgN6G28Es3B_kS0t4xz-uZ8aRE-wiz5e3SNyL5mYvN1S7Mrd_Enp0dbOI2d8uXxPcth-3Tesh0QsF3GZsrD2PCvju7dXXBRwrn3PbMV76OGYyiJmMjhljn_6Q8bIjk-_3rBePrXDflJOqo-JlqvTCvDEjQPE2KZHgiEJNiKsX88HzCu4xgnQzPXlIdtmuVg7rXUNPxfV2j5taPkZhzKpuBH17SQ28WkefvCFo"/>
+</div>
+</div>
+</section>
+<section class="py-20 bg-slate-50 dark:bg-slate-900/50">
+<div class="max-w-7xl mx-auto px-4">
+<p class="text-center text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-12">EMPRESAS CON CONVENIO DE COOPERACIÓN</p>
+<div class="flex flex-wrap justify-center items-center gap-12 lg:gap-16 grayscale opacity-60">
+<img alt="Partner Logo" class="h-8 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZSjU6XTo837B3dbZ98WyndT9j-3pFng8RhzfGRvnVO4LqYyHVam8hsM3fqw8EBku-dqR3RlgNSIB-sQeHtp1sBDZ5GFuyEcneQWDdvCg8x305vGurLf6hah3XLEysRhWpMn8q2OUQT2dIUM5o-yDNNGgoqmaw6CszOi6i3TDiaMeKKNmbPELVx4HBfkqC8jonisNHNtVXZFaJm5WU1R3no1xNIhu25_c1arYNm-KpmRfy0lQGrcku4eEChIaOdzh5oxD-yLWCiKk"/>
+<img alt="Partner Logo" class="h-8 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAolVT8r5oRyaUbvTPnFJMHTkBMY9Rv1GpqU-eR_yhD3AmzigdqGnvyOUH5n5d6qHFIumjcv5EpibdEkfwfRPyDEuJX_aHZ98NDjnvnb49P1PDiP772_HGldBhHw_ItMIxE1iiJjr7ltXbxEM2Ltt7a_oAfYRNRry9puyPcSXXprWTxQx7cl2ORHERlTFMzersXP9EnG2jyFe8HpN3eab9pchGfOoxR652-W7EeH3u45tIdbgGrpWe1dmyrC1rnqGn9a9R4gOKbyug"/>
+<img alt="Partner Logo" class="h-8 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMm0HYh58NeN3AFsoSZb7OlLMrYHRyQSxrP5tr-Hv_o6lciIjzgKvJ8HUL6uI8auGMVw6Ggn3kfUXw99EMzWxwORmgoTQCRhS-o7GA3R1vEAOBPz8L-aWgWvfdQ3d1XyCg9Wdf14keLPScvGwvD1UAnkbUC7uwTogs4tah9HvRV0wWgJFaBnePwkOjR5tvSNyXs4Ah2q7fEcQXyPzpfarRyPVg2rxBMKT4g5vf3DK0_AdWBOhyeyxyNApG7O41UEwl0Ru8DHkohrY"/>
+<img alt="Partner Logo" class="h-8 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFNWhWspuacuT5P2PqKm6ML1re5H10JYoEuN2yFXxCsJADTj3UsYlzefvxGxTJO9KPx4t-3i5uunshrrnOj805Dwa1LteTkEJs4ouzUHt7R3WDjaDzMn2lC1N9d61gqAeVdYSqDnCMC6s2MyKdQjsaxfIFDwOzhI5trlT4BUi7SSE9iYxgTXU_0aDEigctC3kUyGP2sj4L2dOHj0nP751wI9d6D9Kb_6lX8ArO9uFWipMghrKqlb4yACSSA8JyLkqZklDwF_z1cYk"/>
+<img alt="Partner Logo" class="h-8 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2lw67NvQCyOTd8xGU3rdJLfjCCdxCGyD-H87i13Fr2dq_kWlHe8gqdFsZOl56PmMYB8kx8KwJRPevdilB5FV1I3XSfQ2hqs_q-lnLHnoOO_AH-qs6n8jAgn3DB2A5xKSkfGg3TrCxK46ANtJ3JOfjtoHiMYx398AFfSM55XNVe0Th-N-oistl3B5rFWSGQUcDx0ZIdcidXmAOyQ4qPNnf4ejpxkcyAgEBnWr5pKdz7wwg9oqcFeyIS9oqleyd-LBkU4ZzFqmEd0s"/>
+</div>
+</div>
+</section>
+<footer class="bg-white dark:bg-slate-900 pt-20 pb-10 border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+<div class="space-y-6">
+<div class="flex items-center gap-2">
+<div class="bg-primary text-secondary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<span class="text-xl font-black text-primary dark:text-blue-400 uppercase tracking-tight">Portal UP</span>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed">
+                        Dirección de Vinculación con la Empresa y Seguimiento al Egresado. Conectando el conocimiento con el mercado laboral panameño.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all border border-slate-200 dark:border-slate-700" href="#"><span class="material-symbols-outlined text-lg">public</span></a>
+<a class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all border border-slate-200 dark:border-slate-700" href="#"><span class="material-symbols-outlined text-lg">mail</span></a>
+<a class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all border border-slate-200 dark:border-slate-700" href="#"><span class="material-symbols-outlined text-lg">call</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-extrabold mb-6 text-slate-900 dark:text-white text-xs uppercase tracking-widest border-b border-secondary inline-block pb-1">CANDIDATOS</h4>
+<ul class="space-y-4 text-xs text-slate-500 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">Bolsa de Trabajo</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Orientación Profesional</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Prácticas Profesionales</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Programas de Beca</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-extrabold mb-6 text-slate-900 dark:text-white text-xs uppercase tracking-widest border-b border-secondary inline-block pb-1">EMPRESAS</h4>
+<ul class="space-y-4 text-xs text-slate-500 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">Publicar Vacantes</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Convenios UP</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Requisitos Legales</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Ferias de Empleo</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-extrabold mb-6 text-slate-900 dark:text-white text-xs uppercase tracking-widest border-b border-secondary inline-block pb-1">INSTITUCIÓN</h4>
+<ul class="space-y-4 text-xs text-slate-500 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">Sobre la UP</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Facultades</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sedes Regionales</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Transparencia</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-[10px] font-bold text-slate-400">© 2024 Universidad de Panamá - Portal de Empleo. Hacia la excelencia.</p>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-slate-400">Desarrollado por</span>
+<span class="font-bold text-[10px] text-primary dark:text-blue-300">Dirección de Informática UP</span>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>

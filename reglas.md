@@ -1,1 +1,2 @@
 Los comandos que se deban ejecutar debes dejarmelo a mi. Yo los ejecutaré. solo me debes decir que debo hacer.
+

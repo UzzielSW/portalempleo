@@ -17,3 +17,24 @@
 
 En otros proyectos, en vez de `app.js` + `bin/www`, la gente usa:
 - **`index.js`** o **`server.js`** como archivo único que hace ambas cosas (configura Express y hace `listen`). Es solo una convención de nombres.
+
+
+### Regla de arquitectura correcta
+
+**controllers/**
+
+* No importa express
+* Solo contiene lógica
+
+**routes/**
+
+* Importa Router de express
+* Define endpoints
+* Conecta routes con controllers
+
+**app.js**
+
+* Importa express
+* Usa las rutas
+
+---

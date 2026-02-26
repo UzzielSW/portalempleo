@@ -12,10 +12,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 const passport = require('passport');
-
+const flash = require('connect-flash'); //opcional
 // 3) Configuración de estrategias de autenticación, conexión a BD, etc.
 //    Idealmente aquí se inicializa todo lo "core" de la app (passport, ORM, conexiones).
-// require('./config/passport'); // Tu estrategia local
+require('./config/passport'); // Tu estrategia local
 
 // 4) Carga de módulos internos de la aplicación (rutas, middlewares propios, etc.)
 var all_router = require('./routes/all_router');
@@ -36,16 +36,38 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+    secret: '123456', // cambia esto por algo más seguro
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // cambia a true si usas HTTPS
+}));
+
+app.use(flash());
+
+// Inicializar Passport
+app.use(passport.initialize());
+app.use(passport.session()); // Habilita sesiones persistentes
+
 // 8) Definición de rutas de la aplicación
 //    Primero rutas públicas/básicas, luego rutas protegidas o módulos grandes.
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', all_router);
+
+console.log('Saludo en el servidor');
 
 // 9) Manejo de errores y middlewares de cierre
 //    Siempre deben ir al final, después de TODAS las rutas.
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  const err = new Error(`Ruta no encontrada: ${req.originalUrl}`);
+  err.status = 404;
+
+  // Mostrar en consola con más contexto
+  console.error(`[${new Date().toISOString()}] 404 - ${err.message}`);
+
+  // Redirigir al login
+  res.redirect('/');
   next(createError(404));
 });
 

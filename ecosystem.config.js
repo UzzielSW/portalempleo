@@ -1,7 +1,7 @@
 module.exports = {
     apps: [{
         name: 'PortalEmpleoUP',
-        script: '/bin/www',
+        script: './bin/www',
         cwd: './',
         // cwd: '/var/www/portalempleo',
         instances: 1,

@@ -1,5 +1,1043 @@
-extends layout
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Portal de Empleo UP | Universidad de Panama
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+    link(rel='stylesheet', href='/css/style.css')
 
-block content
-  h1= title
-  p Welcome to #{title}
+    style.
+      :root {
+        --up-blue: #003876;
+        --up-blue-dark: #002147;
+        --up-blue-mid: #004a9f;
+        --up-gold: #C49A1A;
+        --up-gold-light: #e8c44d;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background: #f5f7fa;
+        color: #1a2233;
+        margin: 0;
+      }
+
+      h1, h2, h3, h4, h5, .display {
+        font-family: 'Sora', sans-serif;
+      }
+
+      /* NAV */
+      .nav-portal {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .nav-logo-icon {
+        background: var(--up-blue);
+        color: var(--up-gold);
+        border-radius: 10px;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-logo-title {
+        font-family: 'Sora', sans-serif;
+        font-weight: 800;
+        font-size: 1.1rem;
+        color: var(--up-blue);
+        line-height: 1.1;
+      }
+
+      .nav-logo-sub {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--up-gold);
+      }
+
+      .nav-link {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #334155;
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+
+      .nav-link:hover { color: var(--up-gold); }
+
+      .nav-link-active {
+        color: var(--up-blue);
+        border-bottom: 2px solid var(--up-gold);
+        padding-bottom: 2px;
+      }
+
+      .btn-login {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--up-blue);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .btn-login:hover { color: var(--up-gold); }
+
+      .btn-register {
+        background: var(--up-blue);
+        color: #fff;
+        font-size: 0.82rem;
+        font-weight: 700;
+        padding: 0.5rem 1.4rem;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: background 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 10px rgba(0,56,118,0.2);
+      }
+
+      .btn-register:hover {
+        background: var(--up-gold);
+        color: #fff;
+      }
+
+      /* HERO */
+      .hero {
+        background: #fff;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero-bg-shape {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 45%;
+        height: 100%;
+        background: linear-gradient(135deg, #e8f0fb 0%, #f0f4ff 100%);
+        clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+        z-index: 0;
+      }
+
+      .hero-content { position: relative; z-index: 1; }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #eff6ff;
+        color: var(--up-blue);
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 50px;
+        border: 1px solid #bfdbfe;
+      }
+
+      .hero-badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--up-gold);
+      }
+
+      .hero-title {
+        font-size: clamp(2.4rem, 5vw, 4.2rem);
+        font-weight: 800;
+        line-height: 1.08;
+        color: #0f172a;
+        margin: 0;
+      }
+
+      .hero-title-accent { color: var(--up-blue); }
+
+      .hero-desc {
+        color: #64748b;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        max-width: 480px;
+      }
+
+      /* SEARCH BOX */
+      .search-box {
+        background: #fff;
+        border-radius: 18px;
+        padding: 10px;
+        box-shadow: 0 8px 40px rgba(0,56,118,0.12);
+        border: 1px solid #e2e8f0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        max-width: 580px;
+      }
+
+      .search-field {
+        flex: 1;
+        min-width: 160px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 10px 14px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .search-field .material-symbols-outlined {
+        font-size: 1.1rem;
+        color: #94a3b8;
+        font-variation-settings: 'FILL' 0, 'wght' 400;
+      }
+
+      .search-field input,
+      .search-field select {
+        background: transparent;
+        border: none;
+        outline: none;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.88rem;
+        color: #334155;
+        width: 100%;
+      }
+
+      .search-field select { cursor: pointer; }
+
+      .btn-search {
+        background: var(--up-gold);
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        padding: 10px 24px;
+        font-family: 'Sora', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.15s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .btn-search:hover {
+        background: #a07a10;
+        transform: translateY(-1px);
+      }
+
+      /* HERO IMAGE CARD */
+      .hero-img-wrap {
+        position: relative;
+      }
+
+      .hero-img {
+        border-radius: 24px;
+        width: 100%;
+        max-width: 460px;
+        object-fit: cover;
+        box-shadow: 0 20px 60px rgba(0,56,118,0.18);
+        border: 6px solid #fff;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .hero-stat-card {
+        position: absolute;
+        bottom: -16px;
+        right: 0;
+        background: #fff;
+        border-radius: 16px;
+        padding: 14px 20px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        border: 1px solid #f1f5f9;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .hero-stat-icon {
+        width: 44px;
+        height: 44px;
+        background: rgba(196,154,26,0.12);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--up-gold);
+      }
+
+      .hero-stat-label {
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #94a3b8;
+      }
+
+      .hero-stat-value {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #0f172a;
+      }
+
+      /* METRICS */
+      .metrics-section {
+        background: var(--up-blue);
+        padding: 3.5rem 1rem;
+      }
+
+      .metric-card {
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .metric-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        color: var(--up-gold-light);
+      }
+
+      .metric-number {
+        font-family: 'Sora', sans-serif;
+        font-size: 2.6rem;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1;
+      }
+
+      .metric-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.55);
+        margin-top: 6px;
+      }
+
+      .metric-divider {
+        width: 1px;
+        background: rgba(255,255,255,0.12);
+        align-self: stretch;
+      }
+
+      /* RECRUIT BANNER */
+      .recruit-banner {
+        background: var(--up-blue-dark);
+        border-radius: 24px;
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .recruit-banner::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.04);
+      }
+
+      .recruit-banner::after {
+        content: '';
+        position: absolute;
+        bottom: -80px;
+        right: 100px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: rgba(196,154,26,0.08);
+      }
+
+      .recruit-title {
+        font-family: 'Sora', sans-serif;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        font-weight: 800;
+        color: #fff;
+        margin: 0 0 1rem;
+      }
+
+      .recruit-desc {
+        color: rgba(255,255,255,0.65);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        max-width: 440px;
+        margin: 0 0 1.8rem;
+      }
+
+      .btn-recruit {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--up-gold);
+        color: #fff;
+        font-family: 'Sora', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        padding: 0.75rem 1.6rem;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background 0.2s, transform 0.15s;
+      }
+
+      .btn-recruit:hover {
+        background: var(--up-gold-light);
+        transform: translateY(-2px);
+      }
+
+      .recruit-icons {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .recruit-icon-circle {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255,255,255,0.7);
+        border: 1px solid rgba(255,255,255,0.12);
+      }
+
+      /* STEPS */
+      .steps-section {
+        background: #fff;
+        padding: 5rem 1rem;
+      }
+
+      .section-label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--up-gold);
+        display: block;
+        text-align: center;
+        margin-bottom: 0.6rem;
+      }
+
+      .section-title {
+        font-family: 'Sora', sans-serif;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        font-weight: 800;
+        text-align: center;
+        color: #0f172a;
+        margin: 0 0 0.6rem;
+      }
+
+      .section-desc {
+        text-align: center;
+        color: #64748b;
+        font-size: 0.95rem;
+        max-width: 520px;
+        margin: 0 auto 3.5rem;
+        line-height: 1.7;
+      }
+
+      .step-connector {
+        position: absolute;
+        top: 24px;
+        left: calc(50% + 44px);
+        right: calc(-50% + 44px);
+        height: 2px;
+        background: linear-gradient(to right, #bfdbfe, #e2e8f0);
+        z-index: 0;
+      }
+
+      .step-number {
+        width: 52px;
+        height: 52px;
+        background: var(--up-blue);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Sora', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin: 0 auto 1.2rem;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 4px 16px rgba(0,56,118,0.25);
+      }
+
+      .step-title {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0 0 0.5rem;
+      }
+
+      .step-desc {
+        font-size: 0.85rem;
+        color: #64748b;
+        line-height: 1.6;
+      }
+
+      /* DUAL CTA CARDS */
+      .cta-cards-section {
+        background: #f5f7fa;
+        padding: 5rem 1rem;
+      }
+
+      .cta-card-employer {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cta-card-candidate {
+        background: var(--up-blue-dark);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(0,56,118,0.2);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cta-card-body { padding: 2.5rem; flex: 1; }
+
+      .cta-card-tag {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--up-gold);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .cta-card-title {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.9rem;
+        font-weight: 800;
+        margin: 0 0 0.8rem;
+      }
+
+      .cta-card-employer .cta-card-title { color: #0f172a; }
+      .cta-card-candidate .cta-card-title { color: #fff; }
+
+      .cta-card-desc {
+        font-size: 0.88rem;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+
+      .cta-card-employer .cta-card-desc { color: #64748b; }
+      .cta-card-candidate .cta-card-desc { color: rgba(255,255,255,0.65); }
+
+      .btn-cta-employer {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--up-blue);
+        color: #fff;
+        font-family: 'Sora', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        padding: 0.7rem 1.5rem;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+
+      .btn-cta-employer:hover { background: var(--up-gold); }
+
+      .btn-cta-candidate {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #fff;
+        color: var(--up-blue);
+        font-family: 'Sora', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        padding: 0.7rem 1.5rem;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+      }
+
+      .btn-cta-candidate:hover { background: var(--up-gold); color: #fff; }
+
+      .cta-card-image {
+        height: 180px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .cta-card-employer .cta-card-image { background: #e8f4f0; }
+
+      .cta-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+      }
+
+      .cta-icon-box {
+        width: 100%;
+        height: 100%;
+        background: #2d7a78;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .cta-icon-inner {
+        width: 72px;
+        height: 72px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255,255,255,0.9);
+        font-size: 2rem;
+      }
+
+      /* PARTNERS */
+      .partners-section {
+        background: #fff;
+        padding: 4rem 1rem;
+        border-top: 1px solid #f1f5f9;
+      }
+
+      .partners-label {
+        text-align: center;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #94a3b8;
+        margin-bottom: 2.5rem;
+      }
+
+      .partners-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        opacity: 0.5;
+        filter: grayscale(1);
+      }
+
+      .partners-grid img { height: 28px; object-fit: contain; }
+
+      /* FOOTER */
+      .footer-main {
+        background: var(--up-blue-dark);
+        padding: 4rem 1rem 0;
+      }
+
+      .footer-brand-title {
+        font-family: 'Sora', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: 0.04em;
+      }
+
+      .footer-brand-desc {
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.5);
+        line-height: 1.7;
+        margin-top: 0.8rem;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 10px;
+        margin-top: 1.2rem;
+      }
+
+      .footer-social-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255,255,255,0.6);
+        transition: background 0.2s, color 0.2s;
+      }
+
+      .footer-social-btn:hover { background: var(--up-gold); color: #fff; border-color: transparent; }
+
+      .footer-col-title {
+        font-family: 'Sora', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--up-gold-light);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(196,154,26,0.25);
+      }
+
+      .footer-link {
+        display: block;
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.5);
+        text-decoration: none;
+        margin-bottom: 0.65rem;
+        transition: color 0.2s;
+      }
+
+      .footer-link:hover { color: var(--up-gold-light); }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255,255,255,0.08);
+        margin-top: 3rem;
+        padding: 1.2rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-bottom-text {
+        font-size: 0.72rem;
+        color: rgba(255,255,255,0.35);
+      }
+
+      /* MOBILE MENU */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--up-blue);
+        padding: 4px;
+      }
+
+      @media (max-width: 768px) {
+        .mobile-menu-btn { display: flex; }
+        .nav-desktop { display: none !important; }
+        .nav-desktop.open { display: flex !important; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid #e2e8f0; padding: 1rem 1.5rem; gap: 0.8rem; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .hero-bg-shape { display: none; }
+        .step-connector { display: none; }
+        .metric-divider { display: none; }
+        .hero-stat-card { position: static; margin-top: 1rem; width: fit-content; }
+      }
+
+  //- ============================================================
+  //- NAVBAR
+  //- ============================================================
+  nav.nav-portal(style='position:relative')
+    .hs-container(style='max-width:1280px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; height:72px')
+
+      //- Logo
+      a.d-flex(href='/', style='display:flex; align-items:center; gap:10px; text-decoration:none')
+        .nav-logo-icon
+          span.material-symbols-outlined(style='font-size:1.5rem') school
+        div
+          .nav-logo-title Portal de Empleo UP
+          .nav-logo-sub Universidad de Panama
+
+      //- Desktop nav
+      .nav-desktop(style='display:flex; align-items:center; gap:2rem; position:relative')
+        a.nav-link.nav-link-active(href='/') INICIO
+        a.nav-link(href='/requisitos') REQUISITOS PARA REGISTRARSE
+        a.nav-link(href='/contacto') CONTACTENOS
+        span(style='width:1px; height:24px; background:#e2e8f0; display:block')
+        a.btn-login(href='/login') Iniciar Sesion
+        a.btn-register(href='/registro') Registrarse
+
+      //- Mobile button
+      button.mobile-menu-btn(onclick='toggleMenu()' aria-label='Menu')
+        span.material-symbols-outlined(style='font-size:1.6rem') menu
+
+  //- ============================================================
+  //- HERO
+  //- ============================================================
+  section.hero(style='padding:5rem 1.5rem 6rem')
+    .hero-bg-shape
+    .hs-container(style='max-width:1280px; margin:0 auto')
+      .hero-content(style='display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center')
+
+        div(style='display:flex; flex-direction:column; gap:1.8rem')
+          .hero-badge
+            .hero-badge-dot
+            | VINCULACION UNIVERSITARIA &amp; TALENTO
+
+          h1.hero-title
+            | Impulsa tu Futuro
+            br
+            span.hero-title-accent Profesional
+
+          p.hero-desc
+            | Conectamos a estudiantes y egresados de la Universidad de Panama con las empresas mas importantes del pais y el mundo.
+
+          //- Search form => goes to login
+          form.search-box(action='/login' method='GET')
+            .search-field
+              span.material-symbols-outlined search
+              input(type='text' name='q' placeholder='Cargo, profesion')
+            .search-field
+              span.material-symbols-outlined location_on
+              select(name='sede')
+                option Sede Central
+                option Centros Regionales
+                option Remoto
+            button.btn-search(type='submit')
+              | Buscar
+              span.material-symbols-outlined(style='font-size:1rem') arrow_forward
+
+        .hero-img-wrap
+          img.hero-img(
+            src='https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80'
+            alt='Profesional UP'
+          )
+          .hero-stat-card
+            .hero-stat-icon
+              span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') trending_up
+            div
+              .hero-stat-label EMPLEABILIDAD
+              .hero-stat-value 92% Exito
+
+  //- ============================================================
+  //- METRICS
+  //- ============================================================
+  section.metrics-section
+    .hs-container(style='max-width:1280px; margin:0 auto')
+      div(style='display:flex; flex-wrap:wrap; justify-content:center; gap:0')
+
+        .metric-card(style='flex:1; min-width:200px')
+          .metric-icon
+            span.material-symbols-outlined(style='font-variation-settings:"FILL" 1; font-size:1.4rem') group
+          .metric-number +15,000
+          .metric-label Estudiantes Activos
+
+        .metric-divider
+
+        .metric-card(style='flex:1; min-width:200px')
+          .metric-icon
+            span.material-symbols-outlined(style='font-variation-settings:"FILL" 1; font-size:1.4rem') business
+          .metric-number 1,200
+          .metric-label Empresas Aliadas
+
+        .metric-divider
+
+        .metric-card(style='flex:1; min-width:200px')
+          .metric-icon
+            span.material-symbols-outlined(style='font-variation-settings:"FILL" 1; font-size:1.4rem') work
+          .metric-number +3,500
+          .metric-label Vacantes Mensuales
+
+  //- ============================================================
+  //- RECRUIT BANNER
+  //- ============================================================
+  section(style='padding:3rem 1.5rem; background:#f5f7fa')
+    .hs-container(style='max-width:1280px; margin:0 auto')
+      .recruit-banner
+        div(style='position:relative; z-index:1; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:2rem')
+          div
+            h2.recruit-title &iquest;Quieres reclutar personal?
+            p.recruit-desc
+              | Accede al talento formado en la universidad mas prestigiosa del pais. Publica tus ofertas de forma gratuita y encuentra el perfil ideal.
+            a.btn-recruit(href='/requisitos')
+              span.material-symbols-outlined(style='font-size:1.1rem') groups
+              | Ver Requisitos de Empresa
+          .recruit-icons
+            .recruit-icon-circle
+              span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') person_search
+            .recruit-icon-circle
+              span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') verified_user
+
+  //- ============================================================
+  //- STEPS
+  //- ============================================================
+  section.steps-section
+    .hs-container(style='max-width:1280px; margin:0 auto; padding:0 1rem')
+      span.section-label Para candidatos
+      h2.section-title Tu camino al exito profesional
+      p.section-desc
+        | Sigue estos 3 simples pasos para encontrar tu proxima gran oportunidad laboral como parte de la comunidad UP.
+
+      div(style='display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem; position:relative')
+
+        //- Connector lines
+        div(style='grid-column:1/-1; position:absolute; top:26px; left:calc(16.66% + 26px); right:calc(16.66% + 26px); height:2px; background:linear-gradient(to right, #bfdbfe, #dbeafe, #bfdbfe); z-index:0; pointer-events:none')
+
+        div(style='text-align:center; padding:2rem 1.5rem')
+          .step-number 1
+          h3.step-title Crea tu Perfil
+          p.step-desc Registrate con tu correo institucional o personal y completa tu trayectoria academica.
+
+        div(style='text-align:center; padding:2rem 1.5rem')
+          .step-number 2
+          h3.step-title Postula a Ofertas
+          p.step-desc Explora vacantes exclusivas para egresados y estudiantes UP segun tu facultad.
+
+        div(style='text-align:center; padding:2rem 1.5rem')
+          .step-number 3
+          h3.step-title Obtén el Empleo
+          p.step-desc Participa en entrevistas y procesos de seleccion con empresas de alto nivel.
+
+  //- ============================================================
+  //- DUAL CTA CARDS
+  //- ============================================================
+  section.cta-cards-section
+    .hs-container(style='max-width:1280px; margin:0 auto')
+      div(style='display:grid; grid-template-columns:1fr 1fr; gap:1.5rem')
+
+        //- Employer card
+        .cta-card-employer
+          .cta-card-image
+            .cta-icon-box
+              .cta-icon-inner
+                span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') work
+              .cta-icon-inner
+                span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') handshake
+          .cta-card-body
+            span.cta-card-tag SECCION EMPRESAS
+            h3.cta-card-title Empleador
+            p.cta-card-desc
+              | Publique sus vacantes y acceda al banco de talentos mas calificado de la region.
+            a.btn-cta-employer(href='/requisitos')
+              | Ver Requisitos
+              span.material-symbols-outlined(style='font-size:1rem') arrow_forward
+
+        //- Candidate card
+        .cta-card-candidate
+          .cta-card-image
+            img(
+              src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80'
+              alt='Candidato UP'
+              style='object-position: top center'
+            )
+          .cta-card-body
+            span.cta-card-tag TALENTO UP
+            h3.cta-card-title Candidato
+            p.cta-card-desc
+              | Gestione su carrera profesional y encuentre pasantias o empleos permanentes.
+            a.btn-cta-candidate(href='/login')
+              | Iniciar Sesion
+              span.material-symbols-outlined(style='font-size:1rem') arrow_forward
+
+  //- ============================================================
+  //- PARTNERS
+  //- ============================================================
+  section.partners-section
+    .hs-container(style='max-width:1280px; margin:0 auto')
+      p.partners-label Empresas con Convenio de Cooperacion
+      .partners-grid
+        img(src='https://lh3.googleusercontent.com/aida-public/AB6AXuDZSjU6XTo837B3dbZ98WyndT9j-3pFng8RhzfGRvnVO4LqYyHVam8hsM3fqw8EBku-dqR3RlgNSIB-sQeHtp1sBDZ5GFuyEcneQWDdvCg8x305vGurLf6hah3XLEysRhWpMn8q2OUQT2dIUM5o-yDNNGgoqmaw6CszOi6i3TDiaMeKKNmbPELVx4HBfkqC8jonisNHNtVXZFaJm5WU1R3no1xNIhu25_c1arYNm-KpmRfy0lQGrcku4eEChIaOdzh5oxD-yLWCiKk' alt='Partner')
+        img(src='https://lh3.googleusercontent.com/aida-public/AB6AXuAolVT8r5oRyaUbvTPnFJMHTkBMY9Rv1GpqU-eR_yhD3AmzigdqGnvyOUH5n5d6qHFIumjcv5EpibdEkfwfRPyDEuJX_aHZ98NDjnvnb49P1PDiP772_HGldBhHw_ItMIxE1iiJjr7ltXbxEM2Ltt7a_oAfYRNRry9puyPcSXXprWTxQx7cl2ORHERlTFMzersXP9EnG2jyFe8HpN3eab9pchGfOoxR652-W7EeH3u45tIdbgGrpWe1dmyrC1rnqGn9a9R4gOKbyug' alt='Partner')
+        img(src='https://lh3.googleusercontent.com/aida-public/AB6AXuDMm0HYh58NeN3AFsoSZb7OlLMrYHRyQSxrP5tr-Hv_o6lciIjzgKvJ8HUL6uI8auGMVw6Ggn3kfUXw99EMzWxwORmgoTQCRhS-o7GA3R1vEAOBPz8L-aWgWvfdQ3d1XyCg9Wdf14keLPScvGwvD1UAnkbUC7uwTogs4tah9HvRV0wWgJFaBnePwkOjR5tvSNyXs4Ah2q7fEcQXyPzpfarRyPVg2rxBMKT4g5vf3DK0_AdWBOhyeyxyNApG7O41UEwl0Ru8DHkohrY' alt='Partner')
+        img(src='https://lh3.googleusercontent.com/aida-public/AB6AXuBFNWhWspuacuT5P2PqKm6ML1re5H10JYoEuN2yFXxCsJADTj3UsYlzefvxGxTJO9KPx4t-3i5uunshrrnOj805Dwa1LteTkEJs4ouzUHt7R3WDjaDzMn2lC1N9d61gqAeVdYSqDnCMC6s2MyKdQjsaxfIFDwOzhI5trlT4BUi7SSE9iYxgTXU_0aDEigctC3kUyGP2sj4L2dOHj0nP751wI9d6D9Kb_6lX8ArO9uFWipMghrKqlb4yACSSA8JyLkqZklDwF_z1cYk' alt='Partner')
+        img(src='https://lh3.googleusercontent.com/aida-public/AB6AXuC2lw67NvQCyOTd8xGU3rdJLfjCCdxCGyD-H87i13Fr2dq_kWlHe8gqdFsZOl56PmMYB8kx8KwJRPevdilB5FV1I3XSfQ2hqs_q-lnLHnoOO_AH-qs6n8jAgn3DB2A5xKSkfGg3TrCxK46ANtJ3JOfjtoHiMYx398AFfSM55XNVe0Th-N-oistl3B5rFWSGQUcDx0ZIdcidXmAOyQ4qPNnf4ejpxkcyAgEBnWr5pKdz7wwg9oqcFeyIS9oqleyd-LBkU4ZzFqmEd0s' alt='Partner')
+
+  //- ============================================================
+  //- FOOTER
+  //- ============================================================
+  footer.footer-main
+    .hs-container(style='max-width:1280px; margin:0 auto; padding:0 1.5rem')
+      div(style='display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; padding-bottom:3rem')
+
+        div
+          div(style='display:flex; align-items:center; gap:10px; margin-bottom:0.8rem')
+            .nav-logo-icon(style='width:38px; height:38px')
+              span.material-symbols-outlined(style='font-size:1.3rem; color:var(--up-gold)') school
+            .footer-brand-title PORTAL UP
+          p.footer-brand-desc
+            | Direccion de Vinculacion con la Empresa y Seguimiento al Egresado. Conectando el conocimiento con el mercado laboral panameno.
+          .footer-social
+            a.footer-social-btn(href='#' aria-label='Web')
+              span.material-symbols-outlined(style='font-size:1rem') public
+            a.footer-social-btn(href='#' aria-label='Email')
+              span.material-symbols-outlined(style='font-size:1rem') mail
+            a.footer-social-btn(href='#' aria-label='Telefono')
+              span.material-symbols-outlined(style='font-size:1rem') call
+
+        div
+          .footer-col-title CANDIDATOS
+          a.footer-link(href='#') Bolsa de Trabajo
+          a.footer-link(href='#') Orientacion Profesional
+          a.footer-link(href='#') Practicas Profesionales
+          a.footer-link(href='#') Programas de Beca
+
+        div
+          .footer-col-title EMPRESAS
+          a.footer-link(href='#') Publicar Vacantes
+          a.footer-link(href='#') Convenios UP
+          a.footer-link(href='#') Requisitos Legales
+          a.footer-link(href='#') Ferias de Empleo
+
+        div
+          .footer-col-title INSTITUCION
+          a.footer-link(href='#') Sobre la UP
+          a.footer-link(href='#') Facultades
+          a.footer-link(href='#') Sedes Regionales
+          a.footer-link(href='#') Transparencia
+
+      .footer-bottom
+        span.footer-bottom-text &copy; 2025 Universidad de Panama &mdash; Portal de Empleo. Hacia la excelencia.
+        span.footer-bottom-text Desarrollado por &nbsp;
+          strong(style='color:rgba(255,255,255,0.5)') Direccion de Informatica UP
+
+  //- ============================================================
+  //- SCRIPTS
+  //- ============================================================
+  script.
+    // Mobile menu toggle
+    function toggleMenu() {
+      var nav = document.querySelector('.nav-desktop');
+      nav.classList.toggle('open');
+    }
+
+    // Responsive grid fixes
+    function applyResponsive() {
+      var w = window.innerWidth;
+      var heroGrid = document.querySelector('.hero-content');
+      var ctaGrid = document.querySelector('.cta-cards-section .hs-container > div');
+      var stepsGrid = document.querySelector('.steps-section .hs-container > div:last-child');
+      var footerGrid = document.querySelector('.footer-main .hs-container > div');
+
+      if (heroGrid) heroGrid.style.gridTemplateColumns = w < 768 ? '1fr' : '1fr 1fr';
+      if (ctaGrid) ctaGrid.style.gridTemplateColumns = w < 640 ? '1fr' : '1fr 1fr';
+      if (stepsGrid) stepsGrid.style.gridTemplateColumns = w < 640 ? '1fr' : 'repeat(3, 1fr)';
+      if (footerGrid) footerGrid.style.gridTemplateColumns = w < 768 ? '1fr' : w < 1024 ? '1fr 1fr' : '2fr 1fr 1fr 1fr';
+    }
+
+    applyResponsive();
+    window.addEventListener('resize', applyResponsive);

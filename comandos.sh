@@ -26,7 +26,7 @@ git remote add github https://github.com/UzzielSW/expressbra.git
 git push github --all
 git push github --tags
 
-
+git pull github brayan.puyol
 # ========================== npm ==============================
 # correccion de vulnerabilidades y actualizaciones
 npm audit fix --force
