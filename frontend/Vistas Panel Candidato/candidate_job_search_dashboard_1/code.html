@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detalle de Vacante - Portal de Empleo UP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#002855",
+                        secondary: "#D4AF37",
+                        accent: "#b4975a",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Poppins", "sans-serif"],
+                    },
+                },
+            },
+        };
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body { @apply font-sans bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100; }
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+        @layer components {
+            .nav-link {
+                @apply px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors border-b-2 border-transparent hover:border-secondary/50;
+            }
+            .nav-link-active {
+                @apply nav-link text-white border-secondary;
+            }
+            .content-card {
+                @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-8;
+            }
+            .section-title {
+                @apply text-lg font-display font-bold text-primary dark:text-white mb-4 flex items-center gap-2;
+            }
+            .tag-language {
+                @apply px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+<header class="fixed top-0 left-0 right-0 z-50 bg-primary text-white shadow-md">
+<div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-2 cursor-pointer">
+<div class="w-8 h-8 bg-secondary rounded flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined font-bold">school</span>
+</div>
+<div class="leading-none">
+<span class="text-lg font-display font-bold block tracking-tight">Portal UP</span>
+<span class="text-[9px] uppercase font-bold text-secondary/80 tracking-widest">Bolsa de Empleo</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-1">
+<a class="nav-link" href="#">Perfil</a>
+<a class="nav-link-active" href="#">Vacantes</a>
+<a class="nav-link" href="#">Mis Postulaciones</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors" onclick="toggleDarkMode()">
+<span class="material-symbols-outlined text-xl">contrast</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-xl">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full border border-primary"></span>
+</button>
+</div>
+<div class="h-6 w-px bg-white/20"></div>
+<div class="flex items-center gap-3 cursor-pointer">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold">Ana Rodríguez</p>
+<p class="text-[10px] text-white/60 uppercase font-bold tracking-wider">Estudiante</p>
+</div>
+<img alt="Perfil" class="w-9 h-9 rounded-full object-cover border-2 border-secondary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYkJOz89ywVpVTkxwIaMs3vTYDrnnD3Py5szFERGlBhIQc8XVEF7QmSMuITSvfNWof3euxDvr5GcOARCf4efbBctRRm-mlGvhrtbNxXs46LFSXSWCUQw1D0r5hFgULnixe5k9I8u-2v9ITKHS2DoGpSOoi8h66eDuG271cFAi5wxC5jK2iYNGvf0GKdoM_Td1-y0TNM3hl6k8EQILonG3Q3pueWfTm50Vshr0qEwFEyVlGxlxdCu1nghjBrdSdBVMmEBvie8mq4WU"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1400px] mx-auto px-6 pt-24 pb-12">
+<nav class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 mb-6">
+<a class="hover:text-primary transition-colors" href="#">Vacantes</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-secondary">Detalle del Puesto</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-10 gap-8">
+<div class="lg:col-span-7 space-y-6">
+<section class="content-card">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<span class="inline-block px-3 py-1 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-[10px] font-bold uppercase tracking-wider mb-2">Híbrido</span>
+<h1 class="text-3xl font-display font-bold text-primary dark:text-white leading-tight">Analista de Sistemas Senior</h1>
+<p class="text-lg text-slate-500 dark:text-slate-400 font-medium">ROOTSTACK</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-3 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-400">bookmark</span>
+</button>
+<button class="p-3 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-400">share</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-6 border-y border-slate-100 dark:border-slate-800 mb-8">
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Salario</p>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-200">A convenir</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Experiencia</p>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-200">3-5 años</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Jornada</p>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-200">Tiempo Completo</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Nivel</p>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-200">Senior / Mando Medio</p>
+</div>
+</div>
+<div class="space-y-8">
+<div>
+<h3 class="section-title">
+<span class="material-symbols-outlined text-secondary text-xl">description</span>
+                            Descripción del Puesto
+                        </h3>
+<div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed space-y-4">
+<p>Buscamos un Analista de Sistemas Senior apasionado por la tecnología para unirse a nuestro equipo de desarrollo. Serás responsable de analizar, diseñar y supervisar la implementación de soluciones de software complejas que impactan a miles de usuarios.</p>
+<p>Trabajarás en un entorno ágil, colaborando estrechamente con ingenieros de datos y arquitectos de soluciones para garantizar la escalabilidad y eficiencia de nuestros sistemas core.</p>
+</div>
+</div>
+<div>
+<h3 class="section-title">
+<span class="material-symbols-outlined text-secondary text-xl">school</span>
+                            Requisitos Académicos
+                        </h3>
+<ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-2 ml-2">
+<li>Licenciatura en Ingeniería de Sistemas, Computación o carreras afines.</li>
+<li>Certificaciones en metodologías Ágiles (Scrum Master preferible).</li>
+<li>Maestría en Gestión de Proyectos Tecnológicos será valorada positivamente.</li>
+</ul>
+</div>
+<div>
+<h3 class="section-title">
+<span class="material-symbols-outlined text-secondary text-xl">history_edu</span>
+                            Experiencia Requerida
+                        </h3>
+<ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-2 ml-2">
+<li>Mínimo 3 años de experiencia en roles de análisis de requerimientos técnicos.</li>
+<li>Experiencia comprobable trabajando con arquitecturas microservicios.</li>
+<li>Dominio de herramientas de documentación técnica (UML, diagramas de flujo).</li>
+</ul>
+</div>
+<div>
+<h3 class="section-title">
+<span class="material-symbols-outlined text-secondary text-xl">translate</span>
+                            Idiomas
+                        </h3>
+<div class="flex flex-wrap gap-2">
+<span class="tag-language">Español: Nativo</span>
+<span class="tag-language">Inglés: Avanzado (C1)</span>
+</div>
+</div>
+<div>
+<h3 class="section-title">
+<span class="material-symbols-outlined text-secondary text-xl">redeem</span>
+                            Beneficios
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="material-symbols-outlined text-secondary">health_and_safety</span>
+<div>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-200">Seguro Médico Privado</p>
+<p class="text-xs text-slate-500">Cobertura completa para el colaborador.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="material-symbols-outlined text-secondary">laptop_mac</span>
+<div>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-200">Equipamiento Premium</p>
+<p class="text-xs text-slate-500">Laptop de última generación y periféricos.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="material-symbols-outlined text-secondary">fitness_center</span>
+<div>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-200">Gimnasio y Bienestar</p>
+<p class="text-xs text-slate-500">Subsidio mensual para centros deportivos.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="material-symbols-outlined text-secondary">workspace_premium</span>
+<div>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-200">Capacitación Continua</p>
+<p class="text-xs text-slate-500">Acceso a plataformas de aprendizaje online.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="lg:col-span-3 space-y-6">
+<div class="content-card !p-6 bg-primary dark:bg-primary text-white border-none sticky top-24">
+<button class="w-full py-4 bg-secondary hover:bg-white hover:text-primary text-primary rounded-xl font-bold text-lg transition-all shadow-lg shadow-black/20 mb-4">
+                    Postularse Ahora
+                </button>
+<div class="flex items-center justify-center gap-2 text-white/60 text-xs">
+<span class="material-symbols-outlined text-sm">lock</span>
+                    Postulación segura vía Portal UP
+                </div>
+</div>
+<section class="content-card !p-6">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-16 h-16 bg-white rounded-xl border border-slate-100 flex items-center justify-center p-3 shadow-sm">
+<img alt="Rootstack Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-89HCkGjLLIR2Jgavh2pcj4An7Rfk5whl0ocX7fPsVScv2eQivZ01RbRkIZSeGD1q4Hnama3liwmhgm49INZHbDBDjpkGB-6YmBRhrQZLqyFI-nSqDZcHOV9FhNl1U6w3I2zs4-zw-hgZDXe4GF0iqneORtw6naTn64uuEwGjbI1UzcRQ9bjN24AknN_JDuQNjb1ti_Piza5OUDxvJE_pR5REexZKJF9GQwHrx5d9oZniAhiEmzQ_lfhmBnx7JEPLZCFg4uIL8Hg"/>
+</div>
+<div>
+<h4 class="font-bold text-primary dark:text-white">ROOTSTACK</h4>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">RUC: 1234567-1-99</p>
+</div>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                    Empresa líder en desarrollo de software con presencia regional, enfocada en soluciones escalables y transformación digital para grandes empresas.
+                </p>
+<a class="text-xs font-bold text-secondary hover:underline flex items-center gap-1" href="#">
+                    Ver perfil de empresa <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</section>
+<section class="content-card !p-6">
+<h4 class="text-sm font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">info</span>
+                    Detalles de la Publicación
+                </h4>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Fecha de Cierre</p>
+<p class="text-sm font-semibold text-red-500">15 de Diciembre, 2024</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-400 text-lg">location_on</span>
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Ubicación</p>
+<p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Torres de las Américas, Piso 15, Ciudad de Panamá</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-400 text-lg">group</span>
+<div class="w-full">
+<div class="flex justify-between items-center mb-1">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Solicitudes</p>
+<span class="text-[10px] font-bold text-primary dark:text-secondary">45 / 100</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 45%;"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6">
+<div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-white">school</span>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">© 2024 Portal de Empleo Universidad de Panamá</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="text-[10px] font-bold text-slate-400 hover:text-secondary uppercase tracking-widest" href="#">Términos</a>
+<a class="text-[10px] font-bold text-slate-400 hover:text-secondary uppercase tracking-widest" href="#">Privacidad</a>
+<a class="text-[10px] font-bold text-slate-400 hover:text-secondary uppercase tracking-widest" href="#">Ayuda</a>
+</div>
+</div>
+</footer>
+
+</body></html>

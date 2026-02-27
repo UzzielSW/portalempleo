@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Candidatos - Portal de Empleo UP</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1173d4",
+              "accent-gold": "#d4af37",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex flex-col min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 px-6 lg:px-20 py-3">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-1.5 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-2xl">school</span>
+</div>
+<div>
+<h2 class="text-slate-900 dark:text-white text-lg font-extrabold leading-tight tracking-tight">Portal de Empleo <span class="text-primary">UP</span></h2>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Panel de Empleador</p>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="#">Perfil</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="#">Vacantes</a>
+<a class="text-primary border-b-2 border-primary py-1 text-sm font-bold" href="#">Candidatos</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-800 mx-1"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Tech Solutions Inc.</p>
+<p class="text-xs text-slate-500">Recursos Humanos</p>
+</div>
+<img alt="Avatar del perfil del empleador" class="size-10 rounded-full object-cover border-2 border-primary/20" data-alt="Profile picture of a professional recruiter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5iB1EALFpimdFtqFwhtaNAEeHgMWkBOHpLPYbhPJrLgD3UdwdojqdOPqUk3aj6XB9fC0M-sLsD2YwOnzcEPJ2DdjlkLeAgtTbM_AI4fhrR6OmnhIIpGUtDe5-Dwz5K6UjOvc07XO0A7YPoSniNVj9p1SBPoHYoqBj2vhb6gQTMo2UtGiOgRdXiGBd_FcOvbppu7Jn-wFCfz1rR7qWwZyBiNTmznI7bLcVkoxo-L8ksGc5ZVInUiTfljKVqsq_ZBfEceKztV7yKAU"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 max-w-[1440px] mx-auto w-full px-6 lg:px-20 py-8">
+<!-- Page Header & Search -->
+<div class="mb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Gestión de Candidatos</h1>
+<p class="text-slate-500 dark:text-slate-400">Visualiza y gestiona el flujo de talento para tus vacantes activas.</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all shadow-sm shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Nueva Vacante</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-bold rounded-lg hover:bg-slate-50 transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Reporte</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Filters Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-4 shadow-sm border border-slate-200 dark:border-slate-800 mb-6">
+<div class="flex flex-col lg:flex-row gap-4 items-center">
+<div class="relative w-full lg:flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-background-light dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm transition-all" placeholder="Buscar candidato por nombre o habilidad..." type="text"/>
+</div>
+<div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+<div class="flex-1 lg:min-w-[200px]">
+<select class="w-full py-2.5 px-4 bg-background-light dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm font-medium text-slate-700 dark:text-slate-200">
+<option value="">Todas las Vacantes</option>
+<option>Desarrollador Senior</option>
+<option>Gerente de Proyectos</option>
+<option>UI/UX Designer</option>
+<option>Analista de Datos</option>
+</select>
+</div>
+<div class="flex-1 lg:min-w-[180px]">
+<select class="w-full py-2.5 px-4 bg-background-light dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm font-medium text-slate-700 dark:text-slate-200">
+<option value="">Cualquier Estado</option>
+<option>En revisión</option>
+<option>Entrevista</option>
+<option>Aceptado</option>
+<option>Rechazado</option>
+</select>
+</div>
+<button class="p-2.5 text-primary hover:bg-primary/10 rounded-lg transition-colors border border-primary/20">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Candidates Table Container -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Candidato</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Carrera</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Vacante Aplicada</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-center">Fecha</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Estado</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Row 1 -->
+<tr class="group hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Candidato 1" class="size-11 rounded-full object-cover border border-slate-200" data-alt="Portrait of a young male professional smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn7wuANgFpG2eaL3tf0r1I7uSNphb1QyGPmWJ5oaL67p_Koco5mMpp7UqFEG073SDDUhRfXiukjoOWcq3pb3rNn-yNW0leVfPV0xLqGPTU5aX4olNt0EpCtkFWIDpmIpv3_Jtw99xkT3YJbfwmVDRQn2yWl6J27a8NHNyE-TgtvWeEekwr8XWxBnegtmHyODXN6kHyalY5KEHxd1T04NZclv4ODiUcXMzBX0W6rYMMJqlnTY-ZjxWtYzpHlmR_IHKoL4jiRqQFTEI"/>
+<div class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white rounded-full"></div>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Juan Pérez García</p>
+<p class="text-[11px] text-slate-500">juan.perez@email.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Ingeniería de Software</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-primary/5 text-primary text-xs font-bold rounded-md border border-primary/10">Desarrollador Senior</span>
+</td>
+<td class="px-6 py-4 text-center text-sm text-slate-500">12 Oct 2023</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 px-2.5 py-1 w-fit rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs font-bold">
+<span class="size-1.5 rounded-full bg-blue-600"></span>
+                                        En revisión
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 rounded-md hover:bg-primary/10 text-primary transition-all" title="Agendar Entrevista">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-red-100 text-red-500 transition-all" title="Rechazar">
+<span class="material-symbols-outlined text-[20px]">person_remove</span>
+</button>
+<button class="ml-2 text-xs font-bold text-primary hover:underline">Ver Perfil</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Candidato 2" class="size-11 rounded-full object-cover border border-slate-200" data-alt="Portrait of a female professional with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpyVqnrqey07Gl_4SRq3NYfFohLNV8AvCpiOuVE20oxcnLJ3SXp1ZH2NgUu3RQ4olOr7pEEU_BHfvnlgTfT-Vj_E-K08FVKc9amE8y-9YiKIvkJiL0FQi1L4fZ-XogEz1qIjY8W42CC48ZIjVWjxckSCiLnbbrIZyE0JiGvtoNlxz_ZS_YQptcC9AhIzN1bVO3x55b2jCOo7Kg3K4psVPFNlN6vg10qZ-hhnuUd8feYzuSRJW8C4jq9em82RoWs4lIjfG-h1-OKjc"/>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">María López</p>
+<p class="text-[11px] text-slate-500">m.lopez@email.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Lic. en Administración</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-primary/5 text-primary text-xs font-bold rounded-md border border-primary/10">Gerente de Proyectos</span>
+</td>
+<td class="px-6 py-4 text-center text-sm text-slate-500">10 Oct 2023</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 px-2.5 py-1 w-fit rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold">
+<span class="size-1.5 rounded-full bg-amber-600"></span>
+                                        Entrevista
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 rounded-md hover:bg-primary/10 text-primary transition-all" title="Agendar Entrevista">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-red-100 text-red-500 transition-all" title="Rechazar">
+<span class="material-symbols-outlined text-[20px]">person_remove</span>
+</button>
+<button class="ml-2 text-xs font-bold text-primary hover:underline">Ver Perfil</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Candidato 3" class="size-11 rounded-full object-cover border border-slate-200" data-alt="Portrait of a creative designer man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyGXwFAJHrynVkUnF8m_4SeS8hL0FqGFMSbEAS3hdI0jDmlZb5PWHJoREw73V2OpccMJi7Z4LsBphr8omeoHNzrKgJFYRZPpFMceR3YzxevZ_T-9ltUF8RAMiZwhF8fPdP3qM80Ou1hI17x1Y-yuq1s2ekP2UVMHQgbgdaj10pzt1KctM345dDN_qnP5YesJ6x9h4A28T1p2JvLvCHRWkXvGxZlh7_NQ7bNWzZ4eLDDiym3eRSgQfy5AL_lbmKtlmOwZFgfWrWccM"/>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Carlos Ruiz</p>
+<p class="text-[11px] text-slate-500">carlos.ruiz@email.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Diseño Gráfico</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-primary/5 text-primary text-xs font-bold rounded-md border border-primary/10">UI/UX Designer</span>
+</td>
+<td class="px-6 py-4 text-center text-sm text-slate-500">08 Oct 2023</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 px-2.5 py-1 w-fit rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold">
+<span class="size-1.5 rounded-full bg-green-600"></span>
+                                        Aceptado
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 rounded-md hover:bg-primary/10 text-primary transition-all" title="Agendar Entrevista">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-red-100 text-red-500 transition-all" title="Rechazar">
+<span class="material-symbols-outlined text-[20px]">person_remove</span>
+</button>
+<button class="ml-2 text-xs font-bold text-primary hover:underline">Ver Perfil</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Candidato 4" class="size-11 rounded-full object-cover border border-slate-200" data-alt="Portrait of a young female professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf9-KaswBn7xXHXPkbh2k1iEDfXYKMsB3P7zRHBmH-J-t1w08ok8UbLYN4s6kk4m2-FIhCmHDH-48EZcqDzdkCCwNWIxx9nXhO3RiTKWqf5Afsb6qghMKnpv9uSenkk2bLyLI7UxMgwt6myEiJqgX92tmM-Jq-O9SLwg4IBsDh2MD0BCS1z43bgMR-iua-QN5hTJNBRtC3Bex_wqmL4S8ClY-fi0o_jrlqWlB0oQR8rmmgiZybcULhR-woLhaFAmqUkBHVMT4qk-Q"/>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Ana Beltrán</p>
+<p class="text-[11px] text-slate-500">ana.b@email.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Ingeniería Industrial</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-primary/5 text-primary text-xs font-bold rounded-md border border-primary/10">Analista de Datos</span>
+</td>
+<td class="px-6 py-4 text-center text-sm text-slate-500">05 Oct 2023</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 px-2.5 py-1 w-fit rounded-full bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-xs font-bold">
+<span class="size-1.5 rounded-full bg-red-600"></span>
+                                        Rechazado
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 rounded-md hover:bg-primary/10 text-primary transition-all" title="Agendar Entrevista">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-red-100 text-red-500 transition-all opacity-50 cursor-not-allowed" title="Rechazar">
+<span class="material-symbols-outlined text-[20px]">person_remove</span>
+</button>
+<button class="ml-2 text-xs font-bold text-primary hover:underline">Ver Perfil</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer of Table -->
+<div class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/30 flex items-center justify-between">
+<p class="text-xs text-slate-500">Mostrando <span class="font-bold">4</span> de <span class="font-bold">128</span> candidatos</p>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 border border-slate-200 dark:border-slate-700 rounded-md text-xs font-bold hover:bg-white dark:hover:bg-slate-800 transition-colors">Anterior</button>
+<button class="px-3 py-1 bg-primary text-white rounded-md text-xs font-bold hover:bg-primary/90 transition-colors">1</button>
+<button class="px-3 py-1 border border-slate-200 dark:border-slate-700 rounded-md text-xs font-bold hover:bg-white dark:hover:bg-slate-800 transition-colors">2</button>
+<button class="px-3 py-1 border border-slate-200 dark:border-slate-700 rounded-md text-xs font-bold hover:bg-white dark:hover:bg-slate-800 transition-colors">Siguiente</button>
+</div>
+</div>
+</div>
+<!-- Empty State Illustration (Hidden by default, shown via logic usually) -->
+<div class="hidden flex-col items-center justify-center py-20 bg-white dark:bg-slate-900 rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-800 mt-6">
+<span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-700 mb-4">group_off</span>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">No hay candidatos para esta búsqueda</h3>
+<p class="text-slate-500 dark:text-slate-400 mt-1 max-w-sm text-center">Intenta ajustar los filtros o buscar por otro nombre de vacante para encontrar talento disponible.</p>
+<button class="mt-6 px-6 py-2 bg-primary text-white font-bold rounded-lg">Limpiar Filtros</button>
+</div>
+</main>
+</div>
+</body></html>

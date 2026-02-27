@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mis Postulaciones - Portal de Empleo UP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f172a", // Dark Navy Blue
+                        "brand-blue": "#3b82f6",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between bg-primary px-10 py-4 sticky top-0 z-50 text-white shadow-lg">
+<div class="flex items-center gap-3 shrink-0">
+<div class="size-8 text-brand-blue">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="flex flex-col leading-none">
+<span class="text-white text-lg font-black tracking-tight uppercase">Portal UP</span>
+<span class="text-[10px] text-slate-400 font-bold tracking-widest uppercase">Bolsa de Empleo</span>
+</div>
+</div>
+<nav class="absolute left-1/2 -translate-x-1/2 flex items-center gap-10">
+<a class="text-slate-300 hover:text-white text-sm font-semibold transition-colors" href="#">Perfil</a>
+<a class="text-slate-300 hover:text-white text-sm font-semibold transition-colors" href="#">Vacantes</a>
+<div class="relative py-2">
+<a class="text-white text-sm font-bold" href="#">Mis Postulaciones</a>
+<div class="absolute bottom-0 left-0 w-full h-0.5 bg-brand-blue rounded-full"></div>
+</div>
+</nav>
+<div class="flex items-center gap-5">
+<div class="flex items-center gap-2 pr-2 border-r border-slate-700">
+<button class="p-2 text-slate-300 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[22px]">dark_mode</span>
+</button>
+<button class="p-2 text-slate-300 hover:text-white transition-colors relative">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"></span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end">
+<span class="text-sm font-bold text-white leading-none">Ana Rodríguez</span>
+<span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Estudiante</span>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-slate-700" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAtsL1bHMnV3pt8iJ3cuYg0U8D0DZxY-4ATGC6OaGIbj4zFdYgcQNmR4-21oXKa8sedqosWGrG7ImFEr60naBDmQfbP-3CVuvOCKn-ihnXhFsAxbTZp9fylA8FlkOvH2QXmsXzBqg7pm5gMy9bs7fDLm2bgYmdbnKHsYJBxXs2jSmFPYW95rz9PYKq4XlXmdn4qgP9qHGsr1EsPT6RnX43J7o3FRw2q2MtQPLUl_XgW-FLA-5MA5HtZ0dZASAxeqIl7V0p2oyCNWDg");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-10 bg-slate-50 dark:bg-slate-950">
+<div class="layout-content-container flex w-full max-w-[1200px] flex-col px-6 gap-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-white text-3xl font-black tracking-tight">Seguimiento de Postulaciones</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base">Revisa el estado de tus aplicaciones a vacantes en tiempo real.</p>
+</div>
+<div class="flex gap-2 flex-wrap pb-2 border-b border-slate-200 dark:border-slate-800">
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 shadow-sm text-sm font-semibold">
+                        Todas
+                    </button>
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors text-sm font-medium">
+                        En Revisión
+                    </button>
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors text-sm font-medium">
+                        Entrevistas
+                    </button>
+</div>
+<div class="@container">
+<div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50 dark:bg-slate-800/30 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider">Puesto</th>
+<th class="px-6 py-4 text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider">Empresa</th>
+<th class="px-6 py-4 text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider">Fecha de Aplicación</th>
+<th class="px-6 py-4 text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider">Estado</th>
+<th class="px-6 py-4 text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white text-sm font-bold">Desarrollador Backend Senior</span>
+<span class="text-slate-500 text-xs font-medium">Remoto · Tiempo Completo</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[10px] font-bold text-slate-600 dark:text-slate-300">TC</div>
+<span class="text-slate-600 dark:text-slate-300 text-sm font-medium">TechCorp S.A.</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-slate-500 dark:text-slate-400 text-sm">24 Oct, 2023</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+<span class="size-1.5 rounded-full bg-slate-400 mr-2"></span>
+                                            Enviada
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-brand-blue hover:text-blue-700 text-sm font-bold transition-colors">Ver Detalles</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white text-sm font-bold">Arquitecto de Soluciones</span>
+<span class="text-slate-500 text-xs font-medium">Híbrido · Tiempo Completo</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-600">IN</div>
+<span class="text-slate-600 dark:text-slate-300 text-sm font-medium">Innovación Digital</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-slate-500 dark:text-slate-400 text-sm">20 Oct, 2023</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+<span class="size-1.5 rounded-full bg-blue-500 mr-2"></span>
+                                            En Revisión
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-brand-blue hover:text-blue-700 text-sm font-bold transition-colors">Ver Detalles</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white text-sm font-bold">Diseñador UX/UI</span>
+<span class="text-slate-500 text-xs font-medium">Presencial · Proyecto</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded bg-amber-100 flex items-center justify-center text-[10px] font-bold text-amber-600">CS</div>
+<span class="text-slate-600 dark:text-slate-300 text-sm font-medium">Creative Studio</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-slate-500 dark:text-slate-400 text-sm">15 Oct, 2023</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
+<span class="size-1.5 rounded-full bg-amber-500 mr-2"></span>
+                                            Entrevista Programada
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-brand-blue hover:text-blue-700 text-sm font-bold transition-colors">Ver Detalles</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white text-sm font-bold">Analista de Datos</span>
+<span class="text-slate-500 text-xs font-medium">Remoto · Tiempo Completo</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded bg-emerald-100 flex items-center justify-center text-[10px] font-bold text-emerald-600">ST</div>
+<span class="text-slate-600 dark:text-slate-300 text-sm font-medium">StarTech Lab</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-slate-500 dark:text-slate-400 text-sm">10 Oct, 2023</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
+<span class="size-1.5 rounded-full bg-emerald-500 mr-2"></span>
+                                            Aceptada
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-brand-blue hover:text-blue-700 text-sm font-bold transition-colors">Ver Detalles</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white text-sm font-bold">Project Manager Junior</span>
+<span class="text-slate-500 text-xs font-medium">Híbrido · Tiempo Completo</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded bg-rose-100 flex items-center justify-center text-[10px] font-bold text-rose-600">GS</div>
+<span class="text-slate-600 dark:text-slate-300 text-sm font-medium">Global Solutions</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-slate-500 dark:text-slate-400 text-sm">05 Oct, 2023</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300">
+<span class="size-1.5 rounded-full bg-rose-500 mr-2"></span>
+                                            Rechazada
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-brand-blue hover:text-blue-700 text-sm font-bold transition-colors">Ver Detalles</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center justify-between mt-6">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Mostrando 5 de 12 postulaciones</p>
+<div class="flex gap-2">
+<button class="flex items-center justify-center h-10 px-4 border border-slate-200 dark:border-slate-800 rounded-lg bg-white dark:bg-slate-900 text-xs font-bold text-slate-400 cursor-not-allowed transition-all">Anterior</button>
+<button class="flex items-center justify-center h-10 px-4 border border-slate-200 dark:border-slate-800 rounded-lg bg-white dark:bg-slate-900 text-xs font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">Siguiente</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8">
+<div class="max-w-[1200px] mx-auto px-6 flex flex-col items-center gap-4">
+<div class="flex items-center gap-2 text-slate-400">
+<div class="size-6">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-sm font-bold uppercase tracking-widest">Portal UP</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">© 2024 Portal de Empleo UP. Todos los derechos reservados.</p>
+</div>
+</footer>
+</div>
+</div>
+
+</body></html>

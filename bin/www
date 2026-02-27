@@ -27,7 +27,7 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 // Mensaje informativo de arranque (salida por consola).
-console.log('Servidor ejecutándose en: localhost://', process.env.PORT);
+console.log('Servidor ejecutándose en: https://localhost:', process.env.PORT);
 
 // Normaliza un puerto a número, string o false.
 function normalizePort(val) {

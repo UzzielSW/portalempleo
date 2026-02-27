@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Crear Nueva Vacante - Portal de Empleo UP</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Main Container -->
+<div class="flex flex-col min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 md:px-10 py-3">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<svg class="size-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight hidden sm:block">Portal de Empleo UP</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">Vacantes</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Candidatos</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Reportes</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Avatar de perfil de empleador profesional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxiPsotpuKU2ryJ1kke74hghP5kxOqschXb-Iub8KdXE8wBdm1Yy-uOgAbQQf342hDRWUrlBWs4rXBuzGKVAWM3XhWzcIGiI-Tn6OPVaTgKFvj0rEqFLpFMaxepTC5THG7mgWwa9p6nzwiUFXpBdFWUOHs9GYD-klITjQMTVdcRqMHlBmF9EWEWKzsfXn-WX2FZLn_ZL9DuSRww3RWoD1gScJRrqYShHvajqRoDVS3aGWnl6r2A_ClRFcTbqhMoEu5mlFgvG8ec-E"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Secondary Sub-Navigation -->
+<div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 md:px-10">
+<div class="flex gap-8">
+<a class="py-4 border-b-2 border-transparent text-slate-500 hover:text-primary font-medium text-sm transition-all" href="#">
+                        Vacantes Publicadas
+                    </a>
+<a class="py-4 border-b-2 border-primary text-primary font-bold text-sm transition-all" href="#">
+                        Crear Vacante
+                    </a>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<main class="flex-grow max-w-5xl mx-auto w-full p-4 md:p-8 space-y-8">
+<!-- Page Header -->
+<div class="space-y-2">
+<h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">Crear Nueva Vacante</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg">Defina los detalles de la oferta para atraer al mejor talento de la UP.</p>
+</div>
+<!-- Form Form -->
+<form class="space-y-8">
+<!-- Section 1: Información del Puesto -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 md:p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">work</span>
+</div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Información del Puesto</h2>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<div>
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Título de la Vacante</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary text-slate-900 dark:text-white px-4 py-3" placeholder="Ej. Desarrollador Fullstack Senior (React/Node.js)" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Descripción de la Vacante</label>
+<textarea class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary text-slate-900 dark:text-white px-4 py-3" placeholder="Describa las responsabilidades principales, el equipo y la misión del rol..." rows="6"></textarea>
+</div>
+<div>
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-4">Modalidad de Trabajo</label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<label class="relative flex items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group">
+<input checked="" class="sr-only peer" name="modalidad" type="radio"/>
+<div class="peer-checked:text-primary flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">business</span>
+<span class="text-sm font-medium">Presencial</span>
+</div>
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary rounded-lg pointer-events-none"></div>
+</label>
+<label class="relative flex items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group">
+<input class="sr-only peer" name="modalidad" type="radio"/>
+<div class="peer-checked:text-primary flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">home_work</span>
+<span class="text-sm font-medium">Híbrido</span>
+</div>
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary rounded-lg pointer-events-none"></div>
+</label>
+<label class="relative flex items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group">
+<input class="sr-only peer" name="modalidad" type="radio"/>
+<div class="peer-checked:text-primary flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">cloud</span>
+<span class="text-sm font-medium">Remoto</span>
+</div>
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary rounded-lg pointer-events-none"></div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Requisitos -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 md:p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">assignment_ind</span>
+</div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Requisitos</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Nivel Académico Mínimo</label>
+<select class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary text-slate-900 dark:text-white px-4 py-3">
+<option>Estudiante de Licenciatura</option>
+<option>Pasante / Egresado</option>
+<option>Titulado</option>
+<option>Maestría / Postgrado</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Años de Experiencia</label>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary text-slate-900 dark:text-white px-4 py-3" placeholder="Ej. 3" type="number"/>
+</div>
+<div class="md:col-span-2">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Idiomas Requeridos</label>
+<div class="flex flex-wrap gap-2 p-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+<span class="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1">
+                                    Inglés Avanzado <button class="material-symbols-outlined text-[14px]" type="button">close</button>
+</span>
+<span class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1">
+                                    Francés <button class="material-symbols-outlined text-[14px]" type="button">add</button>
+</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm flex-1 min-w-[150px] p-0" placeholder="Añadir otro idioma..." type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Detalles de la Oferta -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 md:p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">redeem</span>
+</div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Detalles de la Oferta</h2>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<div>
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Beneficios</label>
+<textarea class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary text-slate-900 dark:text-white px-4 py-3" placeholder="Ej. Seguro de gastos médicos mayores, Vales de despensa, Bono por desempeño..." rows="3"></textarea>
+</div>
+<div>
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Ubicación Exacta</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400">location_on</span>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary text-slate-900 dark:text-white pl-12 pr-4 py-3" placeholder="Ciudad de México, Santa Fe (Piso 12)" type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Configuración de la Publicación -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 md:p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">settings_suggest</span>
+</div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Configuración de la Publicación</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Fecha de Cierre</label>
+<div class="relative">
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary text-slate-900 dark:text-white px-4 py-3" type="date"/>
+</div>
+<p class="text-xs text-slate-500 mt-2">La vacante se ocultará automáticamente después de esta fecha.</p>
+</div>
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Límite de Postulaciones</label>
+<div class="group relative">
+<span class="material-symbols-outlined text-slate-400 cursor-help text-lg">info</span>
+<div class="absolute bottom-full right-0 mb-2 hidden group-hover:block w-48 p-2 bg-slate-800 text-white text-[10px] rounded shadow-xl z-10">
+                                        Control de volumen de solicitudes. La vacante se cerrará al alcanzar este número.
+                                    </div>
+</div>
+</div>
+<input class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-transparent focus:ring-primary focus:border-primary text-slate-900 dark:text-white px-4 py-3" placeholder="Ej. 50" type="number"/>
+</div>
+</div>
+</section>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-end gap-4 pb-12">
+<button class="w-full sm:w-auto px-8 py-3 rounded-lg border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" type="button">
+                        Vista Previa
+                    </button>
+<button class="w-full sm:w-auto px-10 py-3 rounded-lg bg-primary text-white font-bold hover:bg-blue-600 shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-[20px]">send</span>
+                        Publicar Vacante
+                    </button>
+</div>
+</form>
+</main>
+</div>
+</body></html>

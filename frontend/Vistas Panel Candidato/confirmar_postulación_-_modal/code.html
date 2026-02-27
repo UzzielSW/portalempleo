@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Confirmar Postulación - Portal de Empleo UP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d7ff2",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .modal-overlay {
+            background-color: rgba(16, 25, 34, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Main Page Content (Background for the Modal) -->
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-white dark:bg-background-dark group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-10 py-3 bg-white dark:bg-background-dark">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">Portal de Empleo UP</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Vacantes</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Mis Postulaciones</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Mi Perfil</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200 dark:border-slate-700" data-alt="User profile picture, professional headshot" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCHilqIA1Hk2X5MkRgnvrj2D9FnAwbrRdTrDq4ukLtiwahU_6y06Hmhf1kKQHvtA8KHMjB7zBTzpmLnR83sIMgEcsVvMzFCdgROXHAvTmaq7S1ChYYxFYQgMd31dO2jBnCt_i1iHjjmi_9-lgS-9PRCMcjEY_3H86aakgRVdwrLFi3jO6sN-8na0eP7LooNgNkOEjk1SQbGoGFy9AqIV9VEtFif9PZei4SFBMEv8mm1NCEbtICwv3NoVC6cYAB5T9Gr9lTxmZNjVtw");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 px-10 py-8 opacity-50 pointer-events-none">
+<h1 class="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">Desarrollador Senior Full Stack</h1>
+<div class="grid grid-cols-3 gap-8">
+<div class="col-span-2 space-y-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+<h3 class="text-lg font-bold mb-4">Descripción del puesto</h3>
+<p class="text-slate-600 dark:text-slate-400">Buscamos un desarrollador con experiencia en React y Node.js para unirse a nuestro equipo de innovación...</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay backdrop-blur-sm">
+<!-- Modal Container -->
+<div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+<!-- Header -->
+<div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary font-bold">send</span>
+</div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-slate-100">Confirmar Postulación</h2>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Content -->
+<div class="p-6 space-y-6">
+<!-- Job Summary Card -->
+<div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg border border-slate-100 dark:border-slate-800">
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Estás a punto de aplicar a:</p>
+<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100 leading-tight">Desarrollador Senior Full Stack</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[18px] text-primary">business</span>
+<p class="text-sm font-semibold text-slate-700 dark:text-slate-300">Tech Innovators Corp.</p>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Tu perfil profesional y tu currículum seleccionado serán enviados directamente al equipo de reclutamiento de la empresa para su revisión.
+                    </p>
+<!-- Form Controls -->
+<div class="space-y-4">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Selecciona el CV que deseas enviar</label>
+<div class="relative">
+<select class="w-full h-12 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 appearance-none focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 dark:text-slate-100 text-sm">
+<option value="cv_principal">CV Principal - Actualizado 2024 (PDF)</option>
+<option value="cv_tech">CV Perfil Técnico - Senior Dev (PDF)</option>
+<option value="cv_mgmt">CV Perfil Gestión - Team Lead (PDF)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-slate-400">expand_more</span>
+</div>
+</div>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary focus:ring-offset-0 bg-white dark:bg-slate-800 transition-all" type="checkbox"/>
+</div>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Adjuntar Carta de Presentación (Opcional)</span>
+</label>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="bg-slate-50 dark:bg-slate-800/30 px-6 py-4 flex flex-col sm:flex-row gap-3">
+<button class="flex-1 order-2 sm:order-1 px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                        Cancelar
+                    </button>
+<button class="flex-1 order-1 sm:order-2 px-4 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span>Confirmar y Enviar</span>
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</button>
+</div>
+<!-- Trust Badge -->
+<div class="px-6 pb-6 text-center">
+<p class="text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-bold">
+                        Procesado de forma segura por Portal de Empleo UP
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

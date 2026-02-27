@@ -52,6 +52,14 @@ PROCEDURE CONSULTAR_ESTUDIANTE(
         VAR_RESPONSE_MSJ:='NO EXISTE EL ESTUDIANTE';
     END IF;
 
+-- has una excepcion en caso falle enviar valores y un mensaje de aviso
+
+EXCEPTION
+    WHEN OTHERS THEN
+        VAR_RESPONSE:= '0';
+        VAR_RESPONSE_MSJ:= 'ERROR AL CONSULTAR EL ESTUDIANTE';
+        DBMS_OUTPUT.PUT_LINE('Error al consultar el estudiante: ' || SQLERRM);
+
 END CONSULTAR_ESTUDIANTE;
 /******************************************************************************/
 /******************************************************************************/

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Candidate Vacancies Dashboard - Portal de Empleo UP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#002855", // Deep Navy Blue
+                        secondary: "#D4AF37", // University Gold
+                        accent: "#b4975a",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Poppins", "sans-serif"],
+                    },
+                },
+            },
+        };
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body { @apply font-sans bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100; }
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+        @layer components {
+            .nav-link {
+                @apply px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors border-b-2 border-transparent hover:border-secondary/50;
+            }
+            .nav-link-active {
+                @apply nav-link text-white border-secondary;
+            }
+            .filter-select {
+                @apply w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all py-2.5;
+            }
+            .job-card {
+                @apply bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+<header class="fixed top-0 left-0 right-0 z-50 bg-primary text-white shadow-md">
+<div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-2 cursor-pointer">
+<div class="w-8 h-8 bg-secondary rounded flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined font-bold">school</span>
+</div>
+<div class="leading-none">
+<span class="text-lg font-display font-bold block tracking-tight">Portal UP</span>
+<span class="text-[9px] uppercase font-bold text-secondary/80 tracking-widest">Bolsa de Empleo</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-1">
+<a class="nav-link" href="#">Perfil</a>
+<a class="nav-link-active" href="#">Vacantes</a>
+<a class="nav-link" href="#">Mis Postulaciones</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors" onclick="toggleDarkMode()">
+<span class="material-symbols-outlined text-xl">contrast</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-xl">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full border border-primary"></span>
+</button>
+</div>
+<div class="h-6 w-px bg-white/20"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold">Ana Rodríguez</p>
+<p class="text-[10px] text-white/60 uppercase font-bold tracking-wider">Estudiante</p>
+</div>
+<div class="relative">
+<img alt="Perfil" class="w-9 h-9 rounded-full object-cover border-2 border-secondary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYkJOz89ywVpVTkxwIaMs3vTYDrnnD3Py5szFERGlBhIQc8XVEF7QmSMuITSvfNWof3euxDvr5GcOARCf4efbBctRRm-mlGvhrtbNxXs46LFSXSWCUQw1D0r5hFgULnixe5k9I8u-2v9ITKHS2DoGpSOoi8h66eDuG271cFAi5wxC5jK2iYNGvf0GKdoM_Td1-y0TNM3hl6k8EQILonG3Q3pueWfTm50Vshr0qEwFEyVlGxlxdCu1nghjBrdSdBVMmEBvie8mq4WU"/>
+</div>
+<span class="material-symbols-outlined text-white/60 text-lg">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1600px] mx-auto px-6 pt-24 pb-12">
+<div class="grid grid-cols-12 gap-8">
+<aside class="col-span-12 lg:col-span-3">
+<div class="lg:sticky lg:top-24 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary">tune</span>
+<h3 class="font-display font-bold text-slate-800 dark:text-white">Filtros Avanzados</h3>
+</div>
+<div class="space-y-5">
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Facultad</label>
+<select class="filter-select">
+<option value="">Todas las facultades</option>
+<option>Ing. de Sistemas Computacionales</option>
+<option>Ingeniería Civil</option>
+<option>Ingeniería Industrial</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Provincia</label>
+<select class="filter-select">
+<option value="">Todas las provincias</option>
+<option>Panamá</option>
+<option>Panamá Oeste</option>
+<option>Chiriquí</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Horario</label>
+<select class="filter-select">
+<option value="">Cualquier horario</option>
+<option>Tiempo Completo</option>
+<option>Tiempo Parcial</option>
+<option>Prácticas</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Empresa</label>
+<select class="filter-select">
+<option value="">Todas las empresas</option>
+<option>Afluena Oil S.A.</option>
+<option>Rootstack</option>
+<option>Nimar SA</option>
+</select>
+</div>
+<button class="w-full mt-2 py-3 bg-primary hover:bg-slate-900 text-white rounded-lg text-sm font-bold transition-all shadow-md shadow-primary/10">
+                        Aplicar Búsqueda
+                    </button>
+<button class="w-full py-2 text-slate-400 text-xs font-semibold hover:text-secondary flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-sm">restart_alt</span>
+                        Limpiar filtros
+                    </button>
+</div>
+</div>
+<div class="mt-6 p-6 bg-gradient-to-br from-primary to-slate-900 rounded-xl text-white relative overflow-hidden shadow-lg">
+<div class="relative z-10">
+<h4 class="font-display font-bold text-lg leading-tight mb-2">Prepara tu Futuro Profesional</h4>
+<p class="text-sm text-white/70 mb-4">Accede a mentorías personalizadas para mejorar tu CV.</p>
+<button class="text-xs font-bold bg-secondary text-primary px-4 py-2 rounded-lg hover:bg-white transition-colors">Solicitar Guía</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl text-white/10 rotate-12">workspace_premium</span>
+</div>
+</aside>
+<div class="col-span-12 lg:col-span-9">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h2 class="text-2xl font-display font-bold text-primary dark:text-white">Vacantes Disponibles</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Mostrando 128 oportunidades laborales para tu perfil.</p>
+</div>
+<div class="flex items-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 shadow-sm">
+<span class="text-[10px] font-bold text-slate-400 uppercase mr-3">Ordenar:</span>
+<select class="border-none bg-transparent p-0 text-xs font-bold text-slate-700 dark:text-slate-200 focus:ring-0 cursor-pointer">
+<option>Más recientes</option>
+<option>Relevancia</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<div class="job-card flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-white rounded-lg border border-slate-100 flex items-center justify-center p-2 shadow-sm">
+<img alt="Afluena Oil" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk7W41CRcUBArsjK4GZzlkAzAE3mhX8AKnIemDYud243mRUadu5V3OnolS0O6GgQ0-1MX1EfLNpC5XhEg-xCiAhH_-JKl85kNl7XGZDX0EEckhsiTAvg2MORbziJ22LXmc9l5RVVwVHdHkEQzNCwiWrR3F7d24aeGU7e0t3dprhVaS-Vlu2XTBA2C7BxSae0EoQgbBSy8nbT2B--4xA793hwywJwUKkJ7xk5aLFvgrbxnKiKtNawEzekfoRA7_AiVjUztIJhyAP7U"/>
+</div>
+<button class="text-slate-300 hover:text-secondary transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+<div class="flex-grow">
+<h4 class="text-lg font-bold text-primary dark:text-white mb-1 line-clamp-1">Técnico Eléctrico</h4>
+<p class="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-4">AFLUENA OIL S.A.</p>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-base text-secondary">location_on</span>
+<span>Parque Lefevre, Panamá</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 uppercase">Tiempo Completo</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+<span class="text-[10px] text-slate-400 font-medium">Publicado hoy</span>
+<a class="text-sm font-bold text-primary dark:text-secondary flex items-center gap-1 group" href="#">
+                            Ver más <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="job-card flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-white rounded-lg border border-slate-100 flex items-center justify-center p-2 shadow-sm">
+<img alt="Aage Hempel" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChNEiF99eJou3CoifIgGQpRl898U2nNu6rT3ePCtjE_V7s5eSkk8_oHCLLGmM7aKNPWQBvDPtbyX8KJdsC01nunB2ZXtTIuXzLA11YZS60LoNjrI-wWWEVQekHkkGIiuzN2SZC_e9amylFudpBpwXcp3BSwm6Pg0jwIasNfUYbLxanzOd6zMZ01BtjLq287ZOw1YGSjhg1EiTgICaNzyi4opY-l1ulAyvEYZfvdVFKFul-qPVrgS3Tg8Bj7xEi-StpMy1UyCR8JBE"/>
+</div>
+<button class="text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">bookmark</span>
+</button>
+</div>
+<div class="flex-grow">
+<h4 class="text-lg font-bold text-primary dark:text-white mb-1 line-clamp-1">Compras y Logística</h4>
+<p class="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-4">AAGE HEMPEL PANAMA</p>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-base text-secondary">location_on</span>
+<span>San Francisco, Panamá</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 uppercase">Tiempo Completo</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-100 text-red-700 uppercase">Urgente</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+<span class="text-[10px] text-slate-400 font-medium">Hace 2 horas</span>
+<a class="text-sm font-bold text-primary dark:text-secondary flex items-center gap-1 group" href="#">
+                            Ver más <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="job-card flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-white rounded-lg border border-slate-100 flex items-center justify-center p-2 shadow-sm">
+<img alt="Electro Sistemas" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh8UZpJEc3kvl9SbLtu_BJBM82w2VphT1i8jMFhsOGmPHZvoEXXDbJiRmu-emOUlg7TsGig9WkR0JOHj90TfOJ10hOJqIhOuRIxfEWS1N8qXpXcd1ISKj6Hnj-5uGvUR2F8NT2JuWn9MrmXLLYX3GDyqnewODByHBM_vhv8Yj6rRXNUmLlWre6bxbwBnoo4hlpGg-jF1BtM6aVMJsKrWSYltrmo_5h-Q3mPLF7M5cKwwRhMKWv0GlW4I1icXSPN9TdLIpJWGN2-Wg"/>
+</div>
+<button class="text-slate-300 hover:text-secondary transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+<div class="flex-grow">
+<h4 class="text-lg font-bold text-primary dark:text-white mb-1 line-clamp-1">Técnico de Extintores</h4>
+<p class="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-4">ELECTRO SISTEMAS</p>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-base text-secondary">location_on</span>
+<span>Juan Díaz, Panamá</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 uppercase">Tiempo Parcial</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+<span class="text-[10px] text-slate-400 font-medium">Hace 3 días</span>
+<a class="text-sm font-bold text-primary dark:text-secondary flex items-center gap-1 group" href="#">
+                            Ver más <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="job-card flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-white rounded-lg border border-slate-100 flex items-center justify-center p-2 shadow-sm">
+<img alt="Nimar" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCagACSIs-gf0Wg9dyDgOaZs9qz9RpTPnc9d22dSzipc8EBQZKaWE7nik4vmRu8xxgf8mzFJ_c5fZgQ0H26Za6bbrV-M5KyCwcukl6RZDOKUCI3lrK1uHE-eq6yQpJGA8xSt_LuG32EvXK3j76OhZ2BHcJYtI7PLx-nqgSTrOxP86YWleFr-p2gFa9yg4s7zU00nXFuPvpTlt_BNC42XM6iCPtvjAdyl6E3tRJeAXuxXzNI7bznYyghhzvNoDv4SnisKoMZX-06Wyc"/>
+</div>
+<button class="text-slate-300 hover:text-secondary transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+<div class="flex-grow">
+<h4 class="text-lg font-bold text-primary dark:text-white mb-1 line-clamp-1">Ingeniero Industrial</h4>
+<p class="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-4">NIMAR SA</p>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-base text-secondary">location_on</span>
+<span>Panamá Pacífico</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 uppercase">Tiempo Completo</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+<span class="text-[10px] text-slate-400 font-medium">Hace 4 días</span>
+<a class="text-sm font-bold text-primary dark:text-secondary flex items-center gap-1 group" href="#">
+                            Ver más <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="job-card flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-white rounded-lg border border-slate-100 flex items-center justify-center p-2 shadow-sm">
+<img alt="Refrivialpa" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB75yj4ZIylnv_6Kze6a9Q29VM7QZFVlLRmVo-m25ZrvCNtwnJlOzfUGxNbfbVQ3Nq2xkJSLs1b1za1uVB0C041U62BWn1NAeMsB4ndh4Tia6scVpyImdm7iPKApQFB2MWW6A8g-g4UVouWlxVi7g5S6NoLvApVWY6grvmo1qrLaH0-eG-SmaMF3vLzM6jpuRJsirzWQfzYIa8Ij9JzpVyhJS90vER-OCjrNtFxtKwIP-cj81O4KNpyHd3yw8-BTZzyqsUyqS6sVGY"/>
+</div>
+<button class="text-slate-300 hover:text-secondary transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+<div class="flex-grow">
+<h4 class="text-lg font-bold text-primary dark:text-white mb-1 line-clamp-1">Técnico Refrigeración</h4>
+<p class="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-4">REFRIVIALPA</p>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-base text-secondary">location_on</span>
+<span>Bella Vista, Panamá</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 uppercase">Tiempo Completo</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+<span class="text-[10px] text-slate-400 font-medium">Hace 5 días</span>
+<a class="text-sm font-bold text-primary dark:text-secondary flex items-center gap-1 group" href="#">
+                            Ver más <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="job-card flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-white rounded-lg border border-slate-100 flex items-center justify-center p-2 shadow-sm">
+<img alt="Rootstack" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-89HCkGjLLIR2Jgavh2pcj4An7Rfk5whl0ocX7fPsVScv2eQivZ01RbRkIZSeGD1q4Hnama3liwmhgm49INZHbDBDjpkGB-6YmBRhrQZLqyFI-nSqDZcHOV9FhNl1U6w3I2zs4-zw-hgZDXe4GF0iqneORtw6naTn64uuEwGjbI1UzcRQ9bjN24AknN_JDuQNjb1ti_Piza5OUDxvJE_pR5REexZKJF9GQwHrx5d9oZniAhiEmzQ_lfhmBnx7JEPLZCFg4uIL8Hg"/>
+</div>
+<button class="text-slate-300 hover:text-secondary transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+<div class="flex-grow">
+<h4 class="text-lg font-bold text-primary dark:text-white mb-1 line-clamp-1">Cloud Data Engineer</h4>
+<p class="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-4">ROOTSTACK</p>
+<div class="space-y-2 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-base text-secondary">location_on</span>
+<span>Remoto / Ciudad de Panamá</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-700 uppercase">Híbrido</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+<span class="text-[10px] text-slate-400 font-medium">Hace 1 semana</span>
+<a class="text-sm font-bold text-primary dark:text-secondary flex items-center gap-1 group" href="#">
+                            Ver más <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<nav class="mt-12 flex items-center justify-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:bg-white dark:hover:bg-slate-900 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 transition-colors">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 transition-colors">12</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:bg-white dark:hover:bg-slate-900 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</main>
+<footer class="mt-12 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-10">
+<div class="max-w-[1600px] mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 bg-slate-100 dark:bg-slate-800 rounded flex items-center justify-center text-primary dark:text-white">
+<span class="material-symbols-outlined text-lg">school</span>
+</div>
+<div>
+<span class="text-sm font-display font-bold text-slate-800 dark:text-white">Portal de Empleo UP</span>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">© 2024 Panamá</p>
+</div>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-xs font-bold text-slate-500 hover:text-secondary uppercase tracking-widest transition-colors" href="#">Ayuda</a>
+<a class="text-xs font-bold text-slate-500 hover:text-secondary uppercase tracking-widest transition-colors" href="#">Privacidad</a>
+<a class="text-xs font-bold text-slate-500 hover:text-secondary uppercase tracking-widest transition-colors" href="#">Contacto</a>
+</nav>
+<div class="flex items-center gap-3">
+<a class="w-8 h-8 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-secondary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">language</span>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-secondary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">mail</span>
+</a>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>

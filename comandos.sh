@@ -24,6 +24,7 @@ git remote add github https://github.com/UzzielSW/expressbra.git
 
 # antes de hacer push ya debe existir un repositorio vacio con el mismo nombre que se coloco con el comando anterior
 git push github --all
+git push github --all && git push github --tags
 git push github --tags
 
 git pull github brayan.puyol
@@ -32,7 +33,9 @@ git pull github brayan.puyol
 npm audit fix --force
 
 
+"oci-sdk": "^2.123.0",
 # ========================== PM2 ==============================
+npm install -g pm2
 pm2 start ecosystem.config.js --only PortalEmpleoUP --env development
 pm2 restart ecosystem.config.js --only PortalEmpleoUP --env development
 pm2 stop ecosystem.config.js --only PortalEmpleoUP --env development

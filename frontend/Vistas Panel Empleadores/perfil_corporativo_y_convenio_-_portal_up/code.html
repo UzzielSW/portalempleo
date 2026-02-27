@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Perfil Corporativo y Convenio - Portal UP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "navy-up": "#0a1d37",
+                        "gold-up": "#b8860b",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen">
+<div class="layout-container flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 lg:px-20 py-4">
+<div class="max-w-[1280px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-navy-up text-white p-1.5 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined !text-2xl">school</span>
+</div>
+<h1 class="text-navy-up dark:text-white text-xl font-extrabold tracking-tight">Portal <span class="text-primary">UP</span></h1>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-primary font-bold text-sm border-b-2 border-primary pb-1" href="#">Perfil</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium text-sm hover:text-primary transition-colors" href="#">Vacantes</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium text-sm hover:text-primary transition-colors" href="#">Candidatos</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-800 mx-1"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-slate-900 dark:text-slate-100">Admin Reclutamiento</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-wider">Tech Solutions</p>
+</div>
+<img alt="Avatar Usuario" class="size-9 rounded-full object-cover border-2 border-slate-100 dark:border-slate-800" data-alt="Foto de perfil del administrador de reclutamiento" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdt0NaBfeO5nru7gMblAZos-DqoICKN-Ac6eYodx6dpRoSxhowwS9Hg17_8VgODhNaWaMOqBLTzeEc_5mKYtDFxaE85CdLl-4T92yyf5xsp2MHRxthxt-YKNB9lxsCBab2MvGzYVukX9c4pPxfOP0Wxb66wnNINzMCBZc14y3wFQ2fAiwu_B6_xqZuHPi1MXex7jS4v9wZRkvp1o6_xe8J7ywZyBfqJghQOObwSu6ZZK6fIfOfdi_y70vmWOCjg1MpIAl51TzvYdg"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto w-full px-6 lg:px-20 py-8">
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Company Profile (Col 8) -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Company Profile Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="h-24 bg-gradient-to-r from-navy-up to-primary/80 relative"></div>
+<div class="px-8 pb-8 flex flex-col sm:flex-row items-end gap-6 -mt-12 relative z-10">
+<div class="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-lg border-4 border-white dark:border-slate-900">
+<img alt="Logo de Empresa" class="size-24 rounded-xl object-cover" data-alt="Logo corporativo de Tech Solutions S.A.C." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClyCUK9m8Jh8Yvjs_zL9VajNc7QQlDkHFsep4yF7dAXrQTtQCDboGUFjd_fjI0-QJCLmanMrs9_jo0Sz9b1PwFM9-Z7Cr0RGm-UawSeECyjNFGaFcuRb-G1hmh39fhop1Rhcq4oycY36R4bPHwR86wLKjqAwc_K255Egyz3XriEbHsPymjemAlOfUUNmuICisIN3U-c9jpS_7EgFIEEJs0g94IHFkqKTEXQmb7MuOBKA4vMxyxP00Ng9cVoDkCvvoolUvZqdjHfjM"/>
+</div>
+<div class="flex-1 pb-2">
+<div class="flex flex-wrap items-center gap-3 mb-1">
+<h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Tech Solutions S.A.C.</h2>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-gold-up/10 text-gold-up text-xs font-bold rounded-full border border-gold-up/20">
+<span class="material-symbols-outlined !text-sm">verified</span>
+                                        Convenio Vigente
+                                    </span>
+</div>
+<div class="flex flex-wrap gap-4 text-slate-500 dark:text-slate-400 text-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined !text-lg">fingerprint</span> RUC: 20600000000</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined !text-lg">location_on</span> Lima, Perú</span>
+</div>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 shadow-md">
+<span class="material-symbols-outlined !text-lg">edit</span>
+                                Editar Perfil
+                            </button>
+</div>
+</div>
+<!-- Metrics Section -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-blue-50 dark:bg-blue-900/30 text-primary rounded-lg">
+<span class="material-symbols-outlined">work</span>
+</div>
+<span class="text-green-600 text-xs font-bold flex items-center">+2.4% <span class="material-symbols-outlined !text-xs">trending_up</span></span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Vacantes Activas</p>
+<h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">12</h3>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-purple-50 dark:bg-purple-900/30 text-purple-600 rounded-lg">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="text-green-600 text-xs font-bold flex items-center">+15% <span class="material-symbols-outlined !text-xs">trending_up</span></span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Postulaciones Totales</p>
+<h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">450</h3>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-amber-50 dark:bg-amber-900/30 text-amber-600 rounded-lg">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="text-slate-500 text-xs font-bold">Estable</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Tasa de Respuesta</p>
+<h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">85%</h3>
+</div>
+</div>
+<!-- Agreement Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-8">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Estado del Convenio</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Detalles de la alianza estratégica con la Universidad.</p>
+</div>
+<button class="flex items-center gap-2 text-primary hover:text-primary/80 font-bold text-sm transition-colors">
+<span class="material-symbols-outlined !text-lg">history</span>
+                                Ver Historial
+                            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="bg-navy-up/5 dark:bg-navy-up/20 p-3 rounded-xl flex items-center justify-center self-start">
+<span class="material-symbols-outlined text-navy-up dark:text-primary">handshake</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase mb-1">Tipo de Alianza</p>
+<p class="text-base font-semibold text-slate-900 dark:text-slate-100">Alianza Institucional Integral</p>
+<p class="text-sm text-slate-500 mt-1">Beneficios mutuos en pasantías y empleabilidad.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="bg-gold-up/5 p-3 rounded-xl flex items-center justify-center self-start">
+<span class="material-symbols-outlined text-gold-up">event_available</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase mb-1">Vencimiento</p>
+<p class="text-base font-semibold text-slate-900 dark:text-slate-100">15 de Diciembre, 2024</p>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-gold-up h-full w-[70%]"></div>
+</div>
+<p class="text-[10px] text-slate-500 mt-1">Quedan 274 días para la renovación</p>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700/50">
+<h4 class="text-xs font-bold text-slate-400 uppercase mb-4">Documentos Firmados</h4>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<div>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-200">Convenio_UP_2023.pdf</p>
+<p class="text-[10px] text-slate-500">Actualizado hace 4 meses</p>
+</div>
+</div>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-xl">download</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<div>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-200">Anexo_Seguridad.pdf</p>
+<p class="text-[10px] text-slate-500">Actualizado hace 1 mes</p>
+</div>
+</div>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-xl">download</span>
+</button>
+</div>
+</div>
+<button class="w-full mt-6 py-2.5 bg-navy-up hover:bg-navy-up/90 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined !text-lg">sync</span>
+                                    Solicitar Renovación
+                                </button>
+</div>
+</div>
+</div>
+<!-- General Description -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-8 mb-10">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6">Descripción Corporativa</h3>
+<div class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 leading-relaxed text-sm space-y-4">
+<p>En Tech Solutions S.A.C., somos líderes en el desarrollo de software innovador y consultoría tecnológica con más de 15 años en el mercado peruano. Nuestra misión es transformar negocios a través de la digitalización eficiente y la implementación de soluciones basadas en inteligencia artificial y computación en la nube.</p>
+<p>Valoramos profundamente el talento joven y la curiosidad intelectual. A través de nuestro convenio con la Universidad, buscamos integrar a los mejores estudiantes y egresados en proyectos de alto impacto, brindándoles una línea de carrera sólida y mentoría especializada de clase mundial.</p>
+<p>Nuestro entorno de trabajo es dinámico, inclusivo y orientado a resultados, donde la innovación no es solo un objetivo, sino parte de nuestro ADN cotidiano.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Info & Details (Col 4) -->
+<div class="lg:col-span-4 space-y-8">
+<!-- General Data Form/Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h3 class="text-base font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary !text-xl">info</span>
+                            Datos Generales
+                        </h3>
+<div class="space-y-6">
+<div>
+<label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1.5">Sitio Web</label>
+<div class="flex items-center gap-2 text-sm text-primary font-semibold truncate">
+<span class="material-symbols-outlined !text-lg">language</span>
+<a class="hover:underline" href="#">www.techsolutions.com.pe</a>
+</div>
+</div>
+<div>
+<label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1.5">Sector Económico</label>
+<div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 font-medium">
+<span class="material-symbols-outlined !text-lg">devices</span>
+                                    Tecnología e Informática
+                                </div>
+</div>
+<div>
+<label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1.5">Tamaño de Empresa</label>
+<div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 font-medium">
+<span class="material-symbols-outlined !text-lg">groups</span>
+                                    500+ Colaboradores
+                                </div>
+</div>
+<div>
+<label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1.5">Sede Principal</label>
+<div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-200 font-medium">
+<span class="material-symbols-outlined !text-lg">apartment</span>
+                                    San Isidro, Lima
+                                </div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-slate-100 dark:border-slate-800">
+<label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-4">Contacto de Reclutamiento</label>
+<div class="flex items-center gap-3">
+<img alt="Contacto HR" class="size-10 rounded-full object-cover" data-alt="Foto de la Gerente de Recursos Humanos" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgTgdC0U9v457y-ZiVkLhDW5H2pLVehZf9dJumfFQwB383NjIBaTEMpDtjXq7YK_LRJnTU03k_IC6P5PKznSXrWGEPsQndMynrqb92UIgaB2ain0IVfaXVi4nDLnmc9qtZSHTw47i1QhonLF6_f5N_TRf-6BF8Fe4lLFADfE12dWtv3-GLoAzqFSdGGGD-tO0ScWAAKK7i90yjdgZouxS7hSADUKxIOECOuibJd6-kcx3HI0MaplrDEu7CA9vuPiG19J4WKB1DGtY"/>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Mariana Velásquez</p>
+<p class="text-[11px] text-slate-500">Gerente de Talent Acquisition</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Map/Location Shortcut -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-2 shadow-sm overflow-hidden">
+<div class="h-48 rounded-lg bg-slate-100 relative overflow-hidden flex items-center justify-center" data-location="Lima, Peru" style="">
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-navy-up via-transparent to-transparent"></div>
+<div class="text-center z-10 px-4">
+<span class="material-symbols-outlined text-navy-up !text-4xl mb-2">map</span>
+<p class="text-xs font-bold text-slate-900">Av. Javier Prado Este 1500</p>
+<p class="text-[10px] text-slate-500">Lima, Perú</p>
+</div>
+<img alt="Ubicación" class="absolute inset-0 w-full h-full object-cover opacity-10" data-alt="Imagen representativa de mapa de ubicación de oficina" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgwnbWUCxmaqSiZgQ6G6b20tmOEFY-NOS-y3Sh57s7gEKOiwv8bT39tbnI5R6UtnBnEp2FVbiWmZjFiEpXSpPyImQ_by9X5PWg97Cnd8SKde7CEt3qaE11Jkqoo0BN9n3I54uEGFyD08EWKvZLHzCympjKkPr-oTDGf4SDx0euwIl20ZUV7IA2XuWzuWvhe2C96Thz87pRurt0TzGs3f1cUV6UKFDpcexUBfIZ183zBpOoNH_g8N3zAZ_IPtfa6J_aqslE0-WXpd8"/>
+</div>
+</div>
+<!-- Quick Help -->
+<div class="bg-primary/5 border border-primary/20 p-6 rounded-xl">
+<h4 class="text-primary text-sm font-bold mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined !text-lg">support_agent</span>
+                            Soporte Corporativo
+                        </h4>
+<p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4">¿Necesitas ayuda con tu convenio o la publicación de vacantes? Nuestro equipo de fidelización está listo para ayudarte.</p>
+<a class="text-primary text-xs font-extrabold hover:underline" href="#">Contactar Asesor UP</a>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

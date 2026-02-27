@@ -1,6 +1,32 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const Navbar = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Comprobar la preferencia del usuario al cargar
+  useEffect(() => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      setIsDarkMode(true);
+    } else {
+      document.documentElement.classList.remove('dark');
+      setIsDarkMode(false);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    if (isDarkMode) {
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+      setIsDarkMode(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+      setIsDarkMode(true);
+    }
+  };
+
   return (
     <nav className="sticky top-0 z-50 glass-effect border-b border-slate-200 dark:border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,6 +58,17 @@ const Navbar = () => {
             <Link to="/contact" className="text-sm font-semibold hover:text-secondary transition-colors">
               CONTÁCTENOS
             </Link>
+
+            {/* Selector de Tema */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors"
+              aria-label="Alternar tema oscuro"
+            >
+              <span className="material-symbols-outlined text-xl">
+                {isDarkMode ? 'light_mode' : 'dark_mode'}
+              </span>
+            </button>
 
             <div className="flex items-center gap-4 pl-4 border-l border-slate-200 dark:border-slate-700">
               <Link to="/login" className="text-sm font-bold text-primary dark:text-blue-400">

@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] font-bold text-slate-400">© 2024 Universidad de Panamá - Portal de Empleo. Hacia la excelencia.</p>
+          <p className="text-[10px] font-bold text-slate-400">© {new Date().getFullYear()} Universidad de Panamá - Portal de Empleo. Hacia la excelencia.</p>
           <div className="flex items-center gap-2">
             <span className="text-[10px] text-slate-400">Desarrollado por</span>
             <span className="font-bold text-[10px] text-primary dark:text-blue-300">Dirección de Informática UP</span>

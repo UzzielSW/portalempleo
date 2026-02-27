@@ -1,3 +1,16 @@
+### Comandos
+express --view=pug portalempleo
+Para los modales de confirmacion y avisos: sweetalert2
+
+Configuracion:
+Variable del sistema: TNS_ADMIN
+
+### NPM - Node Package Manager
+- Paquetes Locales (Proyecto actual): npm list --depth=0
+- Paquetes Globales: npm list -g --depth=0
+- Verificar un paquete específico: npm list <nombre-del-paquete>
+- Ver paquetes desactualizados: npm outdated
+
 ### ¿Qué debe hacer `app.js` y `bin/wwwno`?
 
 - **`app.js`** (la “aplicación”):
@@ -36,5 +49,54 @@ En otros proyectos, en vez de `app.js` + `bin/www`, la gente usa:
 
 * Importa express
 * Usa las rutas
+
+
+# Variables de entorno para la aplicación Express
+
+- Temp
+
+    ## Cuándo Passport es innecesario o incluso mala elección
+
+    No lo uses si:
+
+    - Solo necesitas JWT
+    - Solo tienes login con email/password
+    - Tu API es stateless
+    - Quieres máxima simplicidad y control
+
+    ---
+
+    ## Qué usan la mayoría de APIs modernas
+
+    La arquitectura más común hoy:
+
+    - bcrypt
+    - jsonwebtoken
+    - middleware propio
+    - sin Passport
+
+    Especialmente en:
+
+    - REST APIs
+    - microservicios
+    - SPAs (React, Vue, etc.)
+    - mobile backends
+
+    ---
+
+    ## Recomendación
+
+    Usa implementación manual con:
+
+    - bcrypt
+    - jsonwebtoken
+    - middleware propio
+
+    Usa Passport solo si necesitas:
+
+    - OAuth
+    - múltiples proveedores externos
+    - autenticación compleja multi-estrategia
+
 
 ---
