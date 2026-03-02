@@ -9,7 +9,7 @@ html(lang='es')
     link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
     link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
     link(rel='stylesheet', href='/css/style.css')
-
+    link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
     style.
       :root {
         --up-blue: #003876;
@@ -731,71 +731,72 @@ html(lang='es')
       .login-card-header
         .login-logo-wrap
           .login-logo-bg
-            span.material-symbols-outlined school
+            //- Icono original basado en Material Symbols (lo dejamos comentado por si se necesita después)
+            //- span.material-symbols-outlined school
+            img(src='/images/UP-logo.png' alt='Portal de Empleo UP' style='width:60px; height:60px; border-radius:10px')
         h1.login-card-title Portal de Empleo UP
-        p.login-card-subtitle Inicia sesion en tu cuenta para continuar
 
       //- Formulario
       .login-card-body
 
         //- Selector de tipo de usuario
-        span.role-label(style='margin-bottom:0.5rem; display:block') Soy...
-        .role-grid
+          span.role-label(style='margin-bottom:0.5rem; display:block') Soy...
+          .role-grid
 
-          label.role-option
-            input(type='radio' name='estamento' value='estudiante' checked)
-            .role-card
-              .role-icon
-                span.material-symbols-outlined school
-              .role-name Estudiante
+            label.role-option
+              input(type='radio' name='estamento' value='estudiante' checked)
+              .role-card
+                .role-icon
+                  span.material-symbols-outlined school
+                .role-name Estudiante
 
-          label.role-option
-            input(type='radio' name='estamento' value='egresado')
-            .role-card
-              .role-icon
-                span.material-symbols-outlined workspace_premium
-              .role-name Egresado
+            label.role-option
+              input(type='radio' name='estamento' value='egresado')
+              .role-card
+                .role-icon
+                  span.material-symbols-outlined workspace_premium
+                .role-name Egresado
 
-          label.role-option
-            input(type='radio' name='estamento' value='empresa')
-            .role-card
-              .role-icon
-                span.material-symbols-outlined business
-              .role-name Empresa
+            label.role-option
+              input(type='radio' name='estamento' value='empresa')
+              .role-card
+                .role-icon
+                  span.material-symbols-outlined business
+                .role-name Empresa
 
-          label.role-option
-            input(type='radio' name='estamento' value='administrativo')
-            .role-card
-              .role-icon
-                span.material-symbols-outlined manage_accounts
-              .role-name Administrativo
+            label.role-option
+              input(type='radio' name='estamento' value='administrativo')
+              .role-card
+                .role-icon
+                  span.material-symbols-outlined manage_accounts
+                .role-name Administrativo
 
-        .form-divider
+          .form-divider
 
         //- Campos
-        form(action='/dashboard' method='POST')
+        form(action='/log_in' method='POST')
           .field-group
 
             .field-wrap
-              label.field-label(for='email') Correo electronico
+              label.field-label(for='cedula') Cédula
               .field-input-wrap
-                span.field-input-icon.material-symbols-outlined mail
-                input#email.field-input(
-                  type='email'
-                  name='email'
-                  placeholder='usuario@up.ac.pa'
+                span.field-input-icon.material-symbols-outlined person
+                input#cedula.field-input(
+                  type='text'
+                  name='cedula'
+                  placeholder='8-888-8888'
                   required
-                  autocomplete='email'
+                  autocomplete='cedula'
                 )
 
             .field-wrap
-              label.field-label(for='password') Contrasena
+              label.field-label(for='password') Contraseña
               .field-input-wrap
                 span.field-input-icon.material-symbols-outlined lock
                 input#password.field-input(
                   type='password'
                   name='password'
-                  placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;'
+                  placeholder='**************'
                   required
                   autocomplete='current-password'
                   style='padding-right:42px'
@@ -804,10 +805,10 @@ html(lang='es')
                   span#toggle-icon.material-symbols-outlined(style='font-size:1.1rem; font-variation-settings:"FILL" 0') visibility
 
           .forgot-row
-            button.forgot-btn(type='button' onclick='openModal()') &iquest;Olvidaste tu contrasena?
+            button.forgot-btn(type='button' onclick='openModal()') &iquest;Olvidaste tu contraseña?
 
           button.btn-submit(type='submit')
-            | Entrar
+            | Iniciar Sesión
             span.material-symbols-outlined(style='font-size:1.05rem') arrow_forward
 
           .or-divider Nueva en el portal?
@@ -821,7 +822,7 @@ html(lang='es')
   //- FOOTER
   //- ============================================================
   footer.login-footer
-    | &copy; 2025 Universidad de Panama &mdash; Portal de Empleo. Todos los derechos reservados.
+    | &copy; #{new Date().getFullYear()} Universidad de Panama &mdash; Dirección de Tecnología de la Información y Comunicación.
 
   //- ============================================================
   //- MODAL RECUPERACION DE CONTRASENA

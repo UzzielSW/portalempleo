@@ -32,7 +32,8 @@ En otros proyectos, en vez de `app.js` + `bin/www`, la gente usa:
 - **`index.js`** o **`server.js`** como archivo único que hace ambas cosas (configura Express y hace `listen`). Es solo una convención de nombres.
 
 
-### Regla de arquitectura correcta
+---
+## Regla de arquitectura correcta
 
 **controllers/**
 
@@ -50,7 +51,7 @@ En otros proyectos, en vez de `app.js` + `bin/www`, la gente usa:
 * Importa express
 * Usa las rutas
 
-
+---
 ## Cuándo Passport es innecesario o incluso mala elección
 
 No lo uses si:
@@ -60,9 +61,8 @@ No lo uses si:
 - Tu API es stateless
 - Quieres máxima simplicidad y control
 
----
 
-## Qué usan la mayoría de APIs modernas
+### Qué usan la mayoría de APIs modernas
 
 La arquitectura más común hoy:
 
@@ -94,6 +94,16 @@ Usa Passport solo si necesitas:
 - múltiples proveedores externos
 - autenticación compleja multi-estrategia
 
+---
+
+## Cuándo sí debes usar async
+
+Usa async cuando:
+
+- Haces consultas a base de datos
+- Llamas servicios externos
+- Usas funciones que retornan promesas
+- Necesitas await
 
 ---
 

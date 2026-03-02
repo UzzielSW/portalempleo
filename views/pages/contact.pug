@@ -1,0 +1,63 @@
+extends ../layouts/main
+
+block content
+  //- header
+  include ../includes/header
+
+
+  main(class="min-h-screen max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-12")
+    //- Encabezado de Página
+    div(class="max-w-2xl mx-auto text-center mb-12")
+      h1(class="text-4xl font-extrabold text-gray-800 sm:text-5xl dark:text-white mb-4") Contáctenos
+      p(class="text-lg text-gray-600 dark:text-gray-400")
+        | ¿Tiene preguntas sobre el Portal de Empleo? Nuestro equipo está aquí para asistir a estudiantes, egresados y reclutadores.
+
+    //- Grid de Contacto
+    div(class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-12")
+      //- Tarjeta Email
+      div(class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-2xl p-8 dark:bg-slate-800 dark:border-gray-700 transition-all hover:shadow-md")
+        div(class="flex justify-center items-center size-14 bg-blue-50 text-primary rounded-xl mb-6 dark:bg-blue-900/30")
+          span(class="material-symbols-outlined text-3xl") mail
+        div(class="text-center")
+          h3(class="text-xl font-bold text-gray-800 dark:text-white") Correo Electrónico
+          p(class="mt-2 text-gray-600 dark:text-gray-400") careers@university.edu
+          a(class="mt-4 inline-flex items-center gap-x-1 text-primary font-semibold hover:underline" href="mailto:careers@university.edu")
+            | Enviar un correo
+            span(class="material-symbols-outlined text-sm") chevron_right
+
+      //- Tarjeta Teléfono
+      div(class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-2xl p-8 dark:bg-slate-800 dark:border-gray-700 transition-all hover:shadow-md")
+        div(class="flex justify-center items-center size-14 bg-blue-50 text-primary rounded-xl mb-6 dark:bg-blue-900/30")
+          span(class="material-symbols-outlined text-3xl") call
+        div(class="text-center")
+          h3(class="text-xl font-bold text-gray-800 dark:text-white") Llámanos
+          p(class="mt-2 text-gray-600 dark:text-gray-400 text-lg") +1 (555) 000-1234
+          p(class="mt-1 text-sm text-gray-500") Lunes a Viernes, 9:00 AM - 6:00 PM
+
+    //- Sección Oficina / Mapa
+    div(class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-10 dark:bg-slate-800 dark:border-gray-700")
+      div(class="grid md:grid-cols-2 gap-10 items-center")
+        div
+          div(class="size-12 bg-blue-50 text-primary rounded-lg flex items-center justify-center mb-6 dark:bg-blue-900/30")
+            span(class="material-symbols-outlined") location_on
+          h3(class="text-2xl font-bold text-gray-800 dark:text-white") Visita nuestra oficina
+          p(class="mt-3 text-lg text-gray-600 dark:text-gray-400")
+            | Campus Universitario, Edificio 4, Nivel 2
+            br
+            | Distrito Académico, CP 90210
+
+          button(class="mt-8 py-3 px-6 inline-flex items-center gap-x-2 text-sm font-bold rounded-xl bg-primary text-white hover:bg-primary-dark transition-all shadow-lg shadow-blue-200 dark:shadow-none")
+            span(class="material-symbols-outlined text-lg") directions
+            | Cómo llegar
+
+        //- Simulación de Mapa con diseño moderno
+        div(class="relative h-64 sm:h-80 bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 group")
+          img(src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-700")
+          div(class="absolute inset-0 bg-blue-600/10")
+          div(class="absolute bottom-4 right-4")
+            a(href="#" class="py-2 px-3 bg-white dark:bg-slate-900 text-xs font-bold rounded-lg shadow-md border border-gray-200 dark:border-gray-700 inline-flex items-center gap-2 hover:bg-gray-50")
+              span(class="material-symbols-outlined text-sm") open_in_new
+              | Abrir en Google Maps
+
+  //- Footer
+  include ../includes/footer

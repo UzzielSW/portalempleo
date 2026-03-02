@@ -53,8 +53,7 @@ app.use(passport.session()); // Habilita sesiones persistentes
 //    Primero rutas públicas/básicas, luego rutas protegidas o módulos grandes.
 app.use('/', all_router);
 
-console.log('Saludo en el servidor');
-
+console.log('succefully configs.');
 // 9) Manejo de errores y middlewares de cierre
 //    Siempre deben ir al final, después de TODAS las rutas.
 

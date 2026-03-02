@@ -16,7 +16,17 @@ require('../config/passport'); // Tu estrategia local
 
 const { validarSesion } = require("../middlewares/validarSesion");
 
-router.get('/', iniciarSesion);
+router.get('/', (req, res) => {
+    console.log('render: index');
+    res.render('index', { title: 'Portal Empleo UP' });
+});
+
+router.get('/login', (req, res) => {
+    console.log('render: login');
+    res.render('login', { title: 'Login' });
+});
+
+
 
 /*
 =====================================================
@@ -37,7 +47,9 @@ router.post('/log_in', passport.authenticate('local', {
     // req.session.admintotal = req.user.tipo_usuario;
     // req.session.user = req.user.id;
 
-    // res.redirect('/users/panel');
+    // TODO: redirigir al dashboard real según el tipo de usuario.
+    // Por ahora, evitamos que la petición quede "colgada".
+    return res.redirect('/');
 });
 
 

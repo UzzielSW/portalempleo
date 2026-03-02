@@ -1,0 +1,42 @@
+doctype html
+html(class="light" lang="es")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title #{title} - Portal de Empleo UP
+
+    //- Tailwind & Google Fonts
+    script(src="https://cdn.tailwindcss.com?plugins=forms,container-queries")
+    link(href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet")
+
+    script.
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#135bec',
+              'primary-dark': '#0c46b1',
+              background: { light: '#f6f6f8', dark: '#101622' }
+            },
+            fontFamily: { sans: ['Inter', 'sans-serif'] }
+          }
+        }
+      }
+
+    //- Script para detectar modo oscuro
+    script.
+      const html = document.querySelector('html');
+      const isDevelopment = window.location.hostname.includes('localhost');
+      if (localStorage.getItem('hs_theme') === 'dark' || (!('hs_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        html.classList.add('dark');
+      } else {
+        html.classList.remove('dark');
+      }
+
+  body(class="bg-gray-50 dark:bg-slate-900 font-sans text-slate-900 dark:text-white transition-colors duration-200")
+    block content
+
+    //- Preline UI Script
+    script(src="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.js")
