@@ -51,52 +51,66 @@ En otros proyectos, en vez de `app.js` + `bin/www`, la gente usa:
 * Usa las rutas
 
 
-# Variables de entorno para la aplicación Express
+## Cuándo Passport es innecesario o incluso mala elección
 
-- Temp
+No lo uses si:
 
-    ## Cuándo Passport es innecesario o incluso mala elección
+- Solo necesitas JWT
+- Solo tienes login con email/password
+- Tu API es stateless
+- Quieres máxima simplicidad y control
 
-    No lo uses si:
+---
 
-    - Solo necesitas JWT
-    - Solo tienes login con email/password
-    - Tu API es stateless
-    - Quieres máxima simplicidad y control
+## Qué usan la mayoría de APIs modernas
 
-    ---
+La arquitectura más común hoy:
 
-    ## Qué usan la mayoría de APIs modernas
+- bcrypt
+- jsonwebtoken
+- middleware propio
+- sin Passport
 
-    La arquitectura más común hoy:
+Especialmente en:
 
-    - bcrypt
-    - jsonwebtoken
-    - middleware propio
-    - sin Passport
+- REST APIs
+- microservicios
+- SPAs (React, Vue, etc.)
+- mobile backends
 
-    Especialmente en:
+---
 
-    - REST APIs
-    - microservicios
-    - SPAs (React, Vue, etc.)
-    - mobile backends
+## Recomendación
 
-    ---
+Usa implementación manual con:
 
-    ## Recomendación
+- bcrypt
+- jsonwebtoken
+- middleware propio
 
-    Usa implementación manual con:
+Usa Passport solo si necesitas:
 
-    - bcrypt
-    - jsonwebtoken
-    - middleware propio
-
-    Usa Passport solo si necesitas:
-
-    - OAuth
-    - múltiples proveedores externos
-    - autenticación compleja multi-estrategia
+- OAuth
+- múltiples proveedores externos
+- autenticación compleja multi-estrategia
 
 
 ---
+
+## Estructura de un Commit Convencional
+```
+<tipo>(<alcance opcional>): <descripción breve>
+
+[cuerpo opcional]
+
+[pie de página opcional]
+```
+
+Tipo (obligatorio): Indica la naturaleza del cambio.
+- feat: Nueva funcionalidad.
+- fix: Corrección de un error.
+- docs: Cambios en documentación.
+- style: Formato, puntos y coma, etc. (sin cambios de código).
+- refactor: Cambio de código que no corrige error ni añade funcionalidad.
+- test: Añadir o modificar pruebas.
+- chore: Actualización de tareas, configuraciones, etc..

@@ -14,7 +14,7 @@ try {
 
 require('../config/passport'); // Tu estrategia local
 
-// const { validarSession } = require("../middlewares/validar-session");
+const { validarSesion } = require("../middlewares/validarSesion");
 
 router.get('/', iniciarSesion);
 

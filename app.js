@@ -82,5 +82,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// 10) Exportación de la app para que otros módulos (p. ej. bin/www) la levanten
+// 10) Exportación de la app para que otros módulos (bin/www) la levanten
 module.exports = app;

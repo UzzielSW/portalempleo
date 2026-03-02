@@ -10,8 +10,8 @@ async function consulta() {
 
   try {
     connection = await oracledb.getConnection({
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
+      user: process.env.ORA_USER,
+      password: process.env.ORA_PASSWORD,
       connectString: process.env.DB_CONNECT_STRING,
       configDir: process.env.TNS_ADMIN,
       walletLocation: process.env.TNS_ADMIN,
