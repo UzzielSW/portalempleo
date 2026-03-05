@@ -1,0 +1,582 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Analista de Sistemas Senior - Portal de Empleo UP
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
+    style.
+      :root{--up-blue:#003876;--up-blue-dark:#002147;--up-gold:#C49A1A;--up-gold-light:#e8c44d;--bg:#f0f4f8;}
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a2233;min-height:100vh;display:flex;flex-direction:column;}
+      h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+
+      /* TOPBAR */
+      .topbar{background:var(--up-blue);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,56,118,0.18);}
+      .topbar-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
+      .topbar-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+      .topbar-brand-icon{background:var(--up-gold);border-radius:9px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--up-blue);flex-shrink:0;}
+      .topbar-brand-name{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;}
+      .topbar-nav{display:flex;align-items:center;height:100%;}
+      .topbar-nav a{display:flex;align-items:center;height:100%;padding:0 1.1rem;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.65);text-decoration:none;letter-spacing:0.03em;border-bottom:3px solid transparent;transition:color 0.2s,border-color 0.2s;}
+      .topbar-nav a:hover{color:#fff;}
+      .topbar-nav a.active{color:#fff;border-bottom-color:var(--up-gold);}
+      .topbar-right{display:flex;align-items:center;gap:6px;}
+      .topbar-icon-btn{background:rgba(255,255,255,0.08);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.75);cursor:pointer;transition:background 0.2s;position:relative;}
+      .topbar-icon-btn:hover{background:rgba(255,255,255,0.16);color:#fff;}
+      .notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--up-gold);border:2px solid var(--up-blue);}
+      .topbar-divider{width:1px;height:28px;background:rgba(255,255,255,0.15);margin:0 4px;}
+      .topbar-user{display:flex;align-items:center;gap:9px;cursor:pointer;padding:4px 8px;border-radius:10px;transition:background 0.2s;}
+      .topbar-user:hover{background:rgba(255,255,255,0.08);}
+      .topbar-user-name{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;line-height:1.1;}
+      .topbar-user-role{font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--up-gold-light);}
+      .topbar-avatar-placeholder{width:36px;height:36px;border-radius:50%;background:var(--up-gold);display:flex;align-items:center;justify-content:center;color:var(--up-blue);font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:800;flex-shrink:0;}
+
+      /* BREADCRUMB */
+      .breadcrumb{display:flex;align-items:center;gap:6px;padding:1rem 0 0;font-size:0.75rem;font-weight:600;color:#94a3b8;letter-spacing:0.06em;text-transform:uppercase;}
+      .breadcrumb a{color:#94a3b8;text-decoration:none;transition:color 0.2s;}
+      .breadcrumb a:hover{color:var(--up-blue);}
+      .breadcrumb-current{color:var(--up-blue);}
+      .breadcrumb .material-symbols-outlined{font-size:0.85rem;}
+
+      /* MAIN */
+      .main-content{flex:1;max-width:1280px;margin:0 auto;width:100%;padding:0.5rem 1.5rem 4rem;}
+      .detail-grid{display:grid;grid-template-columns:1fr 340px;gap:1.5rem;align-items:start;margin-top:1.5rem;}
+
+      /* CARD BASE */
+      .card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;box-shadow:0 2px 12px rgba(0,56,118,0.05);}
+      .card-body{padding:1.8rem 2rem;}
+
+      /* JOB HEADER CARD */
+      .job-header-card{padding:2rem;}
+      .job-header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.4rem;}
+      .job-header-left{flex:1;}
+      .job-tags-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0.9rem;}
+      .job-tag{display:inline-flex;font-size:0.65rem;font-weight:700;padding:4px 11px;border-radius:50px;letter-spacing:0.07em;text-transform:uppercase;}
+      .tag-hybrid{background:#fff7ed;color:#92400e;}
+      .tag-full{background:#eff6ff;color:#1e40af;}
+      .tag-part{background:#f0fdf4;color:#15803d;}
+      .tag-remote{background:#faf5ff;color:#6d28d9;}
+      .tag-urgent{background:#fef2f2;color:#dc2626;animation:urgentPulse 2s infinite;}
+      @keyframes urgentPulse{0%,100%{opacity:1;}50%{opacity:0.7;}}
+      .tag-new{background:#f0fdf4;color:#15803d;}
+      .job-title-main{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:800;color:#0f172a;line-height:1.2;margin-bottom:6px;}
+      .job-company-name{font-size:1rem;font-weight:700;color:var(--up-blue);letter-spacing:0.04em;text-transform:uppercase;}
+      .job-header-actions{display:flex;gap:8px;flex-shrink:0;}
+      .action-btn{width:40px;height:40px;border-radius:10px;border:1.5px solid #e2e8f0;background:#f8fafc;display:flex;align-items:center;justify-content:center;color:#64748b;cursor:pointer;transition:all 0.2s;}
+      .action-btn:hover{border-color:var(--up-blue);color:var(--up-blue);background:#eff6ff;}
+      .action-btn.saved{border-color:var(--up-gold);color:var(--up-gold);background:#fefce8;}
+      .action-btn .material-symbols-outlined{font-size:1.15rem;}
+
+      /* META STRIP */
+      .meta-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #f1f5f9;border-radius:0 0 14px 14px;overflow:hidden;margin:0 -2rem -2rem;}
+      .meta-cell{padding:1rem 1.4rem;display:flex;flex-direction:column;gap:3px;border-right:1px solid #f1f5f9;}
+      .meta-cell:last-child{border-right:none;}
+      .meta-label{font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;}
+      .meta-value{font-family:'Sora',sans-serif;font-size:0.92rem;font-weight:800;color:#0f172a;}
+      .meta-icon{display:flex;align-items:center;gap:5px;}
+      .meta-icon .material-symbols-outlined{font-size:0.95rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+
+      /* CONTENT SECTIONS */
+      .section{margin-bottom:1.8rem;}
+      .section:last-child{margin-bottom:0;}
+      .section-heading{display:flex;align-items:center;gap:9px;margin-bottom:1rem;padding-bottom:0.7rem;border-bottom:1px solid #f1f5f9;}
+      .section-heading-icon{width:32px;height:32px;border-radius:9px;background:#eff6ff;display:flex;align-items:center;justify-content:center;color:var(--up-blue);flex-shrink:0;}
+      .section-heading-icon .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 1;}
+      .section-title{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#0f172a;}
+      .prose{font-size:0.88rem;color:#475569;line-height:1.8;}
+      .prose p{margin-bottom:0.8rem;}
+      .prose p:last-child{margin-bottom:0;}
+      .req-list{list-style:none;display:flex;flex-direction:column;gap:7px;}
+      .req-list li{display:flex;align-items:flex-start;gap:8px;font-size:0.87rem;color:#475569;line-height:1.65;}
+      .req-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--up-blue);flex-shrink:0;margin-top:7px;}
+      .req-list li strong{color:#1a2233;font-weight:600;}
+
+      /* LANGUAGE TAGS */
+      .lang-tags{display:flex;flex-wrap:wrap;gap:7px;}
+      .lang-tag{display:inline-flex;align-items:center;gap:5px;background:#f8fafc;border:1.5px solid #e2e8f0;color:#334155;font-size:0.78rem;font-weight:600;padding:5px 12px;border-radius:8px;}
+      .lang-tag .material-symbols-outlined{font-size:0.85rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+      .lang-level{font-size:0.68rem;font-weight:700;color:var(--up-blue);background:#eff6ff;padding:2px 6px;border-radius:4px;margin-left:4px;}
+
+      /* BENEFITS GRID */
+      .benefits-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+      .benefit-item{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#f8fafc;border-radius:12px;border:1px solid #f1f5f9;transition:border-color 0.2s;}
+      .benefit-item:hover{border-color:#bfdbfe;}
+      .benefit-icon{width:36px;height:36px;border-radius:10px;background:#eff6ff;display:flex;align-items:center;justify-content:center;color:var(--up-blue);flex-shrink:0;}
+      .benefit-icon .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .benefit-name{font-size:0.83rem;font-weight:700;color:#0f172a;}
+      .benefit-desc{font-size:0.72rem;color:#94a3b8;margin-top:1px;}
+
+      /* SKILL TAGS */
+      .skill-tags{display:flex;flex-wrap:wrap;gap:7px;}
+      .skill-tag{display:inline-flex;align-items:center;gap:4px;background:#f0f4ff;border:1px solid #dbeafe;color:var(--up-blue);font-size:0.75rem;font-weight:600;padding:4px 11px;border-radius:50px;}
+
+      /* SIDEBAR */
+      .sidebar{display:flex;flex-direction:column;gap:1.2rem;}
+
+      /* APPLY CTA */
+      .apply-card{background:linear-gradient(135deg,var(--up-blue) 0%,var(--up-blue-dark) 100%);border-radius:18px;padding:1.8rem;position:relative;overflow:hidden;}
+      .apply-card::before{content:'';position:absolute;top:-50px;right:-50px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.04);}
+      .apply-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:100px;height:100px;border-radius:50%;background:rgba(196,154,26,0.07);}
+      .apply-match{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8rem;position:relative;z-index:1;}
+      .match-label{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+      .match-pct{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:var(--up-gold-light);}
+      .match-bar-bg{height:5px;background:rgba(255,255,255,0.15);border-radius:3px;margin-bottom:1.2rem;position:relative;z-index:1;}
+      .match-bar{height:5px;border-radius:3px;background:var(--up-gold);}
+      .match-items{display:flex;flex-direction:column;gap:6px;margin-bottom:1.2rem;position:relative;z-index:1;}
+      .match-item{display:flex;align-items:center;gap:6px;font-size:0.75rem;}
+      .match-item .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;}
+      .mi-ok{color:#4ade80;}
+      .mi-warn{color:#fbbf24;}
+      .mi-miss{color:rgba(255,255,255,0.3);}
+      .mi-text-ok{color:rgba(255,255,255,0.85);}
+      .mi-text-warn{color:rgba(255,255,255,0.65);}
+      .mi-text-miss{color:rgba(255,255,255,0.35);}
+      .btn-apply{width:100%;height:50px;background:var(--up-gold);color:#fff;border:none;border-radius:12px;font-family:'Sora',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background 0.2s,transform 0.15s;position:relative;z-index:1;box-shadow:0 4px 14px rgba(0,0,0,0.15);}
+      .btn-apply:hover{background:var(--up-gold-light);transform:translateY(-1px);}
+      .apply-note{display:flex;align-items:center;justify-content:center;gap:5px;font-size:0.72rem;color:rgba(255,255,255,0.5);margin-top:8px;position:relative;z-index:1;}
+      .apply-note .material-symbols-outlined{font-size:0.85rem;font-variation-settings:'FILL' 1;}
+
+      /* COMPANY CARD */
+      .company-card{padding:1.4rem;}
+      .company-header{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+      .company-logo{width:48px;height:48px;border-radius:12px;background:#2d4a22;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;flex-shrink:0;}
+      .company-name{font-family:'Sora',sans-serif;font-size:0.95rem;font-weight:800;color:#0f172a;}
+      .company-ruc{font-size:0.72rem;color:#94a3b8;margin-top:1px;}
+      .company-desc{font-size:0.82rem;color:#64748b;line-height:1.7;margin-bottom:1rem;}
+      .company-link{display:inline-flex;align-items:center;gap:5px;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:var(--up-blue);text-decoration:none;transition:color 0.2s,gap 0.2s;}
+      .company-link:hover{color:var(--up-gold);gap:8px;}
+      .company-link .material-symbols-outlined{font-size:0.9rem;}
+
+      /* POSTING DETAILS CARD */
+      .posting-card{padding:1.4rem;}
+      .posting-card-title{font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;color:#0f172a;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:7px;}
+      .posting-card-title .material-symbols-outlined{font-size:0.95rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+      .detail-row{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid #f8fafc;}
+      .detail-row:last-child{border-bottom:none;}
+      .detail-row-icon{color:#94a3b8;margin-top:1px;flex-shrink:0;}
+      .detail-row-icon .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .detail-row-label{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;}
+      .detail-row-value{font-size:0.84rem;font-weight:600;color:#334155;}
+      .detail-row-value.urgent{color:#dc2626;}
+      .solicitudes-bar{display:flex;flex-direction:column;gap:4px;}
+      .sol-track{height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden;margin-top:4px;}
+      .sol-fill{height:5px;border-radius:3px;background:linear-gradient(to right,var(--up-blue),var(--up-gold));}
+      .sol-text{font-size:0.72rem;color:#94a3b8;margin-top:2px;}
+
+      /* SIMILAR JOBS */
+      .similar-title{font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;color:#0f172a;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.8rem;display:flex;align-items:center;gap:7px;}
+      .similar-title .material-symbols-outlined{font-size:0.95rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+      .similar-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #f8fafc;cursor:pointer;transition:background 0.15s;border-radius:8px;}
+      .similar-item:hover{background:#f8fafc;}
+      .similar-item:last-child{border-bottom:none;}
+      .similar-logo{width:36px;height:36px;border-radius:9px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:800;color:var(--up-blue);flex-shrink:0;}
+      .similar-job-title{font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:700;color:#0f172a;}
+      .similar-job-company{font-size:0.72rem;color:#64748b;}
+      .similar-tag{display:inline-flex;font-size:0.6rem;font-weight:700;padding:2px 7px;border-radius:50px;margin-top:3px;}
+
+      /* FOOTER */
+      .footer-strip{background:#fff;border-top:1px solid #e8edf5;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;font-size:0.72rem;color:#94a3b8;}
+      .footer-brand{display:flex;align-items:center;gap:6px;opacity:0.6;}
+
+      /* RESPONSIVE */
+      @media(max-width:1024px){.detail-grid{grid-template-columns:1fr;}.sidebar{flex-direction:row;flex-wrap:wrap;}.sidebar>*{flex:1;min-width:280px;}.meta-strip{grid-template-columns:repeat(2,1fr);}}
+      @media(max-width:640px){.meta-strip{grid-template-columns:1fr 1fr;}.benefits-grid{grid-template-columns:1fr;}.job-header-card{padding:1.4rem;}.topbar-nav{display:none;}}
+
+  //- TOPBAR
+  header.topbar
+    .topbar-inner
+      a.topbar-brand(href='/')
+        .topbar-brand-icon
+          span.material-symbols-outlined(style='font-size:1.2rem;font-variation-settings:"FILL" 1') school
+        .topbar-brand-name Portal de Empleo UP
+      nav.topbar-nav
+        a(href='/candidate/profile') Perfil
+        a.active(href='/candidate/vacancies') Vacantes
+        a(href='/candidate/applications') Mis Postulaciones
+      .topbar-right
+        button.topbar-icon-btn(title='Modo oscuro')
+          span.material-symbols-outlined(style='font-size:1.1rem') dark_mode
+        button.topbar-icon-btn(title='Notificaciones')
+          span.material-symbols-outlined(style='font-size:1.1rem') notifications
+          .notif-dot
+        .topbar-divider
+        .topbar-user
+          div(style='text-align:right')
+            .topbar-user-name Ana Maria Garcia
+            .topbar-user-role Estudiante
+          .topbar-avatar-placeholder AM
+
+  //- MAIN
+  main.main-content
+
+    //- BREADCRUMB
+    .breadcrumb
+      a(href='/candidate/vacancies')
+        span.material-symbols-outlined(style='font-size:0.9rem;vertical-align:middle;font-variation-settings:"FILL" 1') work
+        |  Vacantes
+      span.material-symbols-outlined(style='font-size:0.85rem') chevron_right
+      span.breadcrumb-current Detalle del Puesto
+
+    .detail-grid
+
+      //- ===== LEFT: JOB CONTENT =====
+      div(style='display:flex;flex-direction:column;gap:1.4rem')
+
+        //- JOB HEADER
+        .card
+          .job-header-card
+            .job-header-top
+              .job-header-left
+                .job-tags-row
+                  span.job-tag.tag-hybrid Hibrido
+                  span.job-tag.tag-full Tiempo Completo
+                  span.job-tag.tag-new Reciente
+                h1.job-title-main Analista de Sistemas Senior
+                .job-company-name Rootstack
+              .job-header-actions
+                button.action-btn.saved(title='Guardado' onclick='toggleBookmark(this)')
+                  span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') bookmark
+                button.action-btn(title='Compartir' onclick='shareJob()')
+                  span.material-symbols-outlined share
+            .meta-strip
+              .meta-cell
+                .meta-label Salario
+                .meta-value A convenir
+              .meta-cell
+                .meta-label Experiencia
+                .meta-icon
+                  span.material-symbols-outlined history_edu
+                  .meta-value 3-5 años
+              .meta-cell
+                .meta-label Jornada
+                .meta-icon
+                  span.material-symbols-outlined schedule
+                  .meta-value Tiempo Completo
+              .meta-cell
+                .meta-label Nivel
+                .meta-icon
+                  span.material-symbols-outlined trending_up
+                  .meta-value Senior
+
+        //- JOB BODY
+        .card
+          .card-body
+
+            //- DESCRIPCION
+            .section
+              .section-heading
+                .section-heading-icon
+                  span.material-symbols-outlined description
+                .section-title Descripcion del Puesto
+              .prose
+                p Buscamos un Analista de Sistemas Senior apasionado por la tecnologia para unirse a nuestro equipo de desarrollo. Seras responsable de analizar, disenar y supervisar la implementacion de soluciones de software complejas que impactan a miles de usuarios.
+                p Trabajaras en un entorno agil, colaborando estrechamente con ingenieros de datos y arquitectos de soluciones para garantizar la escalabilidad y eficiencia de nuestros sistemas core.
+
+            //- RESPONSABILIDADES
+            .section
+              .section-heading
+                .section-heading-icon
+                  span.material-symbols-outlined checklist
+                .section-title Responsabilidades Principales
+              ul.req-list
+                li Liderar el relevamiento y documentacion de requerimientos con equipos de negocio y tecnologia.
+                li Disenar diagramas de arquitectura y flujos de procesos usando UML y herramientas CASE.
+                li Coordinar con el equipo de desarrollo la implementacion de soluciones bajo metodologia Scrum.
+                li Realizar pruebas de aceptacion y asegurar la calidad de los entregables antes del despliegue.
+                li Elaborar reportes ejecutivos de avance para la gerencia de proyectos.
+
+            //- REQUISITOS ACADEMICOS
+            .section
+              .section-heading
+                .section-heading-icon
+                  span.material-symbols-outlined school
+                .section-title Requisitos Academicos
+              ul.req-list
+                li Licenciatura en Ingenieria de Sistemas, Computacion o carreras afines.
+                li Certificaciones en metodologias Agiles &mdash;&nbsp;
+                  strong Scrum Master preferible.
+                li Maestria en Gestion de Proyectos Tecnologicos sera valorada positivamente.
+
+            //- EXPERIENCIA REQUERIDA
+            .section
+              .section-heading
+                .section-heading-icon
+                  span.material-symbols-outlined work_history
+                .section-title Experiencia Requerida
+              ul.req-list
+                li Minimo 3 años de experiencia en roles de analisis de requerimientos tecnicos.
+                li Experiencia comprobable trabajando con arquitecturas de microservicios.
+                li Dominio de herramientas de documentacion tecnica (UML, diagramas de flujo).
+                li Experiencia con plataformas cloud (AWS, Azure o GCP) sera un diferenciador.
+
+            //- HABILIDADES TECNICAS
+            .section
+              .section-heading
+                .section-heading-icon
+                  span.material-symbols-outlined psychology
+                .section-title Habilidades Tecnicas Requeridas
+              .skill-tags
+                span.skill-tag SQL
+                span.skill-tag UML
+                span.skill-tag Scrum / Agile
+                span.skill-tag JIRA
+                span.skill-tag Confluence
+                span.skill-tag REST APIs
+                span.skill-tag Microservicios
+                span.skill-tag Azure DevOps
+                span.skill-tag Python (basico)
+
+            //- IDIOMAS
+            .section
+              .section-heading
+                .section-heading-icon
+                  span.material-symbols-outlined translate
+                .section-title Idiomas Requeridos
+              .lang-tags
+                .lang-tag
+                  span.material-symbols-outlined language
+                  | Español
+                  span.lang-level Nativo
+                .lang-tag
+                  span.material-symbols-outlined language
+                  | Ingles
+                  span.lang-level Avanzado (C1)
+
+            //- BENEFICIOS
+            .section
+              .section-heading
+                .section-heading-icon
+                  span.material-symbols-outlined redeem
+                .section-title Beneficios Ofrecidos
+              .benefits-grid
+                .benefit-item
+                  .benefit-icon
+                    span.material-symbols-outlined health_and_safety
+                  div
+                    .benefit-name Seguro Medico Privado
+                    .benefit-desc Cobertura completa para el colaborador.
+                .benefit-item
+                  .benefit-icon
+                    span.material-symbols-outlined laptop_mac
+                  div
+                    .benefit-name Equipamiento Premium
+                    .benefit-desc Laptop de ultima generacion y perifericos.
+                .benefit-item
+                  .benefit-icon
+                    span.material-symbols-outlined fitness_center
+                  div
+                    .benefit-name Gimnasio y Bienestar
+                    .benefit-desc Subsidio mensual para centros deportivos.
+                .benefit-item
+                  .benefit-icon
+                    span.material-symbols-outlined school
+                  div
+                    .benefit-name Capacitacion Continua
+                    .benefit-desc Acceso a plataformas de aprendizaje online.
+                .benefit-item
+                  .benefit-icon
+                    span.material-symbols-outlined payments
+                  div
+                    .benefit-name Bono de Desempeno
+                    .benefit-desc Evaluacion anual con bonificacion.
+                .benefit-item
+                  .benefit-icon
+                    span.material-symbols-outlined home_work
+                  div
+                    .benefit-name Trabajo Hibrido
+                    .benefit-desc 3 dias oficina / 2 dias remoto.
+
+      //- ===== RIGHT: SIDEBAR =====
+      .sidebar
+
+        //- APPLY CTA
+        .apply-card
+          .apply-match
+            .match-label Compatibilidad con tu perfil
+            .match-pct 78%
+          .match-bar-bg
+            .match-bar(style='width:78%')
+          .match-items
+            .match-item
+              span.material-symbols-outlined.mi-ok check_circle
+              span.mi-text-ok Formacion academica alineada
+            .match-item
+              span.material-symbols-outlined.mi-ok check_circle
+              span.mi-text-ok Experiencia en frontend relevante
+            .match-item
+              span.material-symbols-outlined.mi-warn warning
+              span.mi-text-warn Ingles: subir nivel a C1 recomendado
+            .match-item
+              span.material-symbols-outlined.mi-miss radio_button_unchecked
+              span.mi-text-miss Certificacion Scrum no registrada
+          button.btn-apply(onclick='postularAhora()')
+            span.material-symbols-outlined(style='font-size:1.1rem;font-variation-settings:"FILL" 1') how_to_reg
+            | Postularse Ahora
+          .apply-note
+            span.material-symbols-outlined lock
+            | Postulacion segura via Portal UP
+
+        //- COMPANY
+        .card
+          .company-card
+            .company-header
+              .company-logo RS
+              div
+                .company-name Rootstack
+                .company-ruc RUC: 1234567-1-99
+            .company-desc Empresa lider en desarrollo de software con presencia regional, enfocada en soluciones escalables y transformacion digital para grandes empresas en Panama y Latinoamerica.
+            a.company-link(href='/empresas/rootstack')
+              | Ver perfil de empresa
+              span.material-symbols-outlined arrow_forward
+
+        //- DETALLES DE PUBLICACION
+        .card
+          .posting-card
+            .posting-card-title
+              span.material-symbols-outlined info
+              | Detalles de la Publicacion
+            .detail-row
+              .detail-row-icon
+                span.material-symbols-outlined event
+              div
+                .detail-row-label Fecha de Cierre
+                .detail-row-value.urgent 15 de Diciembre, 2025
+            .detail-row
+              .detail-row-icon
+                span.material-symbols-outlined location_on
+              div
+                .detail-row-label Ubicacion
+                .detail-row-value Torres de las Americas, Piso 15, Ciudad de Panama
+            .detail-row
+              .detail-row-icon
+                span.material-symbols-outlined business_center
+              div
+                .detail-row-label Modalidad
+                .detail-row-value Hibrido &mdash; 3 dias presencial
+            .detail-row
+              .detail-row-icon
+                span.material-symbols-outlined group
+              div
+                .detail-row-label Solicitudes recibidas
+                .solicitudes-bar
+                  div(style='display:flex;justify-content:space-between')
+                    .detail-row-value 45 / 100
+                  .sol-track
+                    .sol-fill(style='width:45%')
+                  .sol-text 55 cupos disponibles
+
+        //- VACANTES SIMILARES
+        .card(style='padding:1.4rem')
+          .similar-title
+            span.material-symbols-outlined work
+            | Vacantes Similares
+          .similar-item(onclick="window.location='/candidate/vacancies_details/11'")
+            .similar-logo(style='background:#1a4731;color:#fff') BG
+            div
+              .similar-job-title Analista de Datos Jr.
+              .similar-job-company BancoGeneral
+              span.similar-tag.tag-full(style='background:#eff6ff;color:#1e40af') Tiempo Completo
+          .similar-item(onclick="window.location='/candidate/vacancies_details/12'")
+            .similar-logo(style='background:#0c3547;color:#fff') CA
+            div
+              .similar-job-title Analista de Sistemas
+              .similar-job-company Copa Airlines
+              span.similar-tag.tag-hybrid(style='background:#fff7ed;color:#92400e') Hibrido
+          .similar-item(onclick="window.location='/candidate/vacancies_details/13'")
+            .similar-logo(style='background:#1c3461;color:#fff') CO
+            div
+              .similar-job-title Desarrollador Fullstack
+              .similar-job-company Cable Onda S.A.
+              span.similar-tag.tag-remote(style='background:#faf5ff;color:#6d28d9') Remoto
+
+  //- FOOTER
+  footer.footer-strip
+    .footer-brand
+      span.material-symbols-outlined(style='font-size:1rem') school
+      span Portal de Empleo UP
+    span &copy; #{new Date().getFullYear()} Universidad de Panama &mdash; Dirección de Tecnología de la Información y Comunicación.
+    div(style='display:flex;gap:1rem')
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Terminos
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Privacidad
+      a(href='/contacto' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Ayuda
+
+  //- MODAL POSTULACION
+  #modal-apply(style='display:none;position:fixed;inset:0;background:rgba(0,20,50,0.65);backdrop-filter:blur(6px);z-index:500;align-items:center;justify-content:center;padding:1rem')
+    div(style='background:#fff;border-radius:22px;box-shadow:0 24px 80px rgba(0,0,0,0.18);width:100%;max-width:480px;overflow:hidden')
+      div(style='background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));padding:1.6rem 2rem;display:flex;align-items:center;gap:12px')
+        div(style='width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;color:var(--up-gold-light);flex-shrink:0')
+          span.material-symbols-outlined(style='font-variation-settings:"FILL" 1;font-size:1.3rem') how_to_reg
+        div
+          div(style='font-family:Sora,sans-serif;font-size:1rem;font-weight:800;color:#fff') Confirmar Postulacion
+          div(style='font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:2px') Analista de Sistemas Senior &mdash; Rootstack
+      div(style='padding:1.6rem 2rem')
+        p(style='font-size:0.85rem;color:#475569;line-height:1.75;margin-bottom:1rem') Su CV y perfil del Portal de Empleo UP seran enviados a Rootstack. Podra dar seguimiento a esta postulacion desde la seccion Mis Postulaciones.
+        div(style='background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#1e3a5f;line-height:1.65;margin-bottom:1.2rem')
+          span.material-symbols-outlined(style='font-size:0.9rem;color:var(--up-blue);vertical-align:middle;margin-right:4px;font-variation-settings:"FILL" 1') info
+          | Asegurese de que su CV este actualizado antes de postularse.
+        div(style='display:flex;gap:10px')
+          button(style='flex:1;height:46px;background:var(--up-blue);color:#fff;border:none;border-radius:11px;font-family:Sora,sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;' onclick='confirmApply()')
+            span.material-symbols-outlined(style='font-size:1rem;font-variation-settings:"FILL" 1') send
+            | Confirmar y Enviar
+          button(style='height:46px;padding:0 1.2rem;background:#f1f5f9;color:#64748b;border:none;border-radius:11px;font-family:Sora,sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;' onclick='closeModal()') Cancelar
+
+  script.
+    function toggleBookmark(btn) {
+      var icon = btn.querySelector('.material-symbols-outlined');
+      if(btn.classList.contains('saved')) {
+        btn.classList.remove('saved');
+        icon.style.fontVariationSettings = '"FILL" 0';
+      } else {
+        btn.classList.add('saved');
+        icon.style.fontVariationSettings = '"FILL" 1';
+      }
+    }
+
+    function shareJob() {
+      if(navigator.share) {
+        navigator.share({ title: 'Analista de Sistemas Senior - Rootstack', url: window.location.href });
+      } else {
+        navigator.clipboard.writeText(window.location.href).then(function(){
+          alert('Enlace copiado al portapapeles.');
+        });
+      }
+    }
+
+    function postularAhora() {
+      var m = document.getElementById('modal-apply');
+      m.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      var m = document.getElementById('modal-apply');
+      m.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function confirmApply() {
+      closeModal();
+      var btn = document.querySelector('.btn-apply');
+      btn.style.background = '#22c55e';
+      btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:1.1rem;font-variation-settings:\'FILL\' 1">check_circle</span> Postulacion Enviada';
+      btn.disabled = true;
+    }
+
+    document.getElementById('modal-apply').addEventListener('click', function(e) {
+      if(e.target === this) closeModal();
+    });
+
+    function applyR() {
+      var w = window.innerWidth;
+      var g = document.querySelector('.detail-grid');
+      if(!g) return;
+      g.style.gridTemplateColumns = w < 1024 ? '1fr' : '1fr 340px';
+    }
+    applyR();
+    window.addEventListener('resize', applyR);

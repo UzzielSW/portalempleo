@@ -1,0 +1,889 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Control de Convenios - Panel Admin UP
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+    link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
+    style.
+      :root{--up-blue:#003876;--up-blue-dark:#002147;--up-gold:#C49A1A;--up-gold-light:#e8c44d;--bg:#f0f4f8;}
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a2233;min-height:100vh;display:flex;flex-direction:column;}
+      h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+      .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+      a{text-decoration:none;}
+
+      /* TOPBAR */
+      .topbar{background:var(--up-blue-dark);color:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,0.07);box-shadow:0 2px 20px rgba(0,20,60,0.25);}
+      .topbar-inner{max-width:1400px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem;}
+      .topbar-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+      .topbar-brand-icon{background:var(--up-gold);border-radius:9px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--up-blue-dark);flex-shrink:0;}
+      .topbar-brand-name{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;line-height:1.1;}
+      .topbar-brand-sub{font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--up-gold-light);}
+      .admin-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(196,154,26,0.15);border:1px solid rgba(196,154,26,0.35);color:var(--up-gold-light);font-size:0.58rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;padding:2px 8px;border-radius:50px;margin-left:6px;flex-shrink:0;}
+      .admin-badge .material-symbols-outlined{font-size:0.72rem;font-variation-settings:'FILL' 1;}
+      .topbar-nav{display:flex;align-items:center;height:100%;gap:2px;}
+      .topbar-nav a{display:flex;align-items:center;gap:6px;height:100%;padding:0 14px;font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:3px solid transparent;transition:color 0.2s,border-color 0.2s;white-space:nowrap;}
+      .topbar-nav a .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 1;}
+      .topbar-nav a:hover{color:#fff;}
+      .topbar-nav a.active{color:#fff;border-bottom-color:var(--up-gold);}
+      .topbar-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+      .topbar-icon-btn{background:rgba(255,255,255,0.07);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);cursor:pointer;transition:background 0.2s;position:relative;}
+      .topbar-icon-btn:hover{background:rgba(255,255,255,0.14);color:#fff;}
+      .notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--up-gold);border:2px solid var(--up-blue-dark);}
+      .topbar-divider{width:1px;height:28px;background:rgba(255,255,255,0.1);margin:0 4px;}
+      .topbar-user{display:flex;align-items:center;gap:9px;cursor:pointer;padding:4px 8px;border-radius:10px;transition:background 0.2s;}
+      .topbar-user:hover{background:rgba(255,255,255,0.07);}
+      .topbar-user-name{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;line-height:1.15;text-align:right;}
+      .topbar-user-sub{font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--up-gold-light);text-align:right;}
+      .topbar-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));display:flex;align-items:center;justify-content:center;color:var(--up-gold-light);font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;flex-shrink:0;border:2px solid rgba(196,154,26,0.35);}
+
+      /* MAIN */
+      .main-content{flex:1;max-width:1400px;margin:0 auto;width:100%;padding:2rem 1.5rem 4rem;}
+
+      /* PAGE HEADER */
+      .page-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.8rem;}
+      .page-title{font-family:'Sora',sans-serif;font-size:1.55rem;font-weight:800;color:#0f172a;}
+      .page-subtitle{font-size:0.88rem;color:#64748b;margin-top:3px;}
+      .header-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+
+      /* BUTTONS */
+      .btn-primary{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 18px;border-radius:10px;background:var(--up-blue);color:#fff;border:none;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 3px 10px rgba(0,56,118,0.2);}
+      .btn-primary:hover{background:var(--up-gold);}
+      .btn-primary .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .btn-gold{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 18px;border-radius:10px;background:var(--up-gold);color:#fff;border:none;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+      .btn-gold:hover{filter:brightness(1.1);}
+      .btn-gold .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .btn-secondary{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:10px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#334155;cursor:pointer;transition:all 0.2s;}
+      .btn-secondary:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .btn-secondary .material-symbols-outlined{font-size:1rem;}
+
+      /* KPI GRID */
+      .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:1.8rem;}
+      .kpi-card{background:#fff;border-radius:16px;border:1.5px solid #e8edf5;padding:1.2rem 1.4rem;box-shadow:0 2px 10px rgba(0,56,118,0.04);display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;}
+      .kpi-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;border-radius:16px 0 0 16px;}
+      .kpi-blue::before{background:var(--up-blue);}
+      .kpi-gold::before{background:var(--up-gold);}
+      .kpi-green::before{background:#22c55e;}
+      .kpi-red::before{background:#ef4444;}
+      .kpi-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .kpi-icon .material-symbols-outlined{font-size:1.2rem;font-variation-settings:'FILL' 1;}
+      .kpi-icon-blue{background:#eff6ff;color:var(--up-blue);}
+      .kpi-icon-gold{background:#fefce8;color:#a16207;}
+      .kpi-icon-green{background:#f0fdf4;color:#16a34a;}
+      .kpi-icon-red{background:#fef2f2;color:#dc2626;}
+      .kpi-label{font-size:0.65rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:4px;}
+      .kpi-value{font-family:'Sora',sans-serif;font-size:1.9rem;font-weight:800;color:#0f172a;line-height:1;}
+      .kpi-trend{display:flex;align-items:center;gap:4px;font-size:0.72rem;font-weight:700;margin-top:4px;}
+      .trend-up{color:#16a34a;}
+      .trend-warn{color:#a16207;}
+      .trend-neutral{color:#94a3b8;}
+
+      /* ALERT BANNER */
+      .alert-banner{background:#fefce8;border:1.5px solid #fde68a;border-radius:14px;padding:0.9rem 1.4rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;}
+      .alert-banner .material-symbols-outlined{font-size:1.3rem;color:#a16207;font-variation-settings:'FILL' 1;flex-shrink:0;}
+      .alert-title{font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:800;color:#92400e;}
+      .alert-text{font-size:0.8rem;color:#a16207;margin-top:2px;}
+      .alert-action{margin-left:auto;flex-shrink:0;}
+
+      /* MAIN TWO-COL LAYOUT */
+      .two-col{display:grid;grid-template-columns:420px 1fr;gap:1.4rem;align-items:start;}
+
+      /* LEFT PANEL: LISTA DE SOLICITUDES */
+      .panel-left{display:flex;flex-direction:column;gap:1rem;}
+
+      /* FILTER / SEARCH */
+      .filter-bar{background:#fff;border-radius:14px;border:1.5px solid #e8edf5;padding:0.9rem 1.2rem;display:flex;flex-direction:column;gap:10px;}
+      .filter-search{display:flex;align-items:center;gap:8px;background:#f8fafc;border:1.5px solid #f1f5f9;border-radius:10px;padding:0 12px;height:40px;transition:border-color 0.2s;}
+      .filter-search:focus-within{border-color:var(--up-blue);background:#fff;}
+      .filter-search .material-symbols-outlined{font-size:1rem;color:#94a3b8;}
+      .filter-search input{background:none;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#334155;width:100%;}
+      .filter-search input::placeholder{color:#b0bec5;}
+      .filter-tabs-inner{display:flex;gap:5px;flex-wrap:wrap;}
+      .ftab{display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 11px;border-radius:50px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:#64748b;cursor:pointer;transition:all 0.2s;}
+      .ftab:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .ftab.active{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .ftab-count{font-size:0.62rem;font-weight:800;padding:1px 5px;border-radius:50px;}
+      .ftab.active .ftab-count{background:rgba(255,255,255,0.22);}
+      .ftab:not(.active) .ftab-count{background:#f1f5f9;color:#64748b;}
+
+      /* SOLICITUD CARDS */
+      .solicitud-list{display:flex;flex-direction:column;gap:8px;}
+      .sol-card{background:#fff;border-radius:14px;border:1.5px solid #e8edf5;padding:1rem 1.2rem;cursor:pointer;transition:all 0.2s;}
+      .sol-card:hover{border-color:var(--up-blue);box-shadow:0 4px 16px rgba(0,56,118,0.08);}
+      .sol-card.selected{border-color:var(--up-blue);background:#eff6ff;box-shadow:0 4px 16px rgba(0,56,118,0.1);}
+      .sol-card.selected::before{content:'';position:absolute;left:-1.5px;top:50%;transform:translateY(-50%);width:3px;height:60%;background:var(--up-blue);border-radius:2px;}
+      .sol-card{position:relative;}
+      .sol-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+      .sol-logo{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:800;color:#fff;flex-shrink:0;}
+      .sol-name{font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:700;color:#0f172a;line-height:1.2;}
+      .sol-sector{font-size:0.7rem;color:#94a3b8;margin-top:1px;}
+      .sol-badge{margin-left:auto;flex-shrink:0;}
+      .sol-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+      .sol-meta-item{display:flex;align-items:center;gap:4px;font-size:0.72rem;color:#64748b;}
+      .sol-meta-item .material-symbols-outlined{font-size:0.85rem;color:#94a3b8;font-variation-settings:'FILL' 1;}
+      .sol-progress-row{margin-top:8px;}
+      .sol-prog-label{display:flex;justify-content:space-between;font-size:0.68rem;color:#94a3b8;margin-bottom:3px;}
+      .sol-prog-bar-bg{height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden;}
+      .sol-prog-bar{height:4px;border-radius:2px;}
+      .spb-gold{background:var(--up-gold);}
+      .spb-blue{background:var(--up-blue);}
+      .spb-green{background:#22c55e;}
+
+      /* STATUS BADGES */
+      .sbadge{display:inline-flex;align-items:center;gap:5px;font-size:0.65rem;font-weight:700;padding:3px 9px;border-radius:50px;letter-spacing:0.04em;}
+      .sdot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+      .sb-pending{background:#fefce8;color:#92400e;}.sb-pending .sdot{background:#f59e0b;animation:pulse 2s infinite;}
+      .sb-review{background:#eff6ff;color:#1e40af;}.sb-review .sdot{background:#3b82f6;animation:pulse 2s infinite;}
+      .sb-approved{background:#f0fdf4;color:#15803d;}.sb-approved .sdot{background:#22c55e;}
+      .sb-rejected{background:#fef2f2;color:#dc2626;}.sb-rejected .sdot{background:#ef4444;}
+      .sb-expired{background:#f8fafc;color:#64748b;}.sb-expired .sdot{background:#94a3b8;}
+      @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+      /* RIGHT PANEL: DETALLE */
+      .panel-right{display:flex;flex-direction:column;gap:1.2rem;}
+
+      /* DETAIL HEADER CARD */
+      .detail-header-card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;overflow:hidden;box-shadow:0 2px 12px rgba(0,56,118,0.05);}
+      .dhc-banner{background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));padding:1.3rem 1.6rem;display:flex;align-items:center;justify-content:space-between;}
+      .dhc-company{display:flex;align-items:center;gap:12px;}
+      .dhc-logo{width:52px;height:52px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:800;color:var(--up-blue);border:2px solid rgba(255,255,255,0.2);}
+      .dhc-name{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;}
+      .dhc-sub{font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:2px;}
+      .dhc-body{padding:1.3rem 1.6rem;}
+      .dhc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #f1f5f9;border-radius:12px;overflow:hidden;margin-bottom:1.2rem;}
+      .dhc-stat{padding:0.9rem 1rem;border-right:1px solid #f1f5f9;}
+      .dhc-stat:last-child{border-right:none;}
+      .dhc-stat-label{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:3px;}
+      .dhc-stat-value{font-family:'Sora',sans-serif;font-size:0.9rem;font-weight:700;color:#0f172a;}
+      .dhc-stat-value.highlight{color:var(--up-blue);}
+
+      /* TABS EN DETALLE */
+      .detail-tabs{display:flex;border-bottom:1px solid #f1f5f9;gap:0;}
+      .dtab{flex:1;height:44px;display:flex;align-items:center;justify-content:center;gap:5px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:#94a3b8;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;background:none;border-top:none;border-left:none;border-right:none;}
+      .dtab:hover{color:var(--up-blue);}
+      .dtab.active{color:var(--up-blue);border-bottom-color:var(--up-blue);}
+      .dtab .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;}
+
+      /* PANELS */
+      .dpanel{display:none;}
+      .dpanel.active{display:block;}
+
+      /* DOCUMENTOS */
+      .doc-section-title{font-family:'Sora',sans-serif;font-size:0.7rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:0.8rem;display:flex;align-items:center;justify-content:space-between;}
+      .doc-progress-summary{display:flex;align-items:center;gap:8px;background:#f8fafc;border-radius:10px;padding:8px 12px;margin-bottom:1.2rem;}
+      .dps-bar-bg{flex:1;height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;}
+      .dps-bar{height:6px;border-radius:3px;background:linear-gradient(to right,var(--up-blue),var(--up-gold));}
+      .dps-label{font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;color:var(--up-blue);flex-shrink:0;}
+      .doc-grid{display:flex;flex-direction:column;gap:10px;}
+      .doc-item{border:1.5px solid #e8edf5;border-radius:14px;overflow:hidden;transition:border-color 0.2s;}
+      .doc-item.validated{border-color:#bbf7d0;}
+      .doc-item.reviewing{border-color:#bfdbfe;}
+      .doc-item.pending{border-color:#e2e8f0;}
+      .doc-item-header{display:flex;align-items:center;gap:10px;padding:0.85rem 1rem;background:#fff;}
+      .doc-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .doc-icon .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .di-pdf{background:#fee2e2;color:#dc2626;}
+      .di-img{background:#eff6ff;color:var(--up-blue);}
+      .di-doc{background:#fefce8;color:#a16207;}
+      .doc-info{flex:1;min-width:0;}
+      .doc-name{font-family:'Sora',sans-serif;font-size:0.83rem;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+      .doc-meta{font-size:0.7rem;color:#94a3b8;margin-top:1px;}
+      .doc-status-icon{flex-shrink:0;}
+      .dsi-done{color:#22c55e;font-variation-settings:'FILL' 1;}
+      .dsi-review{color:#3b82f6;}
+      .dsi-pending{color:#e2e8f0;}
+      .doc-actions{display:flex;align-items:center;gap:8px;padding:0.7rem 1rem;background:#f8fafc;border-top:1px solid #f1f5f9;}
+      .doc-actions-left{display:flex;align-items:center;gap:6px;flex:1;}
+      .doc-toggle-wrap{display:flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:600;color:#64748b;}
+      .doc-toggle{position:relative;width:36px;height:20px;}
+      .doc-toggle input{opacity:0;width:0;height:0;}
+      .doc-toggle-slider{position:absolute;inset:0;background:#e2e8f0;border-radius:10px;cursor:pointer;transition:background 0.2s;}
+      .doc-toggle-slider::before{content:'';position:absolute;width:14px;height:14px;left:3px;top:3px;background:#fff;border-radius:50%;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.1);}
+      .doc-toggle input:checked + .doc-toggle-slider{background:#22c55e;}
+      .doc-toggle input:checked + .doc-toggle-slider::before{transform:translateX(16px);}
+      .doc-note{width:100%;font-size:0.78rem;border:none;outline:none;background:none;color:#64748b;font-family:'DM Sans',sans-serif;padding:0;}
+      .doc-note::placeholder{color:#b0bec5;}
+      .btn-doc-view{display:inline-flex;align-items:center;gap:4px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--up-blue);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:7px;transition:background 0.2s;}
+      .btn-doc-view:hover{background:#eff6ff;}
+      .btn-doc-view .material-symbols-outlined{font-size:0.85rem;}
+
+      /* DATOS EMPRESA PANEL */
+      .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+      .info-item{background:#f8fafc;border-radius:12px;padding:0.85rem 1rem;}
+      .info-item.full{grid-column:1/-1;}
+      .info-label{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:3px;}
+      .info-value{font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;color:#0f172a;}
+      .info-value-link{font-size:0.85rem;color:var(--up-blue);font-weight:600;}
+
+      /* HISTORIAL PANEL */
+      .timeline{display:flex;flex-direction:column;gap:0;position:relative;}
+      .timeline::before{content:'';position:absolute;left:14px;top:14px;bottom:14px;width:2px;background:#f1f5f9;}
+      .tl-step{display:flex;gap:12px;align-items:flex-start;position:relative;z-index:1;padding-bottom:1.2rem;}
+      .tl-step:last-child{padding-bottom:0;}
+      .tl-circle{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid;}
+      .tl-done{background:#f0fdf4;border-color:#22c55e;}
+      .tl-done .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;color:#22c55e;}
+      .tl-current{background:var(--up-blue);border-color:var(--up-blue);box-shadow:0 0 0 4px rgba(0,56,118,0.12);}
+      .tl-current .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;color:#fff;}
+      .tl-pending{background:#f8fafc;border-color:#e2e8f0;}
+      .tl-pending .material-symbols-outlined{font-size:0.9rem;color:#cbd5e1;}
+      .tl-title{font-family:'Sora',sans-serif;font-size:0.83rem;font-weight:700;color:#0f172a;padding-top:3px;}
+      .tl-date{font-size:0.72rem;color:#94a3b8;margin-top:1px;}
+      .tl-user{font-size:0.72rem;color:var(--up-blue);font-weight:600;margin-top:1px;}
+      .tl-note{font-size:0.78rem;color:#64748b;line-height:1.6;margin-top:5px;padding:8px 10px;background:#f8fafc;border-radius:8px;border-left:3px solid var(--up-gold);}
+
+      /* CONCLUSION CARD */
+      .conclusion-card{background:#fff;border-radius:18px;border:2px solid #e8edf5;box-shadow:0 2px 12px rgba(0,56,118,0.05);overflow:hidden;}
+      .cc-header{background:linear-gradient(90deg,#f8fafc,#fff);padding:1rem 1.5rem;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:8px;}
+      .cc-header-icon{width:30px;height:30px;border-radius:8px;background:#fefce8;display:flex;align-items:center;justify-content:center;color:#a16207;}
+      .cc-header-icon .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;}
+      .cc-title{font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#0f172a;}
+      .cc-body{padding:1.3rem 1.5rem;}
+      .cc-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:1.2rem;align-items:start;}
+      .cc-left{grid-column:1/2;}
+      .cc-right{grid-column:2/-1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+      .cc-field-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:6px;}
+      .cc-textarea{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#334155;outline:none;resize:vertical;min-height:120px;line-height:1.65;transition:border-color 0.2s;}
+      .cc-textarea:focus{border-color:var(--up-blue);box-shadow:0 0 0 3px rgba(0,56,118,0.07);}
+      .cc-textarea::placeholder{color:#b0bec5;}
+      .cc-checklist{display:flex;flex-direction:column;gap:6px;margin-bottom:1rem;}
+      .cc-check-item{display:flex;align-items:center;gap:8px;font-size:0.8rem;color:#334155;}
+      .cc-check-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--up-blue);cursor:pointer;}
+
+      /* Decision buttons */
+      .decision-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:1.4rem 1rem;border-radius:16px;cursor:pointer;transition:all 0.2s;border:2px solid;height:140px;}
+      .decision-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
+      .decision-approve{background:#f0fdf4;border-color:#bbf7d0;color:#15803d;}
+      .decision-approve:hover{background:#dcfce7;border-color:#22c55e;box-shadow:0 8px 24px rgba(34,197,94,0.2);}
+      .decision-return{background:#fffbeb;border-color:#fde68a;color:#a16207;}
+      .decision-return:hover{background:#fef3c7;border-color:#f59e0b;box-shadow:0 8px 24px rgba(245,158,11,0.2);}
+      .decision-reject{background:#fef2f2;border-color:#fecaca;color:#dc2626;}
+      .decision-reject:hover{background:#fee2e2;border-color:#ef4444;box-shadow:0 8px 24px rgba(239,68,68,0.2);}
+      .db-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;border:2px solid currentColor;margin-bottom:4px;}
+      .db-icon .material-symbols-outlined{font-size:1.3rem;font-variation-settings:'FILL' 1;}
+      .db-label{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:800;text-align:center;line-height:1.2;}
+      .db-sub{font-size:0.68rem;font-weight:600;opacity:0.7;text-align:center;}
+
+      /* AUDIT FOOTER */
+      .audit-footer{display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:0.75rem;border-top:1px solid #f1f5f9;margin-top:1rem;}
+      .af-item{display:flex;align-items:center;gap:5px;font-size:0.7rem;color:#94a3b8;font-weight:600;}
+      .af-item .material-symbols-outlined{font-size:0.85rem;color:#22c55e;font-variation-settings:'FILL' 1;}
+
+      /* FOOTER */
+      .footer-strip{background:var(--up-blue-dark);border-top:1px solid rgba(255,255,255,0.06);padding:1.2rem 1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;}
+      .footer-brand{display:flex;align-items:center;gap:6px;color:rgba(255,255,255);font-size:0.72rem;}
+      .footer-center{font-size:0.72rem;color:rgba(255,255,255);letter-spacing:0.06em;text-transform:uppercase;}
+      .footer-links{display:flex;gap:1rem;}
+      .footer-links a{color:rgba(255,255,255);text-decoration:none;font-size:0.72rem;transition:color 0.2s;}
+      .footer-links a:hover{color:rgba(255,255,255,0.7);}
+
+      /* MODAL */
+      .modal-overlay{position:fixed;inset:0;background:rgba(0,20,50,0.55);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;}
+      .modal-overlay.open{display:flex;}
+      .modal{background:#fff;border-radius:20px;width:480px;max-width:95vw;overflow:hidden;box-shadow:0 24px 60px rgba(0,20,60,0.2);}
+      .modal-header{background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));padding:1.3rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+      .modal-title{font-family:'Sora',sans-serif;font-size:0.92rem;font-weight:800;color:#fff;}
+      .modal-close{background:rgba(255,255,255,0.12);border:none;border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;}
+      .modal-close .material-symbols-outlined{font-size:1rem;}
+      .modal-body{padding:1.5rem;}
+      .modal-footer{padding:1rem 1.5rem;border-top:1px solid #f1f5f9;display:flex;gap:8px;justify-content:flex-end;}
+      .m-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:4px;margin-top:1rem;}
+      .m-label:first-child{margin-top:0;}
+      .m-input{width:100%;height:40px;border:1.5px solid #e2e8f0;border-radius:10px;padding:0 12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;}
+      .m-input:focus{border-color:var(--up-blue);}
+      .m-select{width:100%;height:40px;border:1.5px solid #e2e8f0;border-radius:10px;padding:0 12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;appearance:none;background:#fff;}
+      .m-textarea{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;resize:vertical;min-height:80px;line-height:1.65;}
+      .m-textarea:focus{border-color:var(--up-blue);}
+
+      /* RESPONSIVE */
+      @media(max-width:1200px){.cc-grid{grid-template-columns:1fr;}.cc-left{grid-column:1/-1;}.cc-right{grid-column:1/-1;grid-template-columns:1fr 1fr 1fr;}}
+      @media(max-width:1100px){.two-col{grid-template-columns:1fr;}.kpi-grid{grid-template-columns:repeat(2,1fr);}.dhc-grid{grid-template-columns:repeat(2,1fr);}}
+      @media(max-width:640px){.cc-right{grid-template-columns:1fr;}.kpi-grid{grid-template-columns:1fr 1fr;}}
+
+  //- TOPBAR
+  header.topbar
+    .topbar-inner
+      a.topbar-brand(href='/')
+        .topbar-brand-icon
+          span.material-symbols-outlined(style='font-size:1.2rem;font-variation-settings:"FILL" 1') school
+        div
+          .topbar-brand-name Portal de Empleo UP
+          .topbar-brand-sub Panel de Administrador
+      div(style='display:flex;align-items:center;gap:6px')
+        .admin-badge
+          span.material-symbols-outlined shield
+          | Admin
+        nav.topbar-nav
+          a(href='/administrator/dashboard' style='margin-left:8px')
+            span.material-symbols-outlined dashboard
+            | Dashboard
+          a.active(href='#')
+            span.material-symbols-outlined handshake
+            | Convenios
+          a(href='/administrator/users')
+            span.material-symbols-outlined manage_accounts
+            | Usuarios
+      .topbar-right
+        button.topbar-icon-btn(title='Configuracion')
+          span.material-symbols-outlined(style='font-size:1.1rem') settings
+        button.topbar-icon-btn(title='Notificaciones')
+          span.material-symbols-outlined(style='font-size:1.1rem') notifications
+          .notif-dot
+        .topbar-divider
+        .topbar-user
+          div
+            .topbar-user-name Carolina Perez
+            .topbar-user-sub Administrador
+          .topbar-avatar CP
+
+  //- MAIN
+  main.main-content
+
+    //- PAGE HEADER
+    .page-header
+      div
+        h1.page-title Control de Convenios
+        .page-subtitle Validacion, seguimiento y gestion de alianzas institucionales con empresas socias.
+      .header-actions
+        button.btn-primary(onclick='document.getElementById("modal-nuevo").classList.add("open");document.body.style.overflow="hidden"')
+          span.material-symbols-outlined add
+          | Nuevo Convenio
+        button.btn-secondary
+          span.material-symbols-outlined download
+          | Exportar
+        button.btn-secondary
+          span.material-symbols-outlined filter_list
+          | Filtros
+
+    //- KPI STRIP
+    .kpi-grid
+      .kpi-card.kpi-blue
+        .kpi-icon.kpi-icon-blue
+          span.material-symbols-outlined handshake
+        div
+          .kpi-label Total Convenios
+          .kpi-value 17
+          .kpi-trend.trend-up
+            span.material-symbols-outlined(style='font-size:0.85rem') trending_up
+            | +2 este mes
+      .kpi-card.kpi-gold
+        .kpi-icon.kpi-icon-gold
+          span.material-symbols-outlined schedule
+        div
+          .kpi-label Por Vencer
+          .kpi-value 3
+          .kpi-trend.trend-warn
+            span.material-symbols-outlined(style='font-size:0.85rem') warning
+            | Requieren atencion
+      .kpi-card.kpi-green
+        .kpi-icon.kpi-icon-green
+          span.material-symbols-outlined verified
+        div
+          .kpi-label Vigentes / Aprobados
+          .kpi-value 12
+          .kpi-trend.trend-up
+            span.material-symbols-outlined(style='font-size:0.85rem') check_circle
+            | En regla
+      .kpi-card.kpi-red
+        .kpi-icon.kpi-icon-red
+          span.material-symbols-outlined pending_actions
+        div
+          .kpi-label Pendientes Revision
+          .kpi-value 5
+          .kpi-trend.trend-warn
+            span.material-symbols-outlined(style='font-size:0.85rem') hourglass_top
+            | En cola de revision
+
+    //- ALERT
+    .alert-banner
+      span.material-symbols-outlined warning
+      div
+        .alert-title 3 convenios vencen en los proximos 30 dias
+        .alert-text Copa Airlines (15 dias), Melo S.A. (22 dias), Arrocha Tecnologia (28 dias). Gestiona la renovacion para mantener las vacantes activas.
+      .alert-action
+        button.btn-secondary(style='height:34px;font-size:0.78rem') Ver todos
+
+    //- TWO-COL LAYOUT
+    .two-col
+
+      //- LEFT: LISTA
+      .panel-left
+
+        //- FILTER
+        .filter-bar
+          .filter-search
+            span.material-symbols-outlined search
+            input(type='text' placeholder='Buscar empresa por nombre o RUC...')
+          .filter-tabs-inner
+            button.ftab.active(onclick='setTab(this)') Todos
+              span.ftab-count 17
+            button.ftab(onclick='setTab(this)')
+              span(style='width:5px;height:5px;border-radius:50%;background:#f59e0b;display:inline-block')
+              | Pendientes
+              span.ftab-count 5
+            button.ftab(onclick='setTab(this)')
+              span(style='width:5px;height:5px;border-radius:50%;background:#22c55e;display:inline-block')
+              | Aprobados
+              span.ftab-count 12
+            button.ftab(onclick='setTab(this)')
+              span(style='width:5px;height:5px;border-radius:50%;background:#ef4444;display:inline-block')
+              | Rechazados
+              span.ftab-count 0
+
+        .solicitud-list
+
+          //- Card 1 — En revision (selected)
+          .sol-card.selected(onclick='selectCard(this)')
+            .sol-top
+              .sol-logo(style='background:linear-gradient(135deg,var(--up-blue),#1e60c8)') GL
+              div
+                .sol-name Global Logistics Corp
+                .sol-sector Sector: Logistica y Transporte
+              .sol-badge
+                span.sbadge.sb-review
+                  .sdot
+                  | En Revision
+            .sol-meta
+              .sol-meta-item
+                span.material-symbols-outlined badge
+                | RUC: 4-123-9876 DV 12
+              .sol-meta-item
+                span.material-symbols-outlined calendar_month
+                | Solicitud: 24 Oct, 2025
+            .sol-progress-row
+              .sol-prog-label
+                span Documentos revisados
+                span 2 / 3
+              .sol-prog-bar-bg: .sol-prog-bar.spb-blue(style='width:66%')
+
+          //- Card 2 — Pendiente
+          .sol-card(onclick='selectCard(this)')
+            .sol-top
+              .sol-logo(style='background:linear-gradient(135deg,#374151,#1f2937)') TS
+              div
+                .sol-name Tech Solutions S.A.
+                .sol-sector Sector: Tecnologia e Informatica
+              .sol-badge
+                span.sbadge.sb-pending
+                  .sdot
+                  | Pendiente
+            .sol-meta
+              .sol-meta-item
+                span.material-symbols-outlined badge
+                | RUC: 8-765-4321 DV 90
+              .sol-meta-item
+                span.material-symbols-outlined calendar_month
+                | Solicitud: 25 Oct, 2025
+            .sol-progress-row
+              .sol-prog-label
+                span Documentos revisados
+                span 0 / 3
+              .sol-prog-bar-bg: .sol-prog-bar.spb-gold(style='width:0%')
+
+          //- Card 3 — Aprobado
+          .sol-card(onclick='selectCard(this)')
+            .sol-top
+              .sol-logo(style='background:linear-gradient(135deg,#065f46,#047857)') RS
+              div
+                .sol-name Rootstack S.A.
+                .sol-sector Sector: Tecnologia
+              .sol-badge
+                span.sbadge.sb-approved
+                  .sdot
+                  | Aprobado
+            .sol-meta
+              .sol-meta-item
+                span.material-symbols-outlined badge
+                | RUC: 98-232-1-2021
+              .sol-meta-item
+                span.material-symbols-outlined calendar_month
+                | Aprobado: 10 Oct, 2025
+            .sol-progress-row
+              .sol-prog-label
+                span Documentos revisados
+                span 3 / 3
+              .sol-prog-bar-bg: .sol-prog-bar.spb-green(style='width:100%')
+
+          //- Card 4 — Por vencer
+          .sol-card(onclick='selectCard(this)' style='border-color:#fecaca;background:#fffafa')
+            .sol-top
+              .sol-logo(style='background:linear-gradient(135deg,#0369a1,#075985)') CA
+              div
+                .sol-name Copa Airlines
+                .sol-sector Sector: Aviacion
+              .sol-badge
+                span.sbadge.sb-expired
+                  .sdot
+                  | Por Vencer
+            .sol-meta
+              .sol-meta-item
+                span.material-symbols-outlined badge
+                | RUC: 12-345-2-2019
+              .sol-meta-item(style='color:#dc2626;font-weight:700')
+                span.material-symbols-outlined(style='color:#dc2626') schedule
+                | Vence en 15 dias
+            .sol-progress-row
+              .sol-prog-label
+                span Renovacion pendiente
+                span 0 / 3
+              .sol-prog-bar-bg: .sol-prog-bar(style='width:5%;background:#ef4444')
+            div(style='margin-top:8px;display:flex;gap:6px')
+              button.btn-secondary(style='height:28px;font-size:0.72rem;padding:0 10px;border-color:#fecaca;color:#dc2626;background:#fef2f2' onclick='event.stopPropagation()') Iniciar Renovacion
+
+      //- RIGHT: DETALLE
+      .panel-right
+
+        //- HEADER DEL DETALLE
+        .detail-header-card
+          .dhc-banner
+            .dhc-company
+              .dhc-logo GL
+              div
+                .dhc-name Global Logistics Corp
+                .dhc-sub Logistica y Transporte &middot; Ciudad de Panama
+            span.sbadge.sb-review(style='font-size:0.72rem;padding:5px 12px')
+              .sdot
+              | En Revision
+          .dhc-body
+            .dhc-grid
+              .dhc-stat
+                .dhc-stat-label R.U.C.
+                .dhc-stat-value 4-123-9876 DV 12
+              .dhc-stat
+                .dhc-stat-label Tipo de Alianza
+                .dhc-stat-value Alianza Institucional
+              .dhc-stat
+                .dhc-stat-label Fecha Solicitud
+                .dhc-stat-value 24 Oct, 2025
+              .dhc-stat
+                .dhc-stat-label Representante Legal
+                .dhc-stat-value.highlight Jose Montoya C.
+            .detail-tabs
+              button.dtab.active#dtab-docs(onclick='switchDTab("docs")')
+                span.material-symbols-outlined folder
+                | Documentos
+              button.dtab#dtab-datos(onclick='switchDTab("datos")')
+                span.material-symbols-outlined business
+                | Datos de Empresa
+              button.dtab#dtab-historial(onclick='switchDTab("historial")')
+                span.material-symbols-outlined history
+                | Historial
+
+            //- PANEL DOCUMENTOS
+            #dpanel-docs.dpanel.active(style='padding:1.3rem 1.6rem')
+              .doc-section-title
+                span Documentacion Legal Requerida
+                span(style='font-family:Sora,sans-serif;font-size:0.75rem;font-weight:800;color:var(--up-blue)') 2 / 3 revisados
+              .doc-progress-summary
+                .dps-bar-bg: .dps-bar(style='width:66%')
+                .dps-label 66%
+              div(style='background:#fffbeb;border:1.5px solid #fde68a;border-radius:10px;padding:0.75rem 1rem;margin-bottom:1.1rem;display:flex;align-items:center;gap:8px')
+                span.material-symbols-outlined(style='font-size:0.95rem;color:#a16207;font-variation-settings:"FILL" 1;flex-shrink:0') info
+                span(style='font-size:0.78rem;color:#92400e;font-weight:600') El Certificado de Registro Publico aun no ha sido cargado por la empresa. No es posible emitir una decision final hasta que todos los documentos esten disponibles.
+
+              .doc-grid
+
+                //- Doc 1 — Validado
+                .doc-item.validated
+                  .doc-item-header
+                    .doc-icon.di-pdf
+                      span.material-symbols-outlined picture_as_pdf
+                    .doc-info
+                      .doc-name Aviso de Operaciones MICI.pdf
+                      .doc-meta 1.2 MB &bull; Actualizado: 12 Oct, 2025
+                    .doc-status-icon
+                      span.material-symbols-outlined.dsi-done check_circle
+                  .doc-actions
+                    .doc-actions-left
+                      .doc-toggle-wrap
+                        label.doc-toggle
+                          input(type='checkbox' checked)
+                          .doc-toggle-slider
+                        span Valido
+                      input.doc-note(type='text' placeholder='Agregar nota...' value='Documento en regla. Vigencia 2025.')
+                    button.btn-doc-view
+                      span.material-symbols-outlined open_in_new
+                      | Ver archivo
+                    button.btn-doc-view(style='color:#64748b')
+                      span.material-symbols-outlined download
+                      | Descargar
+
+                //- Doc 2 — En revision (activo)
+                .doc-item.reviewing
+                  .doc-item-header
+                    .doc-icon.di-pdf
+                      span.material-symbols-outlined picture_as_pdf
+                    .doc-info
+                      .doc-name Cedula del Representante Legal.pdf
+                      .doc-meta 0.8 MB &bull; Actualizado: 10 Oct, 2025
+                    .doc-status-icon
+                      span.material-symbols-outlined(style='color:#3b82f6') pending
+                  .doc-actions
+                    .doc-actions-left
+                      .doc-toggle-wrap
+                        label.doc-toggle
+                          input(type='checkbox')
+                          .doc-toggle-slider
+                        span Valido
+                      input.doc-note(type='text' placeholder='Agregar observacion al documento...')
+                    button.btn-doc-view
+                      span.material-symbols-outlined open_in_new
+                      | Ver archivo
+                    button.btn-doc-view(style='color:#64748b')
+                      span.material-symbols-outlined download
+                      | Descargar
+
+                //- Doc 3 — Pendiente
+                .doc-item.pending
+                  .doc-item-header
+                    .doc-icon.di-doc(style='background:#f1f5f9;color:#94a3b8')
+                      span.material-symbols-outlined(style='color:#94a3b8') description
+                    .doc-info
+                      .doc-name Certificado de Registro Publico.pdf
+                      .doc-meta(style='color:#f59e0b;font-weight:600')
+                        span.material-symbols-outlined(style='font-size:0.75rem;color:#f59e0b;font-variation-settings:"FILL" 1') hourglass_top
+                        |  Pendiente de carga por la empresa
+                    .doc-status-icon
+                      span.material-symbols-outlined(style='color:#e2e8f0') radio_button_unchecked
+                  .doc-actions(style='background:#fffbeb')
+                    .doc-actions-left
+                      .doc-toggle-wrap(style='color:#e2e8f0')
+                        label.doc-toggle
+                          input(type='checkbox' disabled)
+                          .doc-toggle-slider
+                        span(style='color:#cbd5e1') Valido
+                      span(style='font-size:0.75rem;color:#a16207;font-weight:600') Esperando documento de la empresa...
+                    button.btn-doc-view(style='color:#94a3b8;cursor:not-allowed')
+                      span.material-symbols-outlined(style='color:#cbd5e1') block
+                      | No disponible
+
+            //- PANEL DATOS EMPRESA
+            #dpanel-datos.dpanel(style='padding:1.3rem 1.6rem')
+              .info-grid
+                .info-item
+                  .info-label Razon Social
+                  .info-value Global Logistics Corp S.A.
+                .info-item
+                  .info-label R.U.C.
+                  .info-value 4-123-9876 DV 12
+                .info-item
+                  .info-label Representante Legal
+                  .info-value Jose Montoya Castro
+                .info-item
+                  .info-label Cedula del Representante
+                  .info-value 4-123-456
+                .info-item
+                  .info-label Sector Economico
+                  .info-value Logistica y Transporte
+                .info-item
+                  .info-label Tamano de Empresa
+                  .info-value 200-500 colaboradores
+                .info-item
+                  .info-label Tipo de Convenio Solicitado
+                  .info-value Alianza Institucional Integral
+                .info-item
+                  .info-label Facultades de Interes
+                  .info-value FIEC, FAECO, FCI
+                .info-item.full
+                  .info-label Sitio Web
+                  .info-value-link www.globallogisticscorp.com
+                .info-item.full
+                  .info-label Correo Corporativo
+                  .info-value rrhh@globallogisticscorp.com
+                .info-item.full
+                  .info-label Descripcion de la Empresa
+                  .info-value(style='font-family:DM Sans,sans-serif;font-weight:400;font-size:0.85rem;color:#475569;line-height:1.7') Empresa lider en soluciones de logistica y cadena de suministro en Panama con mas de 20 anos en el mercado. Operaciones en toda Centroamerica y presencia en zonas francas.
+
+            //- PANEL HISTORIAL
+            #dpanel-historial.dpanel(style='padding:1.3rem 1.6rem')
+              .timeline
+                .tl-step
+                  .tl-circle.tl-done
+                    span.material-symbols-outlined send
+                  div
+                    .tl-title Solicitud enviada por la empresa
+                    .tl-date 24 Oct, 2025 &mdash; 10:14 AM
+                    .tl-user Global Logistics Corp
+                .tl-step
+                  .tl-circle.tl-done
+                    span.material-symbols-outlined mark_email_read
+                  div
+                    .tl-title Solicitud recibida y asignada
+                    .tl-date 24 Oct, 2025 &mdash; 11:30 AM
+                    .tl-user Asignado a: Carolina Perez (Admin UP)
+                .tl-step
+                  .tl-circle.tl-done
+                    span.material-symbols-outlined description
+                  div
+                    .tl-title Aviso de Operaciones validado
+                    .tl-date 25 Oct, 2025 &mdash; 09:45 AM
+                    .tl-user Carolina Perez
+                    .tl-note Documento en regla. Vigencia verificada para el ano 2025.
+                .tl-step
+                  .tl-circle.tl-current
+                    span.material-symbols-outlined manage_search
+                  div
+                    .tl-title Cedula del Representante en revision
+                    .tl-date 25 Oct, 2025 &mdash; Activo ahora
+                    .tl-user Carolina Perez
+                    .tl-note En proceso de verificacion. Se requiere confirmar que la cedula corresponde al representante legal inscrito en el registro publico.
+                .tl-step
+                  .tl-circle.tl-pending
+                    span.material-symbols-outlined corporate_fare
+                  div
+                    .tl-title Certificado de Registro Publico
+                    .tl-date Pendiente de carga
+                .tl-step
+                  .tl-circle.tl-pending
+                    span.material-symbols-outlined gavel
+                  div
+                    .tl-title Decision final
+                    .tl-date Pendiente
+
+        //- CONCLUSION Y DECISION
+        .conclusion-card
+          .cc-header
+            .cc-header-icon
+              span.material-symbols-outlined task_alt
+            .cc-title Conclusion de la Revision
+          .cc-body
+            .cc-grid
+              .cc-left
+                .cc-field-label Comentarios y motivos de la decision
+                textarea.cc-textarea(placeholder='Escriba los motivos de aprobacion o las observaciones detalladas para el rechazo o devolucion... (Obligatorio en caso de rechazo o devolucion)')
+                .cc-field-label(style='margin-top:0.9rem') Verificaciones finales
+                .cc-checklist
+                  label.cc-check-item
+                    input(type='checkbox')
+                    | Documentos completos y vigentes
+                  label.cc-check-item
+                    input(type='checkbox' checked)
+                    | RUC verificado en DGI
+                  label.cc-check-item
+                    input(type='checkbox')
+                    | Representante legal confirmado
+                  label.cc-check-item
+                    input(type='checkbox')
+                    | Tipo de alianza adecuado para la UP
+              .cc-right
+                button.decision-btn.decision-approve(onclick='showConfirm("aprobar")')
+                  .db-icon
+                    span.material-symbols-outlined verified
+                  .db-label APROBAR CONVENIO
+                  .db-sub Notificar a la empresa
+                button.decision-btn.decision-return(onclick='showConfirm("devolver")')
+                  .db-icon
+                    span.material-symbols-outlined undo
+                  .db-label DEVOLVER CON OBSERVACIONES
+                  .db-sub Solicitar correcciones
+                button.decision-btn.decision-reject(onclick='showConfirm("rechazar")')
+                  .db-icon
+                    span.material-symbols-outlined cancel
+                  .db-label RECHAZAR SOLICITUD
+                  .db-sub Notificar motivos
+          .audit-footer
+            .af-item
+              span.material-symbols-outlined lock
+              | Proceso de validacion seguro
+            .af-item
+              span.material-symbols-outlined verified_user
+              | Log de auditoria registrado
+            .af-item
+              span.material-symbols-outlined schedule
+              | Ultima actividad: hoy 10:32 AM
+
+  //- FOOTER
+  footer.footer-strip
+    .footer-brand
+      span.material-symbols-outlined(style='font-size:1rem;font-variation-settings:"FILL" 1') school
+      span Portal de Empleo UP
+    .footer-center &copy; #{new Date().getFullYear()} Universidad de Panama &mdash; Dirección de Tecnología de la Información y Comunicación.
+    .footer-links
+      a(href='#') Ayuda
+      a(href='#') Terminos
+      a(href='#') Privacidad
+
+  //- MODAL: NUEVO CONVENIO
+  #modal-nuevo.modal-overlay
+    .modal
+      .modal-header
+        .modal-title Registrar Nuevo Convenio
+        button.modal-close(onclick='document.getElementById("modal-nuevo").classList.remove("open");document.body.style.overflow=""')
+          span.material-symbols-outlined close
+      .modal-body
+        .m-label Razon Social de la Empresa
+        input.m-input(type='text' placeholder='Nombre legal completo')
+        .m-label R.U.C.
+        input.m-input(type='text' placeholder='Ej. 155-0000-1-2024')
+        .m-label Representante Legal
+        input.m-input(type='text' placeholder='Nombre completo')
+        .m-label Tipo de Alianza
+        select.m-select
+          option Alianza Institucional Integral
+          option Convenio de Practicas
+          option Convenio de Empleo
+        .m-label Fecha de Inicio
+        input.m-input(type='date')
+        .m-label Fecha de Vencimiento
+        input.m-input(type='date')
+        .m-label Compromisos y Alcance
+        textarea.m-textarea(placeholder='Describe los compromisos de la alianza...')
+      .modal-footer
+        button.btn-secondary(onclick='document.getElementById("modal-nuevo").classList.remove("open");document.body.style.overflow=""') Cancelar
+        button.btn-primary Registrar Convenio
+
+  //- MODAL: CONFIRMACION DE DECISION
+  #modal-confirm.modal-overlay
+    .modal
+      .modal-header#confirm-header
+        .modal-title Confirmar Decision
+        button.modal-close(onclick='document.getElementById("modal-confirm").classList.remove("open");document.body.style.overflow=""')
+          span.material-symbols-outlined close
+      .modal-body
+        div(id='confirm-body' style='font-size:0.88rem;color:#334155;line-height:1.7')
+          | Esta accion sera registrada en el log de auditoria y notificara a la empresa por correo electronico.
+      .modal-footer
+        button.btn-secondary(onclick='document.getElementById("modal-confirm").classList.remove("open");document.body.style.overflow=""') Cancelar
+        button.btn-primary#confirm-action-btn Confirmar
+
+  script.
+    function setTab(el) {
+      document.querySelectorAll('.ftab').forEach(function(t){ t.classList.remove('active'); });
+      el.classList.add('active');
+    }
+    function selectCard(el) {
+      document.querySelectorAll('.sol-card').forEach(function(c){ c.classList.remove('selected'); });
+      el.classList.add('selected');
+    }
+    function switchDTab(tab) {
+      document.querySelectorAll('.dtab').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.dpanel').forEach(function(p){ p.classList.remove('active'); });
+      document.getElementById('dtab-' + tab).classList.add('active');
+      document.getElementById('dpanel-' + tab).classList.add('active');
+    }
+    function showConfirm(type) {
+      var titles = { aprobar:'Aprobar Convenio', devolver:'Devolver con Observaciones', rechazar:'Rechazar Solicitud' };
+      var msgs = {
+        aprobar:'Se aprobara el convenio de <strong>Global Logistics Corp</strong> y se notificara a la empresa por correo. El convenio quedara activo en el sistema.',
+        devolver:'Se devolvera la solicitud de <strong>Global Logistics Corp</strong> con las observaciones indicadas para que corrijan los documentos.',
+        rechazar:'Se rechazara la solicitud de <strong>Global Logistics Corp</strong>. Esta accion es irreversible y se notificara a la empresa con los motivos.'
+      };
+      var colors = { aprobar:'var(--up-blue)', devolver:'#a16207', rechazar:'#dc2626' };
+      document.getElementById('confirm-header').style.background = 'linear-gradient(135deg,' + colors[type] + ',' + colors[type] + 'cc)';
+      document.getElementById('confirm-header').querySelector('.modal-title').textContent = titles[type];
+      document.getElementById('confirm-body').innerHTML = msgs[type];
+      document.getElementById('confirm-action-btn').textContent = titles[type];
+      document.getElementById('confirm-action-btn').style.background = colors[type];
+      document.getElementById('modal-confirm').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    document.querySelectorAll('.modal-overlay').forEach(function(o){
+      o.addEventListener('click', function(e){
+        if(e.target === this){ this.classList.remove('open'); document.body.style.overflow=''; }
+      });
+    });

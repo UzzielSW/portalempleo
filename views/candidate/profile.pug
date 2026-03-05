@@ -1,0 +1,637 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Perfil - Portal de Empleo UP
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
+    style.
+      :root{--up-blue:#003876;--up-blue-dark:#002147;--up-gold:#C49A1A;--up-gold-light:#e8c44d;--bg:#f0f4f8;}
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a2233;min-height:100vh;display:flex;flex-direction:column;}
+      h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+
+      /* ===== TOPBAR ===== */
+      .topbar{background:var(--up-blue);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,56,118,0.18);}
+      .topbar-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
+      .topbar-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+      .topbar-brand-icon{background:var(--up-gold);border-radius:9px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--up-blue);flex-shrink:0;}
+      .topbar-brand-name{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;letter-spacing:0.01em;}
+      .topbar-nav{display:flex;align-items:center;height:100%;}
+      .topbar-nav a{display:flex;align-items:center;height:100%;padding:0 1.1rem;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.65);text-decoration:none;letter-spacing:0.03em;border-bottom:3px solid transparent;transition:color 0.2s,border-color 0.2s;}
+      .topbar-nav a:hover{color:#fff;}
+      .topbar-nav a.active{color:#fff;border-bottom-color:var(--up-gold);}
+      .topbar-right{display:flex;align-items:center;gap:6px;}
+      .topbar-icon-btn{background:rgba(255,255,255,0.08);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.75);cursor:pointer;transition:background 0.2s,color 0.2s;position:relative;}
+      .topbar-icon-btn:hover{background:rgba(255,255,255,0.16);color:#fff;}
+      .notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--up-gold);border:2px solid var(--up-blue);}
+      .topbar-divider{width:1px;height:28px;background:rgba(255,255,255,0.15);margin:0 4px;}
+      .topbar-user{display:flex;align-items:center;gap:9px;cursor:pointer;padding:4px 8px;border-radius:10px;transition:background 0.2s;}
+      .topbar-user:hover{background:rgba(255,255,255,0.08);}
+      .topbar-user-info{text-align:right;}
+      .topbar-user-name{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;line-height:1.1;}
+      .topbar-user-role{font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--up-gold-light);}
+      .topbar-avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid rgba(196,154,26,0.5);}
+      .topbar-avatar-placeholder{width:36px;height:36px;border-radius:50%;background:var(--up-gold);display:flex;align-items:center;justify-content:center;color:var(--up-blue);font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:800;flex-shrink:0;}
+
+      /* ===== MAIN LAYOUT ===== */
+      .main-content{flex:1;max-width:1280px;margin:0 auto;width:100%;padding:2rem 1.5rem 4rem;}
+      .profile-grid{display:grid;grid-template-columns:1fr 320px;gap:1.5rem;align-items:start;}
+
+      /* ===== CARDS ===== */
+      .card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;box-shadow:0 2px 12px rgba(0,56,118,0.05);}
+      .card-header{padding:1rem 1.4rem;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;}
+      .card-header-left{display:flex;align-items:center;gap:8px;}
+      .card-header-icon{width:30px;height:30px;border-radius:8px;background:#eff6ff;display:flex;align-items:center;justify-content:center;color:var(--up-blue);}
+      .card-header-icon .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 1;}
+      .card-header-title{font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;color:#0f172a;letter-spacing:0.08em;text-transform:uppercase;}
+      .card-action{display:inline-flex;align-items:center;gap:4px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--up-blue);background:none;border:none;cursor:pointer;text-decoration:none;transition:color 0.2s;}
+      .card-action:hover{color:var(--up-gold);}
+      .card-body{padding:1.4rem;}
+
+      /* ===== HERO CARD ===== */
+      .hero-card{padding:2rem;display:flex;flex-wrap:wrap;gap:2rem;align-items:flex-start;margin-bottom:1.5rem;}
+      .hero-avatar-wrap{position:relative;flex-shrink:0;}
+      .hero-avatar{width:110px;height:110px;border-radius:18px;object-fit:cover;border:4px solid #fff;box-shadow:0 4px 20px rgba(0,56,118,0.15);}
+      .hero-avatar-placeholder{width:110px;height:110px;border-radius:18px;background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:800;border:4px solid #fff;box-shadow:0 4px 20px rgba(0,56,118,0.15);}
+      .status-badge{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;font-size:0.6rem;font-weight:800;letter-spacing:0.12em;padding:3px 10px;border-radius:50px;display:flex;align-items:center;gap:4px;}
+      .status-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite;}
+      @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+      .hero-info{flex:1;min-width:200px;}
+      .hero-name{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:800;color:#0f172a;margin-bottom:4px;}
+      .hero-title-role{font-size:0.9rem;color:#64748b;margin-bottom:0.8rem;display:flex;align-items:center;gap:6px;}
+      .hero-meta-row{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;}
+      .hero-meta-item{display:flex;align-items:center;gap:5px;font-size:0.8rem;color:#64748b;}
+      .hero-meta-item .material-symbols-outlined{font-size:1rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+      .hero-meta-item strong{color:#334155;}
+      .hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:0.8rem;}
+      .btn-edit{display:inline-flex;align-items:center;gap:6px;background:#f8fafc;border:1.5px solid #e2e8f0;color:#334155;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;padding:6px 14px;border-radius:9px;cursor:pointer;text-decoration:none;transition:all 0.2s;}
+      .btn-edit:hover{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .btn-social{width:34px;height:34px;border-radius:9px;background:#f1f5f9;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;color:#64748b;text-decoration:none;transition:all 0.2s;}
+      .btn-social:hover{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .btn-social svg{width:14px;height:14px;fill:currentColor;}
+      .hero-score{background:#f8fafc;border:1.5px solid #e8edf5;border-radius:16px;padding:1.2rem 1.5rem;text-align:center;min-width:140px;display:flex;flex-direction:column;align-items:center;gap:4px;}
+      .hero-score-num{font-family:'Sora',sans-serif;font-size:2.2rem;font-weight:800;color:var(--up-blue);line-height:1;}
+      .hero-score-stars{display:flex;gap:2px;margin:4px 0;}
+      .hero-score-stars .material-symbols-outlined{font-size:1rem;color:var(--up-gold);}
+      .hero-score-divider{width:100%;height:1px;background:#e8edf5;margin:6px 0;}
+      .hero-score-label{font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;}
+      .hero-score-count{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:800;color:#0f172a;}
+
+      /* ===== STATS ROW ===== */
+      .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem;}
+      .stat-card{background:#fff;border-radius:14px;border:1.5px solid #e8edf5;padding:1rem 1.2rem;display:flex;align-items:center;gap:12px;}
+      .stat-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .stat-icon .material-symbols-outlined{font-size:1.1rem;font-variation-settings:'FILL' 1;}
+      .stat-icon-blue{background:#eff6ff;color:var(--up-blue);}
+      .stat-icon-gold{background:#fefce8;color:#a16207;}
+      .stat-icon-green{background:#f0fdf4;color:#15803d;}
+      .stat-icon-purple{background:#faf5ff;color:#7c3aed;}
+      .stat-num{font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;color:#0f172a;line-height:1;}
+      .stat-label{font-size:0.72rem;color:#94a3b8;margin-top:1px;}
+
+      /* ===== EXPERIENCE ===== */
+      .exp-item{display:flex;gap:12px;padding:1rem 0;border-bottom:1px solid #f8fafc;}
+      .exp-item:last-child{border-bottom:none;padding-bottom:0;}
+      .exp-icon{width:38px;height:38px;border-radius:10px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;color:#64748b;flex-shrink:0;}
+      .exp-icon .material-symbols-outlined{font-size:1.1rem;font-variation-settings:'FILL' 1;}
+      .exp-title{font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:700;color:#0f172a;}
+      .exp-company{font-size:0.8rem;color:var(--up-blue);font-weight:600;}
+      .exp-date{font-size:0.72rem;color:#94a3b8;margin-top:2px;}
+      .exp-desc{font-size:0.8rem;color:#64748b;line-height:1.6;margin-top:4px;}
+      .exp-badge{display:inline-flex;font-size:0.65rem;font-weight:700;padding:2px 9px;border-radius:50px;letter-spacing:0.08em;}
+      .badge-current{background:#dcfce7;color:#15803d;}
+      .badge-done{background:#f1f5f9;color:#64748b;}
+
+      /* ===== ACADEMIC ===== */
+      .acad-item{display:flex;gap:12px;padding:1rem 0;border-bottom:1px solid #f8fafc;}
+      .acad-item:last-child{border-bottom:none;padding-bottom:0;}
+      .acad-icon{width:38px;height:38px;border-radius:10px;background:#eff6ff;display:flex;align-items:center;justify-content:center;color:var(--up-blue);flex-shrink:0;}
+      .acad-icon .material-symbols-outlined{font-size:1.1rem;font-variation-settings:'FILL' 1;}
+      .acad-title{font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:700;color:#0f172a;}
+      .acad-inst{font-size:0.8rem;color:var(--up-blue);font-weight:600;}
+      .acad-date{font-size:0.72rem;color:#94a3b8;margin-top:2px;}
+      .acad-detail{font-size:0.78rem;color:#64748b;margin-top:3px;}
+
+      /* ===== SKILLS ===== */
+      .skills-wrap{display:flex;flex-wrap:wrap;gap:7px;}
+      .skill-tag{display:inline-flex;align-items:center;gap:4px;background:#f0f4ff;border:1px solid #dbeafe;color:var(--up-blue);font-size:0.75rem;font-weight:600;padding:4px 11px;border-radius:50px;}
+      .skill-tag .material-symbols-outlined{font-size:0.8rem;}
+
+      /* ===== DOCS ===== */
+      .doc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+      .doc-file{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#f8fafc;border-radius:12px;border:1.5px solid #e8edf5;}
+      .doc-file-icon{width:36px;height:36px;background:#fee2e2;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .doc-file-icon .material-symbols-outlined{font-size:1rem;color:#dc2626;font-variation-settings:'FILL' 1;}
+      .doc-file-name{font-size:0.8rem;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+      .doc-file-meta{font-size:0.68rem;color:#94a3b8;font-weight:600;text-transform:uppercase;}
+      .doc-upload{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;border:2px dashed #d1d9e6;border-radius:12px;background:#fafbfc;cursor:pointer;transition:border-color 0.2s,background 0.2s;font-size:0.8rem;color:#64748b;font-weight:600;}
+      .doc-upload:hover{border-color:var(--up-blue);background:#f0f5ff;color:var(--up-blue);}
+
+      /* ===== SIDEBAR CARDS ===== */
+      .info-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f8fafc;}
+      .info-row:last-child{border-bottom:none;}
+      .info-row-icon{color:#94a3b8;margin-top:1px;flex-shrink:0;}
+      .info-row-icon .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .info-row-label{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;}
+      .info-row-value{font-size:0.83rem;font-weight:600;color:#334155;}
+
+      /* ===== LANGUAGES ===== */
+      .lang-row{margin-bottom:1rem;}
+      .lang-row:last-child{margin-bottom:0;}
+      .lang-header{display:flex;justify-content:space-between;margin-bottom:5px;}
+      .lang-name{font-size:0.83rem;font-weight:700;color:#0f172a;}
+      .lang-level{font-size:0.7rem;font-weight:700;text-transform:uppercase;color:var(--up-blue);letter-spacing:0.06em;}
+      .lang-bar-bg{height:5px;background:#f1f5f9;border-radius:3px;}
+      .lang-bar{height:5px;border-radius:3px;background:linear-gradient(to right,var(--up-blue),var(--up-gold));}
+
+      /* ===== PROFILE COMPLETION ===== */
+      .completion-card{background:linear-gradient(135deg,var(--up-blue) 0%,var(--up-blue-dark) 100%);border-radius:18px;padding:1.4rem;color:#fff;position:relative;overflow:hidden;}
+      .completion-card::before{content:'';position:absolute;bottom:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.04);}
+      .completion-title{font-family:'Sora',sans-serif;font-size:0.9rem;font-weight:800;color:#fff;}
+      .completion-pct{font-family:'Sora',sans-serif;font-size:0.9rem;font-weight:800;color:var(--up-gold-light);}
+      .completion-bar-bg{height:6px;background:rgba(255,255,255,0.15);border-radius:3px;margin:10px 0 14px;}
+      .completion-bar{height:6px;border-radius:3px;background:var(--up-gold);}
+      .completion-item{display:flex;align-items:center;gap:7px;font-size:0.78rem;margin-bottom:7px;}
+      .completion-item .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .ci-done{color:#4ade80;}
+      .ci-pending{color:rgba(255,255,255,0.3);}
+      .btn-update{width:100%;margin-top:1.2rem;padding:0.7rem;background:var(--up-gold);color:#fff;border:none;border-radius:10px;font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:background 0.2s;}
+      .btn-update:hover{background:var(--up-gold-light);color:var(--up-blue);}
+
+      /* ===== FOOTER ===== */
+      .footer-strip{background:#fff;border-top:1px solid #e8edf5;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;font-size:0.72rem;color:#94a3b8;}
+      .footer-brand{display:flex;align-items:center;gap:6px;opacity:0.6;}
+
+      /* ===== MODAL ===== */
+      .modal-overlay{position:fixed;inset:0;background:rgba(0,20,50,0.65);backdrop-filter:blur(6px);z-index:500;display:flex;align-items:center;justify-content:center;padding:1rem;}
+      .modal-box{background:#fff;border-radius:22px;box-shadow:0 24px 80px rgba(0,0,0,0.18);width:100%;max-width:560px;overflow:hidden;}
+      .modal-header{background:linear-gradient(135deg,var(--up-blue) 0%,var(--up-blue-dark) 100%);padding:1.8rem 2rem;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;}
+      .modal-header::after{content:'';position:absolute;top:-40px;right:-40px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,0.05);}
+      .modal-header-icon{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;color:var(--up-gold-light);flex-shrink:0;position:relative;z-index:1;}
+      .modal-header-icon .material-symbols-outlined{font-size:1.4rem;font-variation-settings:'FILL' 1;}
+      .modal-header-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;position:relative;z-index:1;}
+      .modal-header-sub{font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:2px;position:relative;z-index:1;}
+      .modal-body{padding:1.8rem 2rem;max-height:55vh;overflow-y:auto;}
+      .modal-body::-webkit-scrollbar{width:5px;}
+      .modal-body::-webkit-scrollbar-track{background:#f1f5f9;}
+      .modal-body::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px;}
+      .modal-intro{font-size:0.88rem;color:#475569;line-height:1.75;margin-bottom:1.4rem;}
+      .modal-section-title{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:800;color:var(--up-blue);margin:1.2rem 0 0.6rem;display:flex;align-items:center;gap:6px;}
+      .modal-section-title .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .modal-text{font-size:0.82rem;color:#64748b;line-height:1.75;}
+      .modal-text li{margin-bottom:4px;padding-left:4px;}
+      .modal-highlight{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 14px;font-size:0.8rem;color:#1e3a5f;line-height:1.65;margin-top:1rem;}
+      .modal-highlight .material-symbols-outlined{font-size:0.9rem;color:var(--up-blue);vertical-align:middle;margin-right:4px;font-variation-settings:'FILL' 1;}
+      .modal-footer{padding:1.2rem 2rem 1.6rem;border-top:1px solid #f1f5f9;display:flex;flex-direction:column;gap:10px;}
+      .modal-check-row{display:flex;align-items:flex-start;gap:8px;}
+      .modal-check-row input[type='checkbox']{width:15px;height:15px;margin-top:2px;accent-color:var(--up-blue);cursor:pointer;flex-shrink:0;}
+      .modal-check-label{font-size:0.78rem;color:#475569;line-height:1.6;cursor:pointer;}
+      .modal-check-label a{color:var(--up-blue);font-weight:600;text-decoration:none;}
+      .modal-check-label a:hover{color:var(--up-gold);}
+      .modal-actions{display:flex;gap:10px;margin-top:6px;}
+      .btn-accept{flex:1;height:46px;background:var(--up-blue);color:#fff;border:none;border-radius:11px;font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.2s,opacity 0.2s;}
+      .btn-accept:disabled{opacity:0.45;cursor:not-allowed;}
+      .btn-accept:not(:disabled):hover{background:var(--up-gold);}
+      .btn-decline{height:46px;padding:0 1.2rem;background:#f1f5f9;color:#64748b;border:none;border-radius:11px;font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:background 0.2s,color 0.2s;white-space:nowrap;}
+      .btn-decline:hover{background:#fee2e2;color:#dc2626;}
+
+      /* ===== RESPONSIVE ===== */
+      @media(max-width:1024px){.profile-grid{grid-template-columns:1fr;}.stats-row{grid-template-columns:1fr 1fr;}}
+      @media(max-width:640px){.stats-row{grid-template-columns:1fr 1fr;}.topbar-nav{display:none;}.hero-card{padding:1.2rem;}.doc-row{grid-template-columns:1fr;}.modal-body{max-height:45vh;}.modal-footer,.modal-body{padding:1.2rem;}}
+
+  //- ===== CONSENT MODAL =====
+  #consent-modal.modal-overlay
+    .modal-box
+      .modal-header
+        .modal-header-icon
+          span.material-symbols-outlined security
+        div
+          .modal-header-title Consentimiento de Uso de Datos
+          .modal-header-sub Portal de Empleo UP &mdash; Universidad de Panama
+      .modal-body
+        p.modal-intro
+          | Antes de acceder al Portal de Empleo UP, la Universidad de Panama requiere su consentimiento expreso para el tratamiento de sus datos personales, de conformidad con la&nbsp;
+          strong Ley 81 de 2019 sobre Proteccion de Datos Personales
+          | &nbsp;de la Republica de Panama.
+        .modal-section-title
+          span.material-symbols-outlined info
+          | Que datos recopilamos
+        ul.modal-text(style='padding-left:1rem;list-style:disc')
+          li Datos de identificacion: nombre, cedula o carnet estudiantil, correo institucional.
+          li Informacion academica: facultad, carrera, año de ingreso y estado academico.
+          li Historial de postulaciones y actividad dentro del portal.
+          li Documentos cargados voluntariamente (CV, certificados).
+          li Datos de contacto: telefono y ubicacion general.
+        .modal-section-title
+          span.material-symbols-outlined manage_accounts
+          | Como usamos sus datos
+        ul.modal-text(style='padding-left:1rem;list-style:disc')
+          li Conectarlo con empresas que tengan convenio activo con la Universidad de Panama.
+          li Mostrar su perfil profesional a reclutadores autorizados.
+          li Generar estadisticas anonimas de empleabilidad para la Direccion de Vinculacion.
+          li Enviarle notificaciones sobre vacantes y procesos de seleccion de su interes.
+        .modal-section-title
+          span.material-symbols-outlined shield_lock
+          | Sus derechos
+        p.modal-text
+          | En cualquier momento puede ejercer sus derechos de acceso, rectificacion, cancelacion y oposicion (ARCO) escribiendo a&nbsp;
+          a(href='mailto:privacidad@up.ac.pa' style='color:var(--up-blue);font-weight:600') privacidad@up.ac.pa
+          | . Sus datos no seran vendidos ni compartidos con terceros fuera de las entidades con convenio vigente.
+        .modal-highlight
+          span.material-symbols-outlined lock
+          | Sus datos son almacenados en servidores institucionales de la Universidad de Panama con cifrado y acceso restringido. Solo el personal autorizado de la Direccion de Vinculacion tiene acceso a informacion sensible.
+      .modal-footer
+        .modal-check-row
+          input#check-consent(type='checkbox' onchange='updateAccept()')
+          label.modal-check-label(for='check-consent')
+            | He leido y acepto el&nbsp;
+            a(href='#') Aviso de Privacidad
+            | &nbsp;y el tratamiento de mis datos personales por la Universidad de Panama segun lo descrito anteriormente.
+        .modal-check-row
+          input#check-terms(type='checkbox' onchange='updateAccept()')
+          label.modal-check-label(for='check-terms')
+            | Acepto los&nbsp;
+            a(href='#') Terminos y Condiciones de Uso
+            | &nbsp;del Portal de Empleo UP.
+        .modal-actions
+          button#btn-accept.btn-accept(onclick='acceptConsent()' disabled)
+            span.material-symbols-outlined(style='font-size:1rem;font-variation-settings:"FILL" 1') check_circle
+            | Acepto y Continuar
+          button.btn-decline(onclick='declineConsent()') No acepto
+
+  //- ===== TOPBAR =====
+  header.topbar
+    .topbar-inner
+      a.topbar-brand(href='/')
+        .topbar-brand-icon
+          span.material-symbols-outlined(style='font-size:1.2rem;font-variation-settings:"FILL" 1') school
+        .topbar-brand-name Portal de Empleo UP
+      nav.topbar-nav
+        a.active(href='/candidate/profile') Perfil
+        a(href='/candidate/vacancies') Vacantes
+        a(href='/candidate/applications') Postulaciones
+      .topbar-right
+        button.topbar-icon-btn(onclick='toggleDark()' title='Modo oscuro')
+          span.material-symbols-outlined(style='font-size:1.1rem') dark_mode
+        button.topbar-icon-btn(title='Notificaciones')
+          span.material-symbols-outlined(style='font-size:1.1rem') notifications
+          .notif-dot
+        .topbar-divider
+        .topbar-user
+          .topbar-user-info
+            .topbar-user-name Ana Maria Garcia
+            .topbar-user-role Estudiante
+          .topbar-avatar-placeholder AM
+
+  //- ===== MAIN =====
+  main.main-content
+
+    //- STATS ROW
+    .stats-row
+      .stat-card
+        .stat-icon.stat-icon-blue
+          span.material-symbols-outlined send
+        div
+          .stat-num 3
+          .stat-label Postulaciones activas
+      .stat-card
+        .stat-icon.stat-icon-gold
+          span.material-symbols-outlined work_history
+        div
+          .stat-num 1
+          .stat-label Entrevista programada
+      .stat-card
+        .stat-icon.stat-icon-green
+          span.material-symbols-outlined check_circle
+        div
+          .stat-num 12
+          .stat-label Vacantes guardadas
+      .stat-card
+        .stat-icon.stat-icon-purple
+          span.material-symbols-outlined visibility
+        div
+          .stat-num 47
+          .stat-label Vistas de perfil
+
+    .profile-grid
+
+      //- LEFT COLUMN
+      div(style='display:flex;flex-direction:column;gap:1.5rem')
+
+        //- HERO CARD
+        .card
+          .hero-card
+            .hero-avatar-wrap
+              .hero-avatar-placeholder AM
+              .status-badge
+                .status-dot
+                | En busqueda activa
+            .hero-info
+              h1.hero-name Ana Maria Garcia
+              .hero-title-role
+                span.material-symbols-outlined(style='font-size:1rem;color:var(--up-blue);font-variation-settings:"FILL" 1') badge
+                | ID Estudiante:&nbsp;
+                strong(style='color:var(--up-blue)') 2021-0845
+              .hero-meta-row
+                .hero-meta-item
+                  span.material-symbols-outlined school
+                  span Facultad de Informatica, Electronica y Comunicacion
+                .hero-meta-item
+                  span.material-symbols-outlined location_on
+                  span Ciudad de Panama
+                .hero-meta-item
+                  span.material-symbols-outlined calendar_month
+                  strong Ingreso: 2021
+              .hero-meta-row
+                .hero-meta-item
+                  span.material-symbols-outlined mail
+                  span ana.garcia@up.ac.pa
+                .hero-meta-item
+                  span.material-symbols-outlined call
+                  span +507 6XXX-XXXX
+              .hero-actions
+                button.btn-edit
+                  span.material-symbols-outlined(style='font-size:1rem') edit
+                  | Editar Perfil
+                a.btn-social(href='#' title='LinkedIn')
+                  svg(viewBox='0 0 24 24')
+                    path(d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z')
+                a.btn-social(href='#' title='GitHub')
+                  svg(viewBox='0 0 24 24')
+                    path(d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z')
+            .hero-score
+              .hero-score-num 4.8
+              .hero-score-stars
+                span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') star
+                span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') star
+                span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') star
+                span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') star
+                span.material-symbols-outlined(style='font-variation-settings:"FILL" 0') star_half
+              .hero-score-divider
+              .hero-score-label Entrevistas
+              .hero-score-count 4
+
+        //- EXPERIENCIA
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined work
+              .card-header-title Experiencia Laboral
+            a.card-action(href='#')
+              span.material-symbols-outlined(style='font-size:0.9rem') add_circle
+              | Anadir
+          .card-body
+            .exp-item
+              .exp-icon
+                span.material-symbols-outlined business_center
+              div(style='flex:1')
+                div(style='display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;align-items:flex-start')
+                  div
+                    .exp-title Desarrolladora Frontend Junior
+                    .exp-company TechSolutions Panama S.A.
+                  .exp-badge.badge-current Ene 2023 &mdash; Presente
+                .exp-desc Desarrollo de interfaces responsivas con HTML, CSS y JavaScript. Colaboracion en proyectos agiles con metodologia Scrum.
+            .exp-item
+              .exp-icon
+                span.material-symbols-outlined business_center
+              div(style='flex:1')
+                div(style='display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;align-items:flex-start')
+                  div
+                    .exp-title Pasante de TI
+                    .exp-company Cable Onda &mdash; Departamento de Sistemas
+                  .exp-badge.badge-done Jun 2022 &mdash; Dic 2022
+                .exp-desc Soporte tecnico de primer nivel y mantenimiento de equipos. Documentacion de incidencias en sistema de tickets.
+
+        //- FORMACION ACADEMICA
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined school
+              .card-header-title Formacion Academica
+            a.card-action(href='#')
+              span.material-symbols-outlined(style='font-size:0.9rem') edit
+              | Editar
+          .card-body
+            .acad-item
+              .acad-icon
+                span.material-symbols-outlined computer
+              div
+                div(style='display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;align-items:flex-start')
+                  div
+                    .acad-title Ingenieria en Sistemas y Computacion
+                    .acad-inst Universidad de Panama &mdash; FIEC
+                  span.exp-badge.badge-current(style='align-self:flex-start') En curso
+                .acad-date 2021 &mdash; 2026 &nbsp;&middot;&nbsp; Indice acumulado: 1.8 / 3.0
+                .acad-detail 8vo semestre &nbsp;&middot;&nbsp; Sede Central, Panama
+            .acad-item
+              .acad-icon
+                span.material-symbols-outlined menu_book
+              div
+                div(style='display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px')
+                  div
+                    .acad-title Bachiller en Ciencias con Enfasis en Informatica
+                    .acad-inst Instituto Nacional de Panama
+                  span.exp-badge.badge-done(style='align-self:flex-start') Completado
+                .acad-date 2015 &mdash; 2020 &nbsp;&middot;&nbsp; Panama, Panama
+
+        //- HABILIDADES
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined psychology
+              .card-header-title Habilidades Tecnicas
+            a.card-action(href='#')
+              span.material-symbols-outlined(style='font-size:0.9rem') add_circle
+              | Anadir
+          .card-body
+            .skills-wrap
+              span.skill-tag
+                span.material-symbols-outlined code
+                | HTML / CSS
+              span.skill-tag JavaScript
+              span.skill-tag React.js
+              span.skill-tag Node.js
+              span.skill-tag SQL
+              span.skill-tag Git &amp; GitHub
+              span.skill-tag Tailwind CSS
+              span.skill-tag Figma
+              span.skill-tag Python (basico)
+
+        //- DOCUMENTOS
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined folder_open
+              .card-header-title Documentos
+          .card-body
+            .doc-row
+              .doc-file
+                .doc-file-icon
+                  span.material-symbols-outlined picture_as_pdf
+                div(style='flex:1;min-width:0')
+                  .doc-file-name CV_AnaGarcia_2025.pdf
+                  .doc-file-meta PDF &bull; 1.2 MB
+                button(style='background:none;border:none;cursor:pointer;color:#94a3b8;padding:4px;' title='Descargar')
+                  span.material-symbols-outlined(style='font-size:1.1rem') download
+              .doc-upload
+                span.material-symbols-outlined(style='font-size:1.1rem') cloud_upload
+                | Subir Documento
+
+      //- RIGHT COLUMN
+      div(style='display:flex;flex-direction:column;gap:1.5rem')
+
+        //- INFO PERSONAL
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined person
+              .card-header-title Informacion Personal
+            a.card-action(href='#')
+              span.material-symbols-outlined(style='font-size:0.9rem') edit
+          .card-body
+            .info-row
+              .info-row-icon
+                span.material-symbols-outlined mail
+              div
+                .info-row-label Correo Electronico
+                .info-row-value ana.garcia@up.ac.pa
+            .info-row
+              .info-row-icon
+                span.material-symbols-outlined call
+              div
+                .info-row-label Telefono
+                .info-row-value +507 6XXX-XXXX
+            .info-row
+              .info-row-icon
+                span.material-symbols-outlined location_on
+              div
+                .info-row-label Ubicacion
+                .info-row-value Ciudad de Panama, Panama
+            .info-row
+              .info-row-icon
+                span.material-symbols-outlined cake
+              div
+                .info-row-label Fecha de Nacimiento
+                .info-row-value 15 de mayo, 2002
+            .info-row
+              .info-row-icon
+                span.material-symbols-outlined badge
+              div
+                .info-row-label Cedula de Identidad
+                .info-row-value 8-XXX-XXXX
+
+        //- IDIOMAS
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined translate
+              .card-header-title Idiomas
+            a.card-action(href='#')
+              span.material-symbols-outlined(style='font-size:0.9rem') add_circle
+              | Anadir
+          .card-body
+            .lang-row
+              .lang-header
+                .lang-name Espanol
+                .lang-level Nativo
+              .lang-bar-bg
+                .lang-bar(style='width:100%')
+            .lang-row
+              .lang-header
+                .lang-name Ingles
+                .lang-level Avanzado (C1)
+              .lang-bar-bg
+                .lang-bar(style='width:85%')
+            .lang-row
+              .lang-header
+                .lang-name Portugues
+                .lang-level Basico (A2)
+              .lang-bar-bg
+                .lang-bar(style='width:30%')
+
+        //- COMPLETAR PERFIL
+        .completion-card
+          div(style='display:flex;justify-content:space-between;align-items:center')
+            .completion-title Completar Perfil
+            .completion-pct 85%
+          .completion-bar-bg
+            .completion-bar(style='width:85%')
+          .completion-item
+            span.material-symbols-outlined.ci-done check_circle
+            span(style='color:rgba(255,255,255,0.85);font-size:0.78rem') Experiencia laboral registrada
+          .completion-item
+            span.material-symbols-outlined.ci-done check_circle
+            span(style='color:rgba(255,255,255,0.85);font-size:0.78rem') CV cargado
+          .completion-item
+            span.material-symbols-outlined.ci-done check_circle
+            span(style='color:rgba(255,255,255,0.85);font-size:0.78rem') Formacion academica completa
+          .completion-item
+            span.material-symbols-outlined.ci-pending radio_button_unchecked
+            span(style='color:rgba(255,255,255,0.4);font-size:0.78rem') Anadir portafolio o proyectos
+          .completion-item
+            span.material-symbols-outlined.ci-pending radio_button_unchecked
+            span(style='color:rgba(255,255,255,0.4);font-size:0.78rem') Verificar correo institucional
+          button.btn-update Actualizar Ahora
+
+  //- FOOTER
+  footer.footer-strip
+    .footer-brand
+      span.material-symbols-outlined(style='font-size:1rem') school
+      span Portal de Empleo UP
+    span &copy; #{new Date().getFullYear()} Universidad de Panama &mdash; Dirección de Tecnología de la Información y Comunicación.
+    div(style='display:flex;gap:1rem')
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Privacidad
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Terminos
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Ayuda
+
+  script.
+    // Consent modal
+    var consented = sessionStorage.getItem('up_consent');
+    if(!consented) {
+      document.getElementById('consent-modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateAccept() {
+      var c1 = document.getElementById('check-consent').checked;
+      var c2 = document.getElementById('check-terms').checked;
+      document.getElementById('btn-accept').disabled = !(c1 && c2);
+    }
+
+    function acceptConsent() {
+      sessionStorage.setItem('up_consent','1');
+      var m = document.getElementById('consent-modal');
+      m.style.opacity = '0';
+      m.style.transition = 'opacity 0.3s';
+      setTimeout(function(){ m.style.display = 'none'; document.body.style.overflow = ''; }, 300);
+    }
+
+    function declineConsent() {
+      window.location.href = '/';
+    }
+
+    function toggleDark() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function applyR() {
+      var w = window.innerWidth;
+      var pg = document.querySelector('.profile-grid');
+      var sr = document.querySelector('.stats-row');
+      if(pg) pg.style.gridTemplateColumns = w < 1024 ? '1fr' : '1fr 320px';
+      if(sr) sr.style.gridTemplateColumns = w < 640 ? '1fr 1fr' : 'repeat(4, 1fr)';
+    }
+    applyR();
+    window.addEventListener('resize', applyR);

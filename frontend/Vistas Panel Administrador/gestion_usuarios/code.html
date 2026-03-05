@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Usuarios - Administrador | Portal de Empleo UP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "accent-gold": "#b8860b",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<!-- Main Container -->
+<div class="relative flex min-h-screen flex-col">
+<!-- Header / Navigation -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 lg:px-20 py-3">
+<div class="flex items-center justify-between max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-white p-1.5 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div>
+<h1 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Portal de Empleo UP</h1>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Panel Administrativo</p>
+</div>
+</div>
+<nav class="hidden md:flex flex-1 justify-center gap-10">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="#">Reportes</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="#">Control de Convenios</a>
+<a class="text-primary border-b-2 border-primary pb-1 text-sm font-bold" href="#">Usuarios</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2.5 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+</button>
+<div class="h-10 w-10 rounded-full bg-primary/10 border-2 border-primary overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Avatar of the system administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY4MV3A82lXvl4_zupZhuWnWNDgMUmPAMaVkFZIOL4B_pr_BSs6dJQKsfKurc0UIInqQ4Eu-yW7xjTpKdsYhV9uN7G3RGOz2uITbxUvw15xcVWn-sPhruxNUN3k_9BL8b32KQvL2AHmBYUONriICTAQgcfnyE_tN4-arPIuN-bFoOs-MWmFiEQfVlVdXfuPulJjG3E2Fq7FCG0r5ZsI0X5DhGUTK2MHfvD7-Otojw85WQDzutT3fZ9UWaQlDpb0xl_D19so1wfD90"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Section -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-6 lg:px-20 py-8">
+<!-- Page Title & Intro -->
+<div class="mb-8">
+<h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Gestión de Usuarios</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Administre el acceso, valide cuentas y supervise la actividad de estudiantes y egresados.</p>
+</div>
+<!-- Quick Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-5">
+<div class="bg-primary/10 p-4 rounded-xl text-primary">
+<span class="material-symbols-outlined text-3xl">group</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Estudiantes Activos</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-slate-900 dark:text-white">1,240</span>
+<span class="text-xs font-bold text-green-600 flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> 12%
+                            </span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-5">
+<div class="bg-accent-gold/10 p-4 rounded-xl text-accent-gold">
+<span class="material-symbols-outlined text-3xl">workspace_premium</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Egresados Registrados</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-slate-900 dark:text-white">850</span>
+<span class="text-xs font-bold text-green-600 flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> 5%
+                            </span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-5">
+<div class="bg-orange-100 dark:bg-orange-900/30 p-4 rounded-xl text-orange-600">
+<span class="material-symbols-outlined text-3xl">pending_actions</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Pendientes de Validación</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-slate-900 dark:text-white">42</span>
+<span class="text-xs font-bold text-orange-600">Revisión requerida</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Table Actions: Search & Filters -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-t-xl border border-slate-200 dark:border-slate-800 border-b-0 flex flex-col lg:flex-row items-center justify-between gap-4">
+<div class="relative w-full lg:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-background-light dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50 text-slate-700 dark:text-slate-200 placeholder:text-slate-400" placeholder="Buscar por nombre o cédula/ID..." type="text"/>
+</div>
+<div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Filtrar:</span>
+<select class="bg-background-light dark:bg-slate-800 border-none rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 focus:ring-2 focus:ring-primary/50 py-2 pl-3 pr-10">
+<option value="">Todas las Facultades</option>
+<option value="ing">Ingeniería</option>
+<option value="neg">Negocios</option>
+<option value="hum">Humanidades</option>
+<option value="sal">Salud</option>
+</select>
+</div>
+<select class="bg-background-light dark:bg-slate-800 border-none rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 focus:ring-2 focus:ring-primary/50 py-2 pl-3 pr-10">
+<option value="">Tipo de Usuario</option>
+<option value="est">Estudiante</option>
+<option value="egr">Egresado</option>
+</select>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Exportar
+                    </button>
+</div>
+</div>
+<!-- Users Table -->
+<div class="overflow-x-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-b-xl shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Nombre Completo</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Cédula / ID</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Facultad</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tipo</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Registro</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Estado</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- User Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-primary">AM</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">Alejandro Morales</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">8-942-1234</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Ingeniería</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">Estudiante</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">12 Oct 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 text-sm font-medium text-green-600 dark:text-green-400">
+<span class="h-1.5 w-1.5 rounded-full bg-green-600"></span> Activo
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md text-slate-500 transition-colors" title="Ver Perfil"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md text-slate-500 transition-colors" title="Editar"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 hover:bg-red-100 text-red-500 rounded-md transition-colors" title="Desactivar"><span class="material-symbols-outlined text-[20px]">block</span></button>
+</div>
+</td>
+</tr>
+<!-- User Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-accent-gold">LR</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">Lucía Rodríguez</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">PE-10-552</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Negocios</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-accent-gold/10 text-accent-gold border border-accent-gold/20">Egresado</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">05 Ene 2021</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 text-sm font-medium text-green-600 dark:text-green-400">
+<span class="h-1.5 w-1.5 rounded-full bg-green-600"></span> Activo
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md text-slate-500 transition-colors" title="Ver Perfil"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md text-slate-500 transition-colors" title="Editar"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 hover:bg-red-100 text-red-500 rounded-md transition-colors" title="Desactivar"><span class="material-symbols-outlined text-[20px]">block</span></button>
+</div>
+</td>
+</tr>
+<!-- User Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-400">JP</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">Javier Pérez</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">4-771-902</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Humanidades</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">Estudiante</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">22 Mar 2024</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400">
+<span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span> Inactivo
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md text-slate-500 transition-colors" title="Ver Perfil"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md text-slate-500 transition-colors" title="Editar"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 hover:bg-green-100 text-green-600 rounded-md transition-colors" title="Activar"><span class="material-symbols-outlined text-[20px]">check_circle</span></button>
+</div>
+</td>
+</tr>
+<!-- User Row 4 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-accent-gold">CH</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">Carolina Herrera</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">8-112-2334</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Salud</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-accent-gold/10 text-accent-gold border border-accent-gold/20">Egresado</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">15 Ago 2020</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 text-sm font-medium text-green-600 dark:text-green-400">
+<span class="h-1.5 w-1.5 rounded-full bg-green-600"></span> Activo
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md text-slate-500 transition-colors" title="Ver Perfil"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-md text-slate-500 transition-colors" title="Editar"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-1.5 hover:bg-red-100 text-red-500 rounded-md transition-colors" title="Desactivar"><span class="material-symbols-outlined text-[20px]">block</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Section -->
+<div class="mt-4 flex flex-col md:flex-row items-center justify-between gap-4 px-2">
+<p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Mostrando 1 a 10 de 2,132 usuarios</p>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center h-10 w-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="flex items-center justify-center h-10 w-10 rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20">1</button>
+<button class="flex items-center justify-center h-10 w-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition-colors font-bold">2</button>
+<button class="flex items-center justify-center h-10 w-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition-colors font-bold">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="flex items-center justify-center h-10 w-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition-colors font-bold">214</button>
+<button class="flex items-center justify-center h-10 w-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

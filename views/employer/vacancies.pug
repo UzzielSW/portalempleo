@@ -1,0 +1,898 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Gestion de Vacantes - Portal de Empleo UP
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+    link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
+    style.
+      :root{--up-blue:#003876;--up-blue-dark:#002147;--up-gold:#C49A1A;--up-gold-light:#e8c44d;--bg:#f0f4f8;}
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a2233;min-height:100vh;display:flex;flex-direction:column;}
+      h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+      .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+
+      /* ===== TOPBAR ===== */
+      .topbar{background:var(--up-blue);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,56,118,0.18);}
+      .topbar-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
+      .topbar-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+      .topbar-brand-icon{background:var(--up-gold);border-radius:9px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--up-blue);flex-shrink:0;}
+      .topbar-brand-name{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;line-height:1.1;}
+      .topbar-brand-sub{font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--up-gold-light);}
+
+      .topbar-nav{display:flex;align-items:center;height:100%;}
+      .topbar-nav a{display:flex;align-items:center;height:100%;padding:0 1rem;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.65);text-decoration:none;letter-spacing:0.03em;border-bottom:3px solid transparent;transition:color 0.2s,border-color 0.2s;white-space:nowrap;}
+      .topbar-nav a:hover{color:#fff;}
+      .topbar-nav a.active{color:#fff;border-bottom-color:var(--up-gold);}
+      .topbar-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+      .topbar-icon-btn{background:rgba(255,255,255,0.08);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.75);cursor:pointer;transition:background 0.2s;position:relative;}
+      .topbar-icon-btn:hover{background:rgba(255,255,255,0.16);color:#fff;}
+      .notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--up-gold);border:2px solid var(--up-blue);}
+      .topbar-divider{width:1px;height:28px;background:rgba(255,255,255,0.15);margin:0 4px;}
+      .topbar-user{display:flex;align-items:center;gap:9px;cursor:pointer;padding:4px 8px;border-radius:10px;transition:background 0.2s;}
+      .topbar-user:hover{background:rgba(255,255,255,0.08);}
+      .topbar-user-name{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;line-height:1.15;}
+      .topbar-user-sub{font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--up-gold-light);}
+      .topbar-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--up-gold),#a07a10);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;flex-shrink:0;}
+
+      /* ===== MAIN ===== */
+      .main-content{flex:1;max-width:1280px;margin:0 auto;width:100%;padding:2rem 1.5rem 4rem;}
+
+      /* ===== PAGE HEADER ===== */
+      .page-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;}
+      .page-title{font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:#0f172a;}
+      .page-subtitle{font-size:0.88rem;color:#64748b;margin-top:3px;}
+
+      /* ===== STATS ROW ===== */
+      .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.8rem;}
+      .stat-card{background:#fff;border-radius:14px;border:1.5px solid #e8edf5;padding:1.1rem 1.3rem;display:flex;align-items:center;gap:14px;}
+      .stat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .stat-icon .material-symbols-outlined{font-size:1.15rem;font-variation-settings:'FILL' 1;}
+      .si-blue{background:#eff6ff;color:var(--up-blue);}
+      .si-green{background:#f0fdf4;color:#15803d;}
+      .si-gold{background:#fefce8;color:#a16207;}
+      .si-purple{background:#faf5ff;color:#6d28d9;}
+      .stat-num{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:#0f172a;line-height:1;}
+      .stat-label{font-size:0.72rem;color:#94a3b8;margin-top:2px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+      .stat-trend{font-size:0.7rem;font-weight:700;display:flex;align-items:center;gap:3px;margin-top:3px;}
+      .trend-up{color:#15803d;}
+      .trend-neutral{color:#94a3b8;}
+
+      /* ===== SUBNAV ===== */
+      .subnav{display:flex;align-items:center;gap:0;background:#fff;border-radius:14px;border:1.5px solid #e8edf5;padding:5px;margin-bottom:1.5rem;width:fit-content;}
+      .subnav-btn{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 18px;border-radius:10px;border:none;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;color:#64748b;background:none;}
+      .subnav-btn:hover{color:var(--up-blue);}
+      .subnav-btn.active{background:var(--up-blue);color:#fff;box-shadow:0 3px 10px rgba(0,56,118,0.18);}
+      .subnav-btn .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+
+      /* ===== VIEWS ===== */
+      .view{display:none;}
+      .view.active{display:block;}
+
+      /* ===== VACANTES FILTER BAR ===== */
+      .vac-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:1.2rem;}
+      .vac-search{display:flex;align-items:center;gap:8px;flex:1;min-width:200px;background:#fff;border:1.5px solid #e2e8f0;border-radius:10px;padding:0 12px;height:40px;transition:border-color 0.2s;}
+      .vac-search:focus-within{border-color:var(--up-blue);}
+      .vac-search .material-symbols-outlined{font-size:1rem;color:#94a3b8;}
+      .vac-search input{background:none;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#334155;width:100%;}
+      .vac-search input::placeholder{color:#b0bec5;}
+      .filter-select-wrap{position:relative;}
+      .filter-select-wrap .material-symbols-outlined.fsi{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:0.95rem;color:#64748b;font-variation-settings:'FILL' 1;pointer-events:none;}
+      .filter-select{height:40px;padding:0 30px 0 32px;border-radius:10px;border:1.5px solid #e2e8f0;background:#fff;font-family:'DM Sans',sans-serif;font-size:0.83rem;font-weight:600;color:#334155;cursor:pointer;outline:none;appearance:none;}
+      .filter-select:focus{border-color:var(--up-blue);}
+      .fchev{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-size:0.85rem;color:#94a3b8;pointer-events:none;}
+      .btn-new-vac{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:10px;background:var(--up-gold);color:#fff;border:none;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:background 0.2s,transform 0.15s;box-shadow:0 3px 10px rgba(196,154,26,0.25);white-space:nowrap;}
+      .btn-new-vac:hover{background:var(--up-gold-light);transform:translateY(-1px);}
+      .btn-new-vac .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+
+      /* ===== STATUS TABS ===== */
+      .status-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.2rem;}
+      .status-tab{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 12px;border-radius:50px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:#64748b;cursor:pointer;transition:all 0.2s;}
+      .status-tab:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .status-tab.active{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .tab-count{font-size:0.65rem;font-weight:800;padding:1px 6px;border-radius:50px;}
+      .status-tab.active .tab-count{background:rgba(255,255,255,0.2);}
+      .status-tab:not(.active) .tab-count{background:#f1f5f9;color:#64748b;}
+
+      /* ===== TABLE ===== */
+      .table-card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;box-shadow:0 2px 12px rgba(0,56,118,0.05);overflow:hidden;}
+      .table-head{display:grid;grid-template-columns:2.5fr 1fr 1fr 0.9fr 0.9fr 1fr;align-items:center;padding:0.8rem 1.4rem;background:#f8fafc;border-bottom:1px solid #f1f5f9;}
+      .th{font-size:0.65rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;}
+      .vac-row{display:grid;grid-template-columns:2.5fr 1fr 1fr 0.9fr 0.9fr 1fr;align-items:center;padding:1rem 1.4rem;border-bottom:1px solid #f8fafc;transition:background 0.15s;cursor:pointer;}
+      .vac-row:last-child{border-bottom:none;}
+      .vac-row:hover{background:#fafbfc;}
+      .vac-row-title{font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:700;color:#0f172a;}
+      .vac-row-meta{display:flex;align-items:center;gap:4px;font-size:0.72rem;color:#94a3b8;margin-top:2px;}
+      .vac-row-meta .material-symbols-outlined{font-size:0.8rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+      .vac-date{font-size:0.82rem;color:#64748b;}
+      .vac-date-cierre{font-size:0.7rem;color:#94a3b8;margin-top:1px;}
+      .cand-pill{display:inline-flex;align-items:center;gap:4px;background:#eff6ff;color:var(--up-blue);font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:50px;}
+      .cand-pill .material-symbols-outlined{font-size:0.8rem;font-variation-settings:'FILL' 1;}
+      .status-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:50px;letter-spacing:0.05em;text-transform:uppercase;}
+      .status-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+      .sb-active{background:#f0fdf4;color:#15803d;}.sb-active .status-dot{background:#22c55e;animation:pulse 2s infinite;}
+      .sb-paused{background:#fefce8;color:#92400e;}.sb-paused .status-dot{background:#f59e0b;}
+      .sb-draft{background:#f8fafc;color:#475569;}.sb-draft .status-dot{background:#94a3b8;}
+      .sb-closed{background:#fef2f2;color:#dc2626;}.sb-closed .status-dot{background:#ef4444;}
+      @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+      .row-actions{display:flex;align-items:center;gap:4px;justify-content:flex-end;}
+      .act-btn{width:30px;height:30px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;display:flex;align-items:center;justify-content:center;color:#64748b;cursor:pointer;transition:all 0.2s;}
+      .act-btn:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .act-btn.danger:hover{border-color:#ef4444;color:#ef4444;}
+      .act-btn .material-symbols-outlined{font-size:0.95rem;}
+
+      /* PROGRESS BAR en tabla */
+      .mini-progress{display:flex;flex-direction:column;gap:3px;}
+      .mp-bar-bg{height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden;width:70px;}
+      .mp-bar{height:4px;border-radius:2px;background:linear-gradient(to right,var(--up-blue),var(--up-gold));}
+      .mp-label{font-size:0.68rem;color:#94a3b8;}
+
+      /* TABLE FOOTER */
+      .table-footer{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;border-top:1px solid #f1f5f9;flex-wrap:wrap;gap:0.8rem;}
+      .tf-info{font-size:0.78rem;color:#94a3b8;}
+      .tf-pages{display:flex;align-items:center;gap:6px;}
+      .page-btn{width:32px;height:32px;border-radius:8px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:#334155;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+      .page-btn:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .page-btn.active{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .page-btn:disabled{color:#cbd5e1;cursor:not-allowed;}
+
+      /* ===== CREATE FORM ===== */
+      .create-layout{display:grid;grid-template-columns:1fr 280px;gap:1.5rem;align-items:start;}
+      .form-sections{display:flex;flex-direction:column;gap:1.2rem;}
+
+      /* Section card */
+      .form-section{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;box-shadow:0 2px 8px rgba(0,56,118,0.04);overflow:hidden;}
+      .fs-header{display:flex;align-items:center;gap:10px;padding:1.1rem 1.6rem;border-bottom:1px solid #f1f5f9;}
+      .fs-header-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;}
+      .fs-header-icon .material-symbols-outlined{font-size:1.05rem;font-variation-settings:'FILL' 1;}
+      .fs-title{font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:800;color:#0f172a;}
+      .fs-subtitle{font-size:0.72rem;color:#94a3b8;margin-top:1px;}
+      .fs-body{padding:1.4rem 1.6rem;display:flex;flex-direction:column;gap:1.1rem;}
+
+      /* Form controls */
+      .form-group{display:flex;flex-direction:column;gap:5px;}
+      .form-label{font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:#334155;letter-spacing:0.03em;}
+      .form-label-opt{font-size:0.68rem;font-weight:600;color:#94a3b8;margin-left:4px;}
+      .form-input{height:42px;border:1.5px solid #e2e8f0;border-radius:10px;padding:0 14px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;transition:border-color 0.2s,box-shadow 0.2s;background:#fff;width:100%;}
+      .form-input:focus{border-color:var(--up-blue);box-shadow:0 0 0 3px rgba(0,56,118,0.07);}
+      .form-input::placeholder{color:#b0bec5;}
+      .form-textarea{border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;transition:border-color 0.2s,box-shadow 0.2s;background:#fff;width:100%;resize:vertical;min-height:110px;line-height:1.65;}
+      .form-textarea:focus{border-color:var(--up-blue);box-shadow:0 0 0 3px rgba(0,56,118,0.07);}
+      .form-textarea::placeholder{color:#b0bec5;}
+      .form-select{height:42px;border:1.5px solid #e2e8f0;border-radius:10px;padding:0 36px 0 14px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 10px center no-repeat;width:100%;transition:border-color 0.2s;}
+      .form-select:focus{border-color:var(--up-blue);}
+      .form-hint{font-size:0.72rem;color:#94a3b8;line-height:1.5;}
+      .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+      .form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+
+      /* Modalidad selector */
+      .modality-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+      .modality-opt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;border:1.5px solid #e2e8f0;border-radius:12px;cursor:pointer;transition:all 0.2s;background:#fff;}
+      .modality-opt:hover{border-color:var(--up-blue);background:#f8fbff;}
+      .modality-opt.selected{border-color:var(--up-blue);background:#eff6ff;}
+      .modality-opt input[type=radio]{display:none;}
+      .modality-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;transition:background 0.2s;}
+      .modality-icon .material-symbols-outlined{font-size:1.1rem;color:#64748b;font-variation-settings:'FILL' 1;transition:color 0.2s;}
+      .modality-opt.selected .modality-icon{background:var(--up-blue);}
+      .modality-opt.selected .modality-icon .material-symbols-outlined{color:#fff;}
+      .modality-label{font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:#334155;}
+      .modality-opt.selected .modality-label{color:var(--up-blue);}
+
+      /* Jornada toggle */
+      .jornada-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+      .jornada-opt{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:all 0.2s;background:#fff;text-align:center;}
+      .jornada-opt:hover{border-color:var(--up-blue);}
+      .jornada-opt.selected{border-color:var(--up-gold);background:#fefce8;}
+      .jornada-opt input[type=checkbox]{display:none;}
+      .jornada-label{font-family:'Sora',sans-serif;font-size:0.73rem;font-weight:700;color:#334155;}
+      .jornada-opt.selected .jornada-label{color:#92400e;}
+
+      /* Tags input */
+      .tags-input-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px;border:1.5px solid #e2e8f0;border-radius:10px;background:#fff;min-height:46px;align-items:center;cursor:text;transition:border-color 0.2s;}
+      .tags-input-wrap:focus-within{border-color:var(--up-blue);}
+      .tag-pill{display:inline-flex;align-items:center;gap:4px;background:#eff6ff;border:1px solid #bfdbfe;color:var(--up-blue);font-size:0.72rem;font-weight:700;padding:3px 9px;border-radius:50px;}
+      .tag-remove{cursor:pointer;color:var(--up-blue);opacity:0.6;font-size:0.75rem;transition:opacity 0.2s;background:none;border:none;padding:0;display:flex;align-items:center;}
+      .tag-remove:hover{opacity:1;}
+      .tags-input{border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:0.83rem;color:#334155;background:none;min-width:80px;flex:1;}
+      .tags-input::placeholder{color:#b0bec5;}
+
+      /* Salary range */
+      .salary-wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;}
+      .salary-sep{font-size:0.85rem;color:#94a3b8;font-weight:700;text-align:center;}
+
+      /* Benefits chips */
+      .benefits-chips{display:flex;flex-wrap:wrap;gap:7px;}
+      .benefit-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1.5px solid #e2e8f0;border-radius:50px;font-size:0.75rem;font-weight:600;color:#64748b;cursor:pointer;transition:all 0.2s;background:#fff;}
+      .benefit-chip:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .benefit-chip.selected{background:#eff6ff;border-color:var(--up-blue);color:var(--up-blue);}
+      .benefit-chip .material-symbols-outlined{font-size:0.85rem;font-variation-settings:'FILL' 1;}
+
+      /* ===== SIDEBAR FORM ===== */
+      .form-sidebar{display:flex;flex-direction:column;gap:1.2rem;}
+      .sidebar-card{background:#fff;border-radius:16px;border:1.5px solid #e8edf5;padding:1.2rem;}
+      .sc-title{font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;color:#0f172a;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:6px;}
+      .sc-title .material-symbols-outlined{font-size:0.95rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+
+      /* Preview card */
+      .preview-card{background:linear-gradient(135deg,#f8fafc,#eff6ff);border:1.5px solid #bfdbfe;border-radius:16px;padding:1.2rem;}
+      .preview-job-title{font-family:'Sora',sans-serif;font-size:0.92rem;font-weight:800;color:#0f172a;margin-bottom:4px;}
+      .preview-company{font-size:0.78rem;color:var(--up-blue);font-weight:700;margin-bottom:8px;}
+      .preview-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
+      .preview-tag{display:inline-flex;font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;}
+      .pt-blue{background:#eff6ff;color:#1e40af;}
+      .pt-gold{background:#fefce8;color:#a16207;}
+      .preview-desc{font-size:0.78rem;color:#64748b;line-height:1.6;}
+
+      /* Checklist sidebar */
+      .checklist-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f8fafc;font-size:0.8rem;}
+      .checklist-item:last-child{border-bottom:none;}
+      .ci-icon{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .ci-done{background:#f0fdf4;color:#22c55e;}
+      .ci-done .material-symbols-outlined{font-size:0.8rem;font-variation-settings:'FILL' 1;}
+      .ci-pending{background:#f1f5f9;color:#94a3b8;}
+      .ci-pending .material-symbols-outlined{font-size:0.8rem;}
+      .ci-text-done{color:#334155;}
+      .ci-text-pending{color:#94a3b8;}
+
+      /* Tips */
+      .tip-item{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #f8fafc;font-size:0.78rem;color:#64748b;line-height:1.6;}
+      .tip-item:last-child{border-bottom:none;}
+      .tip-icon{color:var(--up-gold);flex-shrink:0;margin-top:1px;}
+      .tip-icon .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 1;}
+
+      /* FORM ACTIONS */
+      .form-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px;padding-top:0.5rem;}
+      .btn-draft{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 20px;border-radius:11px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;color:#64748b;cursor:pointer;transition:all 0.2s;}
+      .btn-draft:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .btn-preview{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 20px;border-radius:11px;border:1.5px solid var(--up-blue);background:#fff;font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;color:var(--up-blue);cursor:pointer;transition:all 0.2s;}
+      .btn-preview:hover{background:#eff6ff;}
+      .btn-publish{display:inline-flex;align-items:center;gap:7px;height:44px;padding:0 22px;border-radius:11px;border:none;background:var(--up-blue);color:#fff;font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 14px rgba(0,56,118,0.22);}
+      .btn-publish:hover{background:var(--up-gold);}
+      .btn-publish .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+
+      /* ===== FOOTER ===== */
+      .footer-strip{background:#fff;border-top:1px solid #e8edf5;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;font-size:0.72rem;color:#94a3b8;}
+      .footer-brand{display:flex;align-items:center;gap:6px;opacity:0.6;}
+
+      /* ===== RESPONSIVE ===== */
+      @media(max-width:1024px){.create-layout{grid-template-columns:1fr;}.stats-row{grid-template-columns:repeat(2,1fr);}}
+      @media(max-width:768px){.topbar-nav{display:none;}.table-head,.vac-row{grid-template-columns:2fr 0.9fr 0.9fr 0.8fr;}.th:nth-child(2),.th:nth-child(3),.vac-row>*:nth-child(2),.vac-row>*:nth-child(3){display:none;}.form-grid-2,.form-grid-3{grid-template-columns:1fr;}.jornada-grid{grid-template-columns:repeat(2,1fr);}.modality-grid{grid-template-columns:repeat(3,1fr);}}
+      @media(max-width:480px){.stats-row{grid-template-columns:1fr 1fr;}}
+
+  //- TOPBAR
+  header.topbar
+    .topbar-inner
+      a.topbar-brand(href='/')
+        .topbar-brand-icon
+          span.material-symbols-outlined(style='font-size:1.2rem;font-variation-settings:"FILL" 1') school
+        div
+          .topbar-brand-name Portal de Empleo UP
+          .topbar-brand-sub Empleadores
+      nav.topbar-nav
+        a(href='/employer/profile') Perfil
+        a.active(href='/employer/vacancies') Vacantes
+        a(href='/employer/candidates') Candidatos
+      .topbar-right
+        button.topbar-icon-btn(title='Configuracion')
+          span.material-symbols-outlined(style='font-size:1.1rem') settings
+        button.topbar-icon-btn(title='Notificaciones')
+          span.material-symbols-outlined(style='font-size:1.1rem') notifications
+          .notif-dot
+        .topbar-divider
+        .topbar-user
+          div(style='text-align:right')
+            .topbar-user-name Admin Reclutamiento
+            .topbar-user-sub Tech Solutions S.A.
+          .topbar-avatar TS
+
+  //- MAIN
+  main.main-content
+
+    //- PAGE HEADER
+    .page-header
+      div
+        h1.page-title Gestion de Vacantes
+        .page-subtitle Administra tus ofertas laborales activas y revisa las aplicaciones del talento UP.
+      button.btn-new-vac(onclick='switchView("crear")')
+        span.material-symbols-outlined add
+        | Nueva Vacante
+
+    //- STATS
+    .stats-row
+      .stat-card
+        .stat-icon.si-blue
+          span.material-symbols-outlined work
+        div
+          .stat-num 12
+          .stat-label Total Vacantes
+          .stat-trend.trend-up
+            span.material-symbols-outlined(style='font-size:0.85rem') trending_up
+            | +2 este mes
+      .stat-card
+        .stat-icon.si-green
+          span.material-symbols-outlined group_add
+        div
+          .stat-num 148
+          .stat-label Candidatos Activos
+          .stat-trend.trend-up
+            span.material-symbols-outlined(style='font-size:0.85rem') trending_up
+            | +24 esta semana
+      .stat-card
+        .stat-icon.si-gold
+          span.material-symbols-outlined bolt
+        div
+          .stat-num 85%
+          .stat-label Tasa de Respuesta
+          .stat-trend.trend-neutral
+            span.material-symbols-outlined(style='font-size:0.85rem') remove
+            | Estable
+      .stat-card
+        .stat-icon.si-purple
+          span.material-symbols-outlined how_to_reg
+        div
+          .stat-num 8
+          .stat-label Contratados UP
+          .stat-trend.trend-up
+            span.material-symbols-outlined(style='font-size:0.85rem') trending_up
+            | +3 este trimestre
+
+    //- SUBNAV
+    .subnav
+      button.subnav-btn.active#btn-publicadas(onclick='switchView("publicadas")')
+        span.material-symbols-outlined list_alt
+        | Vacantes Publicadas
+      button.subnav-btn#btn-crear(onclick='switchView("crear")')
+        span.material-symbols-outlined add_circle
+        | Crear Vacante
+
+    //- ===== VIEW: PUBLICADAS =====
+    #view-publicadas.view.active
+
+      .vac-toolbar
+        .vac-search
+          span.material-symbols-outlined search
+          input(type='text' placeholder='Buscar por cargo o empresa...')
+        .filter-select-wrap
+          span.material-symbols-outlined.fsi tune
+          select.filter-select
+            option Modalidad
+            option Tiempo Completo
+            option Tiempo Parcial
+            option Remoto
+            option Hibrido
+            option Presencial
+          span.material-symbols-outlined.fchev expand_more
+        .filter-select-wrap
+          span.material-symbols-outlined.fsi sort
+          select.filter-select
+            option Mas recientes
+            option Mas postulaciones
+            option Cierre proximo
+          span.material-symbols-outlined.fchev expand_more
+
+      .status-tabs
+        button.status-tab.active
+          | Todas
+          span.tab-count 12
+        button.status-tab
+          span(style='width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block')
+          | Activas
+          span.tab-count 8
+        button.status-tab
+          span(style='width:6px;height:6px;border-radius:50%;background:#f59e0b;display:inline-block')
+          | En Pausa
+          span.tab-count 2
+        button.status-tab
+          span(style='width:6px;height:6px;border-radius:50%;background:#94a3b8;display:inline-block')
+          | Borrador
+          span.tab-count 1
+        button.status-tab
+          span(style='width:6px;height:6px;border-radius:50%;background:#ef4444;display:inline-block')
+          | Cerradas
+          span.tab-count 1
+
+      .table-card
+        .table-head
+          .th Titulo del Puesto
+          .th Publicacion / Cierre
+          .th Modalidad
+          .th Candidatos
+          .th Estado
+          .th Acciones
+
+        //- Row 1
+        .vac-row
+          div
+            .vac-row-title Desarrollador Frontend React
+            .vac-row-meta
+              span.material-symbols-outlined corporate_fare
+              | Tech Solutions S.A. &middot; FIEC
+          div
+            .vac-date 01 Nov, 2025
+            .vac-date-cierre Cierra: 30 Nov, 2025
+          div(style='font-size:0.82rem;color:#64748b') Hibrido
+          div
+            .cand-pill
+              span.material-symbols-outlined group
+              | 38
+            .mini-progress(style='margin-top:4px')
+              .mp-bar-bg
+                .mp-bar(style='width:76%')
+              .mp-label 38 / 50 cupos
+          span.status-badge.sb-active
+            .status-dot
+            | Activa
+          .row-actions
+            button.act-btn(title='Editar' onclick='switchView("crear")')
+              span.material-symbols-outlined edit
+            button.act-btn(title='Pausar')
+              span.material-symbols-outlined pause_circle
+            button.act-btn.danger(title='Eliminar')
+              span.material-symbols-outlined delete
+
+        //- Row 2
+        .vac-row
+          div
+            .vac-row-title Analista de Datos
+            .vac-row-meta
+              span.material-symbols-outlined corporate_fare
+              | Tech Solutions S.A. &middot; FIEC / FAECO
+          div
+            .vac-date 25 Oct, 2025
+            .vac-date-cierre Cierra: 15 Dic, 2025
+          div(style='font-size:0.82rem;color:#64748b') Remoto
+          div
+            .cand-pill
+              span.material-symbols-outlined group
+              | 21
+            .mini-progress(style='margin-top:4px')
+              .mp-bar-bg
+                .mp-bar(style='width:42%')
+              .mp-label 21 / 50 cupos
+          span.status-badge.sb-active
+            .status-dot
+            | Activa
+          .row-actions
+            button.act-btn(title='Editar' onclick='switchView("crear")')
+              span.material-symbols-outlined edit
+            button.act-btn(title='Pausar')
+              span.material-symbols-outlined pause_circle
+            button.act-btn.danger(title='Eliminar')
+              span.material-symbols-outlined delete
+
+        //- Row 3
+        .vac-row
+          div
+            .vac-row-title Pasante de Marketing Digital
+            .vac-row-meta
+              span.material-symbols-outlined corporate_fare
+              | Tech Solutions S.A. &middot; FAECO
+          div
+            .vac-date 20 Oct, 2025
+            .vac-date-cierre Cierra: 10 Dic, 2025
+          div(style='font-size:0.82rem;color:#64748b') Presencial
+          div
+            .cand-pill
+              span.material-symbols-outlined group
+              | 12
+            .mini-progress(style='margin-top:4px')
+              .mp-bar-bg
+                .mp-bar(style='width:24%')
+              .mp-label 12 / 50 cupos
+          span.status-badge.sb-active
+            .status-dot
+            | Activa
+          .row-actions
+            button.act-btn(title='Editar' onclick='switchView("crear")')
+              span.material-symbols-outlined edit
+            button.act-btn(title='Pausar')
+              span.material-symbols-outlined pause_circle
+            button.act-btn.danger(title='Eliminar')
+              span.material-symbols-outlined delete
+
+        //- Row 4
+        .vac-row
+          div
+            .vac-row-title Cloud Data Engineer
+            .vac-row-meta
+              span.material-symbols-outlined corporate_fare
+              | Tech Solutions S.A. &middot; FIEC
+          div
+            .vac-date 10 Oct, 2025
+            .vac-date-cierre Sin fecha limite
+          div(style='font-size:0.82rem;color:#64748b') Remoto
+          div
+            .cand-pill
+              span.material-symbols-outlined group
+              | 9
+            .mini-progress(style='margin-top:4px')
+              .mp-bar-bg
+                .mp-bar(style='width:18%')
+              .mp-label 9 / 50 cupos
+          span.status-badge.sb-paused
+            .status-dot
+            | En Pausa
+          .row-actions
+            button.act-btn(title='Editar' onclick='switchView("crear")')
+              span.material-symbols-outlined edit
+            button.act-btn(title='Activar')
+              span.material-symbols-outlined play_circle
+            button.act-btn.danger(title='Eliminar')
+              span.material-symbols-outlined delete
+
+        //- Row 5
+        .vac-row
+          div
+            .vac-row-title Soporte Tecnico TI
+            .vac-row-meta
+              span.material-symbols-outlined corporate_fare
+              | Tech Solutions S.A. &middot; FIEC
+          div
+            .vac-date 05 Oct, 2025
+            .vac-date-cierre Sin fecha limite
+          div(style='font-size:0.82rem;color:#64748b') Presencial
+          div
+            .cand-pill(style='background:#f1f5f9;color:#94a3b8')
+              span.material-symbols-outlined group
+              | 0
+            .mini-progress(style='margin-top:4px')
+              .mp-bar-bg
+                .mp-bar(style='width:0%')
+              .mp-label Sin publicar aun
+          span.status-badge.sb-draft
+            .status-dot
+            | Borrador
+          .row-actions
+            button.act-btn(title='Editar' onclick='switchView("crear")')
+              span.material-symbols-outlined edit
+            button.act-btn(title='Publicar')
+              span.material-symbols-outlined publish
+            button.act-btn.danger(title='Eliminar')
+              span.material-symbols-outlined delete
+
+        .table-footer
+          .tf-info Mostrando 5 de 12 vacantes
+          .tf-pages
+            button.page-btn(disabled)
+              span.material-symbols-outlined(style='font-size:0.9rem') chevron_left
+            button.page-btn.active 1
+            button.page-btn 2
+            button.page-btn 3
+            button.page-btn
+              span.material-symbols-outlined(style='font-size:0.9rem') chevron_right
+
+    //- ===== VIEW: CREAR VACANTE =====
+    #view-crear.view
+      .create-layout
+
+        //- FORM SECTIONS
+        .form-sections
+
+          //- SECCION 1: INFORMACION DEL PUESTO
+          .form-section
+            .fs-header
+              .fs-header-icon
+                span.material-symbols-outlined work
+              div
+                .fs-title Informacion del Puesto
+                .fs-subtitle Datos principales de la oferta laboral
+            .fs-body
+              .form-group
+                label.form-label Titulo de la Vacante
+                input.form-input(type='text' placeholder='Ej. Desarrollador Fullstack Senior (React/Node.js)')
+              .form-group
+                label.form-label Descripcion de la Vacante
+                textarea.form-textarea(placeholder='Describa las responsabilidades principales, el equipo y la mision del rol...' rows='5')
+              .form-group
+                label.form-label Modalidad de Trabajo
+                .modality-grid
+                  label.modality-opt.selected
+                    input(type='radio' name='modalidad' value='presencial' checked)
+                    .modality-icon
+                      span.material-symbols-outlined corporate_fare
+                    .modality-label Presencial
+                  label.modality-opt
+                    input(type='radio' name='modalidad' value='hibrido')
+                    .modality-icon
+                      span.material-symbols-outlined home_work
+                    .modality-label Hibrido
+                  label.modality-opt
+                    input(type='radio' name='modalidad' value='remoto')
+                    .modality-icon
+                      span.material-symbols-outlined cloud
+                    .modality-label Remoto
+              .form-group
+                label.form-label Tipo de Jornada
+                .jornada-grid
+                  label.jornada-opt.selected
+                    input(type='checkbox' checked)
+                    .jornada-label Tiempo Completo
+                  label.jornada-opt
+                    input(type='checkbox')
+                    .jornada-label Tiempo Parcial
+                  label.jornada-opt
+                    input(type='checkbox')
+                    .jornada-label Por Horas
+                  label.jornada-opt
+                    input(type='checkbox')
+                    .jornada-label Contrato
+
+          //- SECCION 2: REQUISITOS
+          .form-section
+            .fs-header
+              .fs-header-icon
+                span.material-symbols-outlined checklist
+              div
+                .fs-title Requisitos
+                .fs-subtitle Perfil academico y profesional requerido
+            .fs-body
+              .form-grid-2
+                .form-group
+                  label.form-label Nivel Academico Minimo
+                  select.form-select
+                    option Estudiante de Licenciatura
+                    option Egresado / Licenciatura
+                    option Tecnico Superior
+                    option Maestria
+                    option Doctorado
+                .form-group
+                  label.form-label Anos de Experiencia
+                  input.form-input(type='number' placeholder='Ej. 2' min='0')
+              .form-group
+                label.form-label Facultad(es) UP Relevantes
+                  span.form-label-opt (opcional)
+                .tags-input-wrap
+                  span.tag-pill
+                    | FIEC
+                    button.tag-remove &times;
+                  span.tag-pill
+                    | FAECO
+                    button.tag-remove &times;
+                  input.tags-input(type='text' placeholder='Anadir facultad...')
+              .form-group
+                label.form-label Idiomas Requeridos
+                .tags-input-wrap
+                  span.tag-pill
+                    | Español (Nativo)
+                    button.tag-remove &times;
+                  span.tag-pill
+                    | Ingles Avanzado
+                    button.tag-remove &times;
+                  input.tags-input(type='text' placeholder='Anadir idioma...')
+              .form-group
+                label.form-label Habilidades Tecnicas
+                .tags-input-wrap#skills-wrap
+                  span.tag-pill
+                    | React.js
+                    button.tag-remove &times;
+                  span.tag-pill
+                    | Node.js
+                    button.tag-remove &times;
+                  span.tag-pill
+                    | SQL
+                    button.tag-remove &times;
+                  input.tags-input(type='text' placeholder='Anadir habilidad...' id='skill-input')
+
+          //- SECCION 3: DETALLES DE LA OFERTA
+          .form-section
+            .fs-header
+              .fs-header-icon
+                span.material-symbols-outlined redeem
+              div
+                .fs-title Detalles de la Oferta
+                .fs-subtitle Compensacion, beneficios y ubicacion
+            .fs-body
+              .form-group
+                label.form-label Rango Salarial (USD / mes)
+                  span.form-label-opt (opcional)
+                .salary-wrap
+                  input.form-input(type='number' placeholder='Minimo Ej. 800')
+                  .salary-sep &mdash;
+                  input.form-input(type='number' placeholder='Maximo Ej. 1500')
+                p.form-hint Si no deseas especificar, se mostrara "A convenir".
+              .form-group
+                label.form-label Beneficios Ofrecidos
+                .benefits-chips
+                  label.benefit-chip.selected(onclick='this.classList.toggle("selected")')
+                    span.material-symbols-outlined health_and_safety
+                    | Seguro Medico
+                  label.benefit-chip(onclick='this.classList.toggle("selected")')
+                    span.material-symbols-outlined laptop_mac
+                    | Equipo Tech
+                  label.benefit-chip.selected(onclick='this.classList.toggle("selected")')
+                    span.material-symbols-outlined school
+                    | Capacitacion
+                  label.benefit-chip(onclick='this.classList.toggle("selected")')
+                    span.material-symbols-outlined fitness_center
+                    | Gym / Bienestar
+                  label.benefit-chip(onclick='this.classList.toggle("selected")')
+                    span.material-symbols-outlined payments
+                    | Bono Desempeno
+                  label.benefit-chip(onclick='this.classList.toggle("selected")')
+                    span.material-symbols-outlined directions_bus
+                    | Transporte
+                  label.benefit-chip(onclick='this.classList.toggle("selected")')
+                    span.material-symbols-outlined lunch_dining
+                    | Alimentacion
+                  label.benefit-chip(onclick='this.classList.toggle("selected")')
+                    span.material-symbols-outlined home_work
+                    | Trabajo Flexible
+              .form-group
+                label.form-label Ubicacion Exacta
+                  span.form-label-opt (si aplica)
+                input.form-input(type='text' placeholder='Ej. Costa del Este, Torre Globalbank, Piso 12')
+
+          //- SECCION 4: CONFIGURACION
+          .form-section
+            .fs-header
+              .fs-header-icon
+                span.material-symbols-outlined settings
+              div
+                .fs-title Configuracion de la Publicacion
+                .fs-subtitle Parametros de visibilidad y cupos
+            .fs-body
+              .form-grid-2
+                .form-group
+                  label.form-label Fecha de Cierre
+                  input.form-input(type='date')
+                  p.form-hint La vacante se ocultara automaticamente despues de esta fecha.
+                .form-group
+                  label.form-label Limite de Postulaciones
+                  input.form-input(type='number' placeholder='Ej. 50' min='1')
+                  p.form-hint Dejar vacio para aceptar postulaciones ilimitadas.
+              .form-group
+                label.form-label Visibilidad
+                .jornada-grid(style='grid-template-columns:1fr 1fr')
+                  label.jornada-opt.selected
+                    input(type='radio' name='visibilidad')
+                    .jornada-label Publica (toda la UP)
+                  label.jornada-opt
+                    input(type='radio' name='visibilidad')
+                    .jornada-label Facultades especificas
+
+          //- FORM ACTIONS
+          .form-actions
+            button.btn-draft
+              span.material-symbols-outlined(style='font-size:1rem') draft
+              | Guardar Borrador
+            button.btn-preview
+              span.material-symbols-outlined(style='font-size:1rem') preview
+              | Vista Previa
+            button.btn-publish
+              span.material-symbols-outlined send
+              | Publicar Vacante
+
+        //- FORM SIDEBAR
+        .form-sidebar
+
+          //- PREVIEW
+          .preview-card
+            div(style='font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px') Vista previa del candidato
+            .preview-job-title Desarrollador Fullstack Senior
+            .preview-company Tech Solutions S.A.
+            .preview-tags
+              span.preview-tag.pt-blue Tiempo Completo
+              span.preview-tag.pt-gold Presencial
+            .preview-desc Descripcion de la vacante aparecera aqui al completar el formulario...
+
+          //- CHECKLIST
+          .sidebar-card
+            .sc-title
+              span.material-symbols-outlined checklist
+              | Completitud
+            .checklist-item
+              .ci-icon.ci-done
+                span.material-symbols-outlined check
+              span.ci-text-done Titulo del puesto
+            .checklist-item
+              .ci-icon.ci-done
+                span.material-symbols-outlined check
+              span.ci-text-done Modalidad seleccionada
+            .checklist-item
+              .ci-icon.ci-pending
+                span.material-symbols-outlined radio_button_unchecked
+              span.ci-text-pending Descripcion del puesto
+            .checklist-item
+              .ci-icon.ci-pending
+                span.material-symbols-outlined radio_button_unchecked
+              span.ci-text-pending Requisitos academicos
+            .checklist-item
+              .ci-icon.ci-pending
+                span.material-symbols-outlined radio_button_unchecked
+              span.ci-text-pending Fecha de cierre
+            .checklist-item
+              .ci-icon.ci-done
+                span.material-symbols-outlined check
+              span.ci-text-done Habilidades requeridas
+
+          //- TIPS
+          .sidebar-card
+            .sc-title
+              span.material-symbols-outlined lightbulb
+              | Consejos UP
+            .tip-item
+              .tip-icon
+                span.material-symbols-outlined tips_and_updates
+              | Las vacantes con descripcion detallada reciben un 60% mas de postulaciones.
+            .tip-item
+              .tip-icon
+                span.material-symbols-outlined tips_and_updates
+              | Especifica la facultad relevante para atraer candidatos con el perfil correcto.
+            .tip-item
+              .tip-icon
+                span.material-symbols-outlined tips_and_updates
+              | Incluir el rango salarial aumenta la tasa de postulacion en un 35%.
+
+  //- FOOTER
+  footer.footer-strip
+    .footer-brand
+      span.material-symbols-outlined(style='font-size:1rem') school
+      span Portal de Empleo UP
+    span &copy; #{new Date().getFullYear()} Universidad de Panama &mdash; Dirección de Tecnología de la Información y Comunicación.
+    div(style='display:flex;gap:1rem')
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Terminos
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Privacidad
+      a(href='/contacto' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Soporte
+
+  script.
+    function switchView(view) {
+      document.querySelectorAll('.view').forEach(function(v) { v.classList.remove('active'); });
+      document.querySelectorAll('.subnav-btn').forEach(function(b) { b.classList.remove('active'); });
+      document.getElementById('view-' + view).classList.add('active');
+      document.getElementById('btn-' + (view === 'publicadas' ? 'publicadas' : 'crear')).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    // Modality selector
+    document.querySelectorAll('.modality-opt').forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        document.querySelectorAll('.modality-opt').forEach(function(o) { o.classList.remove('selected'); });
+        this.classList.add('selected');
+      });
+    });
+
+    // Jornada toggle
+    document.querySelectorAll('.jornada-opt').forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        this.classList.toggle('selected');
+      });
+    });
+
+    // Status tabs
+    document.querySelectorAll('.status-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.status-tab').forEach(function(t) { t.classList.remove('active'); });
+        this.classList.add('active');
+      });
+    });
+
+    // Tags input (skills example)
+    var skillInput = document.getElementById('skill-input');
+    var skillsWrap = document.getElementById('skills-wrap');
+    if(skillInput) {
+      skillInput.addEventListener('keydown', function(e) {
+        if((e.key === 'Enter' || e.key === ',') && this.value.trim()) {
+          e.preventDefault();
+          var tag = document.createElement('span');
+          tag.className = 'tag-pill';
+          tag.innerHTML = this.value.trim() + '<button class="tag-remove" onclick="this.parentElement.remove()">&times;</button>';
+          skillsWrap.insertBefore(tag, this);
+          this.value = '';
+        }
+      });
+    }
+
+    // Responsive layout
+    function applyR() {
+      var w = window.innerWidth;
+      var cl = document.querySelector('.create-layout');
+      if(cl) cl.style.gridTemplateColumns = w < 1024 ? '1fr' : '1fr 280px';
+      var sr = document.querySelector('.stats-row');
+      if(sr) sr.style.gridTemplateColumns = w < 480 ? '1fr 1fr' : (w < 1024 ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)');
+    }
+    applyR();
+    window.addEventListener('resize', applyR);

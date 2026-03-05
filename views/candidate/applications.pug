@@ -1,0 +1,594 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Mis Postulaciones - Portal de Empleo UP
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
+    style.
+      :root{--up-blue:#003876;--up-blue-dark:#002147;--up-gold:#C49A1A;--up-gold-light:#e8c44d;--bg:#f0f4f8;}
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a2233;min-height:100vh;display:flex;flex-direction:column;}
+      h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+
+      /* TOPBAR */
+      .topbar{background:var(--up-blue);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,56,118,0.18);}
+      .topbar-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
+      .topbar-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+      .topbar-brand-icon{background:var(--up-gold);border-radius:9px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--up-blue);flex-shrink:0;}
+      .topbar-brand-name{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;}
+      .topbar-nav{display:flex;align-items:center;height:100%;}
+      .topbar-nav a{display:flex;align-items:center;height:100%;padding:0 1.1rem;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.65);text-decoration:none;letter-spacing:0.03em;border-bottom:3px solid transparent;transition:color 0.2s,border-color 0.2s;}
+      .topbar-nav a:hover{color:#fff;}
+      .topbar-nav a.active{color:#fff;border-bottom-color:var(--up-gold);}
+      .topbar-right{display:flex;align-items:center;gap:6px;}
+      .topbar-icon-btn{background:rgba(255,255,255,0.08);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.75);cursor:pointer;transition:background 0.2s;position:relative;}
+      .topbar-icon-btn:hover{background:rgba(255,255,255,0.16);color:#fff;}
+      .notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--up-gold);border:2px solid var(--up-blue);}
+      .topbar-divider{width:1px;height:28px;background:rgba(255,255,255,0.15);margin:0 4px;}
+      .topbar-user{display:flex;align-items:center;gap:9px;cursor:pointer;padding:4px 8px;border-radius:10px;transition:background 0.2s;}
+      .topbar-user:hover{background:rgba(255,255,255,0.08);}
+      .topbar-user-name{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;line-height:1.1;}
+      .topbar-user-role{font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--up-gold-light);}
+      .topbar-avatar-placeholder{width:36px;height:36px;border-radius:50%;background:var(--up-gold);display:flex;align-items:center;justify-content:center;color:var(--up-blue);font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:800;flex-shrink:0;}
+
+      /* MAIN */
+      .main-content{flex:1;max-width:1280px;margin:0 auto;width:100%;padding:2rem 1.5rem 4rem;}
+
+      /* STATS ROW */
+      .stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:1.8rem;}
+      .stat-card{background:#fff;border-radius:14px;border:1.5px solid #e8edf5;padding:1rem 1.2rem;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color 0.2s,box-shadow 0.2s;}
+      .stat-card:hover,.stat-card.active{border-color:var(--up-blue);box-shadow:0 4px 16px rgba(0,56,118,0.1);}
+      .stat-card.active{background:#eff6ff;}
+      .stat-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .stat-icon .material-symbols-outlined{font-size:1.1rem;font-variation-settings:'FILL' 1;}
+      .si-all{background:#f1f5f9;color:#64748b;}
+      .si-sent{background:#f1f5f9;color:#64748b;}
+      .si-review{background:#eff6ff;color:#1e40af;}
+      .si-interview{background:#fefce8;color:#a16207;}
+      .si-accepted{background:#f0fdf4;color:#15803d;}
+      .si-rejected{background:#fef2f2;color:#dc2626;}
+      .stat-num{font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;color:#0f172a;line-height:1;}
+      .stat-label{font-size:0.72rem;color:#94a3b8;margin-top:1px;}
+
+      /* PAGE HEADER */
+      .page-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;}
+      .page-title{font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:#0f172a;}
+      .page-subtitle{font-size:0.88rem;color:#64748b;margin-top:3px;}
+
+      /* FILTER TABS */
+      .filter-tabs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:1.2rem;}
+      .filter-tab{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:50px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:#64748b;cursor:pointer;transition:all 0.2s;}
+      .filter-tab:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .filter-tab.active{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .filter-tab-count{font-size:0.68rem;font-weight:800;padding:1px 6px;border-radius:50px;}
+      .filter-tab.active .filter-tab-count{background:rgba(255,255,255,0.2);color:#fff;}
+      .filter-tab:not(.active) .filter-tab-count{background:#f1f5f9;color:#64748b;}
+
+      /* TABLE CARD */
+      .table-card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;box-shadow:0 2px 12px rgba(0,56,118,0.05);overflow:hidden;}
+      .table-header-row{display:grid;grid-template-columns:2.5fr 1.5fr 1fr 1.2fr 1.2fr 0.8fr;align-items:center;padding:0.9rem 1.4rem;background:#f8fafc;border-bottom:1px solid #f1f5f9;}
+      .th{font-size:0.65rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;}
+
+      /* APPLICATION ROW */
+      .app-row{display:grid;grid-template-columns:2.5fr 1.5fr 1fr 1.2fr 1.2fr 0.8fr;align-items:center;padding:1rem 1.4rem;border-bottom:1px solid #f8fafc;transition:background 0.15s;cursor:pointer;}
+      .app-row:last-child{border-bottom:none;}
+      .app-row:hover{background:#fafbfc;}
+      .app-job-title{font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:700;color:#0f172a;margin-bottom:2px;}
+      .app-job-meta{display:flex;align-items:center;gap:5px;font-size:0.72rem;color:#94a3b8;}
+      .app-job-meta .material-symbols-outlined{font-size:0.8rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+      .app-company{display:flex;align-items:center;gap:8px;}
+      .co-logo{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:800;flex-shrink:0;}
+      .co-name{font-size:0.83rem;font-weight:600;color:#334155;}
+      .app-date{font-size:0.82rem;color:#64748b;}
+      .app-days{font-size:0.7rem;color:#94a3b8;margin-top:1px;}
+
+      /* STATUS BADGES */
+      .status-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:50px;letter-spacing:0.04em;}
+      .status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+      .s-sent{background:#f1f5f9;color:#475569;}.s-sent .status-dot{background:#94a3b8;}
+      .s-review{background:#eff6ff;color:#1e40af;}.s-review .status-dot{background:#3b82f6;animation:pulse 2s infinite;}
+      .s-interview{background:#fefce8;color:#92400e;}.s-interview .status-dot{background:#f59e0b;animation:pulse 2s infinite;}
+      .s-accepted{background:#f0fdf4;color:#15803d;}.s-accepted .status-dot{background:#22c55e;}
+      .s-rejected{background:#fef2f2;color:#dc2626;}.s-rejected .status-dot{background:#ef4444;}
+      .s-withdrawn{background:#f8fafc;color:#94a3b8;}.s-withdrawn .status-dot{background:#cbd5e1;}
+      @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+      /* PROGRESS TIMELINE */
+      .progress-timeline{display:flex;align-items:center;gap:2px;}
+      .pt-step{width:18px;height:4px;border-radius:2px;background:#e2e8f0;transition:background 0.2s;}
+      .pt-step.done{background:var(--up-blue);}
+      .pt-step.current{background:var(--up-gold);}
+
+      /* ACTION BTNS */
+      .row-actions{display:flex;align-items:center;gap:4px;justify-content:flex-end;}
+      .row-btn{height:30px;padding:0 12px;border-radius:8px;border:none;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s;}
+      .row-btn-primary{background:#eff6ff;color:var(--up-blue);}
+      .row-btn-primary:hover{background:var(--up-blue);color:#fff;}
+      .row-btn-icon{width:30px;height:30px;padding:0;border-radius:8px;border:1px solid #e2e8f0;background:#fff;color:#94a3b8;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+      .row-btn-icon:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .row-btn-icon .material-symbols-outlined{font-size:0.95rem;}
+
+      /* TABLE FOOTER */
+      .table-footer{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;border-top:1px solid #f1f5f9;flex-wrap:wrap;gap:0.8rem;}
+      .tf-info{font-size:0.78rem;color:#94a3b8;}
+      .tf-pages{display:flex;align-items:center;gap:6px;}
+      .page-btn{width:34px;height:34px;border-radius:9px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:#334155;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+      .page-btn:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .page-btn.active{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .page-btn:disabled{color:#cbd5e1;cursor:not-allowed;}
+
+      /* DRAWER */
+      .drawer-overlay{position:fixed;inset:0;background:rgba(0,20,50,0.55);backdrop-filter:blur(4px);z-index:200;display:none;}
+      .drawer-overlay.open{display:block;}
+      .drawer{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;background:#fff;z-index:201;box-shadow:-8px 0 40px rgba(0,0,0,0.12);transform:translateX(100%);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;}
+      .drawer.open{transform:translateX(0);}
+      .drawer-header{background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));padding:1.4rem 1.6rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+      .drawer-title{font-family:'Sora',sans-serif;font-size:0.95rem;font-weight:800;color:#fff;}
+      .drawer-sub{font-size:0.72rem;color:rgba(255,255,255,0.6);margin-top:2px;}
+      .drawer-close{background:rgba(255,255,255,0.12);border:none;border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;transition:background 0.2s;}
+      .drawer-close:hover{background:rgba(255,255,255,0.22);}
+      .drawer-body{flex:1;overflow-y:auto;padding:1.4rem 1.6rem;}
+      .drawer-body::-webkit-scrollbar{width:4px;}
+      .drawer-body::-webkit-scrollbar-thumb{background:#e2e8f0;border-radius:4px;}
+
+      /* DRAWER PIPELINE */
+      .pipeline{display:flex;flex-direction:column;gap:0;margin-bottom:1.6rem;position:relative;}
+      .pipeline::before{content:'';position:absolute;left:14px;top:14px;bottom:14px;width:2px;background:#f1f5f9;z-index:0;}
+      .pipeline-step{display:flex;gap:12px;align-items:flex-start;position:relative;z-index:1;padding-bottom:1.2rem;}
+      .pipeline-step:last-child{padding-bottom:0;}
+      .ps-circle{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.8rem;font-weight:800;border:2px solid;}
+      .ps-done{background:#eff6ff;border-color:var(--up-blue);color:var(--up-blue);}
+      .ps-done .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;color:var(--up-blue);}
+      .ps-current{background:var(--up-gold);border-color:var(--up-gold);color:#fff;box-shadow:0 0 0 4px rgba(196,154,26,0.2);}
+      .ps-current .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;color:#fff;}
+      .ps-pending{background:#f8fafc;border-color:#e2e8f0;color:#94a3b8;}
+      .ps-pending .material-symbols-outlined{font-size:0.9rem;color:#cbd5e1;}
+      .ps-title{font-family:'Sora',sans-serif;font-size:0.83rem;font-weight:700;color:#0f172a;margin-bottom:2px;}
+      .ps-date{font-size:0.72rem;color:#94a3b8;}
+      .ps-note{font-size:0.78rem;color:#64748b;line-height:1.6;margin-top:4px;padding:8px 10px;background:#f8fafc;border-radius:8px;border-left:3px solid var(--up-gold);}
+
+      /* DRAWER SECTION */
+      .ds-title{font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:0.8rem;}
+      .ds-card{background:#f8fafc;border-radius:12px;border:1px solid #f1f5f9;padding:1rem;margin-bottom:1rem;}
+      .ds-row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid #f1f5f9;}
+      .ds-row:last-child{border-bottom:none;}
+      .ds-icon{color:#94a3b8;flex-shrink:0;}
+      .ds-icon .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 1;}
+      .ds-label{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;}
+      .ds-value{font-size:0.83rem;font-weight:600;color:#334155;}
+
+      /* FOOTER */
+      .footer-strip{background:#fff;border-top:1px solid #e8edf5;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;font-size:0.72rem;color:#94a3b8;}
+      .footer-brand{display:flex;align-items:center;gap:6px;opacity:0.6;}
+
+      /* RESPONSIVE */
+      @media(max-width:1100px){.stats-row{grid-template-columns:repeat(3,1fr);}}
+      @media(max-width:900px){
+        .table-header-row,.app-row{grid-template-columns:2fr 1.5fr 1fr 1.2fr 0.8fr;}
+        .th:nth-child(5),.app-row>*:nth-child(5){display:none;}
+      }
+      @media(max-width:768px){
+        .topbar-nav{display:none;}
+        .stats-row{grid-template-columns:repeat(3,1fr);}
+        .table-header-row,.app-row{grid-template-columns:2fr 1.5fr 1.2fr 0.8fr;}
+        .th:nth-child(3),.th:nth-child(5),.app-row>*:nth-child(3),.app-row>*:nth-child(5){display:none;}
+        .drawer{width:100vw;}
+      }
+      @media(max-width:480px){.stats-row{grid-template-columns:repeat(2,1fr);}}
+
+  //- TOPBAR
+  header.topbar
+    .topbar-inner
+      a.topbar-brand(href='/')
+        .topbar-brand-icon
+          span.material-symbols-outlined(style='font-size:1.2rem;font-variation-settings:"FILL" 1') school
+        .topbar-brand-name Portal de Empleo UP
+      nav.topbar-nav
+        a(href='/candidate/profile') Perfil
+        a(href='/candidate/vacancies') Vacantes
+        a.active(href='/candidate/applications') Mis Postulaciones
+      .topbar-right
+        button.topbar-icon-btn(title='Modo oscuro')
+          span.material-symbols-outlined(style='font-size:1.1rem') dark_mode
+        button.topbar-icon-btn(title='Notificaciones')
+          span.material-symbols-outlined(style='font-size:1.1rem') notifications
+          .notif-dot
+        .topbar-divider
+        .topbar-user
+          div(style='text-align:right')
+            .topbar-user-name Ana Maria Garcia
+            .topbar-user-role Estudiante
+          .topbar-avatar-placeholder AM
+
+  //- MAIN
+  main.main-content
+
+    //- STATS SUMMARY
+    .stats-row
+      .stat-card.active(onclick='filterApps("todas")')
+        .stat-icon.si-all
+          span.material-symbols-outlined folder_open
+        div
+          .stat-num 12
+          .stat-label Todas
+      .stat-card(onclick='filterApps("enviada")')
+        .stat-icon.si-sent
+          span.material-symbols-outlined send
+        div
+          .stat-num 3
+          .stat-label Enviadas
+      .stat-card(onclick='filterApps("revision")')
+        .stat-icon.si-review
+          span.material-symbols-outlined manage_search
+        div
+          .stat-num 4
+          .stat-label En Revision
+      .stat-card(onclick='filterApps("entrevista")')
+        .stat-icon.si-interview
+          span.material-symbols-outlined groups
+        div
+          .stat-num 2
+          .stat-label Entrevistas
+      .stat-card(onclick='filterApps("aceptada")')
+        .stat-icon.si-accepted
+          span.material-symbols-outlined check_circle
+        div
+          .stat-num 1
+          .stat-label Aceptadas
+
+    //- PAGE HEADER
+    .page-header
+      div
+        h1.page-title Seguimiento de Postulaciones
+        .page-subtitle Revisa el estado de tus aplicaciones a vacantes en tiempo real.
+      div(style='display:flex;gap:8px')
+        button(style='display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;border-radius:10px;border:1.5px solid #e2e8f0;background:#fff;font-family:Sora,sans-serif;font-size:0.78rem;font-weight:700;color:#64748b;cursor:pointer;')
+          span.material-symbols-outlined(style='font-size:1rem') download
+          | Exportar
+
+    //- FILTER TABS
+    .filter-tabs
+      button.filter-tab.active(onclick='filterApps("todas")')
+        | Todas
+        span.filter-tab-count 12
+      button.filter-tab(onclick='filterApps("enviada")')
+        | Enviadas
+        span.filter-tab-count 3
+      button.filter-tab(onclick='filterApps("revision")')
+        span.material-symbols-outlined(style='font-size:0.85rem;font-variation-settings:"FILL" 1') manage_search
+        | En Revision
+        span.filter-tab-count 4
+      button.filter-tab(onclick='filterApps("entrevista")')
+        span.material-symbols-outlined(style='font-size:0.85rem;font-variation-settings:"FILL" 1') groups
+        | Entrevistas
+        span.filter-tab-count 2
+      button.filter-tab(onclick='filterApps("aceptada")')
+        span.material-symbols-outlined(style='font-size:0.85rem;font-variation-settings:"FILL" 1') check_circle
+        | Aceptadas
+        span.filter-tab-count 1
+      button.filter-tab(onclick='filterApps("rechazada")')
+        | Rechazadas
+        span.filter-tab-count 2
+
+    //- TABLE CARD
+    .table-card
+
+      //- TABLE HEADER
+      .table-header-row
+        .th Puesto
+        .th Empresa
+        .th Fecha
+        .th Progreso
+        .th Estado
+        .th Acciones
+
+      //- ROW 1 - Revision
+      .app-row(data-status='revision' onclick='openDrawer("revision")')
+        div
+          .app-job-title Arquitecto de Soluciones
+          .app-job-meta
+            span.material-symbols-outlined location_on
+            | Hibrido &middot; Tiempo Completo
+        .app-company
+          .co-logo(style='background:#1d4ed8;color:#fff') IN
+          .co-name Innovacion Digital S.A.
+        div
+          .app-date 20 Oct, 2025
+          .app-days Hace 13 dias
+        .progress-timeline
+          .pt-step.done
+          .pt-step.current
+          .pt-step
+          .pt-step
+        span.status-badge.s-review
+          .status-dot
+          | En Revision
+        .row-actions
+          button.row-btn.row-btn-primary(onclick='event.stopPropagation();openDrawer("revision")')
+            | Ver
+            span.material-symbols-outlined(style='font-size:0.8rem') arrow_forward
+          button.row-btn-icon(onclick='event.stopPropagation()' title='Retirar postulacion')
+            span.material-symbols-outlined close
+
+      //- ROW 2 - Entrevista
+      .app-row(data-status='entrevista' onclick='openDrawer("entrevista")')
+        div
+          .app-job-title Disenadora UX/UI
+          .app-job-meta
+            span.material-symbols-outlined location_on
+            | Presencial &middot; Proyecto
+        .app-company
+          .co-logo(style='background:#d97706;color:#fff') CS
+          .co-name Creative Studio Panama
+        div
+          .app-date 15 Oct, 2025
+          .app-days Hace 18 dias
+        .progress-timeline
+          .pt-step.done
+          .pt-step.done
+          .pt-step.current
+          .pt-step
+        span.status-badge.s-interview
+          .status-dot
+          | Entrevista Prog.
+        .row-actions
+          button.row-btn.row-btn-primary(onclick='event.stopPropagation();openDrawer("entrevista")')
+            | Ver
+            span.material-symbols-outlined(style='font-size:0.8rem') arrow_forward
+          button.row-btn-icon(onclick='event.stopPropagation()' title='Retirar postulacion')
+            span.material-symbols-outlined close
+
+      //- ROW 3 - Enviada
+      .app-row(data-status='enviada' onclick='openDrawer("enviada")')
+        div
+          .app-job-title Desarrollador Backend Senior
+          .app-job-meta
+            span.material-symbols-outlined location_on
+            | Remoto &middot; Tiempo Completo
+        .app-company
+          .co-logo(style='background:#374151;color:#fff') TC
+          .co-name TechCorp S.A.
+        div
+          .app-date 24 Oct, 2025
+          .app-days Hace 9 dias
+        .progress-timeline
+          .pt-step.current
+          .pt-step
+          .pt-step
+          .pt-step
+        span.status-badge.s-sent
+          .status-dot
+          | Enviada
+        .row-actions
+          button.row-btn.row-btn-primary(onclick='event.stopPropagation();openDrawer("enviada")')
+            | Ver
+            span.material-symbols-outlined(style='font-size:0.8rem') arrow_forward
+          button.row-btn-icon(onclick='event.stopPropagation()' title='Retirar postulacion')
+            span.material-symbols-outlined close
+
+      //- ROW 4 - Aceptada
+      .app-row(data-status='aceptada' onclick='openDrawer("aceptada")')
+        div
+          .app-job-title Analista de Datos Jr.
+          .app-job-meta
+            span.material-symbols-outlined location_on
+            | Remoto &middot; Tiempo Completo
+        .app-company
+          .co-logo(style='background:#065f46;color:#fff') ST
+          .co-name StarTech Lab
+        div
+          .app-date 10 Oct, 2025
+          .app-days Hace 23 dias
+        .progress-timeline
+          .pt-step.done
+          .pt-step.done
+          .pt-step.done
+          .pt-step.done
+        span.status-badge.s-accepted
+          .status-dot
+          | Aceptada
+        .row-actions
+          button.row-btn.row-btn-primary(onclick='event.stopPropagation();openDrawer("aceptada")')
+            | Ver
+            span.material-symbols-outlined(style='font-size:0.8rem') arrow_forward
+
+      //- ROW 5 - Rechazada
+      .app-row(data-status='rechazada' onclick='openDrawer("rechazada")')
+        div
+          .app-job-title Project Manager Junior
+          .app-job-meta
+            span.material-symbols-outlined location_on
+            | Hibrido &middot; Tiempo Completo
+        .app-company
+          .co-logo(style='background:#7f1d1d;color:#fff') GS
+          .co-name Global Solutions
+        div
+          .app-date 05 Oct, 2025
+          .app-days Hace 28 dias
+        .progress-timeline
+          .pt-step.done
+          .pt-step.done
+          .pt-step
+          .pt-step
+        span.status-badge.s-rejected
+          .status-dot
+          | Rechazada
+        .row-actions
+          button.row-btn.row-btn-primary(onclick='event.stopPropagation();openDrawer("rechazada")')
+            | Ver
+            span.material-symbols-outlined(style='font-size:0.8rem') arrow_forward
+
+      //- TABLE FOOTER
+      .table-footer
+        .tf-info Mostrando 5 de 12 postulaciones
+        .tf-pages
+          button.page-btn(disabled)
+            span.material-symbols-outlined(style='font-size:0.9rem') chevron_left
+          button.page-btn.active 1
+          button.page-btn 2
+          button.page-btn 3
+          button.page-btn
+            span.material-symbols-outlined(style='font-size:0.9rem') chevron_right
+
+  //- FOOTER
+  footer.footer-strip
+    .footer-brand
+      span.material-symbols-outlined(style='font-size:1rem') school
+      span Portal de Empleo UP
+    span &copy; #{new Date().getFullYear()} Universidad de Panama &mdash; Dirección de Tecnología de la Información y Comunicación.
+    div(style='display:flex;gap:1rem')
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Terminos
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Privacidad
+      a(href='/contacto' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Ayuda
+
+  //- DETAIL DRAWER
+  #drawer-overlay.drawer-overlay(onclick='closeDrawer()')
+  #drawer.drawer
+    .drawer-header
+      div
+        #drawer-title.drawer-title Detalle de Postulacion
+        #drawer-sub.drawer-sub Cargando...
+      button.drawer-close(onclick='closeDrawer()')
+        span.material-symbols-outlined(style='font-size:1.1rem') close
+    .drawer-body
+      #drawer-content
+
+  script.
+    var drawerData = {
+      'revision': {
+        title: 'Arquitecto de Soluciones',
+        sub: 'Innovacion Digital S.A. &mdash; Hibrido',
+        pipeline: [
+          {label:'Postulacion enviada', date:'20 Oct, 2025', state:'done', icon:'send', note:''},
+          {label:'Perfil en revision', date:'22 Oct, 2025', state:'current', icon:'manage_search', note:'El equipo de RRHH esta revisando tu perfil y CV. Tiempo estimado: 5-7 dias habiles.'},
+          {label:'Entrevista', date:'Pendiente', state:'pending', icon:'groups', note:''},
+          {label:'Decision final', date:'Pendiente', state:'pending', icon:'verified', note:''}
+        ],
+        company:'Innovacion Digital S.A.', ruc:'155-444-1-2021',
+        location:'Marbella, Ciudad de Panama', modality:'Hibrido',
+        salary:'$1,800 - $2,500 / mes', posted:'18 Oct, 2025'
+      },
+      'entrevista': {
+        title: 'Disenadora UX/UI',
+        sub: 'Creative Studio Panama &mdash; Presencial',
+        pipeline: [
+          {label:'Postulacion enviada', date:'15 Oct, 2025', state:'done', icon:'send', note:''},
+          {label:'Perfil en revision', date:'17 Oct, 2025', state:'done', icon:'manage_search', note:''},
+          {label:'Entrevista programada', date:'02 Nov, 2025 &mdash; 10:00 AM', state:'current', icon:'groups', note:'La entrevista sera virtual via Google Meet. Revisa tu correo para el enlace de acceso y preparate con tu portafolio de diseno.'},
+          {label:'Decision final', date:'Pendiente', state:'pending', icon:'verified', note:''}
+        ],
+        company:'Creative Studio Panama', ruc:'8-933-400',
+        location:'San Francisco, Panama', modality:'Presencial',
+        salary:'A convenir', posted:'12 Oct, 2025'
+      },
+      'enviada': {
+        title: 'Desarrollador Backend Senior',
+        sub: 'TechCorp S.A. &mdash; Remoto',
+        pipeline: [
+          {label:'Postulacion enviada', date:'24 Oct, 2025', state:'current', icon:'send', note:'Tu postulacion fue recibida exitosamente. Espera mientras el equipo comienza la revision.'},
+          {label:'Perfil en revision', date:'Pendiente', state:'pending', icon:'manage_search', note:''},
+          {label:'Entrevista', date:'Pendiente', state:'pending', icon:'groups', note:''},
+          {label:'Decision final', date:'Pendiente', state:'pending', icon:'verified', note:''}
+        ],
+        company:'TechCorp S.A.', ruc:'45-123-2-2018',
+        location:'Remoto (Ciudad de Panama)', modality:'Remoto',
+        salary:'$2,000 - $3,000 / mes', posted:'22 Oct, 2025'
+      },
+      'aceptada': {
+        title: 'Analista de Datos Jr.',
+        sub: 'StarTech Lab &mdash; Remoto',
+        pipeline: [
+          {label:'Postulacion enviada', date:'10 Oct, 2025', state:'done', icon:'send', note:''},
+          {label:'Perfil en revision', date:'12 Oct, 2025', state:'done', icon:'manage_search', note:''},
+          {label:'Entrevista realizada', date:'19 Oct, 2025', state:'done', icon:'groups', note:''},
+          {label:'Oferta aceptada', date:'26 Oct, 2025', state:'done', icon:'verified', note:'Felicitaciones! Recibiras los detalles de incorporacion por correo en los proximos dias.'}
+        ],
+        company:'StarTech Lab', ruc:'8-288-934',
+        location:'Remoto (Flexible)', modality:'Remoto',
+        salary:'$1,500 / mes', posted:'08 Oct, 2025'
+      },
+      'rechazada': {
+        title: 'Project Manager Junior',
+        sub: 'Global Solutions &mdash; Hibrido',
+        pipeline: [
+          {label:'Postulacion enviada', date:'05 Oct, 2025', state:'done', icon:'send', note:''},
+          {label:'Perfil en revision', date:'08 Oct, 2025', state:'done', icon:'manage_search', note:''},
+          {label:'No continua', date:'14 Oct, 2025', state:'current', icon:'cancel', note:'La empresa informo que el perfil no continua en el proceso en esta oportunidad. Te animamos a seguir aplicando a otras vacantes de tu interes.'},
+          {label:'Decision final', date:'14 Oct, 2025', state:'done', icon:'block', note:''}
+        ],
+        company:'Global Solutions', ruc:'7-920-311',
+        location:'Costa del Este, Panama', modality:'Hibrido',
+        salary:'$1,200 - $1,600 / mes', posted:'02 Oct, 2025'
+      }
+    };
+
+    function openDrawer(key) {
+      var d = drawerData[key];
+      if(!d) return;
+      document.getElementById('drawer-title').textContent = d.title;
+      document.getElementById('drawer-sub').innerHTML = d.sub;
+
+      var pipelineHtml = '<div class="ds-title" style="margin-bottom:0.8rem">Estado del Proceso</div><div class="pipeline">';
+      d.pipeline.forEach(function(step) {
+        var circleClass = step.state === 'done' ? 'ps-done' : step.state === 'current' ? 'ps-current' : 'ps-pending';
+        pipelineHtml += '<div class="pipeline-step">';
+        pipelineHtml += '<div class="ps-circle ' + circleClass + '"><span class="material-symbols-outlined">' + step.icon + '</span></div>';
+        pipelineHtml += '<div style="padding-top:3px">';
+        pipelineHtml += '<div class="ps-title">' + step.label + '</div>';
+        pipelineHtml += '<div class="ps-date">' + step.date + '</div>';
+        if(step.note) pipelineHtml += '<div class="ps-note">' + step.note + '</div>';
+        pipelineHtml += '</div></div>';
+      });
+      pipelineHtml += '</div>';
+
+      var detailHtml = '<div class="ds-title">Detalles de la Vacante</div><div class="ds-card">';
+      detailHtml += '<div class="ds-row"><div class="ds-icon"><span class="material-symbols-outlined">business</span></div><div><div class="ds-label">Empresa</div><div class="ds-value">' + d.company + '</div></div></div>';
+      detailHtml += '<div class="ds-row"><div class="ds-icon"><span class="material-symbols-outlined">tag</span></div><div><div class="ds-label">RUC</div><div class="ds-value">' + d.ruc + '</div></div></div>';
+      detailHtml += '<div class="ds-row"><div class="ds-icon"><span class="material-symbols-outlined">location_on</span></div><div><div class="ds-label">Ubicacion</div><div class="ds-value">' + d.location + '</div></div></div>';
+      detailHtml += '<div class="ds-row"><div class="ds-icon"><span class="material-symbols-outlined">schedule</span></div><div><div class="ds-label">Modalidad</div><div class="ds-value">' + d.modality + '</div></div></div>';
+      detailHtml += '<div class="ds-row"><div class="ds-icon"><span class="material-symbols-outlined">payments</span></div><div><div class="ds-label">Salario</div><div class="ds-value">' + d.salary + '</div></div></div>';
+      detailHtml += '</div>';
+
+      document.getElementById('drawer-content').innerHTML = pipelineHtml + detailHtml;
+
+      document.getElementById('drawer-overlay').classList.add('open');
+      document.getElementById('drawer').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawer-overlay').classList.remove('open');
+      document.getElementById('drawer').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function filterApps(status) {
+      var rows = document.querySelectorAll('.app-row');
+      rows.forEach(function(row) {
+        if(status === 'todas' || row.dataset.status === status) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      document.querySelectorAll('.filter-tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.stat-card').forEach(function(c) { c.classList.remove('active'); });
+      event.currentTarget.classList.add('active');
+    }
+
+    function applyR() {
+      var w = window.innerWidth;
+      var sr = document.querySelector('.stats-row');
+      if(!sr) return;
+      if(w < 480) sr.style.gridTemplateColumns = 'repeat(2, 1fr)';
+      else if(w < 1100) sr.style.gridTemplateColumns = 'repeat(3, 1fr)';
+      else sr.style.gridTemplateColumns = 'repeat(5, 1fr)';
+    }
+    applyR();
+    window.addEventListener('resize', applyR);

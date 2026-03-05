@@ -1,0 +1,1329 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Panel de Administracion - Portal de Empleo UP
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+    link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
+    style.
+      :root{--up-blue:#003876;--up-blue-dark:#002147;--up-gold:#C49A1A;--up-gold-light:#e8c44d;--bg:#f0f4f8;}
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a2233;min-height:100vh;display:flex;flex-direction:column;}
+      h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+      .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+      a{text-decoration:none;}
+
+      /* ===== TOPBAR ===== */
+      .topbar{background:var(--up-blue-dark);color:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,0.07);box-shadow:0 2px 20px rgba(0,20,60,0.25);}
+      .topbar-inner{max-width:1400px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem;}
+      .topbar-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+      .topbar-brand-icon{background:var(--up-gold);border-radius:9px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--up-blue-dark);flex-shrink:0;}
+      .topbar-brand-name{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;line-height:1.1;}
+      .topbar-brand-sub{font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--up-gold-light);}
+      .admin-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(196,154,26,0.15);border:1px solid rgba(196,154,26,0.35);color:var(--up-gold-light);font-size:0.58rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;padding:2px 8px;border-radius:50px;margin-left:6px;flex-shrink:0;}
+      .admin-badge .material-symbols-outlined{font-size:0.72rem;font-variation-settings:'FILL' 1;}
+      .topbar-nav{display:flex;align-items:center;height:100%;gap:2px;}
+      .topbar-nav a{display:flex;align-items:center;gap:6px;height:100%;padding:0 14px;font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:3px solid transparent;transition:color 0.2s,border-color 0.2s;white-space:nowrap;}
+      .topbar-nav a .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 1;}
+      .topbar-nav a:hover{color:#fff;}
+      .topbar-nav a.active{color:#fff;border-bottom-color:var(--up-gold);}
+      .topbar-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+      .topbar-icon-btn{background:rgba(255,255,255,0.07);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);cursor:pointer;transition:background 0.2s;position:relative;}
+      .topbar-icon-btn:hover{background:rgba(255,255,255,0.14);color:#fff;}
+      .notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--up-gold);border:2px solid var(--up-blue-dark);}
+      .topbar-divider{width:1px;height:28px;background:rgba(255,255,255,0.1);margin:0 4px;}
+      .topbar-user{display:flex;align-items:center;gap:9px;cursor:pointer;padding:4px 8px;border-radius:10px;transition:background 0.2s;}
+      .topbar-user:hover{background:rgba(255,255,255,0.07);}
+      .topbar-user-name{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;line-height:1.15;text-align:right;}
+      .topbar-user-sub{font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--up-gold-light);text-align:right;}
+      .topbar-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));display:flex;align-items:center;justify-content:center;color:var(--up-gold-light);font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;flex-shrink:0;border:2px solid rgba(196,154,26,0.35);}
+
+      /* ===== VIEWS ===== */
+      .view{display:none;}
+      .view.active{display:block;}
+
+      /* ===== MAIN ===== */
+      .main-content{flex:1;max-width:1400px;margin:0 auto;width:100%;padding:2rem 1.5rem 4rem;}
+      .page-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.8rem;}
+      .page-title{font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:#0f172a;}
+      .page-subtitle{font-size:0.88rem;color:#64748b;margin-top:3px;}
+      .header-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+
+      /* ===== BUTTONS ===== */
+      .btn-primary{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 18px;border-radius:10px;background:var(--up-blue);color:#fff;border:none;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 3px 10px rgba(0,56,118,0.2);}
+      .btn-primary:hover{background:var(--up-gold);}
+      .btn-primary .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .btn-gold{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 18px;border-radius:10px;background:var(--up-gold);color:#fff;border:none;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 3px 10px rgba(196,154,26,0.25);}
+      .btn-gold:hover{background:var(--up-gold-light);color:var(--up-blue);}
+      .btn-gold .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .btn-secondary{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:10px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#334155;cursor:pointer;transition:all 0.2s;}
+      .btn-secondary:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .btn-secondary .material-symbols-outlined{font-size:1rem;}
+      .date-range{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:10px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:#334155;cursor:pointer;}
+      .date-range .material-symbols-outlined{font-size:0.95rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+
+      /* ===== STATS ===== */
+      .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:1.8rem;}
+      .kpi-card{background:#fff;border-radius:16px;border:1.5px solid #e8edf5;padding:1.3rem 1.5rem;box-shadow:0 2px 10px rgba(0,56,118,0.04);position:relative;overflow:hidden;}
+      .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
+      .kpi-blue::before{background:linear-gradient(to right,var(--up-blue),#1e60c8);}
+      .kpi-gold::before{background:linear-gradient(to right,var(--up-gold),var(--up-gold-light));}
+      .kpi-green::before{background:linear-gradient(to right,#16a34a,#22c55e);}
+      .kpi-red::before{background:linear-gradient(to right,#dc2626,#f87171);}
+      .kpi-purple::before{background:linear-gradient(to right,#7c3aed,#a78bfa);}
+      .kpi-label{font-size:0.65rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:0.7rem;display:flex;align-items:center;gap:6px;}
+      .kpi-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .kpi-icon .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;}
+      .kpi-icon-blue{background:#eff6ff;color:var(--up-blue);}
+      .kpi-icon-gold{background:#fefce8;color:#a16207;}
+      .kpi-icon-green{background:#f0fdf4;color:#16a34a;}
+      .kpi-icon-red{background:#fef2f2;color:#dc2626;}
+      .kpi-icon-purple{background:#faf5ff;color:#7c3aed;}
+      .kpi-value{font-family:'Sora',sans-serif;font-size:2rem;font-weight:800;color:#0f172a;line-height:1;margin-bottom:6px;}
+      .kpi-trend{display:flex;align-items:center;gap:4px;font-size:0.75rem;font-weight:700;}
+      .trend-up{color:#16a34a;}
+      .trend-down{color:#dc2626;}
+      .trend-neutral{color:#94a3b8;}
+      .trend-up .material-symbols-outlined,.trend-down .material-symbols-outlined,.trend-neutral .material-symbols-outlined{font-size:0.85rem;}
+
+      /* ===== CHARTS GRID ===== */
+      .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:1.8rem;}
+      .chart-card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;padding:1.5rem;box-shadow:0 2px 12px rgba(0,56,118,0.05);}
+      .chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.4rem;}
+      .chart-title{font-family:'Sora',sans-serif;font-size:0.92rem;font-weight:800;color:#0f172a;}
+      .chart-legend{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:#64748b;font-weight:600;}
+      .legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+      .chart-area{height:190px;position:relative;}
+
+      /* SVG Charts */
+      .chart-svg{width:100%;height:100%;}
+      .chart-labels{display:flex;justify-content:space-between;padding:0 8px;margin-top:8px;}
+      .chart-label{font-size:0.65rem;color:#94a3b8;font-weight:600;}
+
+      /* ===== 3-COL BOTTOM ===== */
+      .bottom-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:1.4rem;margin-bottom:1.8rem;}
+
+      /* Industry table */
+      .industry-table{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;overflow:hidden;box-shadow:0 2px 12px rgba(0,56,118,0.05);}
+      .it-header{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;border-bottom:1px solid #f1f5f9;}
+      .it-title{font-family:'Sora',sans-serif;font-size:0.92rem;font-weight:800;color:#0f172a;}
+      .it-updated{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;display:flex;align-items:center;gap:4px;}
+      .it-updated .material-symbols-outlined{font-size:0.75rem;color:#22c55e;font-variation-settings:'FILL' 1;}
+      .it-col-headers{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.2fr;gap:0;padding:0.6rem 1.5rem;background:#f8fafc;border-bottom:1px solid #f1f5f9;}
+      .it-col-h{font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;}
+      .it-row{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.2fr;align-items:center;padding:0.9rem 1.5rem;border-bottom:1px solid #f8fafc;transition:background 0.15s;}
+      .it-row:last-child{border-bottom:none;}
+      .it-row:hover{background:#fafbfc;}
+      .it-industry{display:flex;align-items:center;gap:9px;}
+      .it-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .it-icon .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .it-name{font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;color:#0f172a;}
+      .it-count{font-size:0.85rem;font-weight:600;color:#334155;}
+      .it-salary{font-size:0.83rem;font-weight:600;color:#334155;}
+      .it-retention{display:flex;align-items:center;gap:8px;}
+      .ret-bar-bg{height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden;flex:1;}
+      .ret-bar{height:5px;border-radius:3px;}
+      .ret-pct{font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;color:#0f172a;flex-shrink:0;min-width:28px;text-align:right;}
+
+      /* Activity feed */
+      .activity-card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;overflow:hidden;box-shadow:0 2px 12px rgba(0,56,118,0.05);}
+      .ac-header{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;border-bottom:1px solid #f1f5f9;}
+      .ac-title{font-family:'Sora',sans-serif;font-size:0.92rem;font-weight:800;color:#0f172a;}
+      .ac-body{padding:0.8rem 1.5rem;}
+      .ac-item{display:flex;gap:10px;align-items:flex-start;padding:0.75rem 0;border-bottom:1px solid #f8fafc;position:relative;}
+      .ac-item:last-child{border-bottom:none;}
+      .ac-icon{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+      .ac-icon .material-symbols-outlined{font-size:0.85rem;font-variation-settings:'FILL' 1;}
+      .ai-blue{background:#eff6ff;color:var(--up-blue);}
+      .ai-gold{background:#fefce8;color:#a16207;}
+      .ai-green{background:#f0fdf4;color:#16a34a;}
+      .ai-red{background:#fef2f2;color:#dc2626;}
+      .ai-purple{background:#faf5ff;color:#7c3aed;}
+      .ac-text{font-size:0.8rem;color:#334155;line-height:1.5;flex:1;}
+      .ac-text strong{font-family:'Sora',sans-serif;font-weight:700;color:#0f172a;}
+      .ac-time{font-size:0.68rem;color:#94a3b8;font-weight:600;margin-top:2px;}
+
+      /* ===== TOP EMPLOYERS ROW ===== */
+      .top-row{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:1.8rem;}
+      .ranking-card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;overflow:hidden;box-shadow:0 2px 12px rgba(0,56,118,0.05);}
+      .rc-header{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;border-bottom:1px solid #f1f5f9;}
+      .rc-title{font-family:'Sora',sans-serif;font-size:0.92rem;font-weight:800;color:#0f172a;}
+      .rc-body{padding:0.5rem 0;}
+      .rc-row{display:flex;align-items:center;gap:10px;padding:0.75rem 1.5rem;border-bottom:1px solid #f8fafc;transition:background 0.15s;}
+      .rc-row:last-child{border-bottom:none;}
+      .rc-row:hover{background:#fafbfc;}
+      .rc-rank{font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;color:#94a3b8;width:20px;flex-shrink:0;}
+      .rc-rank.top1{color:var(--up-gold);}
+      .rc-rank.top2{color:#94a3b8;}
+      .rc-rank.top3{color:#cd7f32;}
+      .rc-logo{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:800;color:#fff;flex-shrink:0;}
+      .rc-info{flex:1;min-width:0;}
+      .rc-name{font-family:'Sora',sans-serif;font-size:0.83rem;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+      .rc-meta{font-size:0.7rem;color:#94a3b8;margin-top:1px;}
+      .rc-value{font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:800;color:var(--up-blue);flex-shrink:0;}
+
+      /* ===== FILTER BAR ===== */
+      .filter-bar{background:#fff;border-radius:16px;border:1.5px solid #e8edf5;padding:1rem 1.4rem;display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:1.2rem;}
+      .filter-search{display:flex;align-items:center;gap:8px;flex:1;min-width:200px;background:#f8fafc;border:1.5px solid #f1f5f9;border-radius:10px;padding:0 12px;height:40px;transition:border-color 0.2s;}
+      .filter-search:focus-within{border-color:var(--up-blue);background:#fff;}
+      .filter-search .material-symbols-outlined{font-size:1rem;color:#94a3b8;}
+      .filter-search input{background:none;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#334155;width:100%;}
+      .filter-search input::placeholder{color:#b0bec5;}
+      .fsel-wrap{position:relative;}
+      .fsel-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:0.95rem;color:#64748b;pointer-events:none;font-variation-settings:'FILL' 1;}
+      .fsel{height:40px;padding:0 30px 0 32px;border-radius:10px;border:1.5px solid #e2e8f0;background:#fff;font-family:'DM Sans',sans-serif;font-size:0.83rem;font-weight:600;color:#334155;cursor:pointer;outline:none;appearance:none;}
+      .fsel:focus{border-color:var(--up-blue);}
+      .fchev{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-size:0.85rem;color:#94a3b8;pointer-events:none;}
+
+      /* ===== TABLE SHARED ===== */
+      .table-card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;box-shadow:0 2px 12px rgba(0,56,118,0.05);overflow:hidden;}
+      .table-footer{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;border-top:1px solid #f1f5f9;flex-wrap:wrap;gap:0.8rem;}
+      .tf-info{font-size:0.78rem;color:#94a3b8;}
+      .tf-pages{display:flex;align-items:center;gap:6px;}
+      .page-btn{width:32px;height:32px;border-radius:8px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:#334155;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+      .page-btn:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .page-btn.active{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .page-btn:disabled{color:#cbd5e1;cursor:not-allowed;}
+      .th{font-size:0.65rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;}
+      .row-actions{display:flex;align-items:center;gap:4px;justify-content:flex-end;}
+      .act-btn{height:30px;padding:0 10px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;display:inline-flex;align-items:center;gap:4px;color:#64748b;cursor:pointer;transition:all 0.2s;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;}
+      .act-btn:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .act-btn.primary{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .act-btn.danger:hover{border-color:#ef4444;color:#ef4444;}
+      .act-btn.success:hover{border-color:#22c55e;color:#22c55e;}
+      .act-btn .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;}
+      .act-icon-btn{width:30px;height:30px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;display:flex;align-items:center;justify-content:center;color:#64748b;cursor:pointer;transition:all 0.2s;}
+      .act-icon-btn:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .act-icon-btn.danger:hover{border-color:#ef4444;color:#ef4444;}
+      .act-icon-btn .material-symbols-outlined{font-size:0.95rem;}
+
+      /* STATUS BADGES */
+      .sbadge{display:inline-flex;align-items:center;gap:5px;font-size:0.68rem;font-weight:700;padding:4px 10px;border-radius:50px;}
+      .sdot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+      .sb-active{background:#f0fdf4;color:#15803d;}.sb-active .sdot{background:#22c55e;animation:pulse 2s infinite;}
+      .sb-pending{background:#fefce8;color:#92400e;}.sb-pending .sdot{background:#f59e0b;animation:pulse 2s infinite;}
+      .sb-expired{background:#fef2f2;color:#dc2626;}.sb-expired .sdot{background:#ef4444;}
+      .sb-suspended{background:#f1f5f9;color:#475569;}.sb-suspended .sdot{background:#94a3b8;}
+      .sb-review{background:#eff6ff;color:#1e40af;}.sb-review .sdot{background:#3b82f6;animation:pulse 2s infinite;}
+      .sb-blocked{background:#fef2f2;color:#dc2626;}.sb-blocked .sdot{background:#ef4444;}
+      .sb-candidate{background:#eff6ff;color:var(--up-blue);}
+      .sb-employer{background:#faf5ff;color:#6d28d9;}
+      .sb-admin{background:#fefce8;color:#a16207;}
+      @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+      /* STATUS TABS */
+      .stabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.2rem;}
+      .stab{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 12px;border-radius:50px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:#64748b;cursor:pointer;transition:all 0.2s;}
+      .stab:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .stab.active{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .stab-count{font-size:0.65rem;font-weight:800;padding:1px 6px;border-radius:50px;}
+      .stab.active .stab-count{background:rgba(255,255,255,0.2);}
+      .stab:not(.active) .stab-count{background:#f1f5f9;color:#64748b;}
+
+      /* ===== CONVENIOS ===== */
+      .conv-table-head{display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr 1fr 1.2fr;align-items:center;padding:0.8rem 1.4rem;background:#f8fafc;border-bottom:1px solid #f1f5f9;}
+      .conv-row{display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr 1fr 1.2fr;align-items:center;padding:0.95rem 1.4rem;border-bottom:1px solid #f8fafc;transition:background 0.15s;cursor:pointer;}
+      .conv-row:last-child{border-bottom:none;}
+      .conv-row:hover{background:#fafbfc;}
+      .conv-company{display:flex;align-items:center;gap:9px;}
+      .conv-logo{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:800;color:#fff;flex-shrink:0;}
+      .conv-name{font-family:'Sora',sans-serif;font-size:0.87rem;font-weight:700;color:#0f172a;}
+      .conv-ruc{font-size:0.7rem;color:#94a3b8;margin-top:1px;}
+      .conv-type{font-size:0.8rem;color:#334155;font-weight:500;}
+      .conv-date{font-size:0.82rem;color:#64748b;}
+      .conv-days-left{font-size:0.7rem;margin-top:1px;font-weight:700;}
+      .days-ok{color:#16a34a;}
+      .days-warn{color:#f59e0b;}
+      .days-crit{color:#dc2626;}
+      .conv-progress{display:flex;flex-direction:column;gap:3px;}
+      .cp-bar-bg{height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden;width:80px;}
+      .cp-bar{height:4px;border-radius:2px;}
+      .bar-green{background:#22c55e;}
+      .bar-gold{background:var(--up-gold);}
+      .bar-red{background:#ef4444;}
+      .cp-pct{font-size:0.65rem;color:#94a3b8;}
+      .conv-vacantes{font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:700;color:var(--up-blue);}
+
+      /* Timeline renewal */
+      .renew-bar{height:6px;background:#f1f5f9;border-radius:3px;overflow:hidden;margin-bottom:4px;}
+      .renew-fill{height:6px;border-radius:3px;}
+
+      /* ===== USUARIOS ===== */
+      .usr-table-head{display:grid;grid-template-columns:2.2fr 1.2fr 1fr 1fr 1fr 1.1fr;align-items:center;padding:0.8rem 1.4rem;background:#f8fafc;border-bottom:1px solid #f1f5f9;}
+      .usr-row{display:grid;grid-template-columns:2.2fr 1.2fr 1fr 1fr 1fr 1.1fr;align-items:center;padding:0.9rem 1.4rem;border-bottom:1px solid #f8fafc;transition:background 0.15s;cursor:pointer;}
+      .usr-row:last-child{border-bottom:none;}
+      .usr-row:hover{background:#fafbfc;}
+      .usr-identity{display:flex;align-items:center;gap:10px;}
+      .usr-avatar{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:800;flex-shrink:0;}
+      .usr-name{font-family:'Sora',sans-serif;font-size:0.87rem;font-weight:700;color:#0f172a;}
+      .usr-email{font-size:0.72rem;color:#94a3b8;margin-top:1px;}
+      .usr-role-pill{display:inline-flex;align-items:center;gap:4px;font-size:0.68rem;font-weight:700;padding:3px 9px;border-radius:50px;letter-spacing:0.04em;text-transform:uppercase;}
+      .urp-candidate{background:#eff6ff;color:var(--up-blue);}
+      .urp-employer{background:#faf5ff;color:#6d28d9;}
+      .urp-admin{background:#fefce8;color:#a16207;}
+      .usr-date{font-size:0.82rem;color:#64748b;}
+      .usr-date-sub{font-size:0.7rem;color:#94a3b8;margin-top:1px;}
+      .usr-activity{font-size:0.78rem;color:#64748b;}
+      .usr-activity-sub{font-size:0.7rem;color:#94a3b8;margin-top:1px;}
+
+      /* ===== MODAL ===== */
+      .modal-overlay{position:fixed;inset:0;background:rgba(0,20,50,0.55);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;}
+      .modal-overlay.open{display:flex;}
+      .modal{background:#fff;border-radius:20px;width:500px;max-width:95vw;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,20,60,0.2);}
+      .modal-header{background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));padding:1.4rem 1.6rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+      .modal-title{font-family:'Sora',sans-serif;font-size:0.95rem;font-weight:800;color:#fff;}
+      .modal-close{background:rgba(255,255,255,0.12);border:none;border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;}
+      .modal-close:hover{background:rgba(255,255,255,0.2);}
+      .modal-close .material-symbols-outlined{font-size:1rem;}
+      .modal-body{padding:1.5rem 1.6rem;overflow-y:auto;flex:1;}
+      .modal-footer{padding:1rem 1.6rem;border-top:1px solid #f1f5f9;display:flex;gap:8px;justify-content:flex-end;flex-shrink:0;}
+      .modal-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:4px;margin-top:1rem;}
+      .modal-label:first-child{margin-top:0;}
+      .modal-value{font-size:0.88rem;font-weight:600;color:#334155;}
+      .modal-input{width:100%;height:40px;border:1.5px solid #e2e8f0;border-radius:10px;padding:0 12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;transition:border-color 0.2s;}
+      .modal-input:focus{border-color:var(--up-blue);}
+      .modal-select{width:100%;height:40px;border:1.5px solid #e2e8f0;border-radius:10px;padding:0 12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;appearance:none;background:#fff;}
+      .modal-select:focus{border-color:var(--up-blue);}
+      .modal-textarea{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;resize:vertical;min-height:80px;line-height:1.65;}
+      .modal-textarea:focus{border-color:var(--up-blue);}
+
+      /* ===== FOOTER ===== */
+      .footer-strip{background:var(--up-blue-dark);border-top:1px solid rgba(255,255,255,0.06);padding:1.2rem 1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;}
+      .footer-brand{display:flex;align-items:center;gap:6px;color:rgba(255,255,255);font-size:0.72rem;}
+      .footer-center{font-size:0.72rem;color:rgba(255,255,255);letter-spacing:0.06em;text-transform:uppercase;}
+      .footer-links{display:flex;gap:1rem;}
+      .footer-links a{color:rgba(255,255,255);text-decoration:none;font-size:0.72rem;transition:color 0.2s;}
+      .footer-links a:hover{color:rgba(255,255,255,0.7);}
+
+      /* ===== RESPONSIVE ===== */
+      @media(max-width:1100px){
+        .kpi-grid{grid-template-columns:repeat(2,1fr);}
+        .charts-grid{grid-template-columns:1fr;}
+        .bottom-grid{grid-template-columns:1fr;}
+        .top-row{grid-template-columns:1fr;}
+        .conv-table-head,.conv-row{grid-template-columns:2fr 1.2fr 1fr 1.2fr;}
+        .conv-table-head>*:nth-child(3),.conv-table-head>*:nth-child(4),.conv-row>*:nth-child(3),.conv-row>*:nth-child(4){display:none;}
+        .usr-table-head,.usr-row{grid-template-columns:2fr 1.2fr 1fr 1.1fr;}
+        .usr-table-head>*:nth-child(4),.usr-table-head>*:nth-child(5),.usr-row>*:nth-child(4),.usr-row>*:nth-child(5){display:none;}
+      }
+      @media(max-width:768px){.topbar-nav a span:not(.material-symbols-outlined){display:none;}.kpi-grid{grid-template-columns:1fr 1fr;}}
+      @media(max-width:480px){.kpi-grid{grid-template-columns:1fr 1fr;}}
+
+  //- TOPBAR
+  header.topbar
+    .topbar-inner
+      a.topbar-brand(href='/')
+        .topbar-brand-icon
+          span.material-symbols-outlined(style='font-size:1.2rem;font-variation-settings:"FILL" 1') school
+        div
+          .topbar-brand-name Portal de Empleo UP
+          .topbar-brand-sub Panel de Administrador
+      div(style='display:flex;align-items:center;gap:6px')
+        .admin-badge
+          span.material-symbols-outlined shield
+          | Admin
+        nav.topbar-nav
+          a.active(href='#' onclick='showView("dashboard",this)' style='margin-left:8px')
+            span.material-symbols-outlined dashboard
+            | Reportes
+          a(href='/administrator/convenios' onclick='showView("convenios",this)')
+            span.material-symbols-outlined handshake
+            | Convenios
+          a(href='/administrator/users' onclick='showView("usuarios",this)')
+            span.material-symbols-outlined manage_accounts
+            | Usuarios
+      .topbar-right
+        button.topbar-icon-btn(title='Configuracion')
+          span.material-symbols-outlined(style='font-size:1.1rem') settings
+        button.topbar-icon-btn(title='Notificaciones')
+          span.material-symbols-outlined(style='font-size:1.1rem') notifications
+          .notif-dot
+        .topbar-divider
+        .topbar-user
+          div
+            .topbar-user-name Carolina Perez
+            .topbar-user-sub Administrador
+          .topbar-avatar CP
+
+  //- MAIN
+  main.main-content
+
+    // ============================================================
+    //- VIEW 1: DASHBOARD DE REPORTES
+    // ============================================================
+    #view-dashboard.view.active
+
+      .page-header
+        div
+          h1.page-title Reportes de Supervision del Sistema
+          .page-subtitle Metricas de empleo, tendencias y actividad del ecosistema universitario.
+        .header-actions
+          .date-range
+            span.material-symbols-outlined calendar_month
+            | Ultimos 30 dias
+            span.material-symbols-outlined(style='font-size:0.85rem;color:#94a3b8') expand_more
+          button.btn-gold
+            span.material-symbols-outlined picture_as_pdf
+            | Exportar PDF
+          button.btn-secondary
+            span.material-symbols-outlined download
+            | CSV
+
+      //- KPI GRID (5 indicadores)
+      .kpi-grid(style='grid-template-columns:repeat(5,1fr)')
+        .kpi-card.kpi-blue
+          .kpi-label
+            .kpi-icon.kpi-icon-blue
+              span.material-symbols-outlined school
+            | Estudiantes Totales
+          .kpi-value 12,450
+          .kpi-trend.trend-up
+            span.material-symbols-outlined trending_up
+            | +5.2% vs mes anterior
+        .kpi-card.kpi-purple
+          .kpi-label
+            .kpi-icon.kpi-icon-purple
+              span.material-symbols-outlined business_center
+            | Empleadores Activos
+          .kpi-value 87
+          .kpi-trend.trend-up
+            span.material-symbols-outlined trending_up
+            | +3 nuevos este mes
+        .kpi-card.kpi-gold
+          .kpi-label
+            .kpi-icon.kpi-icon-gold
+              span.material-symbols-outlined work
+            | Ofertas Activas
+          .kpi-value 842
+          .kpi-trend.trend-up
+            span.material-symbols-outlined trending_up
+            | +12.4% vs mes anterior
+        .kpi-card.kpi-green
+          .kpi-label
+            .kpi-icon.kpi-icon-green
+              span.material-symbols-outlined how_to_reg
+            | Tasa de Empleabilidad
+          .kpi-value 68%
+          .kpi-trend.trend-down
+            span.material-symbols-outlined trending_down
+            | -2.1% este trimestre
+        .kpi-card.kpi-blue
+          .kpi-label
+            .kpi-icon.kpi-icon-blue
+              span.material-symbols-outlined handshake
+            | Convenios Vigentes
+          .kpi-value 12
+          .kpi-trend.trend-up
+            span.material-symbols-outlined trending_up
+            | +4% vs año anterior
+
+      //- CHARTS ROW
+      .charts-grid
+
+        //- Line chart — Tendencias de registro
+        .chart-card
+          .chart-header
+            .chart-title Tendencias de Registro
+            .chart-legend
+              .legend-dot(style='background:var(--up-blue)')
+              | Estudiantes
+              div(style='width:1px;height:12px;background:#e2e8f0;margin:0 6px')
+              .legend-dot(style='background:var(--up-gold)')
+              | Empleadores
+          .chart-area
+            svg.chart-svg(viewBox='0 0 500 160' preserveAspectRatio='none')
+              defs
+                linearGradient#grad1(x1='0' y1='0' x2='0' y2='1')
+                  stop(offset='0%' stop-color='#003876' stop-opacity='0.18')
+                  stop(offset='100%' stop-color='#003876' stop-opacity='0')
+                linearGradient#grad2(x1='0' y1='0' x2='0' y2='1')
+                  stop(offset='0%' stop-color='#C49A1A' stop-opacity='0.18')
+                  stop(offset='100%' stop-color='#C49A1A' stop-opacity='0')
+              // Area fills
+              path(d='M0,120 C60,115 100,90 150,85 C200,80 230,95 280,70 C330,45 370,35 420,25 C450,20 480,22 500,20 L500,160 L0,160 Z' fill='url(#grad1)')
+              path(d='M0,140 C60,138 100,132 150,128 C200,124 230,130 280,125 C330,120 370,118 420,112 C450,108 480,105 500,103 L500,160 L0,160 Z' fill='url(#grad2)')
+              // Lines
+              path(d='M0,120 C60,115 100,90 150,85 C200,80 230,95 280,70 C330,45 370,35 420,25 C450,20 480,22 500,20' fill='none' stroke='#003876' stroke-width='2.5' stroke-linecap='round')
+              path(d='M0,140 C60,138 100,132 150,128 C200,124 230,130 280,125 C330,120 370,118 420,112 C450,108 480,105 500,103' fill='none' stroke='#C49A1A' stroke-width='2' stroke-linecap='round' stroke-dasharray='4 2')
+              // Dots - blue line
+              circle(cx='0' cy='120' r='4' fill='#fff' stroke='#003876' stroke-width='2')
+              circle(cx='150' cy='85' r='4' fill='#fff' stroke='#003876' stroke-width='2')
+              circle(cx='280' cy='70' r='4' fill='#fff' stroke='#003876' stroke-width='2')
+              circle(cx='420' cy='25' r='5' fill='#003876' stroke='#fff' stroke-width='2')
+              circle(cx='500' cy='20' r='4' fill='#fff' stroke='#003876' stroke-width='2')
+          .chart-labels
+            .chart-label Ene
+            .chart-label Feb
+            .chart-label Mar
+            .chart-label Abr
+            .chart-label May
+            .chart-label Jun
+
+        //- Bar chart — Ofertas publicadas
+        .chart-card
+          .chart-header
+            .chart-title Ofertas Publicadas por Mes
+            .chart-legend
+              .legend-dot(style='background:var(--up-blue)')
+              | Publicadas
+              div(style='width:1px;height:12px;background:#e2e8f0;margin:0 6px')
+              .legend-dot(style='background:#bfdbfe')
+              | Cerradas
+          .chart-area
+            svg.chart-svg(viewBox='0 0 500 160' preserveAspectRatio='none')
+              // Bars - publicadas
+              rect(x='20' y='90' width='44' height='70' rx='5' fill='#bfdbfe')
+              rect(x='100' y='55' width='44' height='105' rx='5' fill='#bfdbfe')
+              rect(x='180' y='70' width='44' height='90' rx='5' fill='#bfdbfe')
+              rect(x='260' y='20' width='44' height='140' rx='5' fill='#003876')
+              rect(x='340' y='48' width='44' height='112' rx='5' fill='#bfdbfe')
+              rect(x='420' y='80' width='44' height='80' rx='5' fill='#e0eeff')
+              // Values
+              text(x='42' y='82' font-family='Sora' font-size='9' font-weight='700' fill='#64748b' text-anchor='middle') 58
+              text(x='122' y='47' font-family='Sora' font-size='9' font-weight='700' fill='#64748b' text-anchor='middle') 95
+              text(x='202' y='62' font-family='Sora' font-size='9' font-weight='700' fill='#64748b' text-anchor='middle') 78
+              text(x='282' y='12' font-family='Sora' font-size='9' font-weight='800' fill='#003876' text-anchor='middle') 142
+              text(x='362' y='40' font-family='Sora' font-size='9' font-weight='700' fill='#64748b' text-anchor='middle') 110
+              text(x='442' y='72' font-family='Sora' font-size='9' font-weight='700' fill='#94a3b8' text-anchor='middle') 68
+          .chart-labels
+            .chart-label Ene
+            .chart-label Feb
+            .chart-label Mar
+            .chart-label Abr
+            .chart-label May
+            .chart-label Jun
+
+      //- BOTTOM ROW
+      .bottom-grid
+
+        //- Industry table
+        .industry-table
+          .it-header
+            .it-title Metricas de Empleo por Industria
+            .it-updated
+              span.material-symbols-outlined circle
+              | Datos actualizados
+          .it-col-headers
+            .it-col-h Industria
+            .it-col-h Contrataciones
+            .it-col-h Salario Prom.
+            .it-col-h Tasa de Retencion
+          .it-row
+            .it-industry
+              .it-icon(style='background:#eff6ff')
+                span.material-symbols-outlined(style='color:var(--up-blue)') computer
+              .it-name Tecnologia e Informatica
+            .it-count 1,420
+            .it-salary $1,800 USD
+            .it-retention
+              .ret-bar-bg: .ret-bar(style='width:92%;background:#22c55e')
+              .ret-pct 92%
+          .it-row
+            .it-industry
+              .it-icon(style='background:#fefce8')
+                span.material-symbols-outlined(style='color:#a16207') account_balance
+              .it-name Finanzas y Banca
+            .it-count 890
+            .it-salary $2,100 USD
+            .it-retention
+              .ret-bar-bg: .ret-bar(style='width:88%;background:#22c55e')
+              .ret-pct 88%
+          .it-row
+            .it-industry
+              .it-icon(style='background:#f0fdf4')
+                span.material-symbols-outlined(style='color:#15803d') school
+              .it-name Educacion
+            .it-count 640
+            .it-salary $900 USD
+            .it-retention
+              .ret-bar-bg: .ret-bar(style='width:75%;background:var(--up-blue)')
+              .ret-pct 75%
+          .it-row
+            .it-industry
+              .it-icon(style='background:#fef2f2')
+                span.material-symbols-outlined(style='color:#dc2626') local_hospital
+              .it-name Salud y Ciencias
+            .it-count 510
+            .it-salary $1,600 USD
+            .it-retention
+              .ret-bar-bg: .ret-bar(style='width:82%;background:#22c55e')
+              .ret-pct 82%
+          .it-row
+            .it-industry
+              .it-icon(style='background:#faf5ff')
+                span.material-symbols-outlined(style='color:#7c3aed') inventory_2
+              .it-name Logistica y Comercio
+            .it-count 380
+            .it-salary $1,100 USD
+            .it-retention
+              .ret-bar-bg: .ret-bar(style='width:69%;background:var(--up-gold)')
+              .ret-pct 69%
+
+        //- Activity feed
+        .activity-card
+          .ac-header
+            .ac-title Actividad Reciente
+            a(href='#' style='font-family:Sora,sans-serif;font-size:0.75rem;font-weight:700;color:var(--up-blue)') Ver todo
+          .ac-body
+            .ac-item
+              .ac-icon.ai-green
+                span.material-symbols-outlined how_to_reg
+              div
+                .ac-text
+                  strong Rootstack S.A.
+                  |  firmo el convenio de alianza institucional.
+                .ac-time Hace 12 minutos
+            .ac-item
+              .ac-icon.ai-blue
+                span.material-symbols-outlined person_add
+              div
+                .ac-text Nuevo candidato registrado:
+                  strong  Ana Martinez (FIEC)
+                .ac-time Hace 34 minutos
+            .ac-item
+              .ac-icon.ai-gold
+                span.material-symbols-outlined work
+              div
+                .ac-text
+                  strong BancoGeneral
+                  |  publico 3 nuevas vacantes para egresados.
+                .ac-time Hace 1 hora
+            .ac-item
+              .ac-icon.ai-red
+                span.material-symbols-outlined warning
+              div
+                .ac-text Convenio de
+                  strong  Copa Airlines
+                  |  vence en 15 dias. Requiere renovacion.
+                .ac-time Hace 2 horas
+            .ac-item
+              .ac-icon.ai-purple
+                span.material-symbols-outlined business
+              div
+                .ac-text Nueva empresa registrada:
+                  strong  TechPanama Corp
+                  |  en revision.
+                .ac-time Hace 3 horas
+            .ac-item
+              .ac-icon.ai-green
+                span.material-symbols-outlined school
+              div
+                .ac-text Feria de Empleo UP programada para el
+                  strong  5 de Noviembre.
+                .ac-time Ayer
+
+      //- TOP RANKINGS
+      .top-row
+        //- Top empleadores
+        .ranking-card
+          .rc-header
+            .rc-title Top Empleadores por Contrataciones
+            a(href='#' style='font-family:Sora,sans-serif;font-size:0.75rem;font-weight:700;color:var(--up-blue)') Ver todos
+          .rc-body
+            .rc-row
+              .rc-rank.top1 1
+              .rc-logo(style='background:linear-gradient(135deg,#1d4ed8,#1e3a8a)') BC
+              .rc-info
+                .rc-name BancoGeneral
+                .rc-meta Finanzas &middot; Ciudad de Panama
+              .rc-value 48 contrat.
+            .rc-row
+              .rc-rank.top2 2
+              .rc-logo(style='background:linear-gradient(135deg,#0369a1,#075985)') CA
+              .rc-info
+                .rc-name Copa Airlines
+                .rc-meta Aviacion &middot; Ciudad de Panama
+              .rc-value 35 contrat.
+            .rc-row
+              .rc-rank.top3 3
+              .rc-logo(style='background:linear-gradient(135deg,#065f46,#047857)') RS
+              .rc-info
+                .rc-name Rootstack S.A.
+                .rc-meta Tecnologia &middot; Marbella
+              .rc-value 29 contrat.
+            .rc-row
+              .rc-rank 4
+              .rc-logo(style='background:linear-gradient(135deg,#374151,#1f2937)') TS
+              .rc-info
+                .rc-name Tech Solutions S.A.
+                .rc-meta Tecnologia &middot; Costa del Este
+              .rc-value 21 contrat.
+            .rc-row
+              .rc-rank 5
+              .rc-logo(style='background:linear-gradient(135deg,#7c3aed,#6d28d9)') CO
+              .rc-info
+                .rc-name Cable Onda S.A.
+                .rc-meta Telecomunicaciones &middot; Panama
+              .rc-value 18 contrat.
+
+        //- Top facultades
+        .ranking-card
+          .rc-header
+            .rc-title Facultades con Mayor Empleabilidad
+            a(href='#' style='font-family:Sora,sans-serif;font-size:0.75rem;font-weight:700;color:var(--up-blue)') Ver reporte
+          .rc-body
+            .rc-row
+              .rc-rank.top1 1
+              .rc-logo(style='background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark))')
+                span.material-symbols-outlined(style='font-size:0.85rem;font-variation-settings:"FILL" 1;color:#fff') computer
+              .rc-info
+                .rc-name FIEC
+                .rc-meta Informatica, Electronica y Comunicacion
+              .rc-value 84%
+            .rc-row
+              .rc-rank.top2 2
+              .rc-logo(style='background:linear-gradient(135deg,#a16207,#ca8a04)')
+                span.material-symbols-outlined(style='font-size:0.85rem;font-variation-settings:"FILL" 1;color:#fff') account_balance
+              .rc-info
+                .rc-name FAECO
+                .rc-meta Economia y Administracion
+              .rc-value 76%
+            .rc-row
+              .rc-rank.top3 3
+              .rc-logo(style='background:linear-gradient(135deg,#15803d,#16a34a)')
+                span.material-symbols-outlined(style='font-size:0.85rem;font-variation-settings:"FILL" 1;color:#fff') biotech
+              .rc-info
+                .rc-name FCI
+                .rc-meta Ciencias e Ingenieria
+              .rc-value 68%
+            .rc-row
+              .rc-rank 4
+              .rc-logo(style='background:linear-gradient(135deg,#dc2626,#ef4444)')
+                span.material-symbols-outlined(style='font-size:0.85rem;font-variation-settings:"FILL" 1;color:#fff') gavel
+              .rc-info
+                .rc-name FJCA
+                .rc-meta Derecho y Ciencias Politicas
+              .rc-value 61%
+            .rc-row
+              .rc-rank 5
+              .rc-logo(style='background:linear-gradient(135deg,#7c3aed,#6d28d9)')
+                span.material-symbols-outlined(style='font-size:0.85rem;font-variation-settings:"FILL" 1;color:#fff') local_hospital
+              .rc-info
+                .rc-name FM
+                .rc-meta Facultad de Medicina
+              .rc-value 58%
+
+    // ============================================================
+    //- VIEW 2: CONTROL DE CONVENIOS
+    // ============================================================
+    #view-convenios.view
+
+      .page-header
+        div
+          h1.page-title Control de Convenios
+          .page-subtitle Gestion de alianzas institucionales entre la Universidad de Panama y empresas socias.
+        .header-actions
+          button.btn-primary(onclick='openModal("nuevo-convenio")')
+            span.material-symbols-outlined add
+            | Nuevo Convenio
+          button.btn-secondary
+            span.material-symbols-outlined download
+            | Exportar
+
+      //- KPIs convenios
+      .kpi-grid(style='grid-template-columns:repeat(4,1fr)')
+        .kpi-card.kpi-green
+          .kpi-label
+            .kpi-icon.kpi-icon-green
+              span.material-symbols-outlined verified
+            | Convenios Vigentes
+          .kpi-value 12
+          .kpi-trend.trend-up
+            span.material-symbols-outlined trending_up
+            | +2 este trimestre
+        .kpi-card.kpi-gold
+          .kpi-label
+            .kpi-icon.kpi-icon-gold
+              span.material-symbols-outlined schedule
+            | Por Vencer (30 dias)
+          .kpi-value 3
+          .kpi-trend.trend-neutral
+            span.material-symbols-outlined remove
+            | Requieren atencion
+        .kpi-card.kpi-red
+          .kpi-label
+            .kpi-icon.kpi-icon-red
+              span.material-symbols-outlined event_busy
+            | Vencidos / Inactivos
+          .kpi-value 2
+          .kpi-trend.trend-neutral
+            span.material-symbols-outlined remove
+            | En proceso de renovacion
+        .kpi-card.kpi-blue
+          .kpi-label
+            .kpi-icon.kpi-icon-blue
+              span.material-symbols-outlined work
+            | Vacantes Totales Activas
+          .kpi-value 842
+          .kpi-trend.trend-up
+            span.material-symbols-outlined trending_up
+            | de convenios vigentes
+
+      //- Alert: por vencer
+      div(style='background:#fefce8;border:1.5px solid #fde68a;border-radius:14px;padding:1rem 1.4rem;margin-bottom:1.4rem;display:flex;align-items:center;gap:12px;')
+        span.material-symbols-outlined(style='font-size:1.3rem;color:#a16207;font-variation-settings:"FILL" 1;flex-shrink:0') warning
+        div
+          div(style='font-family:Sora,sans-serif;font-size:0.85rem;font-weight:800;color:#92400e;margin-bottom:2px') 3 convenios vencen en los proximos 30 dias
+          div(style='font-size:0.8rem;color:#a16207') Copa Airlines (15 dias), Melo S.A. (22 dias), Arrocha Tecnologia (28 dias). Gestiona la renovacion a tiempo.
+        button.btn-secondary(style='margin-left:auto;flex-shrink:0;font-size:0.78rem;height:34px;')
+          | Ver todos
+
+      //- Tabs + search
+      .filter-bar
+        .filter-search
+          span.material-symbols-outlined search
+          input(type='text' placeholder='Buscar empresa por nombre o RUC...')
+        .fsel-wrap
+          span.material-symbols-outlined.fsel-icon category
+          select.fsel
+            option Todos los tipos
+            option Alianza Institucional Integral
+            option Convenio de Practicas
+            option Convenio de Empleo
+          span.material-symbols-outlined.fchev expand_more
+        .fsel-wrap
+          span.material-symbols-outlined.fsel-icon sort
+          select.fsel
+            option Vencimiento proximo
+            option Mas recientes
+            option Nombre A-Z
+          span.material-symbols-outlined.fchev expand_more
+
+      .stabs
+        button.stab.active Todos
+          span.stab-count 17
+        button.stab
+          span(style='width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block')
+          | Vigentes
+          span.stab-count 12
+        button.stab
+          span(style='width:6px;height:6px;border-radius:50%;background:#f59e0b;display:inline-block')
+          | Por Vencer
+          span.stab-count 3
+        button.stab
+          span(style='width:6px;height:6px;border-radius:50%;background:#ef4444;display:inline-block')
+          | Vencidos
+          span.stab-count 2
+
+      .table-card
+        .conv-table-head
+          .th Empresa
+          .th Tipo de Alianza
+          .th Inicio
+          .th Vencimiento
+          .th Vacantes Activas
+          .th Estado / Acciones
+
+        //- Convenio 1 — Vigente
+        .conv-row(onclick='openModal("detalle-convenio")')
+          .conv-company
+            .conv-logo(style='background:linear-gradient(135deg,var(--up-blue),#1e60c8)') TS
+            div
+              .conv-name Tech Solutions S.A.
+              .conv-ruc RUC: 155-4873-1-2019
+          .conv-type Alianza Institucional Integral
+          div
+            .conv-date 15 Ene, 2024
+            .conv-date(style='font-size:0.7rem;color:#94a3b8') Vigencia: 2 anos
+          div
+            .conv-date 15 Ene, 2026
+            .conv-days-left.days-ok 87 dias restantes
+            .conv-progress
+              .cp-bar-bg: .cp-bar.bar-green(style='width:88%')
+          .conv-vacantes 12 vacantes
+          .row-actions
+            button.act-btn.primary(onclick='event.stopPropagation();openModal("detalle-convenio")') Ver
+            button.act-btn(onclick='event.stopPropagation()') Renovar
+            button.act-icon-btn(onclick='event.stopPropagation()' title='Documentos')
+              span.material-symbols-outlined folder
+
+        //- Convenio 2 — Por vencer
+        .conv-row(onclick='openModal("detalle-convenio")')
+          .conv-company
+            .conv-logo(style='background:linear-gradient(135deg,#0369a1,#075985)') CA
+            div
+              .conv-name Copa Airlines
+              .conv-ruc RUC: 12-345-2-2019
+          .conv-type Convenio de Practicas
+          div
+            .conv-date 01 Nov, 2022
+            .conv-date(style='font-size:0.7rem;color:#94a3b8') Vigencia: 3 anos
+          div
+            .conv-date 01 Nov, 2025
+            .conv-days-left.days-crit 15 dias restantes
+            .conv-progress
+              .cp-bar-bg: .cp-bar.bar-red(style='width:5%')
+          .conv-vacantes 5 vacantes
+          .row-actions
+            button.act-btn.primary(onclick='event.stopPropagation();openModal("detalle-convenio")') Ver
+            button.act-btn(style='border-color:#f59e0b;color:#a16207;' onclick='event.stopPropagation()') Renovar
+            button.act-icon-btn(onclick='event.stopPropagation()' title='Documentos')
+              span.material-symbols-outlined folder
+
+        //- Convenio 3
+        .conv-row(onclick='openModal("detalle-convenio")')
+          .conv-company
+            .conv-logo(style='background:linear-gradient(135deg,#065f46,#047857)') RS
+            div
+              .conv-name Rootstack S.A.
+              .conv-ruc RUC: 98-232-1-2021
+          .conv-type Alianza Institucional Integral
+          div
+            .conv-date 10 Mar, 2024
+            .conv-date(style='font-size:0.7rem;color:#94a3b8') Vigencia: 2 anos
+          div
+            .conv-date 10 Mar, 2026
+            .conv-days-left.days-ok 148 dias restantes
+            .conv-progress
+              .cp-bar-bg: .cp-bar.bar-green(style='width:72%')
+          .conv-vacantes 8 vacantes
+          .row-actions
+            button.act-btn.primary(onclick='event.stopPropagation();openModal("detalle-convenio")') Ver
+            button.act-btn(onclick='event.stopPropagation()') Renovar
+            button.act-icon-btn(onclick='event.stopPropagation()' title='Documentos')
+              span.material-symbols-outlined folder
+
+        //- Convenio 4 — Vencido
+        .conv-row(onclick='openModal("detalle-convenio")')
+          .conv-company
+            .conv-logo(style='background:linear-gradient(135deg,#94a3b8,#64748b)') ML
+            div
+              .conv-name Melo S.A.
+              .conv-ruc RUC: 44-112-3-2018
+          .conv-type Convenio de Empleo
+          div
+            .conv-date 05 Jun, 2022
+            .conv-date(style='font-size:0.7rem;color:#94a3b8') Vigencia: 3 anos
+          div
+            .conv-date 05 Jun, 2025
+            .conv-days-left.days-crit Vencido
+            .conv-progress
+              .cp-bar-bg: .cp-bar.bar-red(style='width:100%')
+          .conv-vacantes 0 vacantes
+          .row-actions
+            button.act-btn(onclick='event.stopPropagation();openModal("detalle-convenio")') Ver
+            button.act-btn(style='background:var(--up-gold);color:#fff;border-color:var(--up-gold);' onclick='event.stopPropagation()') Renovar
+            button.act-icon-btn.danger(onclick='event.stopPropagation()' title='Archivar')
+              span.material-symbols-outlined archive
+
+        .table-footer
+          .tf-info Mostrando 4 de 17 convenios
+          .tf-pages
+            button.page-btn(disabled)
+              span.material-symbols-outlined(style='font-size:0.9rem') chevron_left
+            button.page-btn.active 1
+            button.page-btn 2
+            button.page-btn
+              span.material-symbols-outlined(style='font-size:0.9rem') chevron_right
+
+    // ============================================================
+    //- VIEW 3: CONTROL DE USUARIOS
+    // ============================================================
+    #view-usuarios.view
+
+      .page-header
+        div
+          h1.page-title Control de Usuarios del Sistema
+          .page-subtitle Administra candidatos, empleadores y accesos del ecosistema UP.
+        .header-actions
+          button.btn-primary(onclick='openModal("nuevo-usuario")')
+            span.material-symbols-outlined person_add
+            | Nuevo Usuario
+          button.btn-secondary
+            span.material-symbols-outlined download
+            | Exportar
+          button.btn-secondary
+            span.material-symbols-outlined upload
+            | Importar CSV
+
+      //- KPIs usuarios
+      .kpi-grid(style='grid-template-columns:repeat(4,1fr)')
+        .kpi-card.kpi-blue
+          .kpi-label
+            .kpi-icon.kpi-icon-blue
+              span.material-symbols-outlined group
+            | Total Usuarios
+          .kpi-value 12,623
+          .kpi-trend.trend-up
+            span.material-symbols-outlined trending_up
+            | +5.4% este mes
+        .kpi-card.kpi-purple
+          .kpi-label
+            .kpi-icon(style='background:#faf5ff;color:#7c3aed')
+              span.material-symbols-outlined school
+            | Candidatos UP
+          .kpi-value 12,450
+          .kpi-trend.trend-up
+            span.material-symbols-outlined trending_up
+            | +648 nuevos
+        .kpi-card.kpi-gold
+          .kpi-label
+            .kpi-icon.kpi-icon-gold
+              span.material-symbols-outlined business
+            | Empleadores
+          .kpi-value 161
+          .kpi-trend.trend-up
+            span.material-symbols-outlined trending_up
+            | +12 este mes
+        .kpi-card.kpi-red
+          .kpi-label
+            .kpi-icon.kpi-icon-red
+              span.material-symbols-outlined block
+            | Suspendidos / Bloqueados
+          .kpi-value 12
+          .kpi-trend.trend-neutral
+            span.material-symbols-outlined remove
+            | Sin cambios
+
+      //- Filter bar
+      .filter-bar
+        .filter-search
+          span.material-symbols-outlined search
+          input(type='text' placeholder='Buscar por nombre, correo o cedula...')
+        .fsel-wrap
+          span.material-symbols-outlined.fsel-icon manage_accounts
+          select.fsel
+            option Todos los roles
+            option Candidato
+            option Empleador
+            option Administrador
+          span.material-symbols-outlined.fchev expand_more
+        .fsel-wrap
+          span.material-symbols-outlined.fsel-icon corporate_fare
+          select.fsel
+            option Cualquier estado
+            option Activo
+            option Pendiente verificacion
+            option Suspendido
+            option Bloqueado
+          span.material-symbols-outlined.fchev expand_more
+        .fsel-wrap
+          span.material-symbols-outlined.fsel-icon sort
+          select.fsel
+            option Mas recientes
+            option Nombre A-Z
+            option Mayor actividad
+          span.material-symbols-outlined.fchev expand_more
+        button.btn-secondary(style='height:40px')
+          span.material-symbols-outlined tune
+          | Filtros
+
+      .stabs
+        button.stab.active Todos
+          span.stab-count 12,623
+        button.stab
+          span(style='width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block')
+          | Activos
+          span.stab-count 12,418
+        button.stab
+          span(style='width:6px;height:6px;border-radius:50%;background:#f59e0b;display:inline-block')
+          | Pendientes
+          span.stab-count 193
+        button.stab
+          span(style='width:6px;height:6px;border-radius:50%;background:#ef4444;display:inline-block')
+          | Bloqueados
+          span.stab-count 12
+
+      .table-card
+        .usr-table-head
+          .th Usuario
+          .th Rol
+          .th Registro
+          .th Ultima Actividad
+          .th Estado
+          .th Acciones
+
+        //- Candidato activo
+        .usr-row(onclick='openModal("detalle-usuario")')
+          .usr-identity
+            .usr-avatar(style='background:linear-gradient(135deg,#1d4ed8,#1e40af);color:#fff') AG
+            div
+              .usr-name Ana Garcia Rodriguez
+              .usr-email ana.garcia@up.ac.pa &middot; 8-XXX-XXXX
+          span.usr-role-pill.urp-candidate
+            | Candidata
+          div
+            .usr-date 12 Ago, 2024
+            .usr-date-sub Hace 14 meses
+          div
+            .usr-activity Hoy, 10:32 AM
+            .usr-activity-sub 3 postulaciones activas
+          span.sbadge.sb-active
+            .sdot
+            | Activa
+          .row-actions
+            button.act-btn.primary(onclick='event.stopPropagation();openModal("detalle-usuario")') Ver
+            button.act-icon-btn(onclick='event.stopPropagation()' title='Enviar mensaje')
+              span.material-symbols-outlined mail
+            button.act-icon-btn.danger(onclick='event.stopPropagation()' title='Suspender')
+              span.material-symbols-outlined block
+
+        //- Empleador activo
+        .usr-row(onclick='openModal("detalle-usuario")')
+          .usr-identity
+            .usr-avatar(style='background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff') MV
+            div
+              .usr-name Mariana Velasquez Torres
+              .usr-email m.velasquez@techsolutions.com.pa
+          span.usr-role-pill.urp-employer
+            | Empleadora
+          div
+            .usr-date 03 Mar, 2024
+            .usr-date-sub Hace 7 meses
+          div
+            .usr-activity Ayer, 15:48
+            .usr-activity-sub 12 vacantes publicadas
+          span.sbadge.sb-active
+            .sdot
+            | Activa
+          .row-actions
+            button.act-btn.primary(onclick='event.stopPropagation();openModal("detalle-usuario")') Ver
+            button.act-icon-btn(onclick='event.stopPropagation()' title='Enviar mensaje')
+              span.material-symbols-outlined mail
+            button.act-icon-btn.danger(onclick='event.stopPropagation()' title='Suspender')
+              span.material-symbols-outlined block
+
+        //- Empleador pendiente verificacion
+        .usr-row(onclick='openModal("detalle-usuario")')
+          .usr-identity
+            .usr-avatar(style='background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff') RC
+            div
+              .usr-name Ricardo Castillo Noriega
+              .usr-email r.castillo@techpanama.com
+          span.usr-role-pill.urp-employer
+            | Empleador
+          div
+            .usr-date 11 Oct, 2025
+            .usr-date-sub Hace 2 dias
+          div
+            .usr-activity Nunca
+            .usr-activity-sub Cuenta nueva
+          span.sbadge.sb-pending
+            .sdot
+            | Pendiente
+          .row-actions
+            button.act-btn.success(onclick='event.stopPropagation()') Aprobar
+            button.act-btn(onclick='event.stopPropagation();openModal("detalle-usuario")') Ver
+            button.act-icon-btn.danger(onclick='event.stopPropagation()' title='Rechazar')
+              span.material-symbols-outlined close
+
+        //- Candidato bloqueado
+        .usr-row(onclick='openModal("detalle-usuario")')
+          .usr-identity
+            .usr-avatar(style='background:linear-gradient(135deg,#94a3b8,#64748b);color:#fff') LR
+            div
+              .usr-name Luis Reyes Montoya
+              .usr-email l.reyes@up.ac.pa
+          span.usr-role-pill.urp-candidate
+            | Candidato
+          div
+            .usr-date 05 Jun, 2023
+            .usr-date-sub Hace 16 meses
+          div
+            .usr-activity Hace 30 dias
+            .usr-activity-sub(style='color:#dc2626;font-weight:700') Bloqueado por reporte
+          span.sbadge.sb-blocked
+            .sdot
+            | Bloqueado
+          .row-actions
+            button.act-btn(onclick='event.stopPropagation();openModal("detalle-usuario")') Ver
+            button.act-btn.success(onclick='event.stopPropagation()') Desbloquear
+            button.act-icon-btn.danger(onclick='event.stopPropagation()' title='Eliminar cuenta')
+              span.material-symbols-outlined delete
+
+        //- Administrador
+        .usr-row(onclick='openModal("detalle-usuario")')
+          .usr-identity
+            .usr-avatar(style='background:linear-gradient(135deg,var(--up-gold),#a07a10);color:#fff') CP
+            div
+              .usr-name Carolina Perez Moreno
+              .usr-email c.perez@up.ac.pa
+          span.usr-role-pill.urp-admin
+            | Administradora
+          div
+            .usr-date 01 Ene, 2023
+            .usr-date-sub Hace 22 meses
+          div
+            .usr-activity Hoy, 08:01 AM
+            .usr-activity-sub Sesion activa actual
+          span.sbadge.sb-active
+            .sdot
+            | Activa
+          .row-actions
+            button.act-btn.primary(onclick='event.stopPropagation();openModal("detalle-usuario")') Ver
+            button.act-icon-btn(onclick='event.stopPropagation()' title='Editar permisos')
+              span.material-symbols-outlined shield
+            button.act-icon-btn(onclick='event.stopPropagation()' title='Enviar mensaje')
+              span.material-symbols-outlined mail
+
+        .table-footer
+          .tf-info Mostrando 5 de 12,623 usuarios
+          .tf-pages
+            button.page-btn(disabled)
+              span.material-symbols-outlined(style='font-size:0.9rem') chevron_left
+            button.page-btn.active 1
+            button.page-btn 2
+            button.page-btn 3
+            span(style='color:#94a3b8;padding:0 4px;font-size:0.85rem') ...
+            button.page-btn 1,263
+            button.page-btn
+              span.material-symbols-outlined(style='font-size:0.9rem') chevron_right
+
+  //- FOOTER
+  footer.footer-strip
+    .footer-brand
+      span.material-symbols-outlined(style='font-size:1rem;font-variation-settings:"FILL" 1') school
+      span Portal de Empleo UP
+    .footer-center &copy; #{new Date().getFullYear()} Universidad de Panama &mdash; Dirección de Tecnología de la Información y Comunicación.
+    .footer-links
+      a(href='#') Ayuda
+      a(href='#') Terminos
+      a(href='#') Privacidad
+
+  //- MODALS
+  //- Modal: Detalle de convenio
+  #modal-detalle-convenio.modal-overlay
+    .modal
+      .modal-header
+        .modal-title Detalle del Convenio &mdash; Tech Solutions S.A.
+        button.modal-close(onclick='closeModal("detalle-convenio")')
+          span.material-symbols-outlined close
+      .modal-body
+        .modal-label Empresa
+        .modal-value Tech Solutions S.A.
+        .modal-label RUC
+        .modal-value 155-4873-1-2019
+        .modal-label Tipo de Alianza
+        .modal-value Alianza Institucional Integral
+        .modal-label Fecha de Inicio
+        .modal-value 15 de Enero, 2024
+        .modal-label Fecha de Vencimiento
+        .modal-value 15 de Enero, 2026 (87 dias restantes)
+        .modal-label Compromisos
+        .modal-value Pasantias, Ferias de Empleo, Mentoria estudiantil
+        .modal-label Vacantes Activas
+        .modal-value 12 vacantes publicadas actualmente
+        .modal-label Notas Internas
+        textarea.modal-textarea(placeholder='Agregar nota...')
+      .modal-footer
+        button.btn-secondary(onclick='closeModal("detalle-convenio")') Cerrar
+        button.btn-primary Guardar Cambios
+
+  //- Modal: Nuevo convenio
+  #modal-nuevo-convenio.modal-overlay
+    .modal
+      .modal-header
+        .modal-title Registrar Nuevo Convenio
+        button.modal-close(onclick='closeModal("nuevo-convenio")')
+          span.material-symbols-outlined close
+      .modal-body
+        .modal-label Empresa (nombre legal)
+        input.modal-input(type='text' placeholder='Ej. Empresa S.A.')
+        .modal-label RUC
+        input.modal-input(type='text' placeholder='Ej. 155-0000-1-2024')
+        .modal-label Tipo de Alianza
+        select.modal-select
+          option Alianza Institucional Integral
+          option Convenio de Practicas
+          option Convenio de Empleo
+        .modal-label Fecha de Inicio
+        input.modal-input(type='date')
+        .modal-label Fecha de Vencimiento
+        input.modal-input(type='date')
+        .modal-label Compromisos
+        textarea.modal-textarea(placeholder='Describe los compromisos de la alianza...')
+      .modal-footer
+        button.btn-secondary(onclick='closeModal("nuevo-convenio")') Cancelar
+        button.btn-primary Registrar Convenio
+
+  //- Modal: Detalle de usuario
+  #modal-detalle-usuario.modal-overlay
+    .modal
+      .modal-header
+        .modal-title Perfil de Usuario &mdash; Ana Garcia Rodriguez
+        button.modal-close(onclick='closeModal("detalle-usuario")')
+          span.material-symbols-outlined close
+      .modal-body
+        .modal-label Nombre completo
+        .modal-value Ana Garcia Rodriguez
+        .modal-label Correo Institucional
+        .modal-value ana.garcia@up.ac.pa
+        .modal-label Rol en el sistema
+        select.modal-select
+          option(selected) Candidata
+          option Empleador
+          option Administrador
+        .modal-label Estado de la cuenta
+        select.modal-select
+          option(selected) Activa
+          option Suspendida
+          option Bloqueada
+        .modal-label Motivo de suspension / bloqueo
+          span.form-label-opt (si aplica)
+        textarea.modal-textarea(placeholder='Describe el motivo...')
+        .modal-label Notas del Administrador
+        textarea.modal-textarea(placeholder='Notas internas...')
+      .modal-footer
+        button.btn-secondary(onclick='closeModal("detalle-usuario")') Cancelar
+        button.btn-primary Guardar Cambios
+
+  //- Modal: Nuevo usuario
+  #modal-nuevo-usuario.modal-overlay
+    .modal
+      .modal-header
+        .modal-title Crear Nuevo Usuario
+        button.modal-close(onclick='closeModal("nuevo-usuario")')
+          span.material-symbols-outlined close
+      .modal-body
+        .modal-label Nombre completo
+        input.modal-input(type='text' placeholder='Nombre y apellidos')
+        .modal-label Correo electronico
+        input.modal-input(type='email' placeholder='usuario@up.ac.pa')
+        .modal-label Cedula de identidad
+        input.modal-input(type='text' placeholder='Ej. 8-000-0000')
+        .modal-label Rol en el sistema
+        select.modal-select
+          option Candidato
+          option Empleador
+          option Administrador
+        .modal-label Contrasena temporal
+        input.modal-input(type='password' placeholder='Minimo 8 caracteres')
+      .modal-footer
+        button.btn-secondary(onclick='closeModal("nuevo-usuario")') Cancelar
+        button.btn-primary Crear Usuario
+
+  script.
+    function showView(view, el) {
+      document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
+      document.getElementById('view-' + view).classList.add('active');
+      document.querySelectorAll('.topbar-nav a').forEach(function(a){ a.classList.remove('active'); });
+      if(el) el.classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function openModal(id) {
+      var m = document.getElementById('modal-' + id);
+      if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; }
+    }
+    function closeModal(id) {
+      var m = document.getElementById('modal-' + id);
+      if(m){ m.classList.remove('open'); document.body.style.overflow=''; }
+    }
+    // Close on overlay click
+    document.querySelectorAll('.modal-overlay').forEach(function(o){
+      o.addEventListener('click', function(e){
+        if(e.target === this){ this.classList.remove('open'); document.body.style.overflow=''; }
+      });
+    });
+    function applyR(){
+      var w = window.innerWidth;
+      var g5 = document.querySelector('#view-dashboard .kpi-grid');
+      if(g5) g5.style.gridTemplateColumns = w<768 ? 'repeat(2,1fr)' : w<1100 ? 'repeat(3,1fr)' : 'repeat(5,1fr)';
+      var g4 = document.querySelectorAll('.kpi-grid:not(#view-dashboard .kpi-grid)');
+      g4.forEach(function(g){ g.style.gridTemplateColumns = w<768 ? 'repeat(2,1fr)' : 'repeat(4,1fr)'; });
+    }
+    applyR();
+    window.addEventListener('resize', applyR);

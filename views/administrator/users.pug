@@ -1,0 +1,1024 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Control de Usuarios - Panel Admin UP
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+    link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
+    style.
+      :root{--up-blue:#003876;--up-blue-dark:#002147;--up-gold:#C49A1A;--up-gold-light:#e8c44d;--bg:#f0f4f8;}
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a2233;min-height:100vh;display:flex;flex-direction:column;}
+      h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+      .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+      a{text-decoration:none;}
+
+      /* ===== TOPBAR ===== */
+      .topbar{background:var(--up-blue-dark);color:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,0.07);box-shadow:0 2px 20px rgba(0,20,60,0.25);}
+      .topbar-inner{max-width:1400px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem;}
+      .topbar-brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+      .topbar-brand-icon{background:var(--up-gold);border-radius:9px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--up-blue-dark);flex-shrink:0;}
+      .topbar-brand-name{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;line-height:1.1;}
+      .topbar-brand-sub{font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--up-gold-light);}
+      .admin-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(196,154,26,0.15);border:1px solid rgba(196,154,26,0.35);color:var(--up-gold-light);font-size:0.58rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;padding:2px 8px;border-radius:50px;margin-left:6px;flex-shrink:0;}
+      .admin-badge .material-symbols-outlined{font-size:0.72rem;font-variation-settings:'FILL' 1;}
+      .topbar-nav{display:flex;align-items:center;height:100%;gap:2px;}
+      .topbar-nav a{display:flex;align-items:center;gap:6px;height:100%;padding:0 14px;font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.55);border-bottom:3px solid transparent;transition:color 0.2s,border-color 0.2s;white-space:nowrap;}
+      .topbar-nav a .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 1;}
+      .topbar-nav a:hover{color:#fff;}
+      .topbar-nav a.active{color:#fff;border-bottom-color:var(--up-gold);}
+      .topbar-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+      .topbar-icon-btn{background:rgba(255,255,255,0.07);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);cursor:pointer;transition:background 0.2s;position:relative;}
+      .topbar-icon-btn:hover{background:rgba(255,255,255,0.14);color:#fff;}
+      .notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--up-gold);border:2px solid var(--up-blue-dark);}
+      .topbar-divider{width:1px;height:28px;background:rgba(255,255,255,0.1);margin:0 4px;}
+      .topbar-user{display:flex;align-items:center;gap:9px;cursor:pointer;padding:4px 8px;border-radius:10px;transition:background 0.2s;}
+      .topbar-user:hover{background:rgba(255,255,255,0.07);}
+      .topbar-user-name{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;line-height:1.15;text-align:right;}
+      .topbar-user-sub{font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--up-gold-light);text-align:right;}
+      .topbar-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));display:flex;align-items:center;justify-content:center;color:var(--up-gold-light);font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;flex-shrink:0;border:2px solid rgba(196,154,26,0.35);}
+
+      /* ===== MAIN ===== */
+      .main-content{flex:1;max-width:1400px;margin:0 auto;width:100%;padding:2rem 1.5rem 4rem;}
+      .page-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.8rem;}
+      .page-title{font-family:'Sora',sans-serif;font-size:1.55rem;font-weight:800;color:#0f172a;}
+      .page-subtitle{font-size:0.88rem;color:#64748b;margin-top:3px;}
+      .header-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+
+      /* ===== BUTTONS ===== */
+      .btn-primary{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 18px;border-radius:10px;background:var(--up-blue);color:#fff;border:none;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 3px 10px rgba(0,56,118,0.18);}
+      .btn-primary:hover{background:var(--up-gold);}
+      .btn-primary .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .btn-secondary{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:10px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#334155;cursor:pointer;transition:all 0.2s;}
+      .btn-secondary:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .btn-secondary .material-symbols-outlined{font-size:1rem;}
+
+      /* ===== KPI STRIP ===== */
+      .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:1.8rem;}
+      .kpi-card{background:#fff;border-radius:16px;border:1.5px solid #e8edf5;padding:1.1rem 1.3rem;display:flex;align-items:center;gap:12px;box-shadow:0 2px 10px rgba(0,56,118,0.04);position:relative;overflow:hidden;cursor:pointer;transition:border-color 0.2s,box-shadow 0.2s;}
+      .kpi-card:hover{border-color:var(--up-blue);box-shadow:0 4px 18px rgba(0,56,118,0.1);}
+      .kpi-card.active-filter{border-color:var(--up-blue);background:#eff6ff;box-shadow:0 4px 18px rgba(0,56,118,0.1);}
+      .kpi-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;border-radius:16px 0 0 16px;}
+      .kpi-blue::before{background:var(--up-blue);}
+      .kpi-green::before{background:#22c55e;}
+      .kpi-gold::before{background:var(--up-gold);}
+      .kpi-red::before{background:#ef4444;}
+      .kpi-purple::before{background:#7c3aed;}
+      .kpi-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .kpi-icon .material-symbols-outlined{font-size:1.15rem;font-variation-settings:'FILL' 1;}
+      .kpi-icon-blue{background:#eff6ff;color:var(--up-blue);}
+      .kpi-icon-green{background:#f0fdf4;color:#16a34a;}
+      .kpi-icon-gold{background:#fefce8;color:#a16207;}
+      .kpi-icon-red{background:#fef2f2;color:#dc2626;}
+      .kpi-icon-purple{background:#faf5ff;color:#7c3aed;}
+      .kpi-label{font-size:0.64rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:3px;}
+      .kpi-value{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:800;color:#0f172a;line-height:1;}
+      .kpi-trend{display:flex;align-items:center;gap:3px;font-size:0.7rem;font-weight:700;margin-top:3px;}
+      .trend-up{color:#16a34a;}
+      .trend-warn{color:#a16207;}
+      .trend-neutral{color:#94a3b8;}
+      .trend-red{color:#dc2626;}
+
+      /* ===== PENDING ALERT ===== */
+      .pending-alert{background:#fffbeb;border:1.5px solid #fde68a;border-radius:14px;padding:0.85rem 1.3rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;}
+      .pending-alert .material-symbols-outlined{font-size:1.2rem;color:#a16207;font-variation-settings:'FILL' 1;flex-shrink:0;}
+      .pa-title{font-family:'Sora',sans-serif;font-size:0.83rem;font-weight:800;color:#92400e;}
+      .pa-text{font-size:0.78rem;color:#a16207;margin-top:1px;}
+      .pa-actions{margin-left:auto;display:flex;gap:6px;flex-shrink:0;}
+      .btn-warn-sm{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 12px;border-radius:8px;border:1.5px solid #fde68a;background:#fff;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:#a16207;cursor:pointer;transition:all 0.2s;}
+      .btn-warn-sm:hover{background:#fefce8;border-color:#f59e0b;}
+
+      /* ===== TOOLBAR ===== */
+      .toolbar{background:#fff;border-radius:16px;border:1.5px solid #e8edf5;padding:0.9rem 1.3rem;display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:1.1rem;box-shadow:0 2px 8px rgba(0,56,118,0.03);}
+      .search-box{display:flex;align-items:center;gap:8px;flex:1;min-width:220px;background:#f8fafc;border:1.5px solid #f1f5f9;border-radius:10px;padding:0 12px;height:40px;transition:border-color 0.2s;}
+      .search-box:focus-within{border-color:var(--up-blue);background:#fff;}
+      .search-box .material-symbols-outlined{font-size:1rem;color:#94a3b8;}
+      .search-box input{background:none;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#334155;width:100%;}
+      .search-box input::placeholder{color:#b0bec5;}
+      .fsel-wrap{position:relative;}
+      .fsel-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:0.95rem;color:#64748b;pointer-events:none;font-variation-settings:'FILL' 1;}
+      .fsel{height:40px;padding:0 30px 0 32px;border-radius:10px;border:1.5px solid #e2e8f0;background:#fff;font-family:'DM Sans',sans-serif;font-size:0.83rem;font-weight:600;color:#334155;cursor:pointer;outline:none;appearance:none;}
+      .fsel:focus{border-color:var(--up-blue);}
+      .fchev{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-size:0.85rem;color:#94a3b8;pointer-events:none;}
+      .toolbar-divider{width:1px;height:28px;background:#f1f5f9;}
+
+      /* ===== STATUS TABS ===== */
+      .status-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.1rem;}
+      .stab{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 12px;border-radius:50px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:#64748b;cursor:pointer;transition:all 0.2s;}
+      .stab:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .stab.active{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .stab-dot{width:6px;height:6px;border-radius:50%;}
+      .stab-count{font-size:0.62rem;font-weight:800;padding:1px 6px;border-radius:50px;}
+      .stab.active .stab-count{background:rgba(255,255,255,0.22);}
+      .stab:not(.active) .stab-count{background:#f1f5f9;color:#64748b;}
+
+      /* ===== TABLE ===== */
+      .table-card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;box-shadow:0 2px 12px rgba(0,56,118,0.05);overflow:hidden;}
+      .table-head{display:grid;grid-template-columns:2.4fr 1.1fr 1.1fr 0.9fr 0.9fr 1fr 1.1fr;align-items:center;padding:0.75rem 1.4rem;background:#f8fafc;border-bottom:1px solid #f1f5f9;}
+      .th{font-size:0.63rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;display:flex;align-items:center;gap:3px;}
+      .th.sortable{cursor:pointer;}
+      .th.sortable:hover{color:var(--up-blue);}
+      .th .material-symbols-outlined{font-size:0.78rem;}
+
+      /* ===== USER ROW ===== */
+      .usr-row{display:grid;grid-template-columns:2.4fr 1.1fr 1.1fr 0.9fr 0.9fr 1fr 1.1fr;align-items:center;padding:0.85rem 1.4rem;border-bottom:1px solid #f8fafc;transition:background 0.15s;cursor:pointer;}
+      .usr-row:last-child{border-bottom:none;}
+      .usr-row:hover{background:#fafbfc;}
+      .usr-row.selected{background:#eff6ff;}
+
+      .usr-identity{display:flex;align-items:center;gap:10px;}
+      .usr-avatar{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:800;flex-shrink:0;position:relative;}
+      .usr-online{position:absolute;bottom:0;right:0;width:9px;height:9px;border-radius:50%;background:#22c55e;border:2px solid #fff;}
+      .usr-name{font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;color:#0f172a;}
+      .usr-email{font-size:0.7rem;color:#94a3b8;margin-top:1px;}
+
+      .cedula-cell{font-size:0.83rem;color:#334155;font-weight:500;font-family:'Sora',sans-serif;}
+      .facultad-cell{font-size:0.82rem;color:#334155;}
+      .fac-sub{font-size:0.68rem;color:#94a3b8;margin-top:1px;}
+
+      .type-pill{display:inline-flex;align-items:center;gap:4px;font-size:0.65rem;font-weight:800;padding:3px 9px;border-radius:50px;letter-spacing:0.06em;text-transform:uppercase;}
+      .tp-student{background:#eff6ff;color:var(--up-blue);}
+      .tp-grad{background:#f0fdf4;color:#15803d;}
+      .tp-employer{background:#faf5ff;color:#7c3aed;}
+      .tp-admin{background:#fefce8;color:#a16207;}
+
+      .reg-date{font-size:0.82rem;color:#64748b;}
+      .reg-ago{font-size:0.68rem;color:#94a3b8;margin-top:1px;}
+
+      .act-cell{font-size:0.78rem;color:#64748b;}
+      .act-sub{font-size:0.68rem;color:#94a3b8;margin-top:1px;}
+
+      /* STATUS */
+      .status-cell{display:flex;align-items:center;gap:5px;font-size:0.75rem;font-weight:700;}
+      .sdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+      .sdot.active{background:#22c55e;animation:pulse 2s infinite;}
+      .sdot.pending{background:#f59e0b;animation:pulse 2s infinite;}
+      .sdot.inactive{background:#94a3b8;}
+      .sdot.blocked{background:#ef4444;}
+      .status-active{color:#15803d;}
+      .status-pending{color:#a16207;}
+      .status-inactive{color:#64748b;}
+      .status-blocked{color:#dc2626;}
+      @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+      /* ROW ACTIONS */
+      .row-actions{display:flex;align-items:center;gap:4px;justify-content:flex-end;}
+      .act-icon-btn{width:30px;height:30px;border-radius:8px;border:1.5px solid #e2e8f0;background:#fff;display:flex;align-items:center;justify-content:center;color:#64748b;cursor:pointer;transition:all 0.2s;}
+      .act-icon-btn:hover{border-color:var(--up-blue);color:var(--up-blue);}
+      .act-icon-btn.approve:hover{border-color:#22c55e;color:#22c55e;}
+      .act-icon-btn.danger:hover{border-color:#ef4444;color:#ef4444;}
+      .act-icon-btn.warn:hover{border-color:#f59e0b;color:#a16207;}
+      .act-icon-btn .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 0;}
+      .act-primary-btn{height:30px;padding:0 10px;border-radius:8px;border:none;background:var(--up-blue);color:#fff;display:inline-flex;align-items:center;gap:4px;cursor:pointer;transition:all 0.2s;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;}
+      .act-primary-btn:hover{background:var(--up-gold);}
+      .act-primary-btn .material-symbols-outlined{font-size:0.85rem;font-variation-settings:'FILL' 1;}
+
+      /* ===== TABLE FOOTER ===== */
+      .table-footer{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;border-top:1px solid #f1f5f9;flex-wrap:wrap;gap:0.8rem;}
+      .tf-info{font-size:0.78rem;color:#94a3b8;}
+      .tf-info strong{color:#334155;}
+      .tf-pages{display:flex;align-items:center;gap:5px;}
+      .page-btn{width:32px;height:32px;border-radius:8px;border:1.5px solid #e2e8f0;background:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:#334155;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+      .page-btn:hover:not(:disabled){border-color:var(--up-blue);color:var(--up-blue);}
+      .page-btn.active{background:var(--up-blue);color:#fff;border-color:var(--up-blue);}
+      .page-btn:disabled{color:#cbd5e1;cursor:not-allowed;}
+
+      /* ===== DRAWER ===== */
+      .drawer-overlay{position:fixed;inset:0;background:rgba(0,20,50,0.5);backdrop-filter:blur(4px);z-index:200;display:none;}
+      .drawer-overlay.open{display:block;}
+      .drawer{position:fixed;top:0;right:0;bottom:0;width:500px;max-width:100vw;background:#fff;z-index:201;box-shadow:-8px 0 40px rgba(0,0,0,0.12);transform:translateX(100%);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;}
+      .drawer.open{transform:translateX(0);}
+
+      /* Drawer header */
+      .dh{background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));padding:1.3rem 1.5rem;flex-shrink:0;}
+      .dh-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+      .dh-close{background:rgba(255,255,255,0.12);border:none;border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;}
+      .dh-close:hover{background:rgba(255,255,255,0.22);}
+      .dh-close .material-symbols-outlined{font-size:1rem;}
+      .dh-identity{display:flex;align-items:center;gap:12px;}
+      .dh-avatar{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;border:2px solid rgba(255,255,255,0.25);flex-shrink:0;}
+      .dh-name{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;}
+      .dh-meta{font-size:0.73rem;color:rgba(255,255,255,0.6);margin-top:2px;}
+      .dh-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;margin-top:0.8rem;}
+      .dh-stat{background:rgba(255,255,255,0.07);padding:0.7rem 0.8rem;text-align:center;}
+      .dh-stat-val{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;}
+      .dh-stat-label{font-size:0.6rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-top:1px;}
+
+      /* Drawer tabs */
+      .drawer-tabs{display:flex;border-bottom:1px solid #f1f5f9;flex-shrink:0;}
+      .dtab{flex:1;height:44px;display:flex;align-items:center;justify-content:center;gap:5px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:#94a3b8;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;background:none;border-top:none;border-left:none;border-right:none;}
+      .dtab:hover{color:var(--up-blue);}
+      .dtab.active{color:var(--up-blue);border-bottom-color:var(--up-blue);}
+      .dtab .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;}
+
+      /* Drawer body */
+      .drawer-body{flex:1;overflow-y:auto;padding:1.3rem 1.5rem;}
+      .drawer-body::-webkit-scrollbar{width:4px;}
+      .drawer-body::-webkit-scrollbar-thumb{background:#e2e8f0;border-radius:4px;}
+      .dpanel{display:none;}
+      .dpanel.active{display:block;}
+
+      /* Drawer sections */
+      .ds-section-title{font-family:'Sora',sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:0.7rem;margin-top:1.2rem;}
+      .ds-section-title:first-child{margin-top:0;}
+      .info-card{background:#f8fafc;border-radius:12px;border:1px solid #f1f5f9;overflow:hidden;margin-bottom:1rem;}
+      .info-row{display:flex;align-items:flex-start;gap:10px;padding:0.75rem 1rem;border-bottom:1px solid #f1f5f9;}
+      .info-row:last-child{border-bottom:none;}
+      .info-row-icon{color:#94a3b8;flex-shrink:0;margin-top:1px;}
+      .info-row-icon .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 1;}
+      .info-label{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;}
+      .info-value{font-size:0.83rem;font-weight:600;color:#334155;margin-top:1px;}
+      .info-value.mono{font-family:'Sora',sans-serif;}
+
+      /* Skills/tags */
+      .tag-cloud{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1rem;}
+      .skill-tag{display:inline-flex;align-items:center;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:50px;background:#eff6ff;border:1px solid #bfdbfe;color:var(--up-blue);}
+
+      /* Activity timeline */
+      .act-timeline{display:flex;flex-direction:column;gap:0;}
+      .at-item{display:flex;gap:10px;align-items:flex-start;padding-bottom:1rem;position:relative;}
+      .at-item::before{content:'';position:absolute;left:12px;top:26px;bottom:0;width:2px;background:#f1f5f9;}
+      .at-item:last-child::before{display:none;}
+      .at-dot{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;}
+      .at-dot .material-symbols-outlined{font-size:0.82rem;font-variation-settings:'FILL' 1;}
+      .at-dot-blue{background:#eff6ff;color:var(--up-blue);}
+      .at-dot-green{background:#f0fdf4;color:#16a34a;}
+      .at-dot-gold{background:#fefce8;color:#a16207;}
+      .at-dot-red{background:#fef2f2;color:#dc2626;}
+      .at-text{font-size:0.8rem;color:#334155;line-height:1.5;flex:1;}
+      .at-text strong{font-family:'Sora',sans-serif;font-weight:700;color:#0f172a;}
+      .at-time{font-size:0.68rem;color:#94a3b8;font-weight:600;margin-top:1px;}
+
+      /* Gestion panel */
+      .mgmt-section{margin-bottom:1.3rem;}
+      .mgmt-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:6px;}
+      .mgmt-select{width:100%;height:40px;border:1.5px solid #e2e8f0;border-radius:10px;padding:0 12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;appearance:none;background:#fff;transition:border-color 0.2s;}
+      .mgmt-select:focus{border-color:var(--up-blue);}
+      .mgmt-textarea{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#334155;outline:none;resize:vertical;min-height:80px;line-height:1.65;transition:border-color 0.2s;}
+      .mgmt-textarea:focus{border-color:var(--up-blue);}
+      .mgmt-textarea::placeholder{color:#b0bec5;}
+      .mgmt-action-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:0.5rem;}
+      .mgmt-btn{height:38px;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:10px;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.2s;border:none;}
+      .mgmt-btn .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;}
+      .mb-blue{background:var(--up-blue);color:#fff;}
+      .mb-blue:hover{background:var(--up-gold);}
+      .mb-outline{background:#fff;color:#64748b;border:1.5px solid #e2e8f0 !important;}
+      .mb-outline:hover{border-color:var(--up-blue) !important;color:var(--up-blue);}
+      .mb-danger{background:#fff;color:#dc2626;border:1.5px solid #fee2e2 !important;}
+      .mb-danger:hover{background:#fef2f2;}
+      .mb-green{background:#f0fdf4;color:#15803d;border:1.5px solid #bbf7d0 !important;}
+      .mb-green:hover{background:#dcfce7;}
+
+      /* Danger zone */
+      .danger-zone{background:#fef2f2;border:1.5px solid #fecaca;border-radius:12px;padding:1rem;margin-top:1.2rem;}
+      .dz-title{font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:800;color:#dc2626;display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+      .dz-title .material-symbols-outlined{font-size:0.9rem;font-variation-settings:'FILL' 1;}
+      .dz-text{font-size:0.78rem;color:#ef4444;margin-bottom:10px;line-height:1.6;}
+      .dz-btn{width:100%;height:36px;display:flex;align-items:center;justify-content:center;gap:5px;border-radius:9px;border:1.5px solid #fecaca;background:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:#dc2626;cursor:pointer;transition:all 0.2s;}
+      .dz-btn:hover{background:#fef2f2;border-color:#ef4444;}
+      .dz-btn .material-symbols-outlined{font-size:0.88rem;font-variation-settings:'FILL' 1;}
+
+      /* Drawer footer */
+      .drawer-footer{padding:1rem 1.5rem;border-top:1px solid #f1f5f9;display:flex;gap:8px;flex-shrink:0;}
+      .df-btn{flex:1;height:42px;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:10px;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;border:none;}
+      .df-primary{background:var(--up-blue);color:#fff;box-shadow:0 3px 10px rgba(0,56,118,0.2);}
+      .df-primary:hover{background:var(--up-gold);}
+      .df-outline{background:#fff;color:#64748b;border:1.5px solid #e2e8f0 !important;}
+      .df-outline:hover{border-color:var(--up-blue) !important;color:var(--up-blue);}
+      .df-btn .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 1;}
+
+      /* ===== MODAL ===== */
+      .modal-overlay{position:fixed;inset:0;background:rgba(0,20,50,0.55);backdrop-filter:blur(4px);z-index:300;display:none;align-items:center;justify-content:center;}
+      .modal-overlay.open{display:flex;}
+      .modal{background:#fff;border-radius:20px;width:460px;max-width:95vw;overflow:hidden;box-shadow:0 24px 60px rgba(0,20,60,0.2);}
+      .modal-header{padding:1.3rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+      .modal-title{font-family:'Sora',sans-serif;font-size:0.92rem;font-weight:800;color:#fff;}
+      .modal-close-btn{background:rgba(255,255,255,0.12);border:none;border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;}
+      .modal-close-btn .material-symbols-outlined{font-size:1rem;}
+      .modal-body{padding:1.5rem;}
+      .m-label{font-size:0.63rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:4px;margin-top:1rem;}
+      .m-label:first-child{margin-top:0;}
+      .m-input{width:100%;height:40px;border:1.5px solid #e2e8f0;border-radius:10px;padding:0 12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;transition:border-color 0.2s;}
+      .m-input:focus{border-color:var(--up-blue);}
+      .m-select{width:100%;height:40px;border:1.5px solid #e2e8f0;border-radius:10px;padding:0 12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;appearance:none;background:#fff;}
+      .m-select:focus{border-color:var(--up-blue);}
+      .m-textarea{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#334155;outline:none;resize:vertical;min-height:80px;line-height:1.65;}
+      .m-textarea:focus{border-color:var(--up-blue);}
+      .modal-footer{padding:1rem 1.5rem;border-top:1px solid #f1f5f9;display:flex;gap:8px;justify-content:flex-end;}
+
+      /* ===== FOOTER ===== */
+      .footer-strip{background:var(--up-blue-dark);border-top:1px solid rgba(255,255,255,0.06);padding:1.2rem 1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;}
+      .footer-brand{display:flex;align-items:center;gap:6px;color:rgba(255,255,255);font-size:0.72rem;}
+      .footer-center{font-size:0.72rem;color:rgba(255,255,255);letter-spacing:0.06em;text-transform:uppercase;}
+      .footer-links{display:flex;gap:1rem;}
+      .footer-links a{color:rgba(255,255,255);font-size:0.72rem;transition:color 0.2s;}
+      .footer-links a:hover{color:rgba(255,255,255,0.7);}
+
+      /* RESPONSIVE */
+      @media(max-width:1100px){
+        .kpi-row{grid-template-columns:repeat(3,1fr);}
+        .table-head,.usr-row{grid-template-columns:2fr 1fr 1fr 1fr 1fr;}
+        .table-head>*:nth-child(5),.table-head>*:nth-child(6),.usr-row>*:nth-child(5),.usr-row>*:nth-child(6){display:none;}
+      }
+      @media(max-width:768px){.kpi-row{grid-template-columns:repeat(2,1fr);}.drawer{width:100vw;}}
+      @media(max-width:480px){.kpi-row{grid-template-columns:1fr 1fr;}}
+
+  //- TOPBAR
+  header.topbar
+    .topbar-inner
+      a.topbar-brand(href='/')
+        .topbar-brand-icon
+          span.material-symbols-outlined(style='font-size:1.2rem;font-variation-settings:"FILL" 1') school
+        div
+          .topbar-brand-name Portal de Empleo UP
+          .topbar-brand-sub Panel de Administrador
+      div(style='display:flex;align-items:center;gap:6px')
+        .admin-badge
+          span.material-symbols-outlined shield
+          | Admin
+        nav.topbar-nav
+          a(href='/administrator/dashboard' style='margin-left:8px')
+            span.material-symbols-outlined dashboard
+            | Dashboard
+          a(href='/administrator/convenios')
+            span.material-symbols-outlined handshake
+            | Convenios
+          a.active(href='#')
+            span.material-symbols-outlined manage_accounts
+            | Usuarios
+      .topbar-right
+        button.topbar-icon-btn(title='Configuracion')
+          span.material-symbols-outlined(style='font-size:1.1rem') settings
+        button.topbar-icon-btn(title='Notificaciones')
+          span.material-symbols-outlined(style='font-size:1.1rem') notifications
+          .notif-dot
+        .topbar-divider
+        .topbar-user
+          div
+            .topbar-user-name Carolina Perez
+            .topbar-user-sub Administrador
+          .topbar-avatar CP
+
+  //- MAIN
+  main.main-content
+
+    //- PAGE HEADER
+    .page-header
+      div
+        h1.page-title Gestion de Usuarios
+        .page-subtitle Administra el acceso, valida cuentas y supervisa la actividad de candidatos y empleadores del sistema.
+      .header-actions
+        button.btn-primary(onclick='openModal("nuevo-usuario")')
+          span.material-symbols-outlined person_add
+          | Nuevo Usuario
+        button.btn-secondary
+          span.material-symbols-outlined upload
+          | Importar CSV
+        button.btn-secondary
+          span.material-symbols-outlined download
+          | Exportar
+
+    //- KPI ROW (5 clickable)
+    .kpi-row
+      .kpi-card.kpi-blue.active-filter(onclick='filterKpi(this,"todos")')
+        .kpi-icon.kpi-icon-blue
+          span.material-symbols-outlined group
+        div
+          .kpi-label Total Usuarios
+          .kpi-value 12,623
+          .kpi-trend.trend-up
+            span.material-symbols-outlined(style='font-size:0.8rem') trending_up
+            | +5.4% este mes
+      .kpi-card.kpi-green(onclick='filterKpi(this,"activos")')
+        .kpi-icon.kpi-icon-green
+          span.material-symbols-outlined check_circle
+        div
+          .kpi-label Activos
+          .kpi-value 12,204
+          .kpi-trend.trend-up
+            span.material-symbols-outlined(style='font-size:0.8rem') trending_up
+            | +4.9%
+      .kpi-card.kpi-gold(onclick='filterKpi(this,"pendientes")')
+        .kpi-icon.kpi-icon-gold
+          span.material-symbols-outlined hourglass_top
+        div
+          .kpi-label Pendientes
+          .kpi-value 207
+          .kpi-trend.trend-warn
+            span.material-symbols-outlined(style='font-size:0.8rem') warning
+            | Requieren atencion
+      .kpi-card.kpi-red(onclick='filterKpi(this,"bloqueados")')
+        .kpi-icon.kpi-icon-red
+          span.material-symbols-outlined block
+        div
+          .kpi-label Bloqueados
+          .kpi-value 12
+          .kpi-trend.trend-neutral
+            span.material-symbols-outlined(style='font-size:0.8rem') remove
+            | Sin cambios
+      .kpi-card.kpi-purple(onclick='filterKpi(this,"empleadores")')
+        .kpi-icon.kpi-icon-purple
+          span.material-symbols-outlined business
+        div
+          .kpi-label Empleadores
+          .kpi-value 161
+          .kpi-trend.trend-up
+            span.material-symbols-outlined(style='font-size:0.8rem') trending_up
+            | +12 nuevos
+
+    //- PENDING ALERT
+    .pending-alert
+      span.material-symbols-outlined warning
+      div
+        .pa-title 42 cuentas pendientes de validacion
+        .pa-text 38 candidatos y 4 empleadores esperan verificacion. Las cuentas no validadas tienen acceso limitado al portal.
+      .pa-actions
+        button.btn-warn-sm
+          span.material-symbols-outlined(style='font-size:0.85rem') filter_list
+          | Ver pendientes
+        button.btn-warn-sm(style='background:var(--up-gold);color:#fff;border-color:var(--up-gold)')
+          span.material-symbols-outlined(style='font-size:0.85rem') done_all
+          | Aprobar seleccionados
+
+    //- TOOLBAR
+    .toolbar
+      .search-box
+        span.material-symbols-outlined search
+        input(type='text' placeholder='Buscar por nombre, correo o cedula...')
+      .fsel-wrap
+        span.material-symbols-outlined.fsel-icon school
+        select.fsel
+          option Todas las Facultades
+          option FIEC - Informatica
+          option FAECO - Economia
+          option FCI - Ciencias
+          option FM - Medicina
+          option FJCA - Derecho
+        span.material-symbols-outlined.fchev expand_more
+      .fsel-wrap
+        span.material-symbols-outlined.fsel-icon manage_accounts
+        select.fsel
+          option Todos los tipos
+          option Candidato - Estudiante
+          option Candidato - Egresado
+          option Empleador
+          option Administrador
+        span.material-symbols-outlined.fchev expand_more
+      .fsel-wrap
+        span.material-symbols-outlined.fsel-icon sort
+        select.fsel
+          option Mas recientes
+          option Nombre A-Z
+          option Mayor actividad
+          option Menor actividad
+        span.material-symbols-outlined.fchev expand_more
+      .toolbar-divider
+      button.btn-secondary(style='height:40px')
+        span.material-symbols-outlined tune
+        | Filtros avanzados
+
+    //- STATUS TABS
+    .status-tabs
+      button.stab.active(onclick='setTab(this)')
+        | Todos
+        span.stab-count 12,623
+      button.stab(onclick='setTab(this)')
+        span.stab-dot(style='background:#22c55e')
+        | Activos
+        span.stab-count 12,204
+      button.stab(onclick='setTab(this)')
+        span.stab-dot(style='background:#f59e0b')
+        | Pendientes Verificacion
+        span.stab-count 207
+      button.stab(onclick='setTab(this)')
+        span.stab-dot(style='background:#94a3b8')
+        | Inactivos
+        span.stab-count 200
+      button.stab(onclick='setTab(this)')
+        span.stab-dot(style='background:#ef4444')
+        | Bloqueados
+        span.stab-count 12
+
+    //- TABLE
+    .table-card
+      .table-head
+        .th Nombre completo
+        .th Cedula / ID
+        .th Facultad
+        .th Tipo
+        .th.sortable
+          | Registro
+          span.material-symbols-outlined unfold_more
+        .th.sortable
+          | Ultima Actividad
+          span.material-symbols-outlined unfold_more
+        .th Estado / Acciones
+
+      //- ROW 1 — Estudiante activo (online)
+      .usr-row(onclick='openDrawer("alejandro")')
+        .usr-identity
+          .usr-avatar(style='background:linear-gradient(135deg,#1d4ed8,#1e40af);color:#fff')
+            | AM
+            .usr-online
+          div
+            .usr-name Alejandro Morales Rios
+            .usr-email a.morales@up.ac.pa
+        .cedula-cell 8-942-1234
+        div
+          div(style='font-size:0.82rem;color:#334155') Ingenieria
+          .fac-sub FIEC &middot; 9no Sem.
+        span.type-pill.tp-student Estudiante
+        div
+          .reg-date 12 Oct, 2023
+          .reg-ago Hace 2 anos
+        div
+          .act-cell Hoy, 09:41 AM
+          .act-sub 3 postulaciones activas
+        div(style='display:flex;align-items:center;justify-content:space-between')
+          .status-cell
+            .sdot.active
+            span.status-active Activo
+          .row-actions
+            button.act-primary-btn(onclick='event.stopPropagation();openDrawer("alejandro")')
+              span.material-symbols-outlined person
+              | Ver
+            button.act-icon-btn.danger(onclick='event.stopPropagation()' title='Suspender')
+              span.material-symbols-outlined block
+
+      //- ROW 2 — Egresada activa
+      .usr-row(onclick='openDrawer("lucia")')
+        .usr-identity
+          .usr-avatar(style='background:linear-gradient(135deg,#15803d,#166534);color:#fff') LR
+          div
+            .usr-name Lucia Rodriguez Soto
+            .usr-email l.rodriguez@up.ac.pa
+        .cedula-cell PE-10-552
+        div
+          div(style='font-size:0.82rem;color:#334155') Negocios
+          .fac-sub FAECO &middot; Egresada 2021
+        span.type-pill.tp-grad Egresada
+        div
+          .reg-date 05 Ene, 2021
+          .reg-ago Hace 4 anos
+        div
+          .act-cell Ayer, 14:22
+          .act-sub Perfil actualizado
+        div(style='display:flex;align-items:center;justify-content:space-between')
+          .status-cell
+            .sdot.active
+            span.status-active Activa
+          .row-actions
+            button.act-primary-btn(onclick='event.stopPropagation();openDrawer("lucia")')
+              span.material-symbols-outlined person
+              | Ver
+            button.act-icon-btn.danger(onclick='event.stopPropagation()' title='Suspender')
+              span.material-symbols-outlined block
+
+      //- ROW 3 — Estudiante inactivo (pendiente verificacion)
+      .usr-row(onclick='openDrawer("javier")')
+        .usr-identity
+          .usr-avatar(style='background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff') JP
+          div
+            .usr-name Javier Perez Mendez
+            .usr-email j.perez@up.ac.pa
+        .cedula-cell 4-771-902
+        div
+          div(style='font-size:0.82rem;color:#334155') Humanidades
+          .fac-sub FHC &middot; 5to Sem.
+        span.type-pill.tp-student Estudiante
+        div
+          .reg-date 22 Mar, 2024
+          .reg-ago Hace 7 meses
+        div
+          .act-cell Nunca
+          .act-sub(style='color:#a16207;font-weight:700') Pendiente validacion
+        div(style='display:flex;align-items:center;justify-content:space-between')
+          .status-cell
+            .sdot.pending
+            span.status-pending Pendiente
+          .row-actions
+            button.act-icon-btn.approve(onclick='event.stopPropagation()' title='Aprobar cuenta')
+              span.material-symbols-outlined(style='font-variation-settings:"FILL" 1') check_circle
+            button.act-primary-btn(onclick='event.stopPropagation();openDrawer("javier")')
+              span.material-symbols-outlined person
+              | Ver
+            button.act-icon-btn.danger(onclick='event.stopPropagation()' title='Rechazar')
+              span.material-symbols-outlined close
+
+      //- ROW 4 — Egresada activa
+      .usr-row(onclick='openDrawer("carolina")')
+        .usr-identity
+          .usr-avatar(style='background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff') CH
+          div
+            .usr-name Carolina Herrera Vega
+            .usr-email c.herrera@up.ac.pa
+        .cedula-cell 8-112-2334
+        div
+          div(style='font-size:0.82rem;color:#334155') Salud
+          .fac-sub FM &middot; Egresada 2020
+        span.type-pill.tp-grad Egresada
+        div
+          .reg-date 15 Ago, 2020
+          .reg-ago Hace 5 anos
+        div
+          .act-cell Hace 3 dias
+          .act-sub 1 oferta guardada
+        div(style='display:flex;align-items:center;justify-content:space-between')
+          .status-cell
+            .sdot.active
+            span.status-active Activa
+          .row-actions
+            button.act-primary-btn(onclick='event.stopPropagation();openDrawer("carolina")')
+              span.material-symbols-outlined person
+              | Ver
+            button.act-icon-btn.danger(onclick='event.stopPropagation()' title='Suspender')
+              span.material-symbols-outlined block
+
+      //- ROW 5 — Empleador activo
+      .usr-row(onclick='openDrawer("mariana")')
+        .usr-identity
+          .usr-avatar(style='background:linear-gradient(135deg,var(--up-gold),#a07a10);color:#fff')
+            | MV
+            .usr-online
+          div
+            .usr-name Mariana Velasquez Torres
+            .usr-email m.velasquez@techsolutions.com.pa
+        .cedula-cell 8-345-6789
+        div
+          div(style='font-size:0.82rem;color:#334155') Tech Solutions S.A.
+          .fac-sub Gerente de RRHH
+        span.type-pill.tp-employer Empleadora
+        div
+          .reg-date 03 Mar, 2024
+          .reg-ago Hace 7 meses
+        div
+          .act-cell Hoy, 10:05 AM
+          .act-sub 12 vacantes publicadas
+        div(style='display:flex;align-items:center;justify-content:space-between')
+          .status-cell
+            .sdot.active
+            span.status-active Activa
+          .row-actions
+            button.act-primary-btn(onclick='event.stopPropagation();openDrawer("mariana")')
+              span.material-symbols-outlined person
+              | Ver
+            button.act-icon-btn.danger(onclick='event.stopPropagation()' title='Suspender')
+              span.material-symbols-outlined block
+
+      //- ROW 6 — Bloqueado
+      .usr-row(onclick='openDrawer("luis")')
+        .usr-identity
+          .usr-avatar(style='background:linear-gradient(135deg,#94a3b8,#64748b);color:#fff') LM
+          div
+            .usr-name Luis Martinez Noriega
+            .usr-email l.martinez@up.ac.pa
+        .cedula-cell 2-124-899
+        div
+          div(style='font-size:0.82rem;color:#334155') Ingenieria
+          .fac-sub FIEC &middot; Egresado 2019
+        span.type-pill.tp-grad Egresado
+        div
+          .reg-date 10 Jun, 2019
+          .reg-ago Hace 6 anos
+        div
+          .act-cell Hace 45 dias
+          .act-sub(style='color:#dc2626;font-weight:700') Bloqueado por reporte
+        div(style='display:flex;align-items:center;justify-content:space-between')
+          .status-cell
+            .sdot.blocked
+            span.status-blocked Bloqueado
+          .row-actions
+            button.act-icon-btn.approve(onclick='event.stopPropagation()' title='Desbloquear')
+              span.material-symbols-outlined lock_open
+            button.act-primary-btn(style='background:#64748b' onclick='event.stopPropagation();openDrawer("luis")')
+              span.material-symbols-outlined person
+              | Ver
+
+      .table-footer
+        .tf-info Mostrando
+          strong  1-10
+          |  de
+          strong  12,623
+          |  usuarios
+        .tf-pages
+          button.page-btn(disabled)
+            span.material-symbols-outlined(style='font-size:0.9rem') chevron_left
+          button.page-btn.active 1
+          button.page-btn 2
+          button.page-btn 3
+          span(style='color:#94a3b8;font-size:0.85rem;padding:0 2px') ...
+          button.page-btn 1,263
+          button.page-btn
+            span.material-symbols-outlined(style='font-size:0.9rem') chevron_right
+
+  //- FOOTER
+  footer.footer-strip
+    .footer-brand
+      span.material-symbols-outlined(style='font-size:1rem;font-variation-settings:"FILL" 1') school
+      span Portal de Empleo UP
+    .footer-center &copy; #{new Date().getFullYear()} Universidad de Panama &mdash; Dirección de Tecnología de la Información y Comunicación.
+    .footer-links
+      a(href='#') Ayuda
+      a(href='#') Privacidad
+      a(href='#') Soporte
+
+  //- DRAWER OVERLAY
+  #drawer-overlay.drawer-overlay(onclick='closeDrawer()')
+  #main-drawer.drawer
+    //- Drawer header dinamico
+    .dh
+      .dh-top
+        span(style='font-family:Sora,sans-serif;font-size:0.65rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5)') Perfil de Usuario
+        button.dh-close(onclick='closeDrawer()')
+          span.material-symbols-outlined close
+      .dh-identity
+        .dh-avatar#drawer-avatar(style='background:linear-gradient(135deg,#1d4ed8,#1e40af)') AM
+        div
+          .dh-name#drawer-name Alejandro Morales Rios
+          .dh-meta#drawer-meta a.morales@up.ac.pa &middot; Candidato &middot; FIEC
+      .dh-stats
+        .dh-stat
+          .dh-stat-val 3
+          .dh-stat-label Postulaciones
+        .dh-stat
+          .dh-stat-val 12
+          .dh-stat-label Meses activo
+        .dh-stat
+          .dh-stat-val 1.9
+          .dh-stat-label Indice UP
+    .drawer-tabs
+      button.dtab.active#dtab-perfil(onclick='switchDTab("perfil")')
+        span.material-symbols-outlined person
+        | Perfil
+      button.dtab#dtab-actividad(onclick='switchDTab("actividad")')
+        span.material-symbols-outlined timeline
+        | Actividad
+      button.dtab#dtab-gestion(onclick='switchDTab("gestion")')
+        span.material-symbols-outlined admin_panel_settings
+        | Gestion
+    .drawer-body
+      //- PANEL PERFIL
+      #dpanel-perfil.dpanel.active
+        .ds-section-title Informacion Personal
+        .info-card
+          .info-row
+            .info-row-icon: span.material-symbols-outlined badge
+            div
+              .info-label Cedula de Identidad
+              .info-value.mono 8-942-1234
+          .info-row
+            .info-row-icon: span.material-symbols-outlined mail
+            div
+              .info-label Correo Institucional
+              .info-value a.morales@up.ac.pa
+          .info-row
+            .info-row-icon: span.material-symbols-outlined call
+            div
+              .info-label Telefono
+              .info-value +507 6XXX-XXXX
+          .info-row
+            .info-row-icon: span.material-symbols-outlined location_on
+            div
+              .info-label Ubicacion
+              .info-value Panama, Panama
+        .ds-section-title Formacion Academica
+        .info-card
+          .info-row
+            .info-row-icon: span.material-symbols-outlined school
+            div
+              .info-label Carrera
+              .info-value Ingenieria en Sistemas y Computacion
+          .info-row
+            .info-row-icon: span.material-symbols-outlined corporate_fare
+            div
+              .info-label Facultad
+              .info-value FIEC &mdash; Universidad de Panama
+          .info-row
+            .info-row-icon: span.material-symbols-outlined calendar_month
+            div
+              .info-label Semestre / Ano
+              .info-value 9no Semestre &mdash; Ingreso 2021
+          .info-row
+            .info-row-icon: span.material-symbols-outlined grade
+            div
+              .info-label Indice Academico
+              .info-value 1.9 / 3.0
+        .ds-section-title Habilidades Declaradas
+        .tag-cloud
+          span.skill-tag React.js
+          span.skill-tag Node.js
+          span.skill-tag HTML / CSS
+          span.skill-tag SQL
+          span.skill-tag Git
+          span.skill-tag Figma
+          span.skill-tag Python
+        .ds-section-title Estado de Cuenta
+        .info-card
+          .info-row
+            .info-row-icon: span.material-symbols-outlined calendar_today
+            div
+              .info-label Registro en el sistema
+              .info-value 12 de Octubre, 2023
+          .info-row
+            .info-row-icon: span.material-symbols-outlined login
+            div
+              .info-label Ultima sesion
+              .info-value Hoy, 09:41 AM (sesion activa)
+          .info-row
+            .info-row-icon: span.material-symbols-outlined verified_user
+            div
+              .info-label Estado de verificacion
+              .info-value(style='color:#15803d;font-weight:700') Cuenta verificada &mdash; 14 Oct, 2023
+          .info-row
+            .info-row-icon: span.material-symbols-outlined manage_accounts
+            div
+              .info-label Tipo de cuenta
+              .info-value Candidato &mdash; Estudiante activo UP
+
+      //- PANEL ACTIVIDAD
+      #dpanel-actividad.dpanel
+        .ds-section-title Resumen de Actividad
+        div(style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1.2rem')
+          div(style='background:#eff6ff;border-radius:12px;padding:0.85rem;text-align:center')
+            div(style='font-family:Sora,sans-serif;font-size:1.4rem;font-weight:800;color:var(--up-blue)') 3
+            div(style='font-size:0.67rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-top:1px') Postulaciones
+          div(style='background:#f0fdf4;border-radius:12px;padding:0.85rem;text-align:center')
+            div(style='font-family:Sora,sans-serif;font-size:1.4rem;font-weight:800;color:#16a34a') 5
+            div(style='font-size:0.67rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-top:1px') Guardadas
+          div(style='background:#fefce8;border-radius:12px;padding:0.85rem;text-align:center')
+            div(style='font-family:Sora,sans-serif;font-size:1.4rem;font-weight:800;color:#a16207') 12
+            div(style='font-size:0.67rem;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-top:1px') Sesiones
+        .ds-section-title Historial de Eventos
+        .act-timeline
+          .at-item
+            .at-dot.at-dot-blue
+              span.material-symbols-outlined login
+            div
+              .at-text
+                strong Inicio de sesion
+                |  desde Panama City
+              .at-time Hoy, 09:41 AM
+          .at-item
+            .at-dot.at-dot-green
+              span.material-symbols-outlined send
+            div
+              .at-text Postulacion enviada a
+                strong  Desarrollador Frontend &mdash; Rootstack
+              .at-time 12 Oct, 2025
+          .at-item
+            .at-dot.at-dot-blue
+              span.material-symbols-outlined edit
+            div
+              .at-text
+                strong Perfil actualizado:
+                |  habilidades y experiencia
+              .at-time 08 Oct, 2025
+          .at-item
+            .at-dot.at-dot-gold
+            div
+              .at-text Postulacion enviada a
+                strong  Analista de Datos &mdash; Cable Onda
+              .at-time 01 Oct, 2025
+          .at-item
+            .at-dot.at-dot-green
+              span.material-symbols-outlined how_to_reg
+            div
+              .at-text
+                strong Cuenta verificada
+                |  por Carolina Perez (Admin)
+              .at-time 14 Oct, 2023
+
+      //- PANEL GESTION
+      #dpanel-gestion.dpanel
+        .ds-section-title Gestion de Cuenta
+        .mgmt-section
+          .mgmt-label Estado de la cuenta
+          select.mgmt-select
+            option(selected) Activo
+            option Suspendido
+            option Bloqueado
+        .mgmt-section
+          .mgmt-label Tipo / Rol en el sistema
+          select.mgmt-select
+            option(selected) Candidato - Estudiante
+            option Candidato - Egresado
+            option Empleador
+            option Administrador
+        .mgmt-section
+          .mgmt-label Motivo de cambio (requerido si suspende o bloquea)
+          textarea.mgmt-textarea(placeholder='Describe el motivo del cambio de estado...')
+        .mgmt-action-row
+          button.mgmt-btn.mb-blue
+            span.material-symbols-outlined save
+            | Guardar Cambios
+          button.mgmt-btn.mb-outline
+            span.material-symbols-outlined mail
+            | Enviar Mensaje
+        .ds-section-title(style='margin-top:1.4rem') Notas Internas del Admin
+        textarea.mgmt-textarea(placeholder='Notas internas visibles solo para administradores...' style='margin-bottom:8px')
+        button.mgmt-btn.mb-outline(style='width:100%')
+          span.material-symbols-outlined note_add
+          | Guardar Nota
+        .danger-zone
+          .dz-title
+            span.material-symbols-outlined dangerous
+            | Zona de Riesgo
+          .dz-text Esta accion eliminara permanentemente la cuenta del usuario, incluyendo su historial de postulaciones, perfil y datos asociados. Esta accion no puede deshacerse.
+          button.dz-btn
+            span.material-symbols-outlined delete_forever
+            | Eliminar Cuenta Permanentemente
+
+    .drawer-footer
+      button.df-btn.df-primary
+        span.material-symbols-outlined save
+        | Guardar Cambios
+      button.df-btn.df-outline(onclick='closeDrawer()')
+        span.material-symbols-outlined close
+        | Cerrar
+
+  //- MODAL: NUEVO USUARIO
+  #modal-nuevo-usuario.modal-overlay
+    .modal
+      .modal-header(style='background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark))')
+        .modal-title Crear Nuevo Usuario
+        button.modal-close-btn(onclick='closeModal("nuevo-usuario")')
+          span.material-symbols-outlined close
+      .modal-body
+        .m-label Nombre completo
+        input.m-input(type='text' placeholder='Nombre y apellidos')
+        .m-label Correo electronico institucional
+        input.m-input(type='email' placeholder='usuario@up.ac.pa')
+        .m-label Cedula de identidad
+        input.m-input(type='text' placeholder='Ej. 8-000-0000')
+        .m-label Tipo de cuenta
+        select.m-select
+          option Candidato - Estudiante
+          option Candidato - Egresado
+          option Empleador
+          option Administrador
+        .m-label Facultad (si es candidato UP)
+        select.m-select
+          option Seleccionar...
+          option FIEC - Informatica
+          option FAECO - Economia
+          option FCI - Ciencias
+          option FM - Medicina
+          option FJCA - Derecho
+          option FHC - Humanidades
+        .m-label Contrasena temporal
+        input.m-input(type='password' placeholder='Minimo 8 caracteres')
+        .m-label Notas iniciales (opcional)
+        textarea.m-textarea(placeholder='Observaciones sobre este usuario...')
+      .modal-footer
+        button.btn-secondary(onclick='closeModal("nuevo-usuario")') Cancelar
+        button.btn-primary
+          span.material-symbols-outlined person_add
+          | Crear Usuario
+
+  script.
+    function openDrawer(key) {
+      document.getElementById('drawer-overlay').classList.add('open');
+      document.getElementById('main-drawer').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      document.getElementById('drawer-overlay').classList.remove('open');
+      document.getElementById('main-drawer').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function switchDTab(tab) {
+      document.querySelectorAll('.dtab').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.dpanel').forEach(function(p){ p.classList.remove('active'); });
+      document.getElementById('dtab-' + tab).classList.add('active');
+      document.getElementById('dpanel-' + tab).classList.add('active');
+    }
+    function setTab(el) {
+      document.querySelectorAll('.stab').forEach(function(t){ t.classList.remove('active'); });
+      el.classList.add('active');
+    }
+    function filterKpi(el, type) {
+      document.querySelectorAll('.kpi-card').forEach(function(c){ c.classList.remove('active-filter'); });
+      el.classList.add('active-filter');
+    }
+    function openModal(id) {
+      var m = document.getElementById('modal-' + id);
+      if(m){ m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    }
+    function closeModal(id) {
+      var m = document.getElementById('modal-' + id);
+      if(m){ m.classList.remove('open'); document.body.style.overflow = ''; }
+    }
+    document.querySelectorAll('.modal-overlay').forEach(function(o){
+      o.addEventListener('click', function(e){ if(e.target === this){ this.classList.remove('open'); document.body.style.overflow = ''; } });
+    });
+    function applyR(){
+      var w = window.innerWidth;
+      var kg = document.querySelector('.kpi-row');
+      if(kg) kg.style.gridTemplateColumns = w < 640 ? 'repeat(2,1fr)' : w < 900 ? 'repeat(3,1fr)' : 'repeat(5,1fr)';
+    }
+    applyR();
+    window.addEventListener('resize', applyR);

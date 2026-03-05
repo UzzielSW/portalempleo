@@ -1,0 +1,650 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Perfil Corporativo - Portal de Empleo UP
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
+    style.
+      :root{--up-blue:#003876;--up-blue-dark:#002147;--up-gold:#C49A1A;--up-gold-light:#e8c44d;--bg:#f0f4f8;}
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#1a2233;min-height:100vh;display:flex;flex-direction:column;}
+      h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+
+      /* TOPBAR */
+      .topbar{background:var(--up-blue);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,56,118,0.18);}
+      .topbar-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
+      .topbar-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+      .topbar-brand-icon{background:var(--up-gold);border-radius:9px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--up-blue);flex-shrink:0;}
+      .topbar-brand-name{font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:#fff;line-height:1.1;}
+      .topbar-brand-sub{font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--up-gold-light);}
+      .topbar-nav{display:flex;align-items:center;height:100%;}
+      .topbar-nav a{display:flex;align-items:center;height:100%;padding:0 1.1rem;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.65);text-decoration:none;letter-spacing:0.03em;border-bottom:3px solid transparent;transition:color 0.2s,border-color 0.2s;}
+      .topbar-nav a:hover{color:#fff;}
+      .topbar-nav a.active{color:#fff;border-bottom-color:var(--up-gold);}
+      .topbar-right{display:flex;align-items:center;gap:6px;}
+      .topbar-icon-btn{background:rgba(255,255,255,0.08);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.75);cursor:pointer;transition:background 0.2s;position:relative;}
+      .topbar-icon-btn:hover{background:rgba(255,255,255,0.16);color:#fff;}
+      .notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--up-gold);border:2px solid var(--up-blue);}
+      .topbar-divider{width:1px;height:28px;background:rgba(255,255,255,0.15);margin:0 4px;}
+      .topbar-user{display:flex;align-items:center;gap:9px;cursor:pointer;padding:4px 8px;border-radius:10px;transition:background 0.2s;}
+      .topbar-user:hover{background:rgba(255,255,255,0.08);}
+      .topbar-user-name{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;line-height:1.15;}
+      .topbar-user-sub{font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--up-gold-light);}
+      .topbar-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--up-gold),#a07a10);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;flex-shrink:0;border:2px solid rgba(196,154,26,0.4);}
+
+      /* MAIN */
+      .main-content{flex:1;max-width:1280px;margin:0 auto;width:100%;padding:2rem 1.5rem 4rem;}
+      .page-grid{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start;}
+
+      /* CARD */
+      .card{background:#fff;border-radius:18px;border:1.5px solid #e8edf5;box-shadow:0 2px 12px rgba(0,56,118,0.05);}
+      .card-body{padding:1.6rem 1.8rem;}
+      .card-header{padding:1rem 1.6rem;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;}
+      .card-header-left{display:flex;align-items:center;gap:8px;}
+      .card-header-icon{width:30px;height:30px;border-radius:8px;background:#eff6ff;display:flex;align-items:center;justify-content:center;color:var(--up-blue);}
+      .card-header-icon .material-symbols-outlined{font-size:0.95rem;font-variation-settings:'FILL' 1;}
+      .card-header-title{font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;color:#0f172a;letter-spacing:0.08em;text-transform:uppercase;}
+      .card-action{display:inline-flex;align-items:center;gap:4px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--up-blue);background:none;border:none;cursor:pointer;text-decoration:none;transition:color 0.2s;}
+      .card-action:hover{color:var(--up-gold);}
+      .card-action .material-symbols-outlined{font-size:0.9rem;}
+
+      /* HERO HEADER */
+      .hero-card{padding:2rem;display:flex;flex-wrap:wrap;gap:1.5rem;align-items:flex-start;margin-bottom:1.5rem;}
+      .company-logo{width:96px;height:96px;border-radius:18px;background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));border:4px solid #fff;box-shadow:0 4px 20px rgba(0,56,118,0.15);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;flex-shrink:0;overflow:hidden;}
+      .hero-info{flex:1;min-width:180px;}
+      .company-name{font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:#0f172a;margin-bottom:6px;line-height:1.15;}
+      .company-meta-row{display:flex;flex-wrap:wrap;gap:0.8rem;margin-bottom:0.8rem;}
+      .company-meta{display:flex;align-items:center;gap:5px;font-size:0.8rem;color:#64748b;}
+      .company-meta .material-symbols-outlined{font-size:0.95rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+      .convenio-badge{display:inline-flex;align-items:center;gap:5px;background:#dcfce7;border:1px solid #bbf7d0;color:#15803d;font-size:0.68rem;font-weight:800;letter-spacing:0.1em;padding:4px 11px;border-radius:50px;}
+      .convenio-badge-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite;}
+      @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+      .hero-actions{display:flex;gap:8px;flex-wrap:wrap;}
+      .btn-edit{display:inline-flex;align-items:center;gap:6px;background:var(--up-blue);color:#fff;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;padding:8px 18px;border-radius:10px;cursor:pointer;text-decoration:none;border:none;transition:background 0.2s;box-shadow:0 3px 12px rgba(0,56,118,0.2);}
+      .btn-edit:hover{background:var(--up-gold);}
+      .btn-edit .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .btn-outline{display:inline-flex;align-items:center;gap:6px;background:#f8fafc;color:#334155;font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:700;padding:8px 18px;border-radius:10px;cursor:pointer;text-decoration:none;border:1.5px solid #e2e8f0;transition:all 0.2s;}
+      .btn-outline:hover{border-color:var(--up-blue);color:var(--up-blue);}
+
+      /* STATS ROW */
+      .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem;}
+      .stat-card{background:#fff;border-radius:14px;border:1.5px solid #e8edf5;padding:1.1rem 1.3rem;}
+      .stat-trend{font-size:0.7rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:3px;}
+      .trend-up{color:#15803d;}
+      .trend-stable{color:#94a3b8;}
+      .stat-icon-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+      .stat-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .stat-icon .material-symbols-outlined{font-size:1.05rem;font-variation-settings:'FILL' 1;}
+      .si-blue{background:#eff6ff;color:var(--up-blue);}
+      .si-purple{background:#faf5ff;color:#6d28d9;}
+      .si-gold{background:#fefce8;color:#a16207;}
+      .si-green{background:#f0fdf4;color:#15803d;}
+      .stat-num{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;color:#0f172a;line-height:1;}
+      .stat-label{font-size:0.72rem;color:#94a3b8;margin-top:2px;letter-spacing:0.04em;text-transform:uppercase;font-weight:600;}
+
+      /* CONVENIO CARD */
+      .convenio-body{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+      .conv-left{display:flex;flex-direction:column;gap:1rem;}
+      .conv-item{display:flex;align-items:flex-start;gap:10px;}
+      .conv-item-icon{width:36px;height:36px;border-radius:10px;background:#eff6ff;display:flex;align-items:center;justify-content:center;color:var(--up-blue);flex-shrink:0;}
+      .conv-item-icon .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .conv-label{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;}
+      .conv-value{font-family:'Sora',sans-serif;font-size:0.92rem;font-weight:700;color:#0f172a;}
+      .conv-sub{font-size:0.75rem;color:#64748b;margin-top:1px;}
+      .venc-bar-bg{height:5px;background:#f1f5f9;border-radius:3px;margin-top:5px;overflow:hidden;}
+      .venc-bar{height:5px;border-radius:3px;background:linear-gradient(to right,var(--up-gold),var(--up-gold-light));}
+      .conv-right{display:flex;flex-direction:column;gap:10px;}
+      .doc-file{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#f8fafc;border-radius:12px;border:1.5px solid #e8edf5;transition:border-color 0.2s;}
+      .doc-file:hover{border-color:var(--up-blue);}
+      .doc-file-icon{width:34px;height:34px;background:#fee2e2;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .doc-file-icon .material-symbols-outlined{font-size:0.95rem;color:#dc2626;font-variation-settings:'FILL' 1;}
+      .doc-file-name{font-size:0.8rem;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+      .doc-file-meta{font-size:0.68rem;color:#94a3b8;text-transform:uppercase;font-weight:600;}
+      .btn-renew{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;height:44px;background:var(--up-blue);color:#fff;border:none;border-radius:11px;font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:background 0.2s,transform 0.15s;box-shadow:0 3px 12px rgba(0,56,118,0.2);margin-top:4px;}
+      .btn-renew:hover{background:var(--up-gold);transform:translateY(-1px);}
+
+      /* DESCRIPTION */
+      .prose{font-size:0.88rem;color:#475569;line-height:1.85;}
+      .prose p{margin-bottom:0.9rem;}
+      .prose p:last-child{margin-bottom:0;}
+
+      /* VACANTES RECIENTES */
+      .vac-row{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 0;border-bottom:1px solid #f8fafc;gap:1rem;}
+      .vac-row:last-child{border-bottom:none;}
+      .vac-title{font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;color:#0f172a;}
+      .vac-meta{font-size:0.72rem;color:#94a3b8;margin-top:2px;display:flex;align-items:center;gap:5px;}
+      .vac-meta .material-symbols-outlined{font-size:0.8rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+      .vac-tag{display:inline-flex;font-size:0.62rem;font-weight:700;padding:3px 9px;border-radius:50px;text-transform:uppercase;letter-spacing:0.06em;}
+      .tag-open{background:#f0fdf4;color:#15803d;}
+      .tag-paused{background:#fefce8;color:#92400e;}
+      .tag-closed{background:#f1f5f9;color:#64748b;}
+
+      /* SIDEBAR */
+      .sidebar{display:flex;flex-direction:column;gap:1.2rem;}
+      .info-row{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid #f8fafc;}
+      .info-row:last-child{border-bottom:none;}
+      .info-icon .material-symbols-outlined{font-size:0.95rem;color:#94a3b8;font-variation-settings:'FILL' 1;}
+      .info-label{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;}
+      .info-value{font-size:0.83rem;font-weight:600;color:#334155;}
+      .info-link{font-size:0.83rem;font-weight:600;color:var(--up-blue);text-decoration:none;display:flex;align-items:center;gap:3px;}
+      .info-link:hover{color:var(--up-gold);}
+      .info-link .material-symbols-outlined{font-size:0.85rem;}
+      .contact-person{display:flex;align-items:center;gap:10px;}
+      .contact-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--up-blue),var(--up-blue-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:800;flex-shrink:0;}
+      .contact-name{font-family:'Sora',sans-serif;font-size:0.83rem;font-weight:700;color:#0f172a;}
+      .contact-role{font-size:0.72rem;color:#94a3b8;}
+
+      /* MAP */
+      .map-card{border-radius:14px;overflow:hidden;height:160px;background:#dde4ed;position:relative;}
+      .map-card iframe{width:100%;height:100%;border:none;display:block;}
+      .map-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff;border-radius:8px;padding:5px 12px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:#334155;box-shadow:0 3px 10px rgba(0,0,0,0.1);display:flex;align-items:center;gap:5px;}
+      .map-label .material-symbols-outlined{font-size:0.85rem;color:var(--up-blue);font-variation-settings:'FILL' 1;}
+
+      /* SUPPORT CARD */
+      .support-card{background:linear-gradient(135deg,#f8fafc,#eff6ff);border:1.5px solid #bfdbfe;border-radius:16px;padding:1.3rem;}
+      .support-icon{width:38px;height:38px;border-radius:10px;background:var(--up-blue);display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:0.8rem;}
+      .support-icon .material-symbols-outlined{font-size:1.1rem;font-variation-settings:'FILL' 1;}
+      .support-title{font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:800;color:var(--up-blue);margin-bottom:4px;}
+      .support-text{font-size:0.78rem;color:#475569;line-height:1.65;margin-bottom:0.8rem;}
+      .btn-support{display:inline-flex;align-items:center;gap:5px;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:var(--up-blue);text-decoration:none;transition:color 0.2s,gap 0.2s;}
+      .btn-support:hover{color:var(--up-gold);gap:8px;}
+
+      /* FOOTER */
+      .footer-strip{background:#fff;border-top:1px solid #e8edf5;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;font-size:0.72rem;color:#94a3b8;}
+      .footer-brand{display:flex;align-items:center;gap:6px;opacity:0.6;}
+
+      /* MODAL */
+      .modal-overlay{position:fixed;inset:0;background:rgba(0,20,50,0.65);backdrop-filter:blur(6px);z-index:500;display:flex;align-items:center;justify-content:center;padding:1rem;}
+      .modal-box{background:#fff;border-radius:22px;box-shadow:0 24px 80px rgba(0,0,0,0.18);width:100%;max-width:560px;overflow:hidden;}
+      .modal-header{background:linear-gradient(135deg,var(--up-blue) 0%,var(--up-blue-dark) 100%);padding:1.8rem 2rem;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;}
+      .modal-header::after{content:'';position:absolute;top:-40px;right:-40px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,0.05);}
+      .modal-header-icon{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;color:var(--up-gold-light);flex-shrink:0;position:relative;z-index:1;}
+      .modal-header-icon .material-symbols-outlined{font-size:1.4rem;font-variation-settings:'FILL' 1;}
+      .modal-header-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;position:relative;z-index:1;}
+      .modal-header-sub{font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:2px;position:relative;z-index:1;}
+      .modal-body{padding:1.8rem 2rem;max-height:55vh;overflow-y:auto;}
+      .modal-body::-webkit-scrollbar{width:5px;}
+      .modal-body::-webkit-scrollbar-track{background:#f1f5f9;}
+      .modal-body::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px;}
+      .modal-intro{font-size:0.88rem;color:#475569;line-height:1.75;margin-bottom:1.4rem;}
+      .modal-section-title{font-family:'Sora',sans-serif;font-size:0.82rem;font-weight:800;color:var(--up-blue);margin:1.2rem 0 0.6rem;display:flex;align-items:center;gap:6px;}
+      .modal-section-title .material-symbols-outlined{font-size:1rem;font-variation-settings:'FILL' 1;}
+      .modal-text{font-size:0.82rem;color:#64748b;line-height:1.75;}
+      .modal-text li{margin-bottom:4px;padding-left:4px;}
+      .modal-highlight{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 14px;font-size:0.8rem;color:#1e3a5f;line-height:1.65;margin-top:1rem;}
+      .modal-highlight .material-symbols-outlined{font-size:0.9rem;color:var(--up-blue);vertical-align:middle;margin-right:4px;font-variation-settings:'FILL' 1;}
+      .modal-footer{padding:1.2rem 2rem 1.6rem;border-top:1px solid #f1f5f9;display:flex;flex-direction:column;gap:10px;}
+      .modal-check-row{display:flex;align-items:flex-start;gap:8px;}
+      .modal-check-row input[type='checkbox']{width:15px;height:15px;margin-top:2px;accent-color:var(--up-blue);cursor:pointer;flex-shrink:0;}
+      .modal-check-label{font-size:0.78rem;color:#475569;line-height:1.6;cursor:pointer;}
+      .modal-check-label a{color:var(--up-blue);font-weight:600;text-decoration:none;}
+      .modal-check-label a:hover{color:var(--up-gold);}
+      .modal-actions{display:flex;gap:10px;margin-top:6px;}
+      .btn-accept{flex:1;height:46px;background:var(--up-blue);color:#fff;border:none;border-radius:11px;font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.2s,opacity 0.2s;}
+      .btn-accept:disabled{opacity:0.45;cursor:not-allowed;}
+      .btn-accept:not(:disabled):hover{background:var(--up-gold);}
+      .btn-decline{height:46px;padding:0 1.2rem;background:#f1f5f9;color:#64748b;border:none;border-radius:11px;font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:background 0.2s,color 0.2s;white-space:nowrap;}
+      .btn-decline:hover{background:#fee2e2;color:#dc2626;}
+
+      /* RESPONSIVE */
+      @media(max-width:1024px){.page-grid{grid-template-columns:1fr;}.stats-row{grid-template-columns:repeat(2,1fr);}.sidebar{flex-direction:row;flex-wrap:wrap;}.sidebar>*{flex:1;min-width:260px;}}
+      @media(max-width:640px){.convenio-body{grid-template-columns:1fr;}.stats-row{grid-template-columns:1fr 1fr;}.topbar-nav{display:none;}.modal-body{max-height:45vh;}.modal-footer,.modal-body{padding:1.2rem;}}
+
+  //- CONSENT MODAL
+  #consent-modal.modal-overlay(style='display:none')
+    .modal-box
+      .modal-header
+        .modal-header-icon
+          span.material-symbols-outlined gavel
+        div
+          .modal-header-title Consentimiento de Uso de Datos
+          .modal-header-sub Portal de Empleo UP &mdash; Universidad de Panama
+      .modal-body
+        p.modal-intro
+          | Antes de acceder al Panel de Empleadores del Portal de Empleo UP, la Universidad de Panama requiere su consentimiento expreso para el tratamiento de los datos corporativos, de conformidad con la&nbsp;
+          strong Ley 81 de 2019 sobre Proteccion de Datos Personales
+          | &nbsp;de la Republica de Panama.
+        .modal-section-title
+          span.material-symbols-outlined info
+          | Que datos recopilamos
+        ul.modal-text(style='padding-left:1rem;list-style:disc')
+          li Datos de identificacion corporativa: razon social, RUC y correo empresarial autorizado.
+          li Informacion del convenio: numero de convenio, vigencia y documentos adjuntos.
+          li Historial de vacantes publicadas y postulaciones recibidas en la plataforma.
+          li Datos del responsable de reclutamiento: nombre, cargo y datos de contacto.
+          li Actividad de gestion dentro del portal (busquedas, filtros, acciones sobre candidatos).
+        .modal-section-title
+          span.material-symbols-outlined manage_accounts
+          | Como usamos sus datos
+        ul.modal-text(style='padding-left:1rem;list-style:disc')
+          li Facilitar la conexion entre su empresa y candidatos egresados y estudiantes de la Universidad de Panama.
+          li Mostrar sus vacantes activas a candidatos dentro del portal institucional.
+          li Verificar la vigencia y condiciones del convenio con la Direccion de Vinculacion.
+          li Generar estadisticas anonimas de empleabilidad para reportes institucionales.
+          li Enviar notificaciones sobre candidatos y procesos de seleccion activos.
+        .modal-section-title
+          span.material-symbols-outlined shield_lock
+          | Sus derechos
+        p.modal-text
+          | Su empresa puede ejercer los derechos de acceso, rectificacion, cancelacion y oposicion (ARCO) escribiendo a&nbsp;
+          a(href='mailto:privacidad@up.ac.pa' style='color:var(--up-blue);font-weight:600') privacidad@up.ac.pa
+          | . Los datos corporativos no seran compartidos con terceros ajenos al convenio vigente.
+        .modal-highlight
+          span.material-symbols-outlined lock
+          | Los datos corporativos son almacenados en servidores institucionales de la Universidad de Panama con cifrado y acceso restringido. Solo el personal autorizado de la Direccion de Vinculacion tiene acceso a informacion sensible del convenio.
+      .modal-footer
+        .modal-check-row
+          input#check-consent(type='checkbox' onchange='updateAccept()')
+          label.modal-check-label(for='check-consent')
+            | He leido y acepto el&nbsp;
+            a(href='#') Aviso de Privacidad
+            | &nbsp;y el tratamiento de los datos corporativos por la Universidad de Panama segun lo descrito anteriormente.
+        .modal-check-row
+          input#check-terms(type='checkbox' onchange='updateAccept()')
+          label.modal-check-label(for='check-terms')
+            | Acepto los&nbsp;
+            a(href='#') Terminos y Condiciones de Uso
+            | &nbsp;del Portal de Empleo UP para Empleadores.
+        .modal-actions
+          button#btn-accept.btn-accept(onclick='acceptConsent()' disabled)
+            span.material-symbols-outlined(style='font-size:1rem;font-variation-settings:"FILL" 1') check_circle
+            | Acepto y Continuar
+          button.btn-decline(onclick='declineConsent()') No acepto
+
+  //- TOPBAR
+  header.topbar
+    .topbar-inner
+      a.topbar-brand(href='/')
+        .topbar-brand-icon
+          span.material-symbols-outlined(style='font-size:1.2rem;font-variation-settings:"FILL" 1') school
+        div
+          .topbar-brand-name Portal de Empleo UP
+          .topbar-brand-sub Empleadores
+      nav.topbar-nav
+        a.active(href='/employer/profile') Perfil
+        a(href='/employer/vacancies') Vacantes
+        a(href='/employer/candidates') Candidatos
+      .topbar-right
+        button.topbar-icon-btn(title='Configuracion')
+          span.material-symbols-outlined(style='font-size:1.1rem') settings
+        button.topbar-icon-btn(title='Notificaciones')
+          span.material-symbols-outlined(style='font-size:1.1rem') notifications
+          .notif-dot
+        .topbar-divider
+        .topbar-user
+          div(style='text-align:right')
+            .topbar-user-name Admin Reclutamiento
+            .topbar-user-sub Tech Solutions S.A.
+          .topbar-avatar TS
+
+  //- MAIN
+  main.main-content
+
+    //- STATS
+    .stats-row
+      .stat-card
+        .stat-trend.trend-up
+          span.material-symbols-outlined(style='font-size:0.85rem') trending_up
+          | +2.4% este mes
+        .stat-icon-row
+          .stat-icon.si-blue
+            span.material-symbols-outlined work
+        .stat-num 12
+        .stat-label Vacantes Activas
+      .stat-card
+        .stat-trend.trend-up
+          span.material-symbols-outlined(style='font-size:0.85rem') trending_up
+          | +15% este mes
+        .stat-icon-row
+          .stat-icon.si-purple
+            span.material-symbols-outlined group
+        .stat-num 450
+        .stat-label Postulaciones Totales
+      .stat-card
+        .stat-trend.trend-stable
+          span.material-symbols-outlined(style='font-size:0.85rem') remove
+          | Estable
+        .stat-icon-row
+          .stat-icon.si-gold
+            span.material-symbols-outlined bolt
+        .stat-num 85%
+        .stat-label Tasa de Respuesta
+      .stat-card
+        .stat-trend.trend-up
+          span.material-symbols-outlined(style='font-size:0.85rem') trending_up
+          | +3 nuevos
+        .stat-icon-row
+          .stat-icon.si-green
+            span.material-symbols-outlined how_to_reg
+        .stat-num 8
+        .stat-label Contratados UP
+
+    .page-grid
+
+      //- LEFT COLUMN
+      div(style='display:flex;flex-direction:column;gap:1.5rem')
+
+        //- HERO HEADER
+        .card
+          .hero-card
+            .company-logo TS
+            .hero-info
+              h1.company-name Tech Solutions S.A.
+              .company-meta-row
+                .company-meta
+                  span.material-symbols-outlined badge
+                  | RUC: 155-4873-1-2019
+                .company-meta
+                  span.material-symbols-outlined location_on
+                  | Ciudad de Panama, Panama
+                .company-meta
+                  span.material-symbols-outlined language
+                  a(href='#' style='color:var(--up-blue);text-decoration:none;font-weight:600') www.techsolutions.com.pa
+              .convenio-badge(style='margin-bottom:0.8rem')
+                .convenio-badge-dot
+                | Convenio Vigente
+              .hero-actions
+                button.btn-edit
+                  span.material-symbols-outlined edit
+                  | Editar Perfil
+                button.btn-outline
+                  span.material-symbols-outlined(style='font-size:1rem;font-variation-settings:"FILL" 1') upload
+                  | Actualizar Logo
+                button.btn-outline
+                  span.material-symbols-outlined(style='font-size:1rem;font-variation-settings:"FILL" 1') share
+                  | Compartir Perfil
+
+        //- CONVENIO
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined handshake
+              .card-header-title Estado del Convenio
+            a.card-action(href='#')
+              span.material-symbols-outlined history
+              | Ver Historial
+          .card-body
+            .convenio-body
+              .conv-left
+                .conv-item
+                  .conv-item-icon
+                    span.material-symbols-outlined verified
+                  div
+                    .conv-label Tipo de Alianza
+                    .conv-value Alianza Institucional Integral
+                    .conv-sub Beneficios mutuos en pasantias y empleabilidad
+                .conv-item
+                  .conv-item-icon
+                    span.material-symbols-outlined event
+                  div
+                    .conv-label Vencimiento
+                    .conv-value 15 de Diciembre, 2025
+                    .conv-sub Quedan 87 dias para la renovacion
+                    .venc-bar-bg
+                      .venc-bar(style='width:76%')
+                .conv-item
+                  .conv-item-icon
+                    span.material-symbols-outlined gavel
+                  div
+                    .conv-label Compromisos Activos
+                    .conv-value Pasantias + Ferias de Empleo
+                    .conv-sub Proximo evento: Feria UP, 5 Nov 2025
+              .conv-right
+                div(style='font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px') Documentos Firmados
+                .doc-file
+                  .doc-file-icon
+                    span.material-symbols-outlined picture_as_pdf
+                  div(style='flex:1;min-width:0')
+                    .doc-file-name Convenio_UP_2025.pdf
+                    .doc-file-meta PDF &bull; Actualizado hace 4 meses
+                  a(href='#' style='color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;' title='Descargar')
+                    span.material-symbols-outlined(style='font-size:1.1rem') download
+                .doc-file
+                  .doc-file-icon
+                    span.material-symbols-outlined picture_as_pdf
+                  div(style='flex:1;min-width:0')
+                    .doc-file-name Anexo_Seguridad_Datos.pdf
+                    .doc-file-meta PDF &bull; Actualizado hace 1 mes
+                  a(href='#' style='color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;' title='Descargar')
+                    span.material-symbols-outlined(style='font-size:1.1rem') download
+                .doc-file
+                  .doc-file-icon
+                    span.material-symbols-outlined picture_as_pdf
+                  div(style='flex:1;min-width:0')
+                    .doc-file-name Aviso_Operaciones_MICI.pdf
+                    .doc-file-meta PDF &bull; Actualizado hace 6 meses
+                  a(href='#' style='color:#94a3b8;background:none;border:none;cursor:pointer;display:flex;align-items:center;' title='Descargar')
+                    span.material-symbols-outlined(style='font-size:1.1rem') download
+                button.btn-renew
+                  span.material-symbols-outlined(style='font-size:1rem;font-variation-settings:"FILL" 1') autorenew
+                  | Solicitar Renovacion
+
+        //- VACANTES RECIENTES
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined work
+              .card-header-title Vacantes Publicadas
+            a.card-action(href='/employer/vacancies')
+              | Ver todas
+              span.material-symbols-outlined arrow_forward
+          .card-body
+            .vac-row
+              div
+                .vac-title Desarrollador Frontend React
+                .vac-meta
+                  span.material-symbols-outlined schedule
+                  | Tiempo Completo &middot; Hibrido &middot; Panama
+              div(style='display:flex;align-items:center;gap:10px;flex-shrink:0')
+                div(style='text-align:right;font-size:0.72rem;color:#94a3b8')
+                  div 38 postulaciones
+                  div Cierra 30 Nov
+                span.vac-tag.tag-open Activa
+            .vac-row
+              div
+                .vac-title Analista de Datos
+                .vac-meta
+                  span.material-symbols-outlined schedule
+                  | Tiempo Completo &middot; Remoto &middot; Panama
+              div(style='display:flex;align-items:center;gap:10px;flex-shrink:0')
+                div(style='text-align:right;font-size:0.72rem;color:#94a3b8')
+                  div 21 postulaciones
+                  div Cierra 15 Dic
+                span.vac-tag.tag-open Activa
+            .vac-row
+              div
+                .vac-title Pasante de Marketing Digital
+                .vac-meta
+                  span.material-symbols-outlined schedule
+                  | Tiempo Parcial &middot; Presencial &middot; Panama
+              div(style='display:flex;align-items:center;gap:10px;flex-shrink:0')
+                div(style='text-align:right;font-size:0.72rem;color:#94a3b8')
+                  div 12 postulaciones
+                  div Cierra 10 Dic
+                span.vac-tag.tag-open Activa
+            .vac-row
+              div
+                .vac-title Cloud Data Engineer
+                .vac-meta
+                  span.material-symbols-outlined schedule
+                  | Tiempo Completo &middot; Remoto &middot; Panama
+              div(style='display:flex;align-items:center;gap:10px;flex-shrink:0')
+                div(style='text-align:right;font-size:0.72rem;color:#94a3b8')
+                  div 9 postulaciones
+                  div En pausa
+                span.vac-tag.tag-paused En Pausa
+
+        //- DESCRIPCION CORPORATIVA
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined apartment
+              .card-header-title Descripcion Corporativa
+            button.card-action
+              span.material-symbols-outlined edit
+              | Editar
+          .card-body
+            .prose
+              p Somos lideres en el desarrollo de software empresarial y consultoria tecnologica con mas de 15 años en el mercado panamenyo. Nuestra mision es transformar negocios a traves de la digitalizacion eficiente y la implementacion de soluciones basadas en inteligencia artificial y computacion en la nube.
+              p Valoramos profundamente el talento joven y la curiosidad intelectual. A traves de nuestro convenio con la Universidad de Panama, buscamos integrar a los mejores estudiantes y egresados en proyectos de alto impacto, brindandoles una linea de carrera solida y mentoria especializada.
+              p Nuestro entorno de trabajo es dinamico, inclusivo y orientado a resultados, donde la innovacion es parte de nuestro ADN cotidiano.
+
+      //- SIDEBAR
+      .sidebar
+
+        //- DATOS GENERALES
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined info
+              .card-header-title Datos Generales
+            button.card-action
+              span.material-symbols-outlined edit
+          .card-body
+            .info-row
+              .info-icon
+                span.material-symbols-outlined language
+              div
+                .info-label Sitio Web
+                a.info-link(href='#')
+                  | www.techsolutions.com.pa
+                  span.material-symbols-outlined(style='font-size:0.8rem') open_in_new
+            .info-row
+              .info-icon
+                span.material-symbols-outlined category
+              div
+                .info-label Sector Economico
+                .info-value Tecnologia e Informatica
+            .info-row
+              .info-icon
+                span.material-symbols-outlined groups
+              div
+                .info-label Tamaño de Empresa
+                .info-value 100-500 Colaboradores
+            .info-row
+              .info-icon
+                span.material-symbols-outlined corporate_fare
+              div
+                .info-label Sede Principal
+                .info-value Costa del Este, Panama
+            .info-row
+              .info-icon
+                span.material-symbols-outlined mail
+              div
+                .info-label Correo Corporativo
+                .info-value rrhh@techsolutions.com.pa
+            .info-row
+              .info-icon
+                span.material-symbols-outlined call
+              div
+                .info-label Telefono
+                .info-value +507 300-0000
+
+        //- CONTACTO RECLUTAMIENTO
+        .card
+          .card-header
+            .card-header-left
+              .card-header-icon
+                span.material-symbols-outlined person
+              .card-header-title Contacto de Reclutamiento
+            button.card-action
+              span.material-symbols-outlined edit
+          .card-body
+            .contact-person
+              .contact-avatar MV
+              div
+                .contact-name Mariana Velasquez
+                .contact-role Gerente de Talent Acquisition
+            div(style='display:flex;flex-direction:column;gap:6px;margin-top:1rem')
+              .info-row(style='padding:6px 0')
+                .info-icon
+                  span.material-symbols-outlined mail
+                div
+                  .info-label Correo
+                  .info-value m.velasquez@techsolutions.com.pa
+              .info-row(style='padding:6px 0;border-bottom:none')
+                .info-icon
+                  span.material-symbols-outlined call
+                div
+                  .info-label Telefono
+                  .info-value +507 6XXX-XXXX
+
+        //- MAPA
+        .card(style='overflow:hidden;border-radius:16px;')
+          .map-card
+            iframe(
+              src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.4!2d-79.5356!3d8.9936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8faca8f87c956e8b%3A0x5dbe8b62a36a2eb4!2sUniversidad%20de%20Panam%C3%A1!5e0!3m2!1ses!2spa!4v1700000000000!5m2!1ses!2spa'
+              allowfullscreen=''
+              loading='lazy'
+              title='Ubicacion empresa'
+            )
+            .map-label
+              span.material-symbols-outlined location_on
+              | Costa del Este, Panama
+
+        //- SOPORTE
+        .support-card
+          .support-icon
+            span.material-symbols-outlined support_agent
+          .support-title Soporte Corporativo UP
+          .support-text &iquest;Necesitas ayuda con tu convenio o la publicacion de vacantes? Nuestro equipo de vinculacion esta listo para asistirte.
+          a.btn-support(href='/contact')
+            | Contactar Asesor UP
+            span.material-symbols-outlined(style='font-size:0.9rem') arrow_forward
+
+  //- FOOTER
+  footer.footer-strip
+    .footer-brand
+      span.material-symbols-outlined(style='font-size:1rem') school
+      span Portal de Empleo UP
+    span &copy; #{new Date().getFullYear()} Universidad de Panama &mdash; Dirección de Tecnología de la Información y Comunicación.
+    div(style='display:flex;gap:1rem')
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Terminos
+      a(href='#' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Privacidad
+      a(href='/contacto' style='color:#94a3b8;text-decoration:none;font-size:0.72rem') Soporte
+
+  script.
+    // Consent modal
+    var consented = sessionStorage.getItem('up_employer_consent');
+    if(!consented) {
+      document.getElementById('consent-modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateAccept() {
+      var c1 = document.getElementById('check-consent').checked;
+      var c2 = document.getElementById('check-terms').checked;
+      document.getElementById('btn-accept').disabled = !(c1 && c2);
+    }
+
+    function acceptConsent() {
+      sessionStorage.setItem('up_employer_consent','1');
+      var m = document.getElementById('consent-modal');
+      m.style.opacity = '0';
+      m.style.transition = 'opacity 0.3s';
+      setTimeout(function(){ m.style.display = 'none'; document.body.style.overflow = ''; }, 300);
+    }
+
+    function declineConsent() {
+      window.location.href = '/';
+    }
+
+    function applyR() {
+      var w = window.innerWidth;
+      var pg = document.querySelector('.page-grid');
+      var sr = document.querySelector('.stats-row');
+      if(pg) pg.style.gridTemplateColumns = w < 1024 ? '1fr' : '1fr 300px';
+      if(sr) sr.style.gridTemplateColumns = w < 640 ? '1fr 1fr' : 'repeat(4, 1fr)';
+    }
+    applyR();
+    window.addEventListener('resize', applyR);

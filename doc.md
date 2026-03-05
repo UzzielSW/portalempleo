@@ -1,9 +1,5 @@
 ### Comandos
-express --view=pug portalempleo
 Para los modales de confirmacion y avisos: sweetalert2
-
-Configuracion:
-Variable del sistema: TNS_ADMIN
 
 ### NPM - Node Package Manager
 - Paquetes Locales (Proyecto actual): npm list --depth=0
@@ -31,6 +27,10 @@ Variable del sistema: TNS_ADMIN
 En otros proyectos, en vez de `app.js` + `bin/www`, la gente usa:
 - **`index.js`** o **`server.js`** como archivo único que hace ambas cosas (configura Express y hace `listen`). Es solo una convención de nombres.
 
+
+---
+## Routes
+- Las rutas de cada metodo http, son diferentes aunque se llamen igual.
 
 ---
 ## Regla de arquitectura correcta
