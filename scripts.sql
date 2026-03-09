@@ -1,10 +1,7 @@
--- creacion de paquetes
-
 -- Header
 CREATE OR REPLACE
 PACKAGE PACK_PORTAL_EMPLEO AS
 
-/* Fecha que se añadio 26-02-2026 */
 /* CONSULTAR INFORMACION ESTUDIANTE */
     PROCEDURE CONSULTAR_ESTUDIANTE(
         WCEDULA IN VARCHAR2,
@@ -22,7 +19,6 @@ PACKAGE BODY PACK_PORTAL_EMPLEO AS
 
 /******************************************************************************/
 /******************************************************************************/
-/* Fecha que se añadio 26-02-2026 */
 /* CONSULTAR INFORMACION ESTUDIANTE */
 PROCEDURE CONSULTAR_ESTUDIANTE(
     WCEDULA IN VARCHAR2,

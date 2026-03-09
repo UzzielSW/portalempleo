@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Empleador\n(Empresa)" as E
+
+rectangle "Portal de Empleo UP - Módulo Empleador" {
+    usecase "UC-08: Registrar Solicitud\nde Empresa" as UC8
+    usecase "UC-09: Administrar Ofertas\n(Crear, Editar, Inactivar)" as UC9
+    usecase "UC-10: Buscar Talento\n(Headhunting)" as UC10
+    usecase "UC-11: Contactar Candidato" as UC11
+    usecase "UC-12: Evaluar Candidato (Score)" as UC12
+    usecase "UC-13: Solicitar Renovación\nde Convenio" as UC13
+
+    usecase "Verificar Vigencia de Convenio" as UC_CONV
+}
+
+E --> UC8
+E --> UC9
+E --> UC10
+E --> UC11
+E --> UC12
+E --> UC13
+
+UC9 ..> UC_CONV : <<include>>
+UC10 ..> UC_CONV : <<include>>
+@enduml
