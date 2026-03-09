@@ -1,7 +1,6 @@
 ## Reglas Universales
 - Inglés siempre: El código es internacional. Escribe UserProfile.js, no PerfilUsuario.js.
 - Sin espacios: Jamás uses espacios. Los sistemas de archivos y las URLs los odian (terminarás con %20 por todos lados).
-- Evita caracteres especiales: Nada de ñ, tildes o símbolos ($, #, &). Solo letras, números, guiones y puntos.
 - Cuidado con el Case-Sensitivity:
     - Windows y macOS son "case-insensitive" (no distinguen mayúsculas de minúsculas al leer).
     - Linux (donde correrá tu servidor) es "case-sensitive".

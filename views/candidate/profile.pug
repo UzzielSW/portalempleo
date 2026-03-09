@@ -337,7 +337,7 @@ html(lang='es')
               .hero-title-role
                 span.material-symbols-outlined(style='font-size:1rem;color:var(--up-blue);font-variation-settings:"FILL" 1') badge
                 | ID Estudiante:&nbsp;
-                strong(style='color:var(--up-blue)') 2021-0845
+                strong(style='color:var(--up-blue)') 8-XXX-XXXX
               .hero-meta-row
                 .hero-meta-item
                   span.material-symbols-outlined school
@@ -524,12 +524,6 @@ html(lang='es')
               div
                 .info-row-label Fecha de Nacimiento
                 .info-row-value 15 de mayo, 2002
-            .info-row
-              .info-row-icon
-                span.material-symbols-outlined badge
-              div
-                .info-row-label Cedula de Identidad
-                .info-row-value 8-XXX-XXXX
 
         //- IDIOMAS
         .card
@@ -565,12 +559,15 @@ html(lang='es')
         .completion-card
           div(style='display:flex;justify-content:space-between;align-items:center')
             .completion-title Completar Perfil
-            .completion-pct 85%
+            .completion-pct 90%
           .completion-bar-bg
-            .completion-bar(style='width:85%')
+            .completion-bar(style='width:90%')
           .completion-item
             span.material-symbols-outlined.ci-done check_circle
             span(style='color:rgba(255,255,255,0.85);font-size:0.78rem') Experiencia laboral registrada
+          .completion-item
+            span.material-symbols-outlined.ci-done check_circle
+            span(style='color:rgba(255,255,255,0.85);font-size:0.78rem') Idiomas registrados
           .completion-item
             span.material-symbols-outlined.ci-done check_circle
             span(style='color:rgba(255,255,255,0.85);font-size:0.78rem') CV cargado
@@ -580,9 +577,6 @@ html(lang='es')
           .completion-item
             span.material-symbols-outlined.ci-pending radio_button_unchecked
             span(style='color:rgba(255,255,255,0.4);font-size:0.78rem') Anadir portafolio o proyectos
-          .completion-item
-            span.material-symbols-outlined.ci-pending radio_button_unchecked
-            span(style='color:rgba(255,255,255,0.4);font-size:0.78rem') Verificar correo institucional
           button.btn-update Actualizar Ahora
 
   //- FOOTER
