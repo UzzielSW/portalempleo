@@ -11,7 +11,7 @@
 # Portal (configurar)
 - Links: Linkedin, Github/Repos, Portafolio Personal
 - Puntuacion: valoracion, numero de entrevistas
-- Correo electronico personal 
+- Correo electronico personal
 - numero celular
 - ubicacion actual
 - fecha de nacimiento *
@@ -19,3 +19,4 @@
 - Idiomas: idioma y nivel
 - Experiencia Laboral
 - CV
+- Aptitudes (skills) (muchos)

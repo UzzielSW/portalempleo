@@ -20,11 +20,12 @@ git checkout -b brayan.puyol origin/brayan.puyol
 # sincronizar con otro repositorio
 git remote -v
 git remote add github https://github.com/UzzielSW/portalempleo.git
-git remote add github https://github.com/UzzielSW/expressbra.git
+git remote add gitlab http://git.up.ac.pa/portalempleo/portalempleo.git
 
 # antes de hacer push ya debe existir un repositorio vacio con el mismo nombre que se coloco con el comando anterior
 git push github --all
 git push github --all && git push github --tags
+git push gitlab --all && git push gitlab --tags
 git push github --tags
 
 git pull github brayan.puyol
@@ -59,3 +60,11 @@ npm run start:api
 
 #frontend
 npm run dev
+
+
+# ========================== SERVER ==============================
+sudo su
+git pull
+npm i
+npm run pm2:start
+pm2 list

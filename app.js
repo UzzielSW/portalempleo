@@ -37,10 +37,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    secret: '123456', // cambia esto por algo más seguro
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // cambia a true si usas HTTPS
+  secret: process.env.SECRET_SESSION, // cambia esto por algo más seguro
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // cambia a true si usas HTTPS
 }));
 
 app.use(flash());
@@ -58,20 +58,21 @@ console.log('succefully configs.');
 //    Siempre deben ir al final, después de TODAS las rutas.
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   const err = new Error(`Ruta no encontrada: ${req.originalUrl}`);
   err.status = 404;
 
-  // Mostrar en consola con más contexto
-  console.error(`[${new Date().toISOString()}] 404 - ${err.message}`);
-
+  // Mostrar en consola más contexto
+  // console.error(`[${new Date().toISOString()}] 404 - ${err.message}`);
+  console.error(`[${new Date().toISOString()}] 404 - Ruta no encontrada: ${req.originalUrl}`);
   // Redirigir al login
   res.redirect('/');
-  next(createError(404));
+  // Mostrar pagina 404 y con el error
+  // next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
