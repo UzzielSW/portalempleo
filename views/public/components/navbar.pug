@@ -1,0 +1,26 @@
+mixin publicNavbar(config)
+  - const options = config || {}
+  - const active = options.active || 'home'
+  - const showRegister = Boolean(options.showRegister)
+  - const showAuthButtons = options.showAuthButtons !== false
+  nav.nav-portal
+    .nav-inner
+      a.nav-logo(href='/')
+        .nav-logo-icon
+          span.material-symbols-outlined(style='font-size:1.5rem') school
+        div
+          .nav-logo-title Portal de Empleo UP
+          .nav-logo-sub Universidad de Panamá
+      .nav-links
+        a.nav-link(class=active === 'home' ? 'nav-link-active' : '', href='/') INICIO
+        a.nav-link(class=active === 'requirements' ? 'nav-link-active' : '', href='/requirements') REQUISITOS PARA REGISTRARSE
+        a.nav-link(class=active === 'contact' ? 'nav-link-active' : '', href='/contact') CONTÁCTENOS
+        if showAuthButtons
+          span.nav-divider
+          if showRegister
+            a.btn-nav-login.btn-nav-login-ghost(href='/login') Iniciar sesión
+            a.btn-nav-register(href='/register') Registrarse
+          else
+            a.btn-nav-login(href='/login') Iniciar sesión
+      button.mobile-menu-btn(onclick='toggleMenu()' aria-label='Menú')
+        span.material-symbols-outlined(style='font-size:1.6rem') menu

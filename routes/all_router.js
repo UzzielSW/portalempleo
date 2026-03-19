@@ -18,29 +18,30 @@ require('../config/passport'); // Tu estrategia local
 const { validarSesion } = require("../middlewares/validarSesion");
 
 //-------------------------------- Router: Public Pages ------------------------------
+
 router.get('/', (req, res) => {
     console.log('render: index');
-    res.render('index', { title: 'Portal Empleo UP' });
+    res.render('public/index', { title: 'Portal Empleo UP' });
 });
 
 router.get('/login', (req, res) => {
     console.log('render: login');
-    res.render('login', { title: 'Iniciar Sesión' });
+    res.render('public/login', { title: 'Iniciar Sesión' });
 });
 
 router.get('/register', (req, res) => {
     console.log('render: register');
-    res.render('register', { title: 'Registrarse', direcciones_panama });
+    res.render('public/register', { title: 'Registrarse', direcciones_panama });
 });
 
 router.get('/contact', (req, res) => {
     console.log('render: contact');
-    res.render('contact', { title: 'Contacto' });
+    res.render('public/contact', { title: 'Contacto' });
 });
 
 router.get('/requirements', (req, res) => {
     console.log('render: requirements');
-    res.render('requirements', { title: 'Requisitos para registrarse' });
+    res.render('public/requirements', { title: 'Requisitos para registrarse' });
 });
 
 //===================================================================================-
@@ -51,18 +52,15 @@ router.get('/candidate/profile', (req, res) => {
 	res.render('candidate/profile', { title: 'Perfil del Candidato' });
 });
 
-
 router.get('/candidate/vacancies', (req, res) => {
 	console.log('render: candidate vacancies');
 	res.render('candidate/vacancies', { title: 'Vacantes - Candidato' });
 });
 
-
 router.get('/candidate/vacancies/1', (req, res) => {
 	console.log('render: candidate vacancies details');
 	res.render('candidate/vacancies_details', { title: 'Detalles de Vacante - Candidato' });
 });
-
 
 router.get('/candidate/applications', (req, res) => {
 	console.log('render: candidate applications');
@@ -108,7 +106,6 @@ router.get('/administrator/users', (req, res) => {
     res.render('administrator/users', { title: 'Control de Usuarios - Administrador' });
 });
 //===================================================================================-
-
 
 
 // =====================================================

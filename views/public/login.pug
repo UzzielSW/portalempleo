@@ -1,120 +1,13 @@
+include ./components/head
+include ./components/navbar
+include ./components/menu-script
+
 doctype html
 html(lang='es')
   head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title Iniciar Sesion - Portal de Empleo UP
-    link(rel='preconnect', href='https://fonts.googleapis.com')
-    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
-    link(href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap', rel='stylesheet')
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
-    link(rel='stylesheet', href='/css/style.css')
-    link(rel="icon", type="image/x-icon", href="/images/favicon.ico")
+    +publicHead('Iniciar sesión - Portal de Empleo UP')
 
     style.
-      :root {
-        --up-blue: #003876;
-        --up-blue-dark: #002147;
-        --up-blue-mid: #004a9f;
-        --up-gold: #C49A1A;
-        --up-gold-light: #e8c44d;
-      }
-
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-
-      body {
-        font-family: 'DM Sans', sans-serif;
-        background: #f0f4f8;
-        color: #1a2233;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-
-      h1, h2, h3, h4, .display {
-        font-family: 'Sora', sans-serif;
-      }
-
-      /* ---- NAV (identical to landing) ---- */
-      .nav-portal {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: rgba(255,255,255,0.94);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid #e2e8f0;
-      }
-
-      .nav-inner {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 72px;
-      }
-
-      .nav-logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-      }
-
-      .nav-logo-icon {
-        background: var(--up-blue);
-        color: var(--up-gold);
-        border-radius: 10px;
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-
-      .nav-logo-title {
-        font-family: 'Sora', sans-serif;
-        font-weight: 800;
-        font-size: 1.05rem;
-        color: var(--up-blue);
-        line-height: 1.1;
-      }
-
-      .nav-logo-sub {
-        font-size: 0.6rem;
-        font-weight: 700;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--up-gold);
-      }
-
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-      }
-
-      .nav-link {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: #334155;
-        text-decoration: none;
-        letter-spacing: 0.04em;
-        transition: color 0.2s;
-      }
-
-      .nav-link:hover { color: var(--up-gold); }
-
-      .mobile-menu-btn {
-        display: none;
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: var(--up-blue);
-      }
-
       /* ---- MAIN LAYOUT ---- */
       .login-main {
         flex: 1;
@@ -341,50 +234,10 @@ html(lang='es')
         margin-bottom: 1rem;
       }
 
-      .field-wrap { display: flex; flex-direction: column; gap: 5px; }
-
-      .field-label {
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: #374151;
-      }
-
-      .field-input-wrap {
-        position: relative;
-        display: flex;
-        align-items: center;
-      }
-
       .field-input-icon {
-        position: absolute;
-        left: 13px;
-        color: #94a3b8;
         font-size: 1.1rem;
         font-variation-settings: 'FILL' 0, 'wght' 400;
-        pointer-events: none;
       }
-
-      .field-input {
-        width: 100%;
-        height: 46px;
-        padding: 0 14px 0 40px;
-        border-radius: 10px;
-        border: 1.5px solid #e2e8f0;
-        background: #f8fafc;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 0.9rem;
-        color: #1a2233;
-        outline: none;
-        transition: border-color 0.18s, box-shadow 0.18s;
-      }
-
-      .field-input:focus {
-        border-color: var(--up-blue);
-        background: #fff;
-        box-shadow: 0 0 0 3px rgba(0,56,118,0.08);
-      }
-
-      .field-input::placeholder { color: #b0bec5; }
 
       /* Password toggle */
       .field-toggle {
@@ -428,27 +281,8 @@ html(lang='es')
       .btn-submit {
         width: 100%;
         height: 48px;
-        background: var(--up-blue);
-        color: #fff;
-        border: none;
-        border-radius: 12px;
-        font-family: 'Sora', sans-serif;
         font-size: 0.95rem;
-        font-weight: 700;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 4px 16px rgba(0,56,118,0.2);
         margin-bottom: 1.5rem;
-      }
-
-      .btn-submit:hover {
-        background: var(--up-gold);
-        transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(196,154,26,0.3);
       }
 
       /* ---- DIVIDER ---- */
@@ -499,8 +333,8 @@ html(lang='es')
       }
 
       /* ============================================================
-         MODAL DE RECUPERACION DE CONTRASENA
-         ============================================================ */
+        MODAL DE RECUPERACIÓN DE CONTRASEÑA
+        ============================================================ */
       .modal-overlay {
         position: fixed;
         inset: 0;
@@ -692,8 +526,6 @@ html(lang='es')
 
       /* ---- RESPONSIVE ---- */
       @media (max-width: 640px) {
-        .nav-links { display: none; }
-        .mobile-menu-btn { display: flex; }
         .login-card-header { padding: 1.5rem; }
         .login-card-body { padding: 1.5rem; }
         .role-grid { grid-template-columns: 1fr 1fr; }
@@ -701,25 +533,7 @@ html(lang='es')
         .modal-footer { padding: 1rem 1.5rem; }
       }
 
-  //- ============================================================
-  //- NAVBAR
-  //- ============================================================
-  nav.nav-portal
-    .nav-inner
-      a.nav-logo(href='/')
-        .nav-logo-icon
-          span.material-symbols-outlined(style='font-size:1.5rem') school
-        div
-          .nav-logo-title Portal de Empleo UP
-          .nav-logo-sub Universidad de Panama
-
-      .nav-links
-        a.nav-link(href='/') INICIO
-        a.nav-link(href='/requirements') REQUISITOS PARA REGISTRARSE
-        a.nav-link(href='/contact') CONTACTENOS
-
-      button.mobile-menu-btn(onclick='toggleMenu()' aria-label='Menu')
-        span.material-symbols-outlined(style='font-size:1.6rem') menu
+  +publicNavbar({ active: 'none', showAuthButtons: false })
 
   //- ============================================================
   //- MAIN
@@ -741,41 +555,41 @@ html(lang='es')
       .login-card-body
 
         //- Selector de tipo de usuario
-          span.role-label(style='margin-bottom:0.5rem; display:block') Soy...
-          .role-grid
+        span.role-label(style='margin-bottom:0.5rem; display:block') Soy...
+        .role-grid
 
-            label.role-option
-              input(type='radio' name='estamento' value='estudiante' checked)
-              .role-card
-                .role-icon
-                  span.material-symbols-outlined school
-                .role-name Estudiante
+          label.role-option
+            input(type='radio' name='estamento' value='estudiante' checked)
+            .role-card
+              .role-icon
+                span.material-symbols-outlined school
+              .role-name Estudiante
 
-            label.role-option
-              input(type='radio' name='estamento' value='egresado')
-              .role-card
-                .role-icon
-                  span.material-symbols-outlined workspace_premium
-                .role-name Egresado
+          label.role-option
+            input(type='radio' name='estamento' value='egresado')
+            .role-card
+              .role-icon
+                span.material-symbols-outlined workspace_premium
+              .role-name Egresado
 
-            label.role-option
-              input(type='radio' name='estamento' value='empresa')
-              .role-card
-                .role-icon
-                  span.material-symbols-outlined business
-                .role-name Empresa
+          label.role-option
+            input(type='radio' name='estamento' value='empresa')
+            .role-card
+              .role-icon
+                span.material-symbols-outlined business
+              .role-name Empresa
 
-            label.role-option
-              input(type='radio' name='estamento' value='administrativo')
-              .role-card
-                .role-icon
-                  span.material-symbols-outlined manage_accounts
-                .role-name Administrativo
+          label.role-option
+            input(type='radio' name='estamento' value='administrativo')
+            .role-card
+              .role-icon
+                span.material-symbols-outlined manage_accounts
+              .role-name Administrativo
 
-          .form-divider
+        .form-divider
 
         //- Campos
-        form(action='/log_in' method='POST')
+        form(action='/login' method='POST')
           .field-group
 
             .field-wrap
@@ -802,7 +616,7 @@ html(lang='es')
                   autocomplete='current-password'
                   style='padding-right:42px'
                 )
-                button.field-toggle(type='button' onclick='togglePassword()' aria-label='Mostrar contrasena')
+                button.field-toggle(type='button' onclick='togglePassword()' aria-label='Mostrar contraseña')
                   span#toggle-icon.material-symbols-outlined(style='font-size:1.1rem; font-variation-settings:"FILL" 0') visibility
 
           .forgot-row
@@ -823,10 +637,10 @@ html(lang='es')
   //- FOOTER
   //- ============================================================
   footer.login-footer
-    | &copy; #{new Date().getFullYear()} Universidad de Panama &mdash; Dirección de Tecnología de la Información y Comunicación.
+    | &copy; #{new Date().getFullYear()} Universidad de Panamá &mdash; Dirección de Tecnología de la Información y Comunicación.
 
   //- ============================================================
-  //- MODAL RECUPERACION DE CONTRASENA
+  //- MODAL RECUPERACIÓN DE CONTRASEÑA
   //- ============================================================
   #modal-password.modal-overlay(role='dialog' aria-modal='true' aria-labelledby='modal-title')
     .modal-box
@@ -836,14 +650,14 @@ html(lang='es')
           .modal-header-icon
             span.material-symbols-outlined(style='font-variation-settings:"FILL" 1; font-size:1.2rem') lock_reset
           div
-            h2#modal-title.modal-title Recuperar Contrasena
-            p.modal-subtitle Pasos segun tu tipo de usuario
+            h2#modal-title.modal-title Recuperar contraseña
+            p.modal-subtitle Pasos según tu tipo de usuario
         button.modal-close-btn(onclick='closeModal()' aria-label='Cerrar')
           span.material-symbols-outlined(style='font-size:1.1rem') close
 
       .modal-body
         p.modal-intro
-          | Selecciona tu tipo de usuario a continuacion y sigue las instrucciones para recuperar el acceso a tu cuenta.
+          | Selecciona tu tipo de usuario a continuación y sigue las instrucciones para recuperar el acceso a tu cuenta.
 
         .recovery-steps
 
@@ -851,15 +665,15 @@ html(lang='es')
             .step-badge.step-badge-blue 1
             .step-content
               .step-role Estudiantes y Egresados
-              .step-title-text Recuperacion por correo institucional
+              .step-title-text Recuperación por correo institucional
               p.step-detail
-                | Usa tu correo @up.ac.pa. Recibiras un enlace de restablecimiento en tu bandeja de entrada. Revisa tambien la carpeta de spam.
+                | Usa tu correo @up.ac.pa. Recibirás un enlace de restablecimiento en tu bandeja de entrada. Revisa también la carpeta de spam.
 
           .recovery-step
             .step-badge.step-badge-gold 2
             .step-content
               .step-role Empresas registradas
-              .step-title-text Verificacion por RUC y correo de contacto
+              .step-title-text Verificación por RUC y correo de contacto
               p.step-detail
                 | Ingresa el RUC de tu empresa y el correo con el que te registraste. Recibirás las instrucciones para restablecer tu acceso.
 
@@ -867,9 +681,9 @@ html(lang='es')
             .step-badge.step-badge-teal 3
             .step-content
               .step-role Personal Administrativo
-              .step-title-text Contacta a la Direccion de Informatica
+              .step-title-text Contacta a la Dirección de Informática
               p.step-detail
-                | El personal administrativo debe solicitar el restablecimiento directamente con la Direccion de Informatica de la UP.
+                | El personal administrativo debe solicitar el restablecimiento directamente con la Dirección de Informática de la UP.
 
       .modal-footer
         .modal-contact-icon
@@ -880,11 +694,12 @@ html(lang='es')
           | Escribenos a&nbsp;
           a.modal-contact-link(href='mailto:vinculacion@up.ac.pa') vinculacion@up.ac.pa
           | &nbsp;o visita&nbsp;
-          a.modal-contact-link(href='/contact') Contactenos
+          a.modal-contact-link(href='/contact') Contáctenos
 
   //- ============================================================
   //- SCRIPTS
   //- ============================================================
+  +publicMenuScript()
   script.
     // Toggle password visibility
     function togglePassword() {
@@ -920,20 +735,4 @@ html(lang='es')
       if (e.key === 'Escape') closeModal();
     });
 
-    // Mobile menu
-    function toggleMenu() {
-      var nav = document.querySelector('.nav-links');
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-      if (nav.style.display === 'flex') {
-        nav.style.flexDirection = 'column';
-        nav.style.position = 'absolute';
-        nav.style.top = '72px';
-        nav.style.left = '0';
-        nav.style.right = '0';
-        nav.style.background = '#fff';
-        nav.style.padding = '1rem 1.5rem';
-        nav.style.borderBottom = '1px solid #e2e8f0';
-        nav.style.boxShadow = '0 8px 20px rgba(0,0,0,0.08)';
-        nav.style.zIndex = '99';
-      }
-    }
+    // Mobile menu behavior is provided by +publicMenuScript()
